@@ -1,1 +1,1 @@
-# Detecci-n-de-agradecimientos-en-proyectos-software
+# Deteccion de agradecimientos en proyectos software
