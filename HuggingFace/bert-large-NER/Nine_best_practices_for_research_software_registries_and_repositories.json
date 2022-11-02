@@ -1,0 +1,30 @@
+[
+    {
+        "entity_group": "ORG",
+        "score": 0.9901005029678345,
+        "word": "Alfred P. Sloan Foundation",
+        "start": 31,
+        "end": 57
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9971192479133606,
+        "word": "Heidelberg Institute of Theoretical Studies",
+        "start": 95,
+        "end": 138
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9893804788589478,
+        "word": "Ana Trisovic",
+        "start": 140,
+        "end": 152
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.989297091960907,
+        "word": "Alfred P. Sloan Foundation",
+        "start": 170,
+        "end": 196
+    }
+]

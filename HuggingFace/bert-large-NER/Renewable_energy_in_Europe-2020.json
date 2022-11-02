@@ -1,0 +1,352 @@
+[
+    {
+        "entity_group": "ORG",
+        "score": 0.9991373419761658,
+        "word": "European Environment Agency",
+        "start": 32,
+        "end": 59
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9979842901229858,
+        "word": "EEA",
+        "start": 61,
+        "end": 64
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.8803354501724243,
+        "word": "European Topic Centre on Climate change Mi",
+        "start": 74,
+        "end": 116
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.7837207913398743,
+        "word": "##gation and Energy",
+        "start": 118,
+        "end": 135
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9761406183242798,
+        "word": "ETC / CME",
+        "start": 137,
+        "end": 144
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9756090044975281,
+        "word": "ETC / CME",
+        "start": 151,
+        "end": 158
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.9977753758430481,
+        "word": "European",
+        "start": 178,
+        "end": 186
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9949214458465576,
+        "word": "EEA",
+        "start": 212,
+        "end": 215
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9973916411399841,
+        "word": "European Union",
+        "start": 227,
+        "end": 241
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9985342025756836,
+        "word": "EU",
+        "start": 243,
+        "end": 245
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9992068409919739,
+        "word": "Il",
+        "start": 315,
+        "end": 317
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9711415767669678,
+        "word": "##s Moorkens",
+        "start": 317,
+        "end": 327
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9520055651664734,
+        "word": "ETC / CME",
+        "start": 329,
+        "end": 336
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9992573857307434,
+        "word": "Mi",
+        "start": 342,
+        "end": 344
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.8937458992004395,
+        "word": "##hai Tomescu",
+        "start": 344,
+        "end": 355
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9971591830253601,
+        "word": "EEA",
+        "start": 357,
+        "end": 360
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.999340832233429,
+        "word": "Me",
+        "start": 444,
+        "end": 446
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9217836260795593,
+        "word": "##rce Almuni",
+        "start": 446,
+        "end": 456
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.823164701461792,
+        "word": "Vito",
+        "start": 458,
+        "end": 462
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9985870122909546,
+        "word": "Tom Dauwe",
+        "start": 465,
+        "end": 474
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9502209424972534,
+        "word": "Vito",
+        "start": 476,
+        "end": 480
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9989410042762756,
+        "word": "Il",
+        "start": 483,
+        "end": 485
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9047837257385254,
+        "word": "##s Moorkens",
+        "start": 485,
+        "end": 495
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9404216408729553,
+        "word": "Vito",
+        "start": 497,
+        "end": 501
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.997533917427063,
+        "word": "R",
+        "start": 504,
+        "end": 505
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9105184078216553,
+        "word": "##isto Juhana Saarikivi",
+        "start": 505,
+        "end": 526
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9961169362068176,
+        "word": "CHMI",
+        "start": 528,
+        "end": 532
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9990580677986145,
+        "word": "Mi",
+        "start": 538,
+        "end": 540
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9873125553131104,
+        "word": "##hai Tomescu",
+        "start": 540,
+        "end": 551
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9958140850067139,
+        "word": "EEA",
+        "start": 553,
+        "end": 556
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9972590208053589,
+        "word": "Javier Esparrago",
+        "start": 559,
+        "end": 575
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9967082142829895,
+        "word": "EEA",
+        "start": 577,
+        "end": 580
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9993557929992676,
+        "word": "Adrian Whiteman",
+        "start": 648,
+        "end": 663
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.998985230922699,
+        "word": "International Renewable Energy Agency",
+        "start": 674,
+        "end": 711
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9981643557548523,
+        "word": "IRENA",
+        "start": 713,
+        "end": 718
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9990777969360352,
+        "word": "Eurostat",
+        "start": 821,
+        "end": 829
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.8900513052940369,
+        "word": "SH",
+        "start": 857,
+        "end": 859
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.722912073135376,
+        "word": "##ES",
+        "start": 861,
+        "end": 863
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9925899505615234,
+        "word": "Wolfgang Schöpp",
+        "start": 1005,
+        "end": 1020
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9880817532539368,
+        "word": "Janus",
+        "start": 1031,
+        "end": 1036
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9855498671531677,
+        "word": "##z Cofala",
+        "start": 1036,
+        "end": 1044
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9985971450805664,
+        "word": "IIASA",
+        "start": 1046,
+        "end": 1051
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.7232725620269775,
+        "word": "GA",
+        "start": 1087,
+        "end": 1089
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.995520830154419,
+        "word": "EEA",
+        "start": 1148,
+        "end": 1151
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9816704988479614,
+        "word": "ETC / CME",
+        "start": 1160,
+        "end": 1167
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9877157807350159,
+        "word": "EEA",
+        "start": 1233,
+        "end": 1236
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.996269702911377,
+        "word": "EEA",
+        "start": 1331,
+        "end": 1334
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9704710245132446,
+        "word": "ETC / CME",
+        "start": 1343,
+        "end": 1350
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9992265701293945,
+        "word": "European Commission",
+        "start": 1429,
+        "end": 1448
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9979307055473328,
+        "word": "Joint Research Centre",
+        "start": 1457,
+        "end": 1478
+    }
+]

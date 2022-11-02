@@ -1,0 +1,58 @@
+[
+    {
+        "entity_group": "ORG",
+        "score": 0.9982326626777649,
+        "word": "National Cancer Institute",
+        "start": 0,
+        "end": 25
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9980779886245728,
+        "word": "National Institutes of Health",
+        "start": 27,
+        "end": 56
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9887239336967468,
+        "word": "NIH",
+        "start": 58,
+        "end": 61
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9675757884979248,
+        "word": "Intramural Research Program of the NIH",
+        "start": 103,
+        "end": 141
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9979705810546875,
+        "word": "National Cancer Institute",
+        "start": 143,
+        "end": 168
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9978927969932556,
+        "word": "Center for Cancer Research",
+        "start": 170,
+        "end": 196
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9988530874252319,
+        "word": "Scientific and Technological Research Council of Turkey",
+        "start": 208,
+        "end": 263
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9719017744064331,
+        "word": "TUBITAK",
+        "start": 265,
+        "end": 272
+    }
+]

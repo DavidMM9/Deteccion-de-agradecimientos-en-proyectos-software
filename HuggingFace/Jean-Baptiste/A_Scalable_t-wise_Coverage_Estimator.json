@@ -1,0 +1,72 @@
+[
+    {
+        "entity_group": "MISC",
+        "score": 0.9064618349075317,
+        "word": "EU H2020 project Serums",
+        "start": 34,
+        "end": 58
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9937432408332825,
+        "word": "National Science Foundation",
+        "start": 105,
+        "end": 133
+    },
+    {
+        "entity_group": "LOC",
+        "score": 0.5331658720970154,
+        "word": "USA",
+        "start": 133,
+        "end": 137
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9899682998657227,
+        "word": "National Research Foundation",
+        "start": 171,
+        "end": 200
+    },
+    {
+        "entity_group": "LOC",
+        "score": 0.8095479607582092,
+        "word": "Singapore",
+        "start": 200,
+        "end": 210
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.9834601283073425,
+        "word": "NRF Fellowship Programme",
+        "start": 220,
+        "end": 245
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.8766255378723145,
+        "word": "AI Singapore Programme",
+        "start": 273,
+        "end": 296
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.7472363114356995,
+        "word": "AIS",
+        "start": 298,
+        "end": 301
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.993095338344574,
+        "word": "National Research Foundation",
+        "start": 460,
+        "end": 489
+    },
+    {
+        "entity_group": "LOC",
+        "score": 0.9975161552429199,
+        "word": "Singapore",
+        "start": 490,
+        "end": 500
+    }
+]

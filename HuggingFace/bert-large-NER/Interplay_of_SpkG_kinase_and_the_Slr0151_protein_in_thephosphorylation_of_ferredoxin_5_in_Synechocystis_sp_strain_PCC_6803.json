@@ -1,0 +1,149 @@
+[
+    {
+        "entity_group": "ORG",
+        "score": 0.6369794607162476,
+        "word": "People Programme",
+        "start": 68,
+        "end": 84
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.8276451230049133,
+        "word": "Marie Curie Action",
+        "start": 86,
+        "end": 104
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.6393885016441345,
+        "word": "##s",
+        "start": 104,
+        "end": 105
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9934564232826233,
+        "word": "European Union",
+        "start": 114,
+        "end": 128
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.9929524064064026,
+        "word": "Seventh Framework Programme",
+        "start": 131,
+        "end": 158
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.3755663335323334,
+        "word": "R",
+        "start": 179,
+        "end": 180
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.3576718270778656,
+        "word": "##EA",
+        "start": 180,
+        "end": 182
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.5674517750740051,
+        "word": "Grant",
+        "start": 183,
+        "end": 188
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.6674115657806396,
+        "word": "Agreement",
+        "start": 190,
+        "end": 199
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9986968636512756,
+        "word": "European Union",
+        "start": 272,
+        "end": 286
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9980728030204773,
+        "word": "Academy of Finland Centre of Excellence",
+        "start": 429,
+        "end": 468
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9925329089164734,
+        "word": "Academy of Finland Project",
+        "start": 496,
+        "end": 522
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.4526941478252411,
+        "word": "E",
+        "start": 538,
+        "end": 539
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9960163235664368,
+        "word": "Russian Science Foundation",
+        "start": 548,
+        "end": 574
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9978137016296387,
+        "word": "Turku University Foundation",
+        "start": 613,
+        "end": 640
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9916343688964844,
+        "word": "Turku Proteomics Facility",
+        "start": 700,
+        "end": 725
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9801400899887085,
+        "word": "University of Turku",
+        "start": 727,
+        "end": 746
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9761619567871094,
+        "word": "Abo Akademi University",
+        "start": 751,
+        "end": 773
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.98621666431427,
+        "word": "Biocenter Finland",
+        "start": 788,
+        "end": 805
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9991494417190552,
+        "word": "Dalton Carmel",
+        "start": 811,
+        "end": 824
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.8853585720062256,
+        "word": "Synechocystis",
+        "start": 878,
+        "end": 891
+    }
+]

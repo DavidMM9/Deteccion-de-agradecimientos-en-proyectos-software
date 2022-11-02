@@ -1,0 +1,100 @@
+[
+    {
+        "entity_group": "MISC",
+        "score": 0.9679170250892639,
+        "word": "Spanish",
+        "start": 53,
+        "end": 60
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9986520409584045,
+        "word": "Ministerio de Ciencia, Innovación y Universidades",
+        "start": 61,
+        "end": 110
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.8261935710906982,
+        "word": "F",
+        "start": 124,
+        "end": 125
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.999038577079773,
+        "word": "CSIC",
+        "start": 140,
+        "end": 144
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.6023702025413513,
+        "word": "LIN",
+        "start": 158,
+        "end": 161
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9990224242210388,
+        "word": "Australian Research Council",
+        "start": 175,
+        "end": 202
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9988481998443604,
+        "word": "Ministry of Education, Science and Technological Development",
+        "start": 255,
+        "end": 315
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.8981902003288269,
+        "word": "O",
+        "start": 329,
+        "end": 330
+    },
+    {
+        "entity_group": "LOC",
+        "score": 0.9990010857582092,
+        "word": "Republic of Serbia",
+        "start": 346,
+        "end": 364
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9972104430198669,
+        "word": "Ministry of Scientific and Technological Development, Higher Education and Information Society",
+        "start": 374,
+        "end": 468
+    },
+    {
+        "entity_group": "LOC",
+        "score": 0.998676598072052,
+        "word": "Republic of Srpska",
+        "start": 509,
+        "end": 527
+    },
+    {
+        "entity_group": "LOC",
+        "score": 0.9996063113212585,
+        "word": "Bosnia",
+        "start": 529,
+        "end": 535
+    },
+    {
+        "entity_group": "LOC",
+        "score": 0.9994457364082336,
+        "word": "Herzegovina",
+        "start": 541,
+        "end": 552
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.8623339533805847,
+        "word": "L. Campbell",
+        "start": 567,
+        "end": 578
+    }
+]

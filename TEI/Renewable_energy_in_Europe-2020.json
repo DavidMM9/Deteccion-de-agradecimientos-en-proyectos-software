@@ -1,0 +1,35 @@
+{
+    "ORG": [
+        "European Environment Agency",
+        "EEA",
+        "European Topic Centre on Climate change Mitigation and Energy",
+        "ETC/CME",
+        "European Union",
+        "EU",
+        "Vito",
+        "CHMI",
+        "International Renewable Energy Agency",
+        "IRENA",
+        "Eurostat",
+        "IIASA",
+        "European Commission",
+        "Joint Research Centre"
+    ],
+    "MISC": [
+        ""
+    ],
+    "PER": [
+        "Ils Moorkens",
+        "Mihai Tomescu",
+        "Merce Almuni",
+        "Tom Dauwe",
+        "Risto Juhana Saarikivi",
+        "Javier Esparrago",
+        "Adrian Whiteman",
+        "Dr Wolfgang Schöpp",
+        "Dr Janusz Cofala"
+    ],
+    "LOC": [
+        ""
+    ]
+}

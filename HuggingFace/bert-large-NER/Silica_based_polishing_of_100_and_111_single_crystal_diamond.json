@@ -1,0 +1,121 @@
+[
+    {
+        "entity_group": "PER",
+        "score": 0.9993929266929626,
+        "word": "Daniel Twitchen",
+        "start": 26,
+        "end": 41
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.994692862033844,
+        "word": "Element Six",
+        "start": 45,
+        "end": 56
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9996087551116943,
+        "word": "Mark Kennedy",
+        "start": 89,
+        "end": 101
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9933373928070068,
+        "word": "John McCrossan",
+        "start": 106,
+        "end": 120
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9962350726127625,
+        "word": "Logitech",
+        "start": 124,
+        "end": 132
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.9025924205780029,
+        "word": "C",
+        "start": 163,
+        "end": 164
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.998986542224884,
+        "word": "Ra",
+        "start": 180,
+        "end": 182
+    },
+    {
+        "entity_group": "PER",
+        "score": 0.9867674112319946,
+        "word": "##mi Sudiwala",
+        "start": 184,
+        "end": 195
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9961073994636536,
+        "word": "Cardiff School of Physics and Astronomy",
+        "start": 203,
+        "end": 242
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9945873618125916,
+        "word": "OAW",
+        "start": 281,
+        "end": 284
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9828401207923889,
+        "word": "Marie Curie Actions",
+        "start": 327,
+        "end": 346
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.5323287844657898,
+        "word": "##tra",
+        "start": 357,
+        "end": 360
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.42483481764793396,
+        "word": "EU",
+        "start": 361,
+        "end": 363
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9962403774261475,
+        "word": "ELHT",
+        "start": 376,
+        "end": 380
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.9956439137458801,
+        "word": "UK Engineering and Physical Sciences Research Council",
+        "start": 428,
+        "end": 481
+    },
+    {
+        "entity_group": "ORG",
+        "score": 0.992886483669281,
+        "word": "EPSRC",
+        "start": 483,
+        "end": 488
+    },
+    {
+        "entity_group": "MISC",
+        "score": 0.4841746687889099,
+        "word": "##ec",
+        "start": 543,
+        "end": 545
+    }
+]
