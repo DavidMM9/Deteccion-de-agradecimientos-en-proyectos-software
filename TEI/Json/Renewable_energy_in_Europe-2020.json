@@ -1,0 +1,94 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "European Environment Agency"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "EEA"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "European Topic Centre on Climate change Mitigation and Energy"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "ETC/CME"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "European Union"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "EU"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Vito"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "CHMI"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "International Renewable Energy Agency"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "IRENA"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Eurostat"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "IIASA"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "European Commission"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Joint Research Centre"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Ils Moorkens"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Mihai Tomescu"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Merce Almuni"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Tom Dauwe"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Risto Juhana Saarikivi"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Javier Esparrago"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Adrian Whiteman"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Dr Wolfgang Schöpp"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Dr Janusz Cofala"
+    }
+]

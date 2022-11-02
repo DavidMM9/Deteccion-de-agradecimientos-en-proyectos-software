@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Acceleration of atomic dynamics due to localized energy depositions under X-ray irradiation</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2015-10-07">7 Oct 2015</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Michael</forename><surname>Leitner</surname></persName>
+							<email>michael.leitner@frm2.tum.de</email>
+						</author>
+						<author>
+							<persName><forename type="first">Markus</forename><surname>Stana</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Manuel</forename><surname>Ross</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Bogdan</forename><surname>Sepiol</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Heinz</forename><surname>Maier</surname></persName>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution" key="instit1">Universität Wien</orgName>
+								<orgName type="institution" key="instit2">Fakultät für Physik</orgName>
+								<address>
+									<addrLine>Boltzmanngasse 5</addrLine>
+									<postCode>1090</postCode>
+									<settlement>Wien</settlement>
+									<country key="AT">Austria</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution" key="instit1">-Leibnitz Zentrum (MLZ)</orgName>
+								<orgName type="institution" key="instit2">Technische Universität München</orgName>
+								<address>
+									<addrLine>Lichtenbergstr. 1</addrLine>
+									<postCode>85748</postCode>
+									<settlement>Garching</settlement>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Acceleration of atomic dynamics due to localized energy depositions under X-ray irradiation</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2015-10-07">7 Oct 2015</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">9D767DA78F5DF37356ED22BC61CE2E75</idno>
+					<idno type="arXiv">arXiv:1510.01918v1[cond-mat.mtrl-sci]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.1" ident="GROBID" when="2022-10-20T07:48+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>numbers: 61.80.Az</term>
+					<term>66.30.-h</term>
+					<term>63.20.kd</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The effect of the absorption of hard X-ray photons on the solid-state dynamics, at energies below the defect creation threshold, is considered. First, it is shown that due to the sensitivity to parameter choices, the present state of the theoretical description of photon-electron-lattice coupling cannot decide on whether the local energy deposition due to the absorption of single photons leads to an acceleration of atomic dynamics at fluences before macroscopic effects due to sample heating set in. Second, a direct study of the dynamics under different incident photon fluxes by atomic-scale X-ray Photon Correlation Spectroscopy (aXPCS) is reported, which provides an upper bound of 0.005 additional atomic jumps per absorbed photon of 8 keV. The relevance of such considerations for emergent experimental methods, such as studying atomic dynamics using X-rays as probes, is pointed out.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>The damaging effects of particle irradiation on matter is a classical field of study and nowadays well understood. This is due to its technological relevance for reactor steels and fusion devices, but also due to its use as a tool for testing atomic-scale concepts in fundamental physics such as, e.g., the migration enthalpy of point defects via postirradiation annealing recovery <ref type="bibr" target="#b25">(Slater 1951</ref><ref type="bibr" target="#b13">, Kelly 1966)</ref>. Damage creation, be it in an accelerator, nuclear reactor or electron microscope, can in general be understood by classical concepts on a local scale, in that a single primary particle transfers part of its kinetic energy onto an atom in a two-body collision. If this energy exceeds some well-defined threshold on the order of 25 eV in solid matter <ref type="bibr" target="#b14">(Kenik &amp; Mitchell 1975)</ref>, the atom will leave its site to create a Frenkel pair, or the ensuing collision cascade will even melt the crystal locally.</p><p>In contrast to such microscopic effects, the typically encountered perturbations induced in the sample by electro-magnetic irradiation of all but the highest gamma energies belong to the macroscopic domain. Apart from issues such as single-shot sample vaporization by XUV radiation <ref type="bibr" target="#b2">(Chapman et al. 2006)</ref>, the transient modifications to the electronic system observed in, e.g., fast electronic relaxations studied by pumpprobe techniques <ref type="bibr" target="#b1">(Bonn et al. 2000</ref><ref type="bibr">, Pfau et al. 2012)</ref> or laser-induced athermal <ref type="bibr" target="#b27">(Tom et al. 1988</ref><ref type="bibr" target="#b19">, Medvedev et al. 2013</ref>) and thermal <ref type="bibr" target="#b11">(Hau-Riege et al. 2012)</ref> phase transitions are fields of active study.</p><p>In scattering experiments, where the radiation beam is used as a probe, it is imperative to know about the beam's effects on the sample. The fact of radiation damage in electron microscopy is well-established <ref type="bibr" target="#b28">(Urban 1979)</ref>, and also hard X-ray irradiation can affect soft matter, specifically biological systems <ref type="bibr" target="#b15">(Kirz et al. 1995)</ref>. On the other hand, there is a silent consensus that hard matter (such as metals, semiconductors and ceramics) is unperturbed by the absorption of single X-rays, so that the possibility of an influence of the beam on the sample in this case is only rarely mentioned, let alone investigated. Note that the sample modification under pulses from free-electron lasers <ref type="bibr" target="#b11">(Hau-Riege et al. 2012</ref><ref type="bibr" target="#b12">, Hruszkewycz et al. 2012</ref>) is explained by the high energy deposition densities and quite expected.</p><p>The observed absence of beam damage (permanent modifications of the sample's macrostate) under low-fluence X-ray irradiation is no sufficient condition for the sample dynamics to be unaffected, however. While in the case of biological systems the photons enable the sample to lower its free energy by breaking bonds and thereby accumulate irradiation damage, in crystalline matter the principal radiation-induced defect is a Frenkel pair and as such generally thermodynamically unstable. Therefore the following scenario is a priori perfectly possible: the above-mentioned and often-quoted knock-on threshold of about 25 eV only decides whether long-range atomic displacements and thereby long-lived Frenkel pairs result, but crystalline order can be broken locally also by the absorption of photons of somewhat lower energy. Once this energy had dissipated, the order would be re-established, thus resulting in a few net atomic exchanges. Further, at still lower energies a local enhancement of thermal diffusion due to the dissipation of an X-ray photon's energy into the lattice is conceivable, which could have appreciable effects on the overall diffusion rate due to the very non-linear dependence of the Boltzmann factor on temperature.</p><p>These issues can be put succinctly in the following question: does the absorption of hard X-ray photons at dose rates where sample heating can be neglected lead to a noticeable increase in the atomic jump rate? As will be elaborated below, available theoretical treatments are not able to give an answer. Also, in conventional tracer measurements, the sensitivity of the method is a limiting factor, and consequently no positive results have been reported. However, the newly developed method of atomicscale X-ray Photon Correlation Spectroscopy (aXPCS, <ref type="bibr" target="#b18">Leitner et al. 2009</ref>) affords the possibility to test the situation with unprecedented resolution. This technique studies diffusive dynamics at atomic length-scales by monitoring the temporal evolution of the intensity pattern of scattered coherent radiation and is one of the proposed fields of study for the new generation of hard X-ray free electron lasers such as the LCLS at Stanford <ref type="bibr" target="#b21">(Robert et al. 2013</ref>) and the European XFEL at Hamburg <ref type="bibr" target="#b10">(Grübel et al. 2007)</ref>. Apart from the implications on electron-lattice coupling on the local scale, the study presented here is therefore also of high relevance for the interpretation of experimental determinations of dynamics with X-rays as probes.</p><p>In the classical literature on particle and gamma irradiation-induced diffusion enhancements, one distinguishes between the concepts of ion beam mixing, which concerns the mobility of atoms in the collision cascade immediately following the interaction of a primary particle with the lattice <ref type="bibr" target="#b0">(Averback 1986)</ref>, and radiationenhanced diffusion, corresponding to accelerated thermal diffusion thanks to the increased density of point defects during and after irradiation <ref type="bibr" target="#b7">(Dugdale 1956</ref><ref type="bibr" target="#b5">, Dienes &amp; Damask 1958)</ref>. Direct observations of enhanced diffusion by tracer measurements are scarce, and require large doses for measurable effects <ref type="bibr" target="#b16">(Lee et al. 1994</ref>).</p><p>Here we will define three scenarios for the effect of X-ray irradiation on a sample's atomic dynamics, only two of which are conventionally considered. The third scenario, where the energy deposited locally into the lattice leads to a spatially and temporally confined acceleration of dynamics, will be treated here for the first time. We will elaborate that the existing theoretical and experimental data lead to uncertainties of the proposed effects on orders of magnitude, and cannot be used to rule them out. Specifically we will use a typical aXPCS experiment at a third-generation synchrotron for giving quantitative estimates. Also, we will report on a dedicated experiment on these issues, with a sensitivity down to well below one atomic jump per absorbed photon.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Definition of scenarios and estimates of their effects</head><p>For the scenarios to be considered here, we will use parameter values that correspond to those of a typical experiment as reported below.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1.">Macroscopic heating</head><p>The most basic effect of relevance is the macroscopic heating of the sample by the beam, which has already been considered in the context of experiments at free electron lasers by <ref type="bibr" target="#b10">Grübel et al. (2007)</ref>. We assume the sample to consist of a 10 µm thin metal foil in a beam of about 2 • 10 11 photons of 8 keV per second, focused to a diameter of 5 µm. For an experiment in transmission geometry, about half of the photons will be absorbed in the sample, corresponding to a heating power of the beam of 0.13 mW. Neglecting heat radiation, using the thermal conductivity of Cu at 380 W/(m K) and solving the two-dimensional heat conduction equation with circular symmetry gives a temperature difference between the edge of the illuminated area at r 0 = 2.5 µm and the sample holder at r 1 = 2 mm of ∆T = 0.036 K. Assuming a homogeneous illumination within the focal spot gives an additional temperature difference of 0.003 K between the beam centre and r 0 . The measured activation energy of 2.1 eV <ref type="bibr" target="#b18">(Leitner et al. 2009</ref>) corresponds at the relevant temperature range roughly to a doubling of the jump frequency for each 9 K. A heating of 0.04 K due to the beam can therefore safely be neglected.</p><p>Additional to the steady-state heating, the bunched temporal structure of a synchrotron beam and the resulting temperature spikes have to be considered. We take as an extreme scenario a time structure of 200 ns between bunches at full integrated current, such as used for studying nuclear transitions in the time domain <ref type="bibr" target="#b24">(Sepiol et al. 1996)</ref>. A typical number density of atoms in a metal of 5 • 10 28 m −3 gives 10 13 atoms within the illuminated volume and therefore a Dulong-Petit heat capacity of 4.1 • 10 −10 J/K. Thus, the adiabatic sample heating during the absorption of a photon bunch corresponds to temperature spikes of 0.063 K. Again, such a temperature increase can be neglected, especially given the fact that the synchrotron beam time structure used for XPCS measurements typically corresponds to much higher bunch repetition rates and therefore smaller spikes. On the other hand, the high single-pulse fluences of X-ray free electron laser sources has indeed been observed to lead to appreciable effects <ref type="bibr" target="#b12">(Hruszkewycz et al. 2012</ref>).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.">Knock-on displacements</head><p>Having excluded macroscopic effects, we now turn to the microscopic situation. While by the Compton formula <ref type="bibr" target="#b3">(Compton 1923</ref>) an 8 keV photon can transfer at most 250 eV to a free electron, the equivalent figure for atoms is on the order of meV. This shows that, contrary to all previous studies of radiation damage by particle and MeV gamma quanta <ref type="bibr" target="#b7">(Dugdale 1956)</ref>, this scenario can be ruled out for X-rays.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.">Microscopic dynamics enhancement</head><p>The third scenario concerns a local acceleration of diffusive dynamics due to the transient microscopic heating after the absorption of an X-ray photon. This is conceivable, as the Boltzmann factor governing diffusion is highly non-linear, so that the mean atomic jump rate is not simple given by the mean sample temperature (which is only very weakly affected by the beam, as shown above), but can be sizeably increased by the local and transient heat spikes. The relevant space-and time-scales and the expected effects will be discussed below.</p><p>The pathway of photon energy dissipation into the lattice is as follows <ref type="bibr" target="#b19">(Medvedev et al. 2013</ref>): In a first stage the photon loses its energy to excitations of the electronic structure of the solid. This happens via the ejection of a photoelectron, perhaps after a few events of Compton scattering. The excited atomic state can decay via again emitting a fluorescence photon, thereby restarting this process with somewhat lower energy, or emitting an Auger electron. This happens on electronic timescales, i.e., femtoseconds, after which the energy has been conferred to a few hot electrons in the keV range as determined by the core levels of the constituent elements.</p><p>The interactions of hot electrons with the unperturbed lattice and electronic system in a later stage can be classified into elastic collisions with the ionic cores and inelastic interactions with the electrons. The latter include the emission of low-energy secondary electrons and plasmons, with a corresponding inelastic mean free path that decreases from around 30 Å at 2 keV to around 5 Å at 50 eV <ref type="bibr" target="#b8">(Echenique et al. 2000</ref><ref type="bibr" target="#b26">, Tanuma et al. 2011)</ref>. At lower energies quantitative theoretical predictions become difficult, but the observed increase in escape depths <ref type="bibr" target="#b23">(Seah &amp; Dench 1979)</ref> agrees with the picture of delocalized quasi-particles with long lifetimes at low energies.</p><p>Tabulated free-atom calculations of the elastic scattering, e.g. by <ref type="bibr" target="#b4">Czyżewski et al. (1990)</ref>, show that the elastic mean free path is in general shorter than the inelastic mean free path (below 10 Å), but corresponds for high electron energies mostly to small scattering angles and therefore near-ballistic transport. However, around 100 eV significant scattering angles become probable, so that electrons in this energy range will figuratively bounce from atom to atom. At even lower energies the mean free path would decrease below atomic distances. This logical problem is relieved by the fact that the de Broglie-wavelength then becomes appreciable, so that delocalized states, which do not scatter off a perfect lattice, become the appropriate description, in accordance with above-referenced increasing escape depths.</p><p>The critical issue is the spatial scale of above-mentioned processes: While both the initial keV-range electrons are mobile enough so that overlaps of their effects seem improbable and also the electron-phonon interaction at near-thermal energies is delocalized, electrons in the range of 100 eV will undergo repeated elastic collisions, each with an energy transfer of a few meV, within a small spatial region <ref type="bibr" target="#b6">(Ding &amp; Shimizu 1996)</ref>. It is hard to quantify the corresponding temperature increase due to the lack of pertinent theoretical results. A very rough estimate of a single 100 eV electron losing half of its energy to ionic motion within a region of 25 Å diameter would give a temperature increase of 470 K or 0.12 eV/atom for about 410 atoms. To our knowledge, detailed simulations of the spatio-temporal behaviour of the electronic excitation have been done only in the insulator diamond, giving dimensions of the electron cloud on the order of 100 Å after 90 fs, when the mean electronic energy has decayed to a few eV <ref type="bibr" target="#b29">(Ziaja et al. 2005)</ref>. In comparison, we would expect the spatial scales in a typical elemental metal to be pronouncedly smaller, or even more so in the case of a disordered solid solution.</p><p>The timescale of the dissipation of the electron energy into the lattice is on the order of a few phonon cycles <ref type="bibr" target="#b9">(Elsayed-Ali et al. 1987</ref>). On the other hand, this is clearly also the timescale that applies to the lattice cooling of a microscopic hot region, as additional contributions from phononic heat conduction are limited by the speed of sound. The above-mentioned localized and transient temperature increase of 470 K corresponds to an enhancement of the local dynamics by a factor of about 8 • 10 8 at a macroscopic temperature of 550 K and the above-quoted activation energy of 2.1 eV. The experimental parameters of 10 11 absorbed photons of 8 keV per second, each corresponding to 80 secondary electrons of 100 eV, over an illuminated volume of 10 13 atoms leads to a given atom experiencing such an enhancement about 330 times per second, or for a fraction of 10 −9 of the time. As a consequence, these assumptions would give an overall acceleration of the dynamics in the sample by a factor of about two.</p><p>However, due to the non-linearity of the Boltzmann factor as a function of temperature the uncertainty of these estimated figures is very large: a deviation on the order of 10% in the spatial scale of the energy dissipation gives a correspondent deviation in the temperature rise, which leads to an order-of-magnitude difference in the diffusion enhancement. Also local inhomogeneities in the heating due to either the random walk of the secondary electrons within a dissipation region or overlapping dissipation regions give rise to further uncertainties.</p><p>Concluding the theoretical part of this work, we have demonstrated by simple arguments that the energy brought into the system by the beam on the macroscopic scale is not sufficient for dynamics to be noticeably accelerated. However, we cannot decide on the influence of microscopic effects, which is due to the lack of detailed theories of the thermal excitation of the solid after the absorption of an X-ray photon, resolved in space and time. We therefore turn to direct experimental investigations of the issue at hand.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Experimental results</head><p>We performed an atomic-scale X-ray Photon Correlation Spectroscopy experiment with a sample of single-crystalline Cu 90 Au 10 dedicated to probe the effect of incident X-ray irradiation on the observed dynamics. This alloy has already been the subject of a previous publication <ref type="bibr" target="#b18">(Leitner et al. 2009)</ref>, where details about the sample preparation, experimental set-up, and data evaluation are given. Here, however, we employed the superior available coherent X-ray intensity at the beamline P10 at PETRA III, which allowed us to vary the incident intensity while still being able to measure the dynamics with a high signal-to-noise ratio.</p><p>At 8 keV, the intensity of the full beam corresponds to the above-quoted values of 2 • 10 11 photons per second, focused to a diameter of 5 µm. The beam can be attenuated by absorbers of Si, which has an attenuation length of 69.6 µm at 8 keV.</p><p>The experiment was done with the sample mounted in two different furnaces at nominal sample temperatures of 543 K and 553 K, respectively. Instead of doing single long continuous measurements, we performed many short measurement runs and changed between attenuations in a random way. This allows us to rule out a compromising of the measured dynamics by temporal instabilities such as sample relaxations, as the obtained decays for a given attenuation varied only within their estimated errors. For further evaluation the auto-correlation functions corresponding to a given attenuation were averaged with the appropriate weights. In order to cover a range of correlation times, we also varied the scattering angle 2θ between 5 • and 15 • . Auto-correlation functions for full and attenuated beams are given in Fig. <ref type="figure" target="#fig_0">1</ref>. The high signal-to-noise ratio is evident, and, as expected for a crystalline system, the data can be described by a simple exponential decay according to</p><formula xml:id="formula_0">g (2) (∆t) = 1 + β exp(−2Γ∆t), (<label>1</label></formula><formula xml:id="formula_1">)</formula><p>where Γ is the decay constant, dependent on jump mechanism, position in reciprocal space, and temperature, and β is the coherence factor that quantifies the degree to which interference due to coherent scattering is visible and that depends on the instrumental set-up. The resulting fitted decay constants for a number of attenuator thicknesses are given in Fig. <ref type="figure" target="#fig_1">2</ref>. The highest attenuation corresponds to a factor of about 8.6; it is therefore immediately visible that the effect of a beam-driven acceleration of the dynamics is small, if present at all.</p><p>For a more quantitative statement we make the natural assumption that the enhancement of the atomic jump frequency is proportional to the number of absorbed photons. Thus we model the dependence of the atomic jump frequency ν on incident </p><p>where ν th is the thermal contribution and ν b is the enhancement due to the beam, most intuitively measured in additional atomic jumps per absorbed photon. The decay constant Γ is proportional to the atomic jump frequency Γ( q, I, T ) = a( q)ν(I, T ),</p><p>where a( q) depends on the position in reciprocal space q and is characteristic of the atomic jump mechanism <ref type="bibr" target="#b19">(Leitner &amp; Vogl 2011)</ref>. Specifically, for the scattering angles relevant here we have a 5 • = 0.24 and a 15 • = 1.23 in the chosen sample orientation. Fitting all auto-correlation functions directly and simultaneously with decay constants Γ(q, I, T ) as specified by the model ( <ref type="formula" target="#formula_2">2</ref>) and (3) gives a behaviour of the likelihood function for ν b , marginalized over all other free parameters, as illustrated in Fig. <ref type="figure" target="#fig_2">3</ref>. According to a maximum-likelihood approach, one would therefore estimate ν b to be positive, although not strongly significant. Its maximum-likelihood value of ν * b = 0.021 jumps per absorbed photon corresponds to a full-beam enhancement of 2% over the thermal dynamics at 553 K.</p><p>Because of the low level of significance of this maximum-likelihood estimate, adopting the Bayesian point of view leads to a more useful result: Modelling the prior probability distribution of the local temperature rise as a uniform distribution over some range corresponds via the exponential nature of the Boltzmann factor approximately to a log-uniform prior distribution of the beam enhancement ν b , i.e., a distribution according to which the order of magnitude of ν b has uniform prior probability. A sensible lower bound would be the assumption that any given atom suffers at most a single elastic collision with a secondary electron, corresponding to typical energy transfers of 2 meV and an overall diffusion enhancement six orders of magnitude below the value of maximum likelihood ν * b . Due to the super-exponential decay of the likelihood function L(ν b ) above ν * b , the choice of the upper boundary is irrelevant. Accordingly, the experimentally observable values of ν b larger than 0.005 jumps per absorbed photon make up only 11% of the resulting posterior distribution, so that this value can serve as an upper bound for the effect. This reasoning implies that the observed maximum in L is likely just due to stochastic effects and should not be construed as an indication of experimentally-resolvable beam-driven dynamics acceleration at these fluences.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Conclusion</head><p>We have identified a scenario of an enhancement of diffusive atomic dynamics due to absorption of X-ray photons, and we have shown that current knowledge on the microscopic spatial and temporal features of electron-lattice energy dissipation is insufficient for estimating its relevance. Even though our direct aXPCS measurement is compatible with a weak enhancement, Bayesian inference with an uninformative prior implies that in the present case the effect is probably below the experimental resolution and provides an upper bound of 0.005 additional atomic jumps per absorbed photon of 8 keV. The dependence of correlation time on temperature as confirmed in recent aXPCS experiments <ref type="bibr" target="#b17">(Leitner et al. 2012</ref><ref type="bibr" target="#b26">, Stana et al. 2013</ref><ref type="bibr" target="#b22">, Ross et al. 2014</ref>) is in accordance with this conclusion. However, for future investigations the possibility of beam-driven dynamics should not be overlooked, as for instance higher energy transfers in elastic collisions together with lower activation energies of diffusion in systems such as aluminium could render it effective. This precaution applies even more so for the increased fluxes at X-ray free electron lasers, but there apparently already the macroscopic transient sample heating due to the single pulse fluence is the limiting factor <ref type="bibr" target="#b12">(Hruszkewycz et al. 2012)</ref>. Apart from these implications for aXPCS experiments, it would be very welcome to have further theoretical work on the dissipation of an X-ray photon's energy into the lattice in order to be able to set narrower bounds on the magnitude of the effects discussed here.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 .</head><label>1</label><figDesc>Figure 1. Auto-correlation function at 553 K and 2θ = 5 • for full beam (lower plot) and 100 µm Si attenuation (upper plot), together with exponential fits.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2 .</head><label>2</label><figDesc>Figure 2. Decay constants Γ as a function of Si-attenuator thickness at 553 K for 2θ = 5 • (blue triangles) and 2θ = 15 • (green squares), and at 543 K for 2θ = 15 • (orange circles) on logarithmic scale, compared to models of purely thermal (dashed line) or irradiation driven (dotted line) dynamics.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 3 .</head><label>3</label><figDesc>Figure 3. Likelihood function of dynamics enhancement ν b .</figDesc></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>We thank Gero Vogl for providing the initial background on classical radiation damage physics and Michael Sprung, the local contact at PETRA III, for assisting with the measurements. This work was supported by the Austrian Science Fund (FWF): P22402.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">R</forename><surname>Averback</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nucl. Instrum. Methods B</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">1-6</biblScope>
+			<biblScope unit="page" from="675" to="687" />
+			<date type="published" when="1986">1986</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bonn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D N</forename><surname>Denzler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Funk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Wolf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S S &amp;</forename><surname>Wellershoff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hohlfeld</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">61</biblScope>
+			<biblScope unit="page" from="1101" to="1105" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">H N</forename><surname>Chapman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Barty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M J</forename><surname>Bogan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Boutet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Frank</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S P</forename><surname>Hau-Riege</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Marchesini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B W</forename><surname>Woods</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bajt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W H</forename><surname>Benner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R A</forename><surname>London</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Plönjes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kuhlmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Treusch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Düsterer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Tschentscher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J R</forename><surname>Schneider</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Spiller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Möller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Bostedt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hoener</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D A</forename><surname>Shapiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K O</forename><surname>Hodgson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Van Der Spoel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Burmeister</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bergh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Caleman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Huldt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M M</forename><surname>Seibert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F R N C</forename><surname>Maia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R W</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Szöke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Timneanu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hajdu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Phys</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="839" to="843" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">A</forename><surname>Compton</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page" from="483" to="502" />
+			<date type="published" when="1923">1923</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Czyżewski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D O</forename><surname>Maccallum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A &amp;</forename><surname>Romig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Joy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Appl. Phys</title>
+		<imprint>
+			<biblScope unit="volume">68</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page" from="3066" to="3072" />
+			<date type="published" when="1990">1990</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">G J &amp;</forename><surname>Dienes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Damask</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Appl. Phys</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="1713" to="1721" />
+			<date type="published" when="1958">1958</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Z J &amp;</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Shimizu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scanning</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="92" to="113" />
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">R</forename><surname>Dugdale</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phil. Mag</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="537" to="559" />
+			<date type="published" when="1956">1956</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">P M</forename><surname>Echenique</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J M</forename><surname>Pitarke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E V &amp;</forename><surname>Chulkov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rubio</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Chem. Phys</title>
+		<imprint>
+			<biblScope unit="volume">251</biblScope>
+			<biblScope unit="issue">1-3</biblScope>
+			<biblScope unit="page" from="1" to="35" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">E</forename><surname>Elsayed-Ali</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T B</forename><surname>Norris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M A &amp;</forename><surname>Pessot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Mourou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">58</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="1212" to="1215" />
+			<date type="published" when="1987">1987</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">G</forename><surname>Grübel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G B</forename><surname>Stephenson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gutt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sinn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Tschentscher</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nucl. Instrum. Methods B</title>
+		<imprint>
+			<biblScope unit="volume">262</biblScope>
+			<biblScope unit="page" from="357" to="367" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">S P</forename><surname>Hau-Riege</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Graf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Döppner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R A</forename><surname>London</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Krzywinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Fortmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S H</forename><surname>Glenzer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Frank</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Sokolowski-Tinten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Messerschmidt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Bostedt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Schorb</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J A</forename><surname>Bradley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lutman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Rolles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rudenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Rudek</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">108</biblScope>
+			<biblScope unit="page">217402</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">S O</forename><surname>Hruszkewycz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sutton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P H</forename><surname>Fuoss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adams</forename><forename type="middle">B</forename><surname>Rosenkranz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ludwig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K F</forename><surname>Roseker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Fritz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Cammarata</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lemke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Gutt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Robert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Grübel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Stephenson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">109</biblScope>
+			<biblScope unit="page">185502</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><surname>Kelly</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1966">1966</date>
+			<publisher>Pergamon Press</publisher>
+		</imprint>
+	</monogr>
+	<note>Irradiation damage to solids</note>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">E A &amp;</forename><surname>Kenik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Mitchell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phil. Mag</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="815" to="831" />
+			<date type="published" when="1975">1975</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kirz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Jacobsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Howells</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Q. Rev. Biophys</title>
+		<imprint>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="page" from="33" to="130" />
+			<date type="published" when="1995">1995</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Y S</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Averback</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>S &amp; Flynn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phil. Mag. Lett</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="269" to="276" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Leitner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Sepiol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L M &amp;</forename><surname>Stadler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Pfau</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<biblScope unit="page">64202</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Leitner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Sepiol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L M</forename><surname>Stadler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Pfau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Vogl</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Mater</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="717" to="720" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Leitner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Vogl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Medvedev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Jeschke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>O &amp; Ziaja</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.88.224304</idno>
+		<ptr target="http://link.aps.org/doi/10.1103/PhysRevB.88.224304" />
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys.: Condens. Matter</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="page">224304</biblScope>
+			<date type="published" when="2011">2011. 2013</date>
+		</imprint>
+	</monogr>
+	<note>Phys. Rev. B</note>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><surname>Pfau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Schaffert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Müller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gutt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Al-Shemmary</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Büttner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Delaunay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Düsterer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Flewett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Frömter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Frömter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Geilhufe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Guehrs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C M</forename><surname>Günther</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Hawaldar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hille</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Jaouen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kobs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mohanty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Redlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W F</forename><surname>Schlotter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stickler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Treusch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Vodungbo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kläui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H P</forename><surname>Oepen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lüning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Grübel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Eisebitt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Commun</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">1100</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">A</forename><surname>Robert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Curtis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Flath</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sikorski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Srinivasan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stefanescu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys: Conference Series</title>
+		<imprint>
+			<biblScope unit="volume">425</biblScope>
+			<biblScope unit="issue">21</biblScope>
+			<biblScope unit="page">212009</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ross</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Stana</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Leitner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Sepiol</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">New J. Phys</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page">93042</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M P &amp;</forename><surname>Seah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Dench</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Surf. Interface Anal</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="2" to="11" />
+			<date type="published" when="1979">1979</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><surname>Sepiol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Meyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Vogl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Rüffer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A I &amp;</forename><surname>Chumakov</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Baron A Q R</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">76</biblScope>
+			<biblScope unit="issue">17</biblScope>
+			<biblScope unit="page" from="3220" to="3223" />
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">J</forename><surname>Slater</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Appl. Phys</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="237" to="256" />
+			<date type="published" when="1951">1951</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Stana</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Leitner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ross</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Sepiol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Tanuma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C J &amp;</forename><surname>Powell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Penn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys.: Condens. Matter</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="689" to="713" />
+			<date type="published" when="2011">2013. 2011</date>
+		</imprint>
+	</monogr>
+	<note>Surf. Interface Anal.</note>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">H W K</forename><surname>Tom</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G D &amp;</forename><surname>Aumiller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Brito-Cruz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="page" from="1438" to="1441" />
+			<date type="published" when="1988">1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">K</forename><surname>Urban</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">phys. stat. sol. (a)</title>
+		<imprint>
+			<biblScope unit="volume">56</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="157" to="168" />
+			<date type="published" when="1979">1979</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><surname>Ziaja</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R A &amp;</forename><surname>London</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hajdu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Appl. Phys</title>
+		<imprint>
+			<biblScope unit="volume">97</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page">64905</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

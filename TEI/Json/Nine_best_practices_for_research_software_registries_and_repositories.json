@@ -1,0 +1,22 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "Alfred P. Sloan Foundation"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Heidelberg Institute of Theoretical Studies"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Grant Number G-2019-12446"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Grant Number P-2020-13988"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Ana Trisovic"
+    }
+]

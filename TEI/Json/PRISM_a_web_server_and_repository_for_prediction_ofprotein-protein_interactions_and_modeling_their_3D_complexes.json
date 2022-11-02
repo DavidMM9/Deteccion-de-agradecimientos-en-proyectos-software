@@ -1,0 +1,38 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "National Cancer Institute"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "National Institutes of Health"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "NIH"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Intramural Research Program of the NIH"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Center for Cancer Research"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Scientific and Technological Research Council of Turkey"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "TUBITAK"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "HHSN261200800001E"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "113E164"
+    }
+]

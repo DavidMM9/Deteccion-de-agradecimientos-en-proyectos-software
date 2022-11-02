@@ -1,0 +1,50 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "Element Six"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Logitech"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Cardiff School of Physics and Astronomy"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "UK Engineering and Physical Sciences Research Council"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "EPSRC"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Marie Curie Actions"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "grant 'Nanocrystalline diamond for Micro-Electro-Mechanical-Systems'"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "number EP/J009814/1"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Daniel Twitchen"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Mark Kennedy"
+    },
+    {
+        "entity_group": "PER",
+        "word": "John McCrossan"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Rashmi Sudiwala"
+    }
+]

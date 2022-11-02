@@ -1,0 +1,58 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "Marie Curie Actions"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "European Union"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Turku Proteomics Facility"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "University of Turku"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Abo Akademi University"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Biocenter Finland"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "People Programme"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Seventh Framework Programme"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "REA Grants Agreement no. 317184 (MA)"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Academy of Finland Centre of Excellence Project number 307335"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Academy of Finland Project number 303757 (EMA)"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Russian Science Foundation grant number 14-24-00020 (AZ)"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Turku University Foundation project number 9925 (NB)"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Dr. Dalton Carmel"
+    }
+]

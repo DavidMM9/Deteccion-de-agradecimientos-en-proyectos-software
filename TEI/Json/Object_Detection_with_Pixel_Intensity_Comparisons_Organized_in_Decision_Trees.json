@@ -1,0 +1,30 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "Visage Technologies AB"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Ministry of Science, Education and Sports of the Republic of Croatia"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "European Union"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "grant number 036-0362027-2028"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "ACROSS project, 285939 FP7-REGPOT-2011-1"
+    },
+    {
+        "entity_group": "LOC",
+        "word": "Linköping"
+    },
+    {
+        "entity_group": "LOC",
+        "word": "Sweden"
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "European Commission"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Madrid Government"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "Universidad Politécnica de Madrid"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "UPM"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "H2020 Programme"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "RELIANCE"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "grant agreement no. 101017501"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Multiannual Agreement"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Support for R&D"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "V PRICIT"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Regional Programme of Research and Technological Innovation"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Research Grants for Young Investigators"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Beatriz Galindo"
+    },
+    {
+        "entity_group": "LOC",
+        "word": "Comunidad de Madrid-Spain"
+    }
+]

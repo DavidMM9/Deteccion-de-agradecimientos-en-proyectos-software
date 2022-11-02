@@ -1,0 +1,26 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "Austrian Science Fund"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "FWF"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "PETRA III"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "P22402"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Gero Vogl"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Michael Sprung"
+    }
+]

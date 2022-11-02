@@ -1,0 +1,50 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "National Science Foundation"
+    },
+    {
+        "entity_group": "ORG",
+        "word": "National Research Foundation"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "EU H2020"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Serums"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "826278-SERUMS-H2020-SC1-FA-DTS-2018-2020"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "NSF HDR:TRIPODS-1934884"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "NRF Fellowship Programme"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "NRF-NRFFAI1-2019-0004"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "AI Singapore Programme"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "AISG-RP-2018-005"
+    },
+    {
+        "entity_group": "LOC",
+        "word": "USA"
+    },
+    {
+        "entity_group": "LOC",
+        "word": "Singapore"
+    }
+]
