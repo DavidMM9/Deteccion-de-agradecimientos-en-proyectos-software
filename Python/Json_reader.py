@@ -2,22 +2,23 @@ import json
 import os
 
 # De donde cojo los json para probar
-path = "/mnt/c/Users/david/Desktop/TFG/Deteccion-de-agradecimientos-en-proyectos-software/HuggingFace/bert-large-NER/"
+pathBert = "/mnt/c/Users/david/Desktop/TFG/Deteccion-de-agradecimientos-en-proyectos-software/HuggingFace/bert-large-NER/"
+pathJean = "/mnt/c/Users/david/Desktop/TFG/Deteccion-de-agradecimientos-en-proyectos-software/HuggingFace/Jean-Baptiste/"
 # Donde estan los json buenos
 compared = "/mnt/c/Users/david/Desktop/TFG/Deteccion-de-agradecimientos-en-proyectos-software/TEI/Json/"
-allfiles = []
+allFiles = []
 res = 0
 total = 0
 total2 = 0
 
 # Meto todos los archivos de la carpeta en una variable
-for filename in os.listdir(path):
-    allfiles.append(filename)
+for filename in os.listdir(pathBert):
+    allFiles.append(filename)
 
 # Hago un bucle para abrir de uno en uno los archivos
-for k in allfiles:
+for k in allFiles:
     # Abrimos el json
-    f = open(path + k)
+    f = open(pathBert + k)
     data = json.load(f)
     c = open(compared + k)
     dataCompared = json.load(c)
