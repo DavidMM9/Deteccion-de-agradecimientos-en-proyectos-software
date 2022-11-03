@@ -2,7 +2,7 @@ import json
 import os
 
 # De donde cojo los json para probar
-path = "/mnt/c/Users/david/Desktop/TFG/Deteccion-de-agradecimientos-en-proyectos-software/HuggingFace/Jean-Baptiste/"
+path = "/mnt/c/Users/david/Desktop/TFG/Deteccion-de-agradecimientos-en-proyectos-software/HuggingFace/bert-large-NER/"
 # Donde estan los json buenos
 compared = "/mnt/c/Users/david/Desktop/TFG/Deteccion-de-agradecimientos-en-proyectos-software/TEI/Json/"
 allfiles = []
@@ -30,9 +30,9 @@ for k in allfiles:
             # i['entity_group'] = que ha dicho que es
             # Compruebo que tanto el entity_group como el word sean iguales para comprobar
             # si el modelo ha detectado bien el elemento
-            if ((i['word'] == j['word'])):
-                if ((i['entity_group'] == j['entity_group'])):
-                    res = res + 1
+            if ((i['word'] == j['word']) and (i['entity_group'] == j['entity_group'])):
+                res = res + 1
+                break
 
     # Voy añadiendo cuantos elementos hay en cada archivo para obtener el total
     total = total + len(data)
@@ -42,6 +42,6 @@ for k in allfiles:
     f.close()
     c.close()
 
-print(total)
-print(total2)
+print("El modelo ha detectado " + str(total) + " elementos")
+print("Hay que encontrar " + str(total2) + " elementos")
 print("De los resultados obtenidos " + str(res) + " estan bien")
