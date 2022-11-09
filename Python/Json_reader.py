@@ -1,12 +1,13 @@
 import json
 import os
-# from grobid_client.grobid_client import GrobidClient
+from grobid_client.grobid_client import GrobidClient
 from bs4 import BeautifulSoup as bs
 
-# client = GrobidClient(config_path="./config.json")
-# client.process("processFulltextDocument", "./../Articulos", output="./../TEI",  force=True, verbose=True)
+def useGrobid(input, output):
+    client = GrobidClient(config_path="./config.json")
+    client.process("processFulltextDocument", input, output, force = True, verbose = True)
 
-def useGrobid(path):
+def XMLtoTXT(path):
     content = []
     destination = r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI\TXT"
     # Read the XML file
@@ -28,7 +29,10 @@ def useGrobid(path):
                 fp.close()
                 # print(back.find("p").getText() + "\n")
 
-useGrobid(r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI\XML")
+useGrobid(r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\Articulos"
+, r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI")
+
+# XMLtoTXT(r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI\XML")
 
 
 # # De donde cojo los json para probar
