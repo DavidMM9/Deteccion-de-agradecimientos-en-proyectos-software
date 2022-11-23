@@ -1,0 +1,1597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Engineering multiuser museum interactives for shared cultural experiences</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Elsevier BV</publisher>
+				<availability status="unknown"><p>Copyright Elsevier BV</p>
+				</availability>
+				<date type="published" when="2015-11">2015-11</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Roberto</forename><surname>Confalonieri</surname></persName>
+							<email>confalonieri@iiia.csic.es</email>
+							<idno type="ORCID">0000-0003-0936-2123</idno>
+							<affiliation key="aff0">
+								<orgName type="institution">Artificial Intelligence Research Institute (IIIA-CSIC)</orgName>
+								<address>
+									<settlement>Bellaterra</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Matthew</forename><surname>Yee-King</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">Goldsmiths College</orgName>
+								<orgName type="institution">University of London</orgName>
+								<address>
+									<settlement>London</settlement>
+									<country key="GB">UK</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Katina</forename><surname>Hazelden</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">Goldsmiths College</orgName>
+								<orgName type="institution">University of London</orgName>
+								<address>
+									<settlement>London</settlement>
+									<country key="GB">UK</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mark</forename><surname>D׳inverno</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Dave</forename><surname>De Jonge</surname></persName>
+							<email>davedejonge@iiia.csic.es</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Artificial Intelligence Research Institute (IIIA-CSIC)</orgName>
+								<address>
+									<settlement>Bellaterra</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Nardine</forename><surname>Osman</surname></persName>
+							<email>nardine@iiia.csic.es</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Artificial Intelligence Research Institute (IIIA-CSIC)</orgName>
+								<address>
+									<settlement>Bellaterra</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Carles</forename><surname>Sierra</surname></persName>
+							<email>sierra@iiia.csic.es</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Artificial Intelligence Research Institute (IIIA-CSIC)</orgName>
+								<address>
+									<settlement>Bellaterra</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Leila</forename><surname>Agmoud</surname></persName>
+							<email>agmoud@irit.fr</email>
+							<affiliation key="aff2">
+								<orgName type="department">Institute de Recherche en Informatique de Toulouse (IRIT)</orgName>
+								<orgName type="institution">Université Paul Sabatier</orgName>
+								<address>
+									<settlement>Toulouse</settlement>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Henri</forename><surname>Prade</surname></persName>
+							<email>prade@irit.fr</email>
+							<affiliation key="aff2">
+								<orgName type="department">Institute de Recherche en Informatique de Toulouse (IRIT)</orgName>
+								<orgName type="institution">Université Paul Sabatier</orgName>
+								<address>
+									<settlement>Toulouse</settlement>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Engineering multiuser museum interactives for shared cultural experiences</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">Engineering Applications of Artificial Intelligence</title>
+						<title level="j" type="abbrev">Engineering Applications of Artificial Intelligence</title>
+						<idno type="ISSN">0952-1976</idno>
+						<imprint>
+							<publisher>Elsevier BV</publisher>
+							<biblScope unit="volume">46</biblScope>
+							<biblScope unit="page" from="180" to="195"/>
+							<date type="published" when="2015-11" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">CE92FAE7FA6558DDB57835794809113F</idno>
+					<idno type="DOI">10.1016/j.engappai.2015.08.013</idno>
+					<note type="submission">Received 27 March 2015 Received in revised form 16 July 2015 Accepted 28 August 2015</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>Distributed artificial intelligence Collective decision making Argumentation Negotiation</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Multiuser museum interactives are computer systems installed in museums or galleries which allow several visitors to interact together with digital representations of artefacts and information from the museum's collection. In this paper, we describe WeCurate, a socio-technical system that supports cobrowsing across multiple devices and enables groups of users to collaboratively curate a collection of images, through negotiation, collective decision making and voting. The engineering of such a system is challenging since it requires to address several problems such as: distributed workflow control, collective decision making and multiuser synchronous interactions. The system uses a peer-to-peer Electronic Institution (EI) to manage and execute a distributed curation workflow and models community interactions into scenes, where users engage in different social activities. Social interactions are enacted by intelligent agents that interface the users participating in the curation workflow with the EI infrastructure. The multiagent system supports collective decision making, representing the actions of the users within the EI, where the agents advocate and support the desires of their users e.g. aggregating opinions for deciding which images are interesting enough to be discussed, and proposing interactions and resolutions between disagreeing group members. Throughout the paper, we describe the enabling technologies of WeCurate, the peer-to-peer EI infrastructure, the agent collective decision making capabilities and the multi-modal interface. We present a system evaluation based on data collected from cultural exhibitions in which WeCurate was used as supporting multiuser interactive.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>In recent times, high tech museum interactives have become ubiquitous in major institutions. Typical examples include augmented reality systems, multitouch table tops and virtual reality tours <ref type="bibr" target="#b21">(Gaitatzes and Roussou, 2002;</ref><ref type="bibr" target="#b29">Hornecker, 2008;</ref><ref type="bibr" target="#b46">Wojciechowski et al., 2004)</ref>. Whilst multiuser systems have begun to appear, e.g. a 10 user quiz game in the Tate Modern, the majority of these museum interactives do not perhaps facilitate the sociocultural experience of visiting a museum with friends, as they are often being designed for a single user. The need to support multiuser interaction and social participation is a desirable feature for shifting the focus from content delivery to social construction <ref type="bibr" target="#b45">(Walker, 2008)</ref> and for the development of a cultural capital <ref type="bibr" target="#b28">(Hope et al., 2009)</ref>.</p><p>At this point, we should note that mediating and reporting the actions of several 'agents' to provide a meaningful and satisfying sociocultural experience for all is challenging <ref type="bibr" target="#b26">(Heath et al., 2005)</ref>. Social interaction and collaboration are key features for the development of a socio-technical system like the one described in this paper. On the one hand, the system has to enhance user interactions and should be accessible independently from user locations. This requires a robust and flexible infrastructure that is able to capture a social workflow and the dynamics of the community which will engage in the system. On the other hand, the system has to assist users in collective decision making and negotiation, and to foster participation and discussions about the cultural artefacts. This requires the use of autonomic agents that can advocate and support the desires of their users e.g. aggregating opinions for deciding which images are interesting enough to be discussed, and proposing interactions and resolutions between disagreeing group members.</p><p>Another trend in museum curation is the idea of community curation, where a community discourse is built up around the artefacts, to provide different perspectives and insights <ref type="bibr" target="#b44">(Turner, 2011)</ref>. This trend is not typically represented in the design of museum interactives, where information-browsing, and not information-generation is the focus. However, museums are engaging with the idea of crowdsourcing, with projects such as "Your Paintings Tagger" and "The Art Of Video Games" <ref type="bibr" target="#b24">(Greg, 2011;</ref><ref type="bibr" target="#b8">Barron, 2012)</ref>, and folksonomies with projects such as "steve.project" and "Artlinks" (Hellin-Hobbs, 2010; <ref type="bibr" target="#b10">Cosley and Lewenstein, 2008;</ref><ref type="bibr" target="#b11">Cosley and Baxter, 2009)</ref>. Again, controlling the workflow within a group to engender discussion and engagement with the artefacts is challenging, especially when the users are casual ones as in a museum context.</p><p>In this paper, we describe WeCurate, a first of its kind multiuser museum interactive. WeCurate uses a multiagent system to support community interactions and decision making, and a peer-topeer Electronic Institution (EI) <ref type="bibr" target="#b14">(de Jonge et al., 2013)</ref> to execute and control the community workflow. Our aim is not only to make use of agent technology and Electronic Institutions as a means to implement a multiuser museum interactive, but also to relate agent theory to practice in order to create a socio-technical system to support an online multiuser experience.</p><p>To this end, we specify a community curation session in terms of the scenes of an EI for controlling community interactions. We support system and user decisions by means of personal assistant agents equipped with different decision making capabilities. We make use of a multimodal user interface which directly represents users as agents in the scenes of the underlying EI and which is designed to engage casual users in a social discourse around museum artefacts by chat and tag activity. We present the evaluation of the system for determining the level of interactions and social awareness perceived by the social groups while using the system, and for understanding whether our agent-based decision models can predict what images users like from their behaviour. We validate our scene-based design and, consequently, our EI model, from the social behaviour of users that emerged naturally during the curation task.</p><p>This paper unifies and develops the content of the conference papers <ref type="bibr" target="#b5">(Amgoud et al., 2012;</ref><ref type="bibr" target="#b49">Yee-King et al., 2013;</ref><ref type="bibr" target="#b25">Hazelden et al., 2013)</ref> by describing the underlying peer-to-peer EI infrastructure and presenting an analysis of the decision making models employed by the agents. The evaluation is based on data collected from cultural exhibitions in which WeCurate was used as a supporting multiuser museum interactive. The rest of the paper is organised as follows. Section 2 provides an overview of the system, whereas Section 3, 4, 5, and 6 respectively describe the EI infrastructure and workflow, the personal assistant agents, the interface and the adopted technologies. Section 7 presents the evaluation of our system. After discussing the evaluation's results (Section 8), Section 9 presents several works that relate to ours from different perspectives. Finally, in Section 10 we draw some conclusions and we envision some of the ideas we have in mind to improve the current system.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">System overview</head><p>WeCurate is a museum interactive which provides a multiuser curation workflow where the aim is for the users to synchronously view and discuss a selection of images, finally choosing a subset of these images that the group would like to add to their group collection. In the process of curating this collection, the users are encouraged to develop a discourse about the images in the form of weighted tags and comments, as well as a process of bilateral argumentation. Further insight into user preferences and behaviours is gained from data about specific user actions such as image zooming and general activity levels.</p><p>A multiuser interactive is a typical example of a system in which human and software agents can enter and leave the system and behave according to the norms that are appropriate for that specific society. For instance, it can be desirable to have only a certain number of users taking part to a curation session or to allow each user to express at most one vote. A convenient way to coordinate the social interactions of agent communities is by means of an Electronic Institution (EI) <ref type="bibr" target="#b6">(Arcos et al., 2005)</ref>.</p><p>An EI makes it possible to develop programs according to a new paradigm, in which the tasks are executed by independent agents, that are not specifically designed for the given program and that cannot be blindly trusted. An EI is responsible for making sure that the agents behave according to the norms that are necessary for the application. To this end, the actions that agents can perform in an EI are represented as messages and are specified according to an interaction protocol for each scene. The EI checks for each message whether it is valid in the current state of the protocol, and, if not, prevents it from being delivered to the other agents participating in the EI. In this way, the behaviour of nonbenevolent agents can be controlled. 1 Therefore, the EI paradigm allows a flexible and dynamic infrastructure, in which agents can interact in an autonomous way within the norms of the cultural institution.</p><p>EIs have usually been considered as centralised systems <ref type="bibr" target="#b35">(Noriega, 1997;</ref><ref type="bibr" target="#b19">Esteva, 2003)</ref>. Nevertheless, the growing need to incorporate organisational abstractions into distributed computing systems <ref type="bibr">(d'Inverno et al., 2012)</ref> requires a new form of EIs.</p><p>In WeCurate, since users can be physically in different places, it is desirable to run an EI in a distributed manner to characterise human social communities in a more natural manner. To this end, we implemented a new form of EI that runs in a distributed way, over a peer-to-peer network <ref type="bibr" target="#b14">(de Jonge et al., 2013)</ref>. The multiuser curation workflow has been modeled as scenes of an EI and scene protocols. The workflow is managed and executed by a peer-topeer EI, with agents operating within it to represent the activities of the users and to provide other services. The users interact with the system using an animated user interface. An overview of the system architecture, showing the peer-to-peer EI, the User Assistant agents and user interface components are provided in Fig. <ref type="figure">1</ref>.</p><p>In the following sections, we present the internal structure of the peer-to-peer Electronic Institution and the WeCurate curation workflow. Then, we describe the agents that participate in the workflow, with particular emphasis on user representation and collective decision making. The user interface is presented with images of the different scenes in the workflow. The system architecture is described, including the connections between EI, agents and UI. Finally, the adopted technologies used to implement the system are briefly explained. 1 The EI cannot control, however, the behaviour of a non-benevolent agent when it fails to perform an action that the protocol requires it to perform. It essentially cannot force an agent to do something it does not wish to do. This is because EIs are designed for autonomous agents, and although we would like agents to behave in certain ways, their autonomy must be maintained. In such a case, either the protocol engineer can make use of timeouts to make the protocols resilient against such scenarios, or misbehaviour should be addressed through other measures, such as sanctions and rewards <ref type="bibr" target="#b34">(Modgil et al., 2009;</ref><ref type="bibr" target="#b20">Gaertner et al., 2007)</ref>, trust and reputation <ref type="bibr" target="#b38">(Osman et al., 2014)</ref>, and so on.</p><p>The EI also cannot control the behaviour of a non-benevolent agent that does follow a protocol but does it in a malicious way, for instance, by pretending to like an image, or by pushing other users to change their opinion with no specific reason, etc. To address this situation, again trust models can be used to detect and block the malicious behaviour of an agent, for instance, by assessing the trustworthiness of an agent through learning from similar past experiences <ref type="bibr" target="#b38">(Osman et al., 2014)</ref>. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>User</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>User GUI</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Peer-to-peer Electronic Institution</head><p>The structure of the peer-to-peer EI is displayed in Fig. <ref type="figure" target="#fig_0">2</ref>. The EI itself is executed by several institutional agents, including a Scene Manager which runs the scene instances, an EI Manager which admits External Agents to the EI and instantiates scenes, and several Governors which control message passing between agents:</p><p>External Agent: The term External Agent is a generic term that represents any type of agent that can participate in an EI. It should be distinguished from the other agents described below which are Institutional Agents and are responsible for making the EI operate properly. A User Assistant is a specific type of External Agent that acts as an interface between a human user and the EI. It allows users to 'enter' the institution. In some cases, an External Agent may just have an interface that passes messages from humans to EI and vice-versa, while in other cases it can have more functionalities such as an intelligent module to help users making decisions. As we shall see, an agent might assist the users in negotiations and bilateral argumentation sessions with other agents.</p><p>Governor: The Governor is an agent assigned to each External Agent participating in the EI to control the External Agent behaviour. Governors form a protected layer between the external agents and the institution. Since each action an agent can take within the institution is represented by a message, the Governor performs its task by checking whether a message sent by the agent is allowed in the current context of the institution.</p><p>Device Manager: The Device Manager is a component that we introduce specifically for the peer-to-peer EI. A Device Manager is in charge of launching the Institutional Agents on its local device, and, if necessary, requests other Device Managers on other devices to do so. The motivation for introducing Device Managers, is that in a mobile network the present devices usually have varying capabilities, often limited, and therefore one should find a suitable balance of work load between the devices. Moreover, since for most institutional agents it does not matter on what device they are running, we need a system to determine where they will be launched. We assume that each device in the network has exactly one device manager. The Device Manager is not bound to one specific instance of the EI; it may run agents from several different institutions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>EI Manager:</head><p>The EI manager is the agent that is responsible for admitting agents into the institution and for instantiating and launching scenes.</p><p>Scene Manager: Each scene instance is assigned a Scene Man- ager. The Scene Manager is responsible for making sure the scene functions properly. It records all context variables of the scene.</p><p>The peer-to-peer EI infrastructure described above manages distributed workflows modelled as EI specifications. An EI specification consists of scenes and scene protocols. Scenes are essentially 'meeting rooms' in which agents can meet and interact. Scene protocols are well-defined communication protocols that specify the possible dialogues between agents within these scenes. Scenes within an institution are connected in a network that determines how agents can legally move from one scene to another through scene transitions. The EI specification is then interpreted by a workflow engine which controls the workflow execution and the messages sent over the EI. We omit the details about the EI specification language and the EI workflow engine; the reader can find a more extensive description in de <ref type="bibr">Jonge et al. (2013)</ref>, <ref type="bibr" target="#b6">Arcos et al. (2005)</ref> and de <ref type="bibr" target="#b13">Jonge et al. (2014)</ref>. In what follows, we present the workflow we used for modelling the activity of community curation carried out by the users in the WeCurate system, and how we implement scene transitions as decision making models of the agents.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.">Wecurate workflow</head><p>The WeCurate workflow consists of 5 scenes, with associated rules controlling messaging and transitions between scenes. An overview of the workflow is provided in Fig. <ref type="figure" target="#fig_1">3</ref>  Login and lobby scene: This allows users to login and wait for other users to join. The EI can be configured to require a certain number of users to login before the transition to the selection scene can take place.</p><p>Selection scene: Its purpose is to allow a quick decision as to whether an image is interesting enough for a full discussion. Users can zoom into the image and see the zooming actions of other users. They can also set their overall preference for the image using a like/dislike slider. The user interface of this scene is shown in Fig. <ref type="figure" target="#fig_2">4(a)</ref>.</p><p>Forum scene: If an image is deemed interesting enough, the users are taken to the forum scene where they can engage in a discussion about the image. Users can add and delete tags, they can resize tags to define their opinions of that aspect of the image, they can make comments, they can zoom into the image and they can see the actions of the other users. They can also view images that were previously added to the collection and choose to argue with another user directly. The aim is to collect community information about the image. The user interface of this scene is shown in Fig. <ref type="figure" target="#fig_2">4(b)</ref>.</p><p>Argue scene: Here, two users can engage in a process of bilateral argumentation, wherein they can propose aspects of the image which they like or dislike, in the form of tags. The aim is to convince the other user to align their opinions with yours, in terms of tag sizes. For example, one user might like the 'black and white' aspect of an image, whereas the other user dislikes it; one user can then pass this tag to the other user to request that they resize it. The user interface of this scene is shown in Fig. <ref type="figure" target="#fig_2">4(c)</ref>.</p><p>Vote scene: Here, the decision is made to add an image to the group collection or not by voting. The user interface of this scene is shown in Fig. <ref type="figure" target="#fig_2">4(d)</ref>.</p><p>In the following section, the decision making criteria used in the WeCurate workflow are described.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Collective decision making models</head><p>In a multiuser museum interactive system, it is not only important to model users and user preferences but also to assist them in making decisions. For example, the system could decide which artefact is worthy to be added to a group collection by merging user preferences <ref type="bibr" target="#b48">(Yee-King et al., 2012)</ref>; or it could decide whether the artefact is collectively accepted by a group of users by considering user evaluations about certain criteria of the artefact itself like in multiple criteria decision making <ref type="bibr" target="#b40">(Ribeiro, 1996)</ref>; or assist users in reaching agreements by argument exchange like in argument-based negotiation <ref type="bibr" target="#b5">(Amgoud et al., 2012)</ref>. These cases, that are essentially decision making problems, can be solved by defining different decision principles that take the preferences of the users into account and compute the decision of the group as a whole.</p><p>In the WeCurate system, agents base their decisions on two different models: preference aggregation and multiple-criteria decision making. The former is used to understand whether the users consider an image as interesting or not. To this end, each user expresses an image preference and a collective decision is made by aggregating the image preferences of all the users. The latter amounts to a collective decision made by discussion. Users exchange image arguments according to an argument-based multiple criteria decision making protocol.</p><p>UserAssistant agents assist the system and the users with several decisions and with an automatic updating mechanism in the different scenes. Namely:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Select scene:</head><p>○ Image interestingness: Given the image preferences of all the users running in a select scene, the UserAssistant agent is responsible to decide whether the image (which is currently browsed) is interesting enough to be further discussed in a forum scene; Forum scene:</p><p>○ Automatic image preference slider updater: The UserAssistant agent updates the image preference slider of its user when the user rates the image by specifying a certain tag; ○ Argue Candidate Recommender: When a user decides to argue with another user, the UserAssistant agent recommends its user a list of possible candidates ordered according to the distance between their image preferences; ○ Multi-criteria decision: Given the image tags of all the users running in a forum scene, the UserAssistant agent is responsible to decide whether the image can be automatically added (or not) to the image collection without a vote being necessary;</p><p>Argue scene:</p><p>○ Automatic image preference slider updater: The UserAssistant agent updates the image preference slider of its user when the user accepts an image tag proposed by the other user during the arguing; ○ Argue agreement: The UserAssistant agent ends the arguing among two users as soon as it detects that their image preferences are close enough.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Vote scene:</head><p>○ Vote counting: The UserAssistant agent counts the votes expressed by the users running in a vote scene in order to decide if the image will be added (or not) to the image collection being curated.</p><p>For each scene, we describe the decision models into details.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.">Select scene</head><p>The main goal of each user running in a select scene is to express a preference about the image currently browsed. When the scene ends, the UserAssistant agents compute an evaluation of the image, the image interestingness of the group of users by aggregating user preferences. The result of the aggregation is used to decide whether the users can proceed in a forum scene or whether a new select scene with a different image has to be instantiated.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.1.">Preference aggregation</head><p>To formalise the decision making model based on preference aggregation, we introduce the following notation. Let I ¼ fim 1 ; …; im n g be a set of available images where each im j A I is the identifier of an image. The image preference of a user w.r.t. an image is a value that belongs to a finite bipolar scale S ¼ fÀ1; À 0:9; …; 0:9; 1g where À 1 and þ 1 stand for 'reject' and 'accept' respectively. Given a group of n users U ¼ fu 1 ; u 2 ; …; u n g, we denote the image preference of a user u i w.r.t an image im j by</p><formula xml:id="formula_0">r i ðim j Þ ¼ v i with v i A S.</formula><p>A preference aggregator operator is a mapping f agg : S n -S, and f agg is used to merge the preferences of a group of n users w.r.t an image im j . A generic decision criterion for making a decision about the interestingness of an image im j can be defined as</p><formula xml:id="formula_1">intðim j Þ ¼ 1 if 0o f agg ð r ! Þ r 1 0 if À 1 r f agg ð r ! Þ r 0 8 &lt; :<label>ð1Þ</label></formula><p>where r ! ¼fr 1 ðim j Þ; …; r n ðim j Þg is a vector consisting of the image preferences of n users w.r.t. an image im j . Eq. ( <ref type="formula" target="#formula_1">1</ref>) is a generic aggregator operator that can be instantiated using different functions for aggregating user preferences. In WeCurate, we have used three different preference aggregators that we describe as follows.</p><p>Image interestingness based on arithmetic mean: The image interestingness of a group of n users w.r.t an image im j based on arithmetic mean, denoted by f ð r ! Þ, is defined as</p><formula xml:id="formula_2">f ð r ! Þ ¼ P 1 r i r n r i n<label>ð2Þ</label></formula><p>Then, a decision criterion for the interestingness of an image im j , denoted as intðim j Þ, can be defined by setting <ref type="formula" target="#formula_1">1</ref>). According to this definition, the system proceeds with a forum scene when intðim j Þ ¼ 1, while the system goes back to a select scene when intðim j Þ ¼ 0.</p><formula xml:id="formula_3">f agg ð r ! Þ ¼ f ð r ! Þ in Eq. (</formula><p>Image interestingness based on weighted mean: Each User-Assistant agent also stores the zoom activity of its user. The zoom activity is a measure of the user interest in a given image and, as such, it should be taken into account in the calculation of the image interestingness.</p><p>Let us denote the number of image zooms of user u i w.r.t. an image im j as z i ðim j Þ. Then, we can define the total number of zooms for an image im j as</p><formula xml:id="formula_4">zðim j Þ ¼ P 1 r i r n z i ðim j Þ.</formula><p>Based on zðim j Þ and the z i 's associated with each user, we can define a weight for the image preference r i of user u i as w i ¼ z i zðim j Þ . The image interestingness of n users w.r.t an image im j based on the weighted mean, denoted by f wm ð r ! Þ, can be defined as</p><formula xml:id="formula_5">f wm ð r ! Þ ¼ P 1 r i r n r i w i P 1 r i r n w i<label>ð3Þ</label></formula><p>Then, a decision criterion for the interestingness of an image im j based on weighted mean, denoted as int wm ðim j Þ, can be defined by</p><formula xml:id="formula_6">setting f agg ð r ! Þ ¼ f wm ð r ! Þ in Eq.</formula><p>(1). The system proceeds with a forum scene when int wm ðim j Þ ¼ 1, while the system goes back to a select scene when int wm ðim j Þ ¼ 0.</p><p>Image interestingness based on WOWA operator: An alternative criterion for deciding whether an image is interesting or not can be defined by using a richer average operator such the Weighted Ordered Weighted Average (WOWA) operator <ref type="bibr" target="#b43">(Torra, 1997)</ref>.</p><p>The WOWA operator is an aggregation operator which allows us to combine some values according to two types of weights: (i) a weight referring to the importance of a value itself (as in the weighted mean), and (ii) an ordering weight referring to the values' order. Indeed, WOWA generalizes both the weighted average and the ordered weighted average <ref type="bibr" target="#b47">(Yager, 1988)</ref>. Formally, WOWA is defined as <ref type="bibr" target="#b43">(Torra, 1997)</ref> </p><formula xml:id="formula_7">f wowa ðr 1 ; …; r n Þ ¼ X 1 r i r n ω i r σðiÞ<label>ð4Þ</label></formula><p>where σðiÞ is a permutation of f1; …; ng such that r σði À 1Þ Zr σðiÞ 8 i ¼ 2; …; n, ω i is calculated by means of an increasing monotone function w n ð P i r i p σðjÞ ÞÀw n ð P j o i p σðjÞ Þ, and p i ; w i A ½0; 1 are the weights and the ordering weights associated with the values respectively (with the constraints P 1 r i r n p i ¼ 1 and P 1 r i r n w i ¼ 1). We use the WOWA operator for deciding whether an image is interesting in the following way. Let us take the weight p i for the image preference r i of user u i as the percentage of zooms made by the user (like above). As far as the ordering weights are concerned, we can decide to give more importance to image preference's values closer to extreme value such as À1 and þ 1, since it is likely that such values can trigger more discussions among the users rather than image preference' values which are close to 0. Let us denote the sum of the values in S þ ¼ ½0; 0:1; …; 0:9; 1 as s. Then, for each image preference r i ðim j Þ ¼ v i we can define an ordering weight as w i ¼ r i ðim j Þ s . Please notice that the p i 's and w i 's defined satisfy the constraints P 1 r i r n p i ¼ 1 and</p><formula xml:id="formula_8">P 1 r i r n w i ¼ 1.</formula><p>Then, a decision criterion for the interestingness of an image im j based on WOWA, denoted as int wowa ðim j Þ, can be defined by setting</p><formula xml:id="formula_9">f agg ð r ! Þ ¼ f wowa ð r ! Þ in Eq.</formula><p>(1).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.">Forum scene</head><p>The main goal of the users in a forum scene is to discuss an image, which has been considered interesting enough in a select scene, by pointing out what they like or dislike of the image through image arguments based on tags. During the tagging, the overall image preference per user is automatically updated. Whilst tagging is the main activity of this scene, a user can also choose to argue with another user in order to persuade him to adopt his own view (i.e. to "keep" or to "discard" the image). In such a case, a list of recommended argue candidates is retrieved. Finally, when a user is tired of tagging, he can propose the other users to move to a vote scene. In this case, an automatic multi-criteria decision is taken in order to decide whether the current image can be added or not to the image collection without a vote being necessary.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.1.">Argument-based multiple criteria decision making</head><p>In our system each image is described with a finite set of tags or features. Tags usually are a convenient way to describe folksonomies (Hellin-Hobbs, 2010; <ref type="bibr" target="#b10">Cosley et al., 2008;</ref><ref type="bibr" target="#b11">Cosley et al., 2009)</ref>. In what follows, we show how weighted tags, that is, tags associated with a value belonging to a bipolar scale, can be used to define arguments in favor or against a given image and to specify a multiple criteria decision making protocol to let a group of users to decide whether to accept or not an image.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.2.">Arguments</head><p>The notion of argument is at the heart of several models developed for reasoning about defeasible information (e.g. <ref type="bibr" target="#b17">Dung, 1995;</ref><ref type="bibr" target="#b36">Pollock, 1992)</ref>, decision making (e.g. <ref type="bibr" target="#b3">Amgoud and Prade, 2009;</ref><ref type="bibr" target="#b9">Bonet and Geffner, 1996)</ref>, practical reasoning (e.g. <ref type="bibr" target="#b7">Atkinson et al., 2004)</ref>, and modeling different types of dialogues (e.g. <ref type="bibr" target="#b2">Amgoud et al., 2007;</ref><ref type="bibr" target="#b39">Prakken, 2005)</ref>. An argument is a reason for believing a statement, choosing an option, or doing an action. In most existing works on argumentation, an argument is either considered as an abstract entity whose origin and structure are not defined, or it is a logical proof for a statement where the proof is built from a knowledge base.</p><p>In our application, image arguments are reasons for accepting or rejecting a given image. They are built by users when rating the different tags associated with an image. The set T ¼ ft 1 ; …; t k g contains all the available tags. We assume the availability of a function F : I -2 T that returns the tags associated with a given image. Note that the same tag may be associated with more than one image. A tag which is evaluated positively creates an argument pro the image whereas a tag which is rated negatively induces an argument con against the image. Image arguments are also associated with a weight which denotes the strength of an argument. We assume that the weight w of an image argument belongs to the finite set W ¼ f0; 0:1; …; 0:9; 1g. The tuple 〈I ; T ; S; W〉 will be called a theory. The pair (t,v) is the support of the argument, w is its strength and im is its conclusion. The functions Tag, Val, Str and Conc return respectively the tag t of an argument ððt; vÞ; w; imÞ, its value v, its weight w, and the conclusion im.</p><p>It is well-known that the construction of arguments in systems for defeasible reasoning is monotonic (see <ref type="bibr" target="#b4">Amgoud and Besnard, 2009</ref> for a formal result). Indeed, an argument cannot be removed when the knowledge base from which the arguments are built is extended by new information. This is not the case in our application. When a user revises his opinion about a given tag, the initial argument is removed and replaced by a new one. For instance, if a user assigns the value 0.5 to a tag t which is associated with an image im, then he decreases the value to 0.3, the argument ððt; 0:5Þ; w; imÞ is no longer considered as an argument and is completely removed from the set of arguments of the user and is replaced by the argument ððt; 0:3Þ; w; imÞ. To say it differently, the set of arguments of a user contains only one argument per tag for a given image.</p><p>In a forum scene, users propose, revise, and reject arguments about images by adding, editing and deleting bubble tags. Proposing a new argument about an image, for instance "I like the blue color very much", is done by adding a new bubble tag "blue color" and increasing its size. When an argument of such a kind is created, is sent to all the users (taking part in the forum scene) and it is displayed in their screens as a bubble tag. At this point, the content of the image argument, e.g. the "blue color" tag, is implicitly accepted by the other users unless the corresponding bubble tag is deleted. However, the implicit acceptance of the argument does not imply that the value of the argument is accepted, which is assumed to be 0. This is because we assume that if someone sees a new tag and does not "act" on it, it means that she/he is indifferent w.r.t. that tag. The value of an argument is changed only when a user makes the bubble corresponding to the argument, bigger and smaller. On the other hand, the acceptance of arguments in an argue scene is handled in a different way as we shall explain in Section 4.3.</p><p>Since users will collectively decide by exchanging argument whether to accept or not an image, a way for analysing the opinions of the users w.r.t. the image is worthy to be explored.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.3.">Opinion analysis</head><p>Opinion analysis is gaining increasing interest in linguistics (see e.g. <ref type="bibr" target="#b0">Albert et al., 2011;</ref><ref type="bibr" target="#b30">Krishna-Bal and Saint-Dizier, 2010</ref>) and more recently in AI (e.g. <ref type="bibr" target="#b37">Osman et al., 2006;</ref><ref type="bibr" target="#b42">Subrahmanian, 2009)</ref>. This is due to the importance of having efficient tools that provide a synthetic view on a given subject. For instance, politicians may find it useful to analyse the popularity of new proposals or the overall public reaction to certain events. Companies are definitely interested in consumer attitudes towards a product and the reasons and motivations of these attitudes. In our application, it may be important for each user to know the opinion of a user about a certain image. This may lead the user to revise his own opinion.</p><p>The problem of opinion analysis consists of aggregating the opinions of several agents/users about a particular subject, called target. An opinion is a global rating that is assigned to the target, and the evaluation of some features associated with the target. Therefore, this amounts to aggregate arguments which have the structure given in Definition 4.1.</p><p>In our application, the target is an image and the features are the associated tags. We are mainly interested in two things. To have a synthetic view of the opinion of a given user w.r.t. an image and to calculate whether the image can be regarded as worthy to be accepted or not. In the first case, we aggregate the image arguments of a user u i to obtain his overall image preference r n i . Instead, for deciding whether an image is accepted or rejected by the whole group we define a multiple criteria operator.</p><p>Definition 4.2 (Opinion aggregation). Let U ¼ fu 1 ; …u n g be a set of users, im A I where F ðimÞ ¼ ft 1 ; …; t m g. The next table summarizes the opinions of n users.</p><formula xml:id="formula_10">Users/Tags t 1 … t j … t m im u 1 ðv 1;1 ; w 1;1 Þ … ðv 1;j ; w 1;j Þ … ðv 1;m ; w 1;m Þ r n 1 ⋮ ⋮ ⋮ ⋮ ⋮ ⋮ ⋮ u i ðv i;1 ; w i;1 Þ … ðv i;j ; w i;j Þ … ðv i;m ; w i;m Þ r n i ⋮ ⋮ ⋮ ⋮ ⋮ ⋮ ⋮ u n ðv n;1 ; w n;1 Þ … ðv n;j ; w n;j Þ … ðv n;m w n;m ; Þ r n n</formula><p>The aggregate or overall image preference of a user u i denoted by r n i ðimÞ is defined as</p><formula xml:id="formula_11">r n i ðimÞ ¼ P 1 r j r m v i;j w i;j P 1 r j r m w i;j<label>ð5Þ</label></formula><p>The multiple criteria decision operator can then be defined as</p><formula xml:id="formula_12">MCDðimÞ ¼ 1 if 8 u i ; 0 rr n i ðimÞ r 1 À1 if 8 u i ; À 1 r r n i ðimÞ o 0 0 otherwise 8 &gt; &lt; &gt; :<label>ð6Þ</label></formula><p>Note that the MCD aggregation operator allows three values: 1 (for acceptance), À 1 (for rejection) and 0 (for undecided). Therefore, an image im is automatically added to the image collection if it has been unanimously accepted by the users. On the contrary, the image is discarded if it has been unanimously rejected. Finally, if MCDðimÞ ¼ 0, then the system is unable to decide and the final decision is taken by the users in a vote scene.</p><p>Notice that our definition of MCD captures the idea that a vote is needed only when users do not reach a consensus in the forum and argue scenes. 2</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.4.">Overall image preference per user</head><p>When a user rates an image im by specifying a new tag or by updating a tag already specified, his overall image preference is automatically updated by computing r n i ðimÞ.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.5.">Argue candidate recommender</head><p>In order to recommend an ordered list of argue candidates to a user willing to argue, the distance between the overall image preferences per user (Eq. ( <ref type="formula" target="#formula_11">5</ref>)) can be taken into account.</p><p>Let u i be a user willing to argue and r n i ðimÞ be his overall image preference. Then, for each u j (such that j ai) we can define the image preference distance of user u j w.r.t. user u i , denoted by δ ji ðimÞ, as δ ji ðimÞ ¼ fabsðr n j ðimÞ À r n i ðimÞÞj ðr n j ðimÞ o 0 4 r n i ðimÞ Z0Þ 3 ðr n j ðimÞ Z 0 4</p><formula xml:id="formula_13">r n i ðimÞ o 0Þg<label>ð7Þ</label></formula><p>Then, an argue candidate for user u i for an image im is cand i ðimÞ ¼ fu j | max fδ ji ðimÞgg. The ordered list of argue candidates can be defined by ordering the different δ ji ðimÞ.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.">Argue scene</head><p>The main goal of two users running in an argue scene is to try to reach an agreement on keeping or discarding an image by exchanging image arguments. The argue scene defines a bilateral argumentation protocol. The formal protocol is presented at the end of the section and it works as follows:</p><p>the two users tag the image by means of image's tags (like in the forum scene), but, they can also propose image tags to the other user: ○ while tagging, their overall image preferences are automatically updated;</p><p>a user proposes an image tag to the other user who can either accept or reject it: ○ if the user accepts the image tag proposed, then their overall image preferences are automatically updated: * if an argue agreement is reached, then the argue scene stops; * otherwise, the argue scene keeps on; ○ if the user rejects the image tag proposed, then the argue scene keeps on.</p><p>Both users can also decide to leave the argue scene spontaneously.</p><p>Whilst in a forum scene, an argument is implicitly accepted unless the corresponding bubble tag is deleted, in the above protocol, when a user proposes an argument to another user, the second user can accept or reject that argument by clicking on the bubble tag representing the argument and selecting an accept/ reject option. The user who accepts the argument accepts not only the content of the argument but also its value. Previous arguments over the same tag (if they exist) are overwritten.</p><p>The different way in which an argument is accepted or rejected in a forum and an argue scene, is motivated by the different, although related, intended goals of the two scenes. Whilst the goal of the forum scene is to develop a sense of community discourse around an image (and the deletion a bubble tag of another user can foster the creation of new arguments), the goal of the argue scene is to support a "private" bilateral negotiation protocol that lets a user to persuade another one about the specifics of an image.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.1.">Overall image preference per user</head><p>The overall image preference of a user in an argue scene is automatically updated by computing r n ðimÞ (see subsection 4.2.4).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.2.">Argue agreement</head><p>Informally, an argue agreement is reached when the image preferences of the two users agree towards "keep" or "discard". Let r n i ðimÞ and r n j ðimÞ be the image's preferences of user u i and u j respectively. Then, a decision criterion for deciding whether an argue agreement is reached can be defined as:</p><formula xml:id="formula_14">argueðimÞ ¼ 1 ifð0 r r n i ðimÞ r 1 4 0 r r n j ðimÞ r 1Þ 3 ðÀ1 r r n i ðimÞ o 0 4 À 1 r r n j ðimÞ o 0Þ 0 otherwise 8 &gt; &lt; &gt; :<label>ð8Þ</label></formula><p>Therefore, an argue scene stops when argueðimÞ ¼ ¼ 1. Instead, while argueðimÞ ¼ ¼ 0, the argue scene keeps on until either argueðimÞ ¼ ¼ 1 or the two users decide to stop arguing. The "otherwise" case covers the situation in which the overall image preferences of two users are neither both positive nor negative. This corresponds to a disagreement situation and to the case in which the users should keep arguing. Therefore, the system should 2 Although it is quite probable that if users are heterogeneous the obtained value of MCD will be 0, during our trials at the Horninam museum, most of the people using WeCurate were groups of friends and families. This lowered the probability that their views diverged, and we wanted to have a decision making model that let them vote only in case they were not unanimously agreeing on what to do. Please notice that, since the MCD is a decision criterion run by the agents participating to the EI, we can obtain a different behaviour of the group by plugging in another decision model.</p><p>not interrupt the argue protocol which can be stopped by one of the users as mentioned in Section 4.3.</p><p>The reader might notice that user image preferences with a value of 0 and À0:1, although mathematically very close, contribute to make different decisions. This view is justified by the fact that we categorise the satisfaction and dissatisfaction of a user w.r.t an image taking a possibility theory approach to user preference representation and fusion into account <ref type="bibr" target="#b8">(Benferhat et al., 2006)</ref>. According to this approach, user preferences are modeled in terms of a finite bipolar scale in which values in the range ½1; 0:9; …; 0:1; 0 represent a set of satisfactory states (with 1 being a state of full satisfaction and 0 a state of indifference), while values in the range ð0; À0:1; …; À 0:9; À1 capture states of dissatisfaction (with À 0.1 being a state of low dissatisfaction and À 1 being a state of maximum dissatisfaction). Therefore, according to this categorisation, À 0:1 is a state of dissatisfaction, while 0 is not. This is why À 0:1 and 0 are accounted as a negative and a positive value in the definition of argue respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4.">Vote scene</head><p>The main goal of the users running in a vote scene is to decide by vote to add or not an image to the image collection. This decision step occurs when the automatic decision process at the end of the forum scene is unable to make a decision.</p><p>In a vote scene, each user vote can be "yes", "no", or "abstain" (in case that no vote is provided). Let v i A fþ1; 0; À 1g be the vote of user u i where þ 1 ¼"yes", À 1¼ "no", and 0 ¼"abstain" and let V ¼ fv 1 ; v 2 ; …; v n g be the set of votes of the users in a vote scene. Then, a decision criterion for adding an image or not based on vote counting can be defined as</p><formula xml:id="formula_15">voteðim j Þ ¼ 1 if P 1 r i r n v i Z 0 0 otherwise<label>ð9Þ</label></formula><p>Therefore, an image im j is added to the image collection if the number of "yes" is greater or equals than the number of "no". In the above criterion, a neutral situation is considered as a positive vote.<ref type="foot" target="#foot_1">3</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5.">Agent interaction protocol</head><p>In the previous sections, we have mainly presented the architecture of the system and the reasoning part of the agents in the system. In what follows we provide the interaction protocol followed by the agents in the different scenes. We describe the negotiation protocol that allows agents to make joint decisions. The idea is the following. Whenever a sufficient number of UserAssistant agents have logged in the system, the EIManager starts a select scene. Each user will zoom into an image and express an image preference. When a user decides to go to a forum scene, its UserAssistant agent computes the group preference by means of a preference aggregator. Based on this result (intðimÞ) the EIManager decides whether to go to a forum or to go back to a select scene (with a different image). In the forum scene, each user will express his opinion about the image by specifying image arguments (as in Definition 4.1) via the system interface (see Section 5). Agents provide to their respective users a report on the aggregated opinion of the other users. Users may consider this information for revising their own opinions. In case all agents agree, that is, MCDðimÞ ¼ ¼ 1 (reps. disagree, that is, MCDðimÞ ¼ ¼ À1) on the overall rating of the image, then the image is added (resp. not added) to a group collection and another instance of a select scene is started. During the discussion, pairs of users may engage in private dialogues where they exchange arguments about the image. The exchanged arguments may be either the ones that are built by the user when introducing his opinion or new ones. A user may add new tags for an image. When the disagreement persists (MCDðimÞ ¼ ¼ 0), the users will decide by voting.</p><p>In what follows, U ¼ fu 1 ; …; u n g is a set of users, and Args t ðu i Þ is the set of arguments of user u i at step t. At the beginning of a session, the sets of arguments of all users are assumed to be empty (i.e., Args 0 ðu i Þ ¼ ∅). Moreover, the set of images contains all the available images in the database of the museum, that is I 0 ¼ I . We assume also that a user u i is interested in having a joint experience with other users. The protocol uses a communication language based on four locutions:</p><p>Invite: it is used by a user to invite a set of users for engaging in a dialogue.</p><p>Send is used by agents for sending information to other agents. Accept is used mainly by users for accepting requests made to them by other users.</p><p>Reject is used by users for rejecting requests made to them by other users.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Interaction protocol:</head><p>1. Send(EIManager, U, SelectScene) (the EIManager starts a select scene). 2. Send(MediaAgent, U, RandðI t Þ) (the Media Agent select an image from the museum database and sends it to all the UserAssistant agents). 3. Each UserAssistant agent displays the image RandðI t Þ and each user u j A U: (a) Expresses an image preference r j ðRandðI t ÞÞ A S. (b) When a user u j is sure about his preference, he clicks on the "Go To Discuss" button in the WeCurate interface. (c) Send(UserAssistant j , EIManager, f agg ð r ! Þ) (the UserAssistant agent of u j computes the group preference f agg ð r ! Þ and sends it to the EIManager). 4. If (intðRandðI t ÞÞ ¼ ¼0), then I t þ 1 ¼ I t ⧹fRandðI t ÞÞg and go to</p><p>Step 1. 5. If (intðRandðI t ÞÞ¼ ¼1), then Send(EIManager, U, ForumScene) (the EIManager starts a forum scene). 6. Each UserAssistant agent displays the image RandðI t Þ and its tags (i.e., t i A F ðRandðI t ÞÞ). [Steps 7 and 8 can happen in parallel] 7. Each user u j A U:</p><p>(a) creates image arguments. Let Args t j ¼ Args t À 1 j [ fðððt i ; v i Þ; w i Þ; RandðI t ÞÞ j t i A F ðRandðI t ÞÞg be the set of arguments of user u j at step t. (b) The UserAssistant agent of u j computes his overall image preference and the one of the other users r n i ðRandðI t ÞÞ. (c) The user u j may change his opinion in light of r n i ðRandðI t ÞÞ. The set Args t j is revised accordingly. All the arguments that are modified are replaced by the new ones. Let T 0 D F ððRandðI t ÞÞ be the set of tags whose values are modified.</p><p>Therefore, Args t j ¼ ðArgs t j ⧹fðððt; vÞ; wÞ; ðRandðI t ÞÞ A Args t j j t A T 0 gÞ [ fðððt; v 0 Þ; w 0 Þ; RandðI t ÞÞ j t A T 0 g. r n i ðRandðI t ÞÞ is calculated everytime the set image argument is modified. (d) When the user u j is sure about his preferences, he clicks on the "Go To Vote" button in the WeCurate interface. (e) Send(UserAssistant j , EIManager, r n i ðRandðI t ÞÞ) (the User-Assistant agent sends r n i ðRandðI t ÞÞ to the EIManager).</p><p>8. For all u j ; u k A U such that δ kj ðRandðI t ÞÞÞ 4 0 then:</p><p>(a) Inviteðu j ; fu k gÞ (user u j invites user u k for a private dialogue). (the EIManager starts a vote scene). 12. Each user u j A U:</p><formula xml:id="formula_16">(b) User u k utters either Acceptðu k Þ or Rejectðu k Þ. (c) If Acceptðu k Þ,</formula><p>(a) expresses a vote v j ðRandðI t ÞÞÞ.</p><p>(b) Send(UserAssistant j , EIManager, v i ðRandðI t ÞÞÞ). 13. If (voteðRandðI t ÞÞ¼ ¼1), then RandðI t Þ is added to the group collection, I t þ 1 ¼ I t ⧹fRandðI t ÞÞg and go to Step 1. 14. If (voteðRandðI t ÞÞ ¼ ¼0), then I t þ 1 ¼ I t ⧹fRandðI t ÞÞg and go to</p><p>Step 1.</p><p>It is worth mentioning that when a user does not express opinion about a given tag, then he is assumed to be indifferent w.r. t. that tag. Consequently, the value 0 is assigned to the tag.</p><p>Note also that the step 8 is not mandatory. Indeed, the invitation to a bilateral argumentation is initiated by users who really want to persuade their friends.</p><p>The previous protocol generates dialogues that terminate either when all the images in the database of the museum are displayed or when users exit. The outcome of each iteration of the protocol may be either an image on which all users agree or disagree to be added to the group collection.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">User interface</head><p>The user interface provides a distinct screen for each scene, as illustrated in Figs. <ref type="figure" target="#fig_2">4(a-d</ref>). It communicates with the UserAssistant agent by sending a variety of user triggered events which are different in each scene. The available user actions in each scene are shown in Fig. <ref type="figure">1</ref>. The state of the interface is completely controlled by the UserAssistant agents, which send scene snapshots to the interface whenever necessary, e.g. when a new tag is created. Some low level details of the method of data exchange between interface and UserAssistant agents are provided in the next section.</p><p>The interface is the second iteration of a shared image browsing interface, designed to include desirable features highlighted by a user trial of the first iteration (see <ref type="bibr">Hazelden et al., 2012</ref> for more details). Desirable features include standard usability such as reliability, speed and efficiency, awareness of the social presence of other users and awareness of the underlying workflow. Given the social nature of the system, social presence, where users are aware of each others' presence and actions as well as a shared purpose and shared synchronicity is of especial interest.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Adopted technologies</head><p>The p2p EI is implemented on top of FreePastry, a free and open-source library that implements peer-to-peer networks <ref type="bibr" target="#b41">(Rowstron and Druschel, 2001)</ref>, and AMELI, a general-purpose middleware (i.e. set of institutional agents) that enables the execution of the EI. Whilst Freepastry provides several useful features such as the routing of messages, or the possibility to create broadcast messages, AMELI enables agents to act in an EI and controls their behaviour. The institutional agents composing AMELI load institution specifications as XML documents generated by ISLANDER <ref type="bibr" target="#b18">(Esteva et al., 2002)</ref>, a graphical editor for EI specifications. AMELI is composed of three layers: a communication layer, which enables agents to exchange messages, a layer composed of the external agents that participate in an EI, and in between a social layer, which controls the behaviour of the participating agents. The social layer is implemented as a multi-agent system whose institutional agents are responsible for guaranteeing the correct execution of an EI according to the specification of its rules. User Assistant agents are implemented as Java programs extending an existing Java agent that abstracts away all the underlying communication protocols. More details on the p2p EI implementation can be found in de <ref type="bibr">Jonge et al., 2013.</ref> The user interface is implemented using Javascript drawing to an HTML5 canvas element, which is a cross platform and plug-in free solution. The Interface does not communicate directly with the institutional agents since it is not a part of the FreePastry network. Instead, the interface sends events formatted as JSON to the User Assistant agent which hosts an HTTP server. The User Assistant agents pick up the event queue, then in turn generate scene snapshots in JSON format which are sent to the interface. Scene snapshots are used to define the state of the interface.</p><p>One advantage of this queued event and snapshot model with regard to evaluation is that all interface events and interface state snapshots are stored in the system for later inspection. This allows a complete, interactive reconstruction of activity of the users and the agents for qualitative analysis as well as providing a lot of data for quantitative analysis. In the next section we describe how this data was analysed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Evaluation</head><p>The objective of the evaluation is twofold. First, to determine the interactions and the social awareness perceived by the social groups using our system.</p><p>Second, to test to what extent the decision models adopted by the agents were good predictors of user behaviour e.g. to decide whether users add an image to the group collection by analysing user preferences in a select scene or the arguments exchanged in a forum scene.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.1.">Method and data</head><p>The WeCurate system was set up as an interactive exhibit in a major London museum, supported by the research team. <ref type="foot" target="#foot_3">4</ref> The museum provided 150 images from their collection; the task for the social groups interacting with the system was to decide which of these images they would like to have as a postcard, via the curation process.</p><p>Multiple sources of qualitative and quantitative data were collected. Participants were filmed during the activities and their interactions with the system was recorded in timestamped logs. Data was gathered and cross referenced from adhoc observation of the trials themselves, inspection of the video footage, transcription of the interviews and the system log files.</p><p>The ages of participants ranged from 4 years (with assistance) to 45 years. The average time each group used the WeCurate system was 5 min 38 s, the longest session logged was 21 min 16 s.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.">Community interaction analysis</head><p>For the social interaction analysis, the evaluation uses a Grounded Theory (GT) approach to code data from multiple sources to build an account of use <ref type="bibr" target="#b22">(Glaser and Strauss, 1967;</ref><ref type="bibr" target="#b23">Glaser, 2008)</ref>. GT enables a more speculative and emergent approach to rationalising the findings of the analysis. Of particular interest is the communication and discussion about the artefacts/images presented by the system, and whether the shared view supports an awareness of social action. The results of the community interaction analysis are presented in <ref type="bibr" target="#b25">Hazelden et al. (2013)</ref> in a detailed way, here we only summarise the salient points:</p><p>Dynamic between adults and between parents and children: Of the adult only sessions, 70% featured some degree of laughter and playful comments, these included reactions to another participant deleting a newly created tag, or commenting on the content of a tag. Consequently for the adults, the creation of a tag, or modifying a group member's tag was often perceived as a playful action. 60% of the adult's sessions also featured an attempt by at least one of the participants to synchronise their actions with the group (i.e. not clicking "Go To Discuss"/ "Go To Vote" until others were ready to move to the next image/vote). Aside from the positive communication among the adults, there were instances in 60% of these sessions where a participant expressed an opinion or asked for an opinion and no one responded. The lack of acknowledgement of group members comments could indicate that the participants were too engaged with the task and therefore did not register the comment, or they simply chose to ignore the group member. The social dynamic between parent and child was dominated by adult initiated action whereby 89% of the interactions related to the adult driving the child's comprehension. Of the adult initiated behaviour, 40% was directing the child's action and attention, and 45% was requesting an opinion about the image from the child.</p><p>Discussion of task, image and museum artefacts: The ques- tionnaire showed that 56% reported feeling as if they had a full discussion, while 23% reported that they did not (21% did not comment). Whilst it is encouraging that a majority believed they had a rich debate about the images in the system, as this a key aspect of the design and use, a more significant margin would be preferable. Of more concern is that in 30% of the sessions observed (with both adults and children) there was no discussion between the participants using separate devices, and in only one of these sessions did the children talk to each other (in all other sessions they conversed solely with their parent). The absence of discussion could be partially accounted for by the parents preoccupation with supporting their child.</p><p>Social awareness via the system: When reporting on their ability to express an opinion of the image in the questionnaire, 73% of participants felt they were able to express a preference in the select scene, and 81% reported that they could express opinions via the forum scene using the tags. This suggests that the participants felt they were able to communicate their preferences via the WeCurate Interface. The social group did appear to have some influence over individual's decision making, whereby 42% reported changing their decision as a consequence of seeing other's actions.</p><p>In what follows, we will focus on the analysis of the decision making models employed by the agents.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.">Agent decision models analysis</head><p>The observations provided a dataset for assessing the different types of agent decision models. To this end, we compare the decision criteria of the agents (Section 4) w.r.t. the final decision of the users in the vote scene.</p><p>The dataset analysed consists of 224 observations about image evaluations in the different WeCurate scenes. The images evaluated were selected from a finite set of 150 images, browsed during 165 sessions in which groups up to 4 users participated. 130 images were chosen from the original set and the 73.1% was finally added to the group collection. Each image was seen from 1 to 4 times during the different sessions. Among the 224 observations, 176 corresponded to image evaluations in which an image was added to the group collection and 48 in which an image was rejected by voting.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.1.">Select scene</head><p>For the analysis of the select scene, we considered the number of users, the time spent in the select scene, the zoom activity (number of zooms), the image interestingness computed on the basis of the three operators, and the different decision making criteria used by the agents (int, int wm and int wowa ).</p><p>As general statistics, we observed that the shortest and longest select scene respectively took 7 and 105 s, with an average of 26 s for deciding to accept an image and 22 s for rejecting it. Therefore, it seems that the decision of disliking an image took slightly less than the decision of liking it. As far as the zoom activity is concerned, almost 50% of the select scenes did not have any zoom activity. This could let us think that users did not zoom because they were not aware about this functionality. On the other hand, by looking at the cases with and without zoom activity, we appreciated that the lack of zoom activity corresponded to select scenes in which the image was finally rejected by the agents. Among those evaluations in which the zoom was used, the 74.4% classified the image as interesting, against the 55% in which the zoom activity was 0. Therefore, the zoom activity can be considered a positive measure of the users' activity w.r.t the image interestingness.</p><p>We also observed that there exists a significant positive correlation between different variables in the select scene.</p><p>First, a positive correlation related to the number of users versus the time spent in the select scene, the number of users versus the zoom activity, and the time spent in the select scene versus the zoom activity. These results can suggest us that users felt more engaged in using the application when other users were connected. This is in agreement with the kind of socio-technical system we implemented, where each user is aware of the activity of other users and social activities among users are stressed.</p><p>Second, the correlation of the zoom activity versus the image interestingness computed w.r.t. the different operators tell us that the algorithms used to compute the image interestingness were consistent w.r.t. the zoom activity of the users. Indeed, in the case of the arithmetic mean, the correlation with the zoom activity is not significant, while for the weighted mean and WOWA operators, which are zoom dependent, positive correlations, indicate that the number of zooms matters as expected.</p><p>Since not all the operators adopted were taking the zoom activity into account, it is interesting to compare them w.r.t the way they classify an image. Fig. <ref type="figure" target="#fig_4">5</ref> shows two graphics which represent the relation between the arithmetic mean versus the weighted mean operator (Fig. <ref type="figure" target="#fig_4">5(a)</ref>), and the weighted mean versus the WOWA operator (Fig. <ref type="figure" target="#fig_4">5(b)</ref>).</p><p>In Fig. <ref type="figure" target="#fig_4">5</ref>(a), it can be noticed that, although the values computed by the two operators correlate, the weighted mean operator classified as not interesting several images that the arithmetic mean considered interesting (because the zoom activity for those images was 0). Apart from those values, the two operators had a pretty good concordance since they classified most of the images in a similar way (see the top-right quadrant for class 1 and bottom-left quadrant for class 0), with the exception of some of them belonging to opposite (0 versus 1) classifications. This inconsistency can be explained by thinking about those cases in which small weights were associated to several positive user preferences and high weights were associated to few negative preferences, or vice-versa.</p><p>On the other hand, Fig. <ref type="figure" target="#fig_4">5</ref>(b), reveals a very good concordance between the weighted mean and the WOWA operators since these operators classified images almost in the same way. This is somehow expected since both operators rely on the zoom activity. Nevertheless, the WOWA operator tends to flat low weighted mean values towards the 0 and to keep those values closer to extreme values þ 1 and À 1.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.2.">Forum scene</head><p>For the analysis of the forum scene, we considered the number of users, the time spent in the forum scene, the zoom activity, the tag activity (the tags added, edited and deleted), the comments, the forum preference, and the multiple criteria operator MCD. By means of this operator, the agents classified an image as a good (1), a bad ( À 1), or a neutral (0) candidate to be added to the group collection.</p><p>We observed that the shortest and longest forum scene took 15 s and 210 s respectively, with an average of 55 s for those sessions (151) in which the agents recommended to add an image, 67 s for those sessions (21) in which the agents did not recommend it, and 15 s for those cases (52) in which the agents could not decided. Although we observed that the zoom and chat activities were quite low (6% of all the observations), it is interesting to notice that users were more engage in the tag activity (85% of all the observations). In fact, a significant positive correlation exists between the time spent in the forum scene and all kinds of tag activities. Moreover, the activity of editing a tag is also positively correlated with the forum preference, since this value is computed on the basis of users' tags. Surprisingly, we discovered that the number of users and the time spent in the forum scene correlate in a weak way. This can be justified by thinking that many users already had a pretty clear idea of whether they liked or disliked the image and they tended to go to the vote scene without discussing it.</p><p>On the other hand, there exists a significant correlation between the number of users and the tag activity. This can be interpreted in two ways. First, we can expect that more users were likely to perform more tag activity. Second, it is also possible that users were more involved in tagging because they were aware of the tag activity of the other users (social awareness), and they felt more engaged.</p><p>Since each forum scene happened after a select scene in which an image was classified as interesting or not, it is worthy to look at the relation among the two scenes. First, we observed that the time spent in the select scene and the time spent in the forum scene are significantly correlated (Fig. <ref type="figure" target="#fig_5">6</ref>). This was probably due to the fact that those images about which users were more undecided required more time to set a select and a forum preference. Second, we can draw a relation between the evaluations in the select and forum scene (Fig. <ref type="figure" target="#fig_5">6(b-d</ref>)). Although the computation of the preference w.r.t. the images was based on different activities, that are, the aggregation of users' preferences in the select scene and the multiple criteria aggregation (MCD) of image tags' evaluations in the forum scene, it is interesting to observe how the different operators classified the images in a consistent way. Those values which are not in concordance correspond to those sessions of the forum scene in which users revised their opinions about an image chosen in the select scene. However, these cases represented a small percentage.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.3.">Vote scene</head><p>In the vote scene, users finally decided whether to add or not an image, browsed in the whole curation process, to the group collection. Therefore, it is interesting to compare this final decision w.r.t. the decisions made by the agents in the forum and in the select scene.</p><p>To this end, we can measure the performance of our image classifiers in the forum and in the select scene in terms of sensitivity and specificity. In our case, the sensitivity of our operators refers to the capability of identifying good candidate images in the select and in the forum scene. On the other hand, the specificity is the capability of discriminating uninteresting images that finally were not voted.</p><p>For this analysis, we have considered the vote decision criterion (Eq. ( <ref type="formula" target="#formula_15">9</ref>)), the MCD criterion (Eq. ( <ref type="formula" target="#formula_12">6</ref>)) and, the decision criteria w.r.t. the image interestingness computed by int, int wm , and int wowa . Among the 224 image evaluations, 176 finally received a positive vote, while 48 a negative one. Fig. <ref type="figure" target="#fig_6">7</ref> shows the sensitivity and the specificity measures for the classifiers in the select and in the forum scenes.</p><p>As far as the classification in the select scene according to the three operators is concerned, we have observed the following. For the arithmetic mean, among those 176 observations that contained a positive vote, 34 of them were classified as false negatives (the image was accepted in the vote scene but not in the select scene), and 142 were classified as true positives in the select scene. Therefore its sensitivity is of 81%. Regarding its specificity, we have observed that in 48 observations, 34 of them were classified as false positive in the select scene (the image was chosen in the select but not in the vote); therefore its specificity is of 29%. On the other hand, the weighted mean and the WOWA show a sensitivity and a specificity of 53%, 56% and 26%, 67% respectively.</p><p>Within the forum scene, among those 176 observations that contained a positive vote, only 11 of them were classified as false negative, and 128 were classified as true positives in the forum scene. The remaining 37, would have required a vote anyway, since they remained unclassified in the forum scene. This gives us a sensitivity of 73%. Regarding the specificity, we have observed that in 48 observations, 23 of them were classified as false positives in the forum scene (the image was chosen in the forum but not in the vote), and 10 classified as true negatives. The remaining 15 would have required a vote anyway. This gives us a specificity of 21%.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.">Discussion</head><p>The analysis performed suggests that in the select scene, the arithmetic mean operator was not very sensitive at the moment of classifying the images, and for this reason, more images tended to go through the curation process, although they were finally rejected by voting. Instead, the weighted mean and the WOWA operators, since they depend on the number of zooms, and consequently, on the user activity, were more restrictive when selecting images. Indeed, they both are good classifiers with respect to the images that were finally voted. The WOWA operator, since it is more sensible to values closer to 0 (see Fig. <ref type="figure" target="#fig_4">5b</ref>), discriminated too much in the selection of the images (26% of sensitivity). Thus, on the one hand, we can say that the weighted mean operator is a better image classifier than the arithmetic mean and the WOWA operators, which respectively are too weak and too strong with respect to the images they select. On the other hand, these results also suggest that a combination of the agents' decision models could enhance the user experience in using the system. For instance, by using the arithmetic mean operator to select images in the selection scene, but to finally vote only those images which are not discarded by the weighted mean or by the WOWA.</p><p>As far as the forum scene is concerned, the MCD operator categorised images that were finally voted in a pretty good way (73% of sensitivity). Its specificity, however, reveals that images were classified as not worthy to be added to the group collection before the vote in few forum evaluations. Interpreting this result is difficult, but one possible explanation is that the vote scene was triggered hastily by those users who liked an image, preventing those who were changing their opinion during the discussion of the forum scene from expressing that change before moving to the voting scene.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9.">Related work</head><p>Our work relates not only to research topics such as preference aggregation, argumentation and environments for multi-agent systems, but also to systems that allow realtime multiuser collaborations in cultural heritage and other domains.</p><p>As far as preference aggregation is concerned, our categorisation of positive and negative user preferencesto capture degrees of likeness and dislikeness of a user w.r.t. an imageis influenced by <ref type="bibr" target="#b8">Benferhat et al. (2006)</ref>, which proposes a bipolar fusion operator for merging user preferences in the possibilistic logic setting. According to this approach, the problem of deciding what is collectively accepted by a set of users can be handled by means of an aggregation function on the whole set of positive and negative preferences (represented in terms of possibility distributions) of a group of agents. On the other hand, one of our preference aggregation operators, used to decide whether an image is accepted or rejected in a select scene, is based on the Weighted Ordered Weighted Average (WOWA) operator <ref type="bibr" target="#b43">(Torra, 1997)</ref>. The WOWA operator generalises both the weighted mean and the OWA operator <ref type="bibr" target="#b47">(Yager, 1988)</ref>. WOWA can weight values not only according to their importance (like in the weighted mean) but also according to their relative position in the preference scale used. This allows us to define different aggregation strategies depending on the application domain. For instance, in our work, we defined an aggregation function that gives more importance to values closer to extreme values (e.g. þ 1 and À 1) rather than central ones (e.g. þ 0:1 and À 0:1); this implies that users having stronger opinions count more in the decision of accepting or rejecting an image. Our contribution to this research topic consists in defining several decision making criteria and we compare different preference aggregation operators w.r.t. their capability of classifying user behaviour (see Section 7).</p><p>Concerning argumentation, some of the approaches that relate to our work are those in argumentation-based decision making <ref type="bibr" target="#b3">(Amgoud and Prade, 2009)</ref> and argument-based negotiation <ref type="bibr" target="#b1">(Amgoud et al., 2006)</ref>. Amgoud and Prade, 2009 proposes a unified argumentation framework for decision making under uncertainty and multiple-criteria decision making that uses arguments to explain the decisions made. <ref type="bibr" target="#b1">Amgoud et al., 2006</ref> defines a negotiation dialogue according to which several agents exchange arguments in order to try to reach an agreement. In these works, an argument is a logical proof for a statement where the proof is built from a knowledge base (containing uncertain information) and a preference base. In our application, on the other hand, arguments are reasons for accepting or rejecting a given image and are essentially tags created by the users. The use of this kind of arguments supports, similarly to the logical approaches mentioned above, the creation of a sense of discourse around a decision since the arguments pinpoint the reasons why users decide to accept or discard a certain image.</p><p>As far as the environment enacting the distributed curation workflow and controlling the agents is concerned, our p2p EI infrastructure is based and extends our previous development efforts on engineering multi-agent systems as open agent environments <ref type="bibr" target="#b35">(Noriega, 1997;</ref><ref type="bibr" target="#b19">Esteva, 2003;</ref><ref type="bibr">d'Inverno et al., 2012)</ref>. Remarkably, we superseded the original conception of d'Inverno et al., 2012 as centralised systems by an EI infrastructure implemented as a p2p network of nodes that allows us to exploit the benefits inherent to p2p systems (e.g. self-organisation, resilience to faults and attacks, low barrier to deployment, and privacy management). The p2p EI infrastructure used in WeCurate has been developed with the ambition that EIs become a pervasive mechanism to coordinate very large networks of humans and devices in the next years. Our current efforts in improving the infrastructure and a roadmap on EIs development in the last 20 years are reported in de <ref type="bibr" target="#b15">Jonge et al. (2015)</ref>.</p><p>Several systems exist that enable realtime personalised experience and multiuser collaboration in virtual workspaces, both in industry and in academia. In industry, web conferencing software such as Adobe Connect allows complex media and text driven interactions; shared document editors such as Google Drive enable co-editing of office-type documents. However, the user interfaces are perhaps too complex for a casual user in a museum and it is not possible to enforce specific workflows with specific goals with these systems as required by our group curation scenario. Further, agreement technologies such as group decision making are not explicitly supported, e.g. consider the scenario where users are co-editing a presentation using Google Drive and they need to select an appropriate image.</p><p>In academia, enhancing the users' experience in museums has already been addressed in different ways. For instance, <ref type="bibr" target="#b16">Dini et al., 2007</ref> outline a multiuser game played on distributed displays. Users are given a mobile device for individual game play, but with situated displays for synchronized public views of shared game play. Therefore, this system is not truly multiuser as they play individually, and the outcome contributes to a shared game. In the PEACH project, researchers focused on the creation of online personalised presentations to be delivered to the visitors for improving their satisfaction and personalised visit summary reports of suggestions for future visits <ref type="bibr" target="#b31">(Kuflik et al., 2005)</ref>. Their focus was mainly the modeling of preferences of single users but the importance of social interactions in visiting a museum was investigated in the PIL project, an extension of the research results of the PEACH project, and in the ARCHIE project <ref type="bibr" target="#b32">(Kuflik et al., 2011;</ref><ref type="bibr" target="#b33">Luyten et al., 2006)</ref>. ARCHIE aimed at providing a more sociallyaware experience to users visiting a museum by allowing visitors to interact with other visitors by means of their mobile guides. User profiles were used to tailor the information to the needs and interests of each individual user and, as such, no group decision making was necessary. A cultural heritage application was proposed in <ref type="bibr" target="#b12">Costantini et al. (2008)</ref> where agents are able to discover users' movements via a satellite, to learn and to adapt user profiles to assist users during their visits in Villa Adriana, an archaeological site in Tivoli, Italy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="10.">Conclusion and future works</head><p>A multiuser museum interactive which uses a multiagent system to support community interactions and decision making and a peer-to-peer Electronic Institution (EI) to model the workflow has been described. Its multimodal user interface which directly represents the scenes in the underlying EI and which is designed to engage casual users in a social discourse around museum artefacts has also been described. An analysis has been presented which assessed the success of the system as a museum interactive as well as the evaluation of various group decision making algorithms implemented in the system.</p><p>This line of research looks promising. Our results have shown that the representations of the opinions of the group did influence individual members opinion, which denotes a sense of social presence via the system. The evaluation of decision making models showed that simple decision making models can predict user behaviour in terms of image collected in a fair way, especially, if we consider that the decision models were based on few activities such as image preferences, zooming, tagging and chatting. We think that these results reveal that the use of agent and EI technology together can enhance user social dynamics and user social presence. This is an important result.</p><p>In terms of future work, we can improve user social engagement, the scene design and, the efficacy of the agent architecture in supporting the curation task. For instance, by letting users be more engage in the discussion of images by taking advantage of gamification in the design of the forum scene.</p><p>Another interesting extension of the system is the allowance of more complex arguments, alluding expert opinions, similar past opinions or value-based opinions, etc. On the one hand, having these kinds of more complex argument structures can foster the modeling of more advanced decision making models and, consequently, the development of a more elaborated analysis of the agents' behaviour. On the other hand, they will likely require a new GUI design for maintaining the usability of the interface, a key element for conveying a sense of shared experience to the users of our system. In fact, the challenge lies more on maintaining an intuitive user interface for the novice user, than increasing the complexity of the argumentation framework.</p><p>We also wish to revisit an idea that was in our earlier prototype <ref type="bibr" target="#b48">(Yee-King et al., 2012)</ref>, where an online image recommender was used to select images that matched the tag preferences of two users. The idea of recommending images in this way was rejected for the WeCurate system after several users reported frustration at receiving a series of similar images <ref type="bibr">(Hazelden et al., 2012)</ref>. A smarter method would be to extract a representation of images based on their potential for discussion by the group, as opposed to a simplistic, tag based metric. For example, which parts of the images were users zooming into? Which types of image engendered the most active discussion?</p><p>Beyond that, the technology has been designed to easily transfer to a web or mobile application, and the distributed peerto-peer Electronic Institution model is designed to scale; and we see great potential in the concept of agent supported, workflow driven, synchronous image discussion and curation taken to the mass audience on the open web. This paper contributes to the integration of agent-based and human-based decision making processes in socio-technical systems. We consider this a key research area in the design of intelligent agents.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 2 .</head><label>2</label><figDesc>Fig.2. Structure of the p2p electronic institution. Note that the external agents do not form part of the p2p-network. The connections in this diagram are drawn randomly.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. The WeCurate workflow: white boxes represent scenes, grey boxes represent user actions, and arrows denote scene transitions.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. The WeCurate user interface. Bubbles represent tags and are resizable and movable; icons visible on sliders and images represent users. (a) The select scene for rapid selection of interesting images. (b) The forum scene for in-depth discussion of images. (c) The argue scene for bilateral argumentation among two users. (d) The vote scene for deciding to add images to the group collection.</figDesc><graphic coords="5,118.94,58.62,347.79,275.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head></head><label></label><figDesc>Definition 4.1 (Argument). Let 〈I ; T ; S; W〉 be a theory and im A I . An argument pro im is a pair ððt; vÞ; w; imÞ where t A T , v A S and v 4 0. An argument con im is a pair ððt; vÞ; w; imÞ where t A T , v A S and v o 0.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. The WeCurate operators in the select scene. (a) The Arithmetic and Weighted Mean Operators. (b) The Weighted Mean and WOWA Operators.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Relations between select and forum scene. (a) Select scene vs forum scene time. (b) The Arithmetic Mean and MCD. (c) The Weighted Mean and MCD. (d) The WOWA and the MCD .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Sensitivity and Specificity of the WeCurate operators used in the forum and select scenes w.r.t. the vote.</figDesc><graphic coords="13,58.22,58.61,213.66,118.03" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head></head><label></label><figDesc>. The scenes are as follows:</figDesc><table><row><cell>Login Scene</cell><cell></cell><cell>Selection Scene</cell><cell></cell><cell></cell></row><row><cell>Choose avatar and username</cell><cell>login successful</cell><cell>Zoom Set image</cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell>preference</cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>voting</cell></row><row><cell></cell><cell></cell><cell cols="2">interesting image is</cell><cell>interesting image not</cell><cell>complete</cell></row><row><cell></cell><cell>argument</cell><cell></cell><cell></cell><cell></cell></row><row><cell>Argue Scene</cell><cell>complete</cell><cell>Forum Scene</cell><cell>Tag</cell><cell></cell><cell>Vote scene</cell></row><row><cell>Propose/ accept and reject tags</cell><cell></cell><cell>Request/ accept</cell><cell cols="2">Comment</cell><cell>Vote</cell></row><row><cell></cell><cell>argue request</cell><cell>argument</cell><cell>Zoom</cell><cell></cell></row><row><cell></cell><cell>accepted</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head></head><label></label><figDesc>Sendðu j ; fu k g; aÞ where a is an argument, ConcðaÞ ¼ RandðI t Þ and either a A Args t j or TagðaÞ = 2 T (i.e., the user introduces a new argument using a new tag). (e) User u k may revise his opinion about TagðaÞ. Thus, Args t k ¼ ðArgs t k ⧹fððTagðaÞ; vÞ; RandðI t Þ ÞgÞ [ fððTagðaÞ; v 0 Þ; RandðI t ÞÞ j v 0 avg. (f) If ðargueðRandðI t ÞÞ ¼ ¼ 0 4 not exitÞ, then go to Step 8 (d) with the roles of the agents reversed. (g) If ðargueðRandðI t ÞÞ ¼ ¼ 1Þ 3 exitÞ, then go to Step 7. 9. If (MCDðRandðI t ÞÞ¼ ¼ À 1), then I t þ 1 ¼ I t ⧹fRandðI t ÞÞg and go to Step 1. 10. If (MCDðRandðI t ÞÞ ¼ ¼ 1), then RandðI t Þ is added to the group collection, I t þ 1 ¼ I t ⧹fRandðI t ÞÞg and go to Step 1. 11. If (MCDðRandðI t ÞÞ ¼ ¼0), then Send(EIManager, U, VoteScene)</figDesc><table /><note>then Send(EIManager, fu i ; u k g, ArgueScene).(d)</note></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">R. Confalonieri et al. / Engineering Applications of Artificial Intelligence 46 (2015) 180-195</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_1">This assumption is made to avoid an undecided outcome at this decision step.R. Confalonieri et al. / Engineering Applications of Artificial Intelligence</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="46" xml:id="foot_2"> (2015) 180-195  </note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_3">A video of the interactive exhibit and the description of the system is available at http://www.youtube.com/watch?v¼ LzZ1EQS0-hQ. R. Confalonieri et al. / Engineering Applications of Artificial Intelligence 46 (2015) 180-195</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgements</head><p>The authors would like to thank the reviewers for their valuable comments. This work is supported by the Collective Mind project (Spanish Ministry of Economy and Competitiveness, under Grant number TEC2013-49430-EXP), the PRAISE project (funded by the European Commission, under Grant number 388770), and the ACE project (funded by the European framework ERA-Net CHIST-ERA, under contract CHRI-001-03). Roberto Confalonieri would like to thank Andrea Mattivi for his suggestions on the data analysis.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Introducing argumentation in opinion analysis: language and reasoning challenges</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Albert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Costedoat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bannay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Saint-Dizier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Sentiment Analysis Where AI Meets Psychology (workshop at IJCNLP11)</title>
+				<meeting>Sentiment Analysis Where AI Meets Psychology (workshop at IJCNLP11)</meeting>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Towards a formal framework for the search of a consensus between autonomous agents</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Belabbes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Prade</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Argumentation in Multi-Agent Systems</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Parsons</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">N</forename><surname>Maudet</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><surname>Moraitis</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">I</forename><surname>Rahwan</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="volume">4049</biblScope>
+			<biblScope unit="page" from="264" to="278" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">A unified and general framework for argumentation-based negotiation</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Dimopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Moraitis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 6th International Joint Conference on Autonomous Agents and Multiagent Systems (AAMAS&apos;07)</title>
+				<meeting>the 6th International Joint Conference on Autonomous Agents and Multiagent Systems (AAMAS&apos;07)<address><addrLine>Honolulu, Hawaii, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM Press</publisher>
+			<date type="published" when="2007">2007</date>
+			<biblScope unit="page" from="963" to="970" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Using arguments for making and explaining decisions</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Prade</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Artif. Intell. J</title>
+		<imprint>
+			<biblScope unit="volume">173</biblScope>
+			<biblScope unit="page" from="413" to="436" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Bridging the gap between abstract argumentation systems and logic</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Besnard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of International Conference on Scalable Uncertainty Management (SUM&apos;09)</title>
+				<meeting>International Conference on Scalable Uncertainty Management (SUM&apos;09)</meeting>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="12" to="27" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Sharing online cultural experiences: an argument-based approach</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Confalonieri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Jonge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Inverno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hazelden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Osman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Prade</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Yee-King</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Modeling Decisions for Artificial Intelligence -9th International Conference, MDAI 2012</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">V</forename><surname>Torra</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Y</forename><surname>Narukawa</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">B</forename><surname>López</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><surname>Villaret</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Girona, Catalonia, Spain</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="volume">7647</biblScope>
+			<biblScope unit="page" from="282" to="293" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Engineering open environments with electronic institutions</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">L</forename><surname>Arcos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Esteva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Noriega</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Rodríguez-Aguilar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Eng. Appl. Artif. Intell</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="191" to="204" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Justifying practical reasoning</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Atkinson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Bench-Capon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Mcburney</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 4th Workshop on Computational Models of Natural Argument (CMNA&apos;04)</title>
+				<meeting>the 4th Workshop on Computational Models of Natural Argument (CMNA&apos;04)</meeting>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="87" to="90" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Bipolar possibility theory in preference modeling: representation, fusion and optimal solutions</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Barron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Benferhat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Dubois</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kaci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Prade</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Inf. Fusion</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="135" to="150" />
+			<date type="published" when="2006">2012. 2006</date>
+		</imprint>
+	</monogr>
+	<note>The Washington Post, The Art of Video Games</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Arguing for decisions: a qualitative model of decision making</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Bonet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Geffner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 12th Conference on Uncertainty in Artificial Intelligence (UAI&apos;96)</title>
+				<meeting>the 12th Conference on Uncertainty in Artificial Intelligence (UAI&apos;96)</meeting>
+		<imprint>
+			<date type="published" when="1996">1996</date>
+			<biblScope unit="page" from="98" to="105" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Artlinks: fostering social awareness and reflection in museums</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Cosley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lewenstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Herman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Holloway</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Baxter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Nomura</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Boehner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Gay</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI&apos;08)</title>
+				<meeting>the SIGCHI Conference on Human Factors in Computing Systems (CHI&apos;08)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="403" to="412" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">A tag in the hand: supporting semantic, social, and spatial navigation in museums</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Cosley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Baxter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Alson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Nomura</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sarabu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Gay</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI&apos;09)</title>
+				<meeting>the SIGCHI Conference on Human Factors in Computing Systems (CHI&apos;09)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="1953" to="1962" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">DALICA: agent-based ambient intelligence for cultural-heritage scenarios</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Costantini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Mostarda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Tocchio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Tsintza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Inverno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Luck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Noriega</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Rodríguez-Aguilar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Intell. Syst</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="38" to="94" />
+			<date type="published" when="2008">2008. 2012</date>
+		</imprint>
+	</monogr>
+	<note>Artif. Intell.</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Infrastructures to engineer open environments as electronic institutions</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>De Jonge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Rodríguez-Aguilar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Rosell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IFAAMAS</title>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note>IFAAMAS</note>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Human interactions in electronic institutions</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>De Jonge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Rosell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Agreement Technologies -Proceedings of Second International Conference</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">C</forename><forename type="middle">I</forename><surname>Chesñevar</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">E</forename><surname>Onaindia</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Ossowski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">G</forename><forename type="middle">A</forename><surname>Vouros</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Beijing, China</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2013-08-01">2013. 2013. August 1-2, 2013</date>
+			<biblScope unit="volume">8068</biblScope>
+			<biblScope unit="page" from="75" to="89" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Infrastructures to Engineer Open Environments as Electronic Institutions</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>De Jonge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Rodriguez-Aguilar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Rosell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Agent Environments for Multi-Agent Systems</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note>in press</note>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">An environment to support multi-user interaction and cooperation for improving museum visits through games</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Dini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Paternò</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Santoro</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 9th International Conference on Human Computer Interaction with Mobile Devices and Services (MobileHCI&apos;07), MobileHCI&apos;07</title>
+				<meeting>the 9th International Conference on Human Computer Interaction with Mobile Devices and Services (MobileHCI&apos;07), MobileHCI&apos;07<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2007">2007</date>
+			<biblScope unit="page" from="515" to="521" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">On the acceptability of arguments and its fundamental role in nonmonotonic reasoning, logic programming and n-person games</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">M</forename><surname>Dung</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Artif. Intell. J</title>
+		<imprint>
+			<biblScope unit="volume">77</biblScope>
+			<biblScope unit="page" from="321" to="357" />
+			<date type="published" when="1995">1995</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">ISLANDER: an electronic institutions editor</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Esteva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>De La Cruz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 1st International Joint Conference on Autonomous Agents and Multiagent Systems: Part 3, AAMAS&apos;02</title>
+				<meeting>the 1st International Joint Conference on Autonomous Agents and Multiagent Systems: Part 3, AAMAS&apos;02<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="1045" to="1052" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Electronic Institutions: from Specification to Development</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Esteva</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+		<respStmt>
+			<orgName>Technical University of Catalonia</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Ph.D. thesis</note>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Distributed norm management in regulated multiagent systems</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Gaertner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Garcia-Camino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Noriega</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-A</forename><surname>Rodriguez-Aguilar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Vasconcelos</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1329125.1329235</idno>
+		<idno>90:1-90:8</idno>
+		<ptr target="http://dx.doi.org/10.1145/1329125.1329235" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 6th International Joint Conference on Autonomous Agents and Multiagent Systems, AAMAS &apos;07</title>
+				<meeting>the 6th International Joint Conference on Autonomous Agents and Multiagent Systems, AAMAS &apos;07<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Reviving the past: cultural heritage meets</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gaitatzes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Roussou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2001 Conference on Virtual reality, Archeology, and Cultural Heritage</title>
+				<meeting>the 2001 Conference on Virtual reality, Archeology, and Cultural Heritage</meeting>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="103" to="110" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title level="m" type="main">The Discovery of Grounded Theory: Strategies for Qualitative Research</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Glaser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Strauss</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1967">1967</date>
+			<publisher>Aldine De Gruyter</publisher>
+			<pubPlace>New York, NY</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<title level="m" type="main">Doing Quantitative Grounded Theory</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Glaser</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<publisher>Sociology Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">WeCurate: designing for synchronised browsing and social negotiation</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Greg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hazelden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Yee-King</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Inverno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Osman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Confalonieri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Jonge</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 1st International Conference on Agreement Technologies, AT 2012, CEUR Workshop Proceedings, CEUR-WS.org</title>
+				<editor>
+			<persName><forename type="first">S</forename><surname>Ossowski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">F</forename><surname>Toni</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">G</forename><forename type="middle">A</forename><surname>Vouros</surname></persName>
+		</editor>
+		<meeting>the 1st International Conference on Agreement Technologies, AT 2012, CEUR Workshop Proceedings, CEUR-WS.org</meeting>
+		<imprint>
+			<date type="published" when="2011">2011. 2012</date>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="page" from="168" to="179" />
+		</imprint>
+	</monogr>
+	<note>Your paintings: public access and public tagging</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">WeCurate: multiuser museum interactives for shared cultural experiences</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hazelden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Yee-King</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Confalonieri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Ghedini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Jonge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Osman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Inverno</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2013 ACM SIGCHI Conference on Human Factors in Computing Systems, CHI&apos;13</title>
+				<editor>
+			<persName><forename type="first">W</forename><forename type="middle">E</forename><surname>Mackay</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Brewster</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Bødker</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Paris, France</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2013-04-27">2013. April 27 -May 2, 2013</date>
+			<biblScope unit="page" from="571" to="576" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Interaction and interactives: collaboration and participation with computer-based exhibits</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Heath</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">V</forename><surname>Lehn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Osborne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Public Underst. Sci</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="91" to="101" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">The constructivist museum and the web</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Hellin-Hobbs</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2010 International Conference on Electronic Visualisation and the Arts (EVA&apos;10)</title>
+				<editor>
+			<persName><forename type="first">A</forename><surname>Seal</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Bowen</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">K</forename><surname>Ng</surname></persName>
+		</editor>
+		<meeting>the 2010 International Conference on Electronic Visualisation and the Arts (EVA&apos;10)<address><addrLine>Swinton, UK, UK</addrLine></address></meeting>
+		<imprint>
+			<publisher>British Computer Society</publisher>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="72" to="78" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Familial collaborations in a museum</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hope</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Nakamura</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Takahashi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Nobayashi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fukuoka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hamasaki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Nishimura</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI&apos;09)</title>
+				<meeting>the SIGCHI Conference on Human Factors in Computing Systems (CHI&apos;09)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="1963" to="1972" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">I don&apos;t understand it either, but it is cool-visitor interactions with a multi-touch table in a museum</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Hornecker</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">3rd IEEE International Workshop on Horizontal Interactive Human Computer Systems</title>
+				<imprint>
+			<date type="published" when="2008">2008. 2008</date>
+			<biblScope unit="page" from="113" to="120" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Towards building annotated resources for analyzing opinions and argumentation in news editorials</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Krishna-Bal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Saint-Dizier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on Language Resources and Evaluation</title>
+				<meeting>the International Conference on Language Resources and Evaluation</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Nonintrusive user modeling for a multimedia museum visitors guide system</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kuflik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Callaway</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Goren-Bar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Rocchi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Stock</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zancanaro</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 10th International Conference on User Modeling</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">L</forename><surname>Ardissono</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><surname>Brna</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Mitrovic</surname></persName>
+		</editor>
+		<meeting>the 10th International Conference on User Modeling<address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="volume">3538</biblScope>
+			<biblScope unit="page" from="236" to="240" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">A visitor&apos;s guide in an active museum: presentations, communications, and reflection</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kuflik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Stock</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zancanaro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gorfinkel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jbara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kats</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Sheidin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Kashtan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Comput. Cult. Herit</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page">25</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">ARCHIE: disclosing a museum by a socially-aware mobile guide</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Luyten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Van Loon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Teunkens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Gabriels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Coninx</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Manshoven</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 7th International Symposium on Virtual Reality, Archaeology and Cultural Heritage</title>
+				<meeting>the 7th International Symposium on Virtual Reality, Archaeology and Cultural Heritage</meeting>
+		<imprint>
+			<date type="published" when="2006">2006. 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">A framework for monitoring agent-based normative systems</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Modgil</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Faci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Meneguzzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Oren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Miles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Luck</surname></persName>
+		</author>
+		<ptr target="〈http://www.dl.acm.org/citation.cfm?id¼1558013.1558034〉" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 8th International Conference on Autonomous Agents and Multiagent Systems, AAMAS &apos;09, International Foundation for Autonomous Agents and Multiagent Systems</title>
+				<meeting>the 8th International Conference on Autonomous Agents and Multiagent Systems, AAMAS &apos;09, International Foundation for Autonomous Agents and Multiagent Systems<address><addrLine>Richland, SC</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="153" to="160" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<title level="m" type="main">Agent Mediated Auctions: the Fishmarket Metaphor</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Noriega</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1997">1997</date>
+		</imprint>
+		<respStmt>
+			<orgName>Autonomous University of Barcelona</orgName>
+		</respStmt>
+	</monogr>
+	<note>Ph.D. thesis</note>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">How to reason defeasibly</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Pollock</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Artif. Intell. J</title>
+		<imprint>
+			<biblScope unit="volume">57</biblScope>
+			<biblScope unit="page" from="1" to="42" />
+			<date type="published" when="1992">1992</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Propagation of opinions in structural graphs</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Osman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Sabater</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 17th European Conference on Artificial Intelligence</title>
+				<meeting>the 17th European Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<date type="published" when="2006">2006. 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Trust and matching algorithms for selecting suitable agents</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Osman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mcneill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Pane</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Debenham</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Intell. Syst. Technol</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">39</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Coherence and flexibility in dialogue games for argumentation</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Prakken</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Log. Comput</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="1009" to="1040" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Fuzzy multiple attribute decision making: a review and new preference elicitation techniques</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">A</forename><surname>Ribeiro</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Fuzzy Sets Syst</title>
+		<imprint>
+			<biblScope unit="volume">78</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="155" to="181" />
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Pastry: scalable, decentralized object location, and routing for large-scale peer-to-peer systems</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">I T</forename><surname>Rowstron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Druschel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IFIP/ ACM International Conference on Distributed Systems Platforms Heidelberg, Middleware &apos;01</title>
+				<meeting>the IFIP/ ACM International Conference on Distributed Systems Platforms Heidelberg, Middleware &apos;01<address><addrLine>London, UK, UK</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="329" to="350" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Mining online opinions</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Subrahmanian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Comput</title>
+		<imprint>
+			<biblScope unit="page" from="88" to="90" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">The weighted owa operator</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Torra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Int. J. Intell. Syst</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="153" to="166" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Making native space: cultural politics, historical narrative, and community curation at the national museum of the american indian</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Turner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Pract. Anthr</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="40" to="44" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<monogr>
+		<title level="m" type="main">Digital technologies and the museum experience. Handheld guides and other media</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Walker</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<publisher>Altamira Press-Rowman &amp; Littlefield Publishers, Inc., Ch. Structuring visitor participation</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Building virtual and augmented reality museum exhibitions</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Wojciechowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Walczak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>White</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Cellary</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 9th International Conference on 3D Web Technology</title>
+				<meeting>the 9th International Conference on 3D Web Technology</meeting>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="135" to="144" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">On ordered weighted averaging aggregation operators in multicriteria decisionmaking</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">R</forename><surname>Yager</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Syst. Man Cybern</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="183" to="190" />
+			<date type="published" when="1988">1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Towards community browsing for shared experiences: the WeBrowse system</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Yee-King</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Confalonieri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Jonge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Osman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hazelden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Prade</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Inverno</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the First International Conference on Agreement Technologies, AT 2012, CEUR Workshop Proceedings, CEUR-WS.org</title>
+				<editor>
+			<persName><forename type="first">S</forename><surname>Ossowski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">F</forename><surname>Toni</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="middle">G A</forename><surname>Vouros</surname></persName>
+		</editor>
+		<meeting>the First International Conference on Agreement Technologies, AT 2012, CEUR Workshop Proceedings, CEUR-WS.org</meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="volume">918</biblScope>
+			<biblScope unit="page" from="201" to="202" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Multiuser museum interactives for shared cultural experiences: an agent-based approach</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Yee-King</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Confalonieri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Jonge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hazelden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sierra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Inverno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Amgoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Osman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 12th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2013</title>
+				<editor>
+			<persName><forename type="first">Jonker</forename><surname>Ito</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Gini</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Shehory</surname></persName>
+		</editor>
+		<meeting>the 12th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2013</meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="917" to="924" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

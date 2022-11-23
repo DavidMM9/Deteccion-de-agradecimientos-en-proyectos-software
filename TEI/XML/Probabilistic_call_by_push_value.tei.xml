@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">PROBABILISTIC CALL BY PUSH VALUE</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date>Jan. 09, 2018</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Christine</forename><surname>Tasson</surname></persName>
+							<email>christine.tasson@irif.fr</email>
+							<affiliation key="aff0">
+								<orgName type="laboratory">UMR 8243</orgName>
+								<orgName type="institution" key="instit1">CNRS</orgName>
+								<orgName type="institution" key="instit2">IRIF</orgName>
+								<orgName type="institution" key="instit3">Univ Paris Diderot</orgName>
+								<address>
+									<addrLine>Sorbonne Paris Cité</addrLine>
+									<postCode>F-75205</postCode>
+									<settlement>Paris</settlement>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<address>
+									<addrLine>171 Second St, Suite 300, or Eisenacher Strasse 2</addrLine>
+									<postCode>94105, 10777</postCode>
+									<settlement>San Francisco, Berlin</settlement>
+									<region>CA</region>
+									<country>USA, Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">PROBABILISTIC CALL BY PUSH VALUE</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published">Jan. 09, 2018</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">B74C0D5EBE00881C68E057D65A8293D6</idno>
+					<idno type="DOI">10.23638/LMCS-15(1:3)2019</idno>
+					<note type="submission">Submitted Jul. 19, 2016</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>LOGICAL METHODS lI N COMPUTER SCIENCE</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>We introduce a probabilistic extension of Levy's Call-By-Push-Value. This extension consists simply in adding a "flipping coin" boolean closed atomic expression. This language can be understood as a major generalization of Scott's PCF encompassing both call-by-name and call-by-value and featuring recursive (possibly lazy) data types. We interpret the language in the previously introduced denotational model of probabilistic coherence spaces, a categorical model of full classical Linear Logic, interpreting data types as coalgebras for the resource comonad. We prove adequacy and full abstraction, generalizing earlier results to a much more realistic and powerful programming language.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>Call-by-Push-Value <ref type="bibr" target="#b21">[22]</ref> is a class of functional languages generalizing the lambda-calculus in several directions. From the point of view of Linear Logic we understand it as a halfpolarized system bearing some similarities with e.g. classical Parigot's lambda-mu-calculus, this is why we call it Λ HP . The main idea of Laurent and Regnier interpretation of callby-name lambda-mu in Linear Logic <ref type="bibr" target="#b19">[20]</ref> (following actually <ref type="bibr" target="#b12">[13]</ref>) is that all types of the minimal fragment of the propositional calculus (with ⇒ as unique connective) are interpreted as negative types of Linear Logic which are therefore naturally equipped with structural morphisms: technically speaking, these types are algebras of the ?-monad of Linear Logic. This additional structure of negative types allows to perform logical structural rules on the right side of typing judgments even if these formulas are not necessarily of shape ?σ, and this is the key towards giving a computational content to classical logical rules, generalizing the fundamental discovery of Griffin on typing call/cc with Peirce Law <ref type="bibr" target="#b14">[15]</ref>.</p><p>From our point of view, the basic idea of Λ HP is quite similar, though somehow dual and used in a less systematic way: data types are interpreted as positive types of Linear Logic equipped therefore with structural morphisms (as linear duals of negative formulas, they are coalgebras of the !-comonad) and admit therefore structural rules on the left side of typing judgment even if they are not of shape !σ. This means that a function defined on a data type can have a linear function type even if it uses its argument in a non-linear way: this non-linearity is automatically implemented by means of the structural morphisms the positive data type is equipped with.</p><p>The basic positive type in Linear Logic is !σ (where σ is any type): it is the very idea of Girard's call-by-name translation of the lambda-calculus into Linear Logic to represent the implication type σ ⇒ τ by means of the decomposition !σ τ . The new idea of Λ HP is to generalize this use of the linear implication to any type construction of shape ϕ τ where ϕ is a positive type, without imposing any linearity restriction on the usage of the argument of type ϕ used by a function of type ϕ τ . This non-symmetrical restriction in the use of the linear implication motivates our description of Λ HP as a "half-polarized" system: in a fully polarized system like Laurent's Polarized Linear Logic LLP <ref type="bibr" target="#b19">[20]</ref>, one would also require the type σ to be negative in ϕ σ (the last system presented in <ref type="bibr" target="#b4">[5]</ref> implements this idea) and the resulting formalism would host classical computational primitives such as call/cc as well. The price to pay, as illustrated in <ref type="bibr" target="#b1">[2]</ref>, is a less direct access to data types: it is impossible to give a function from integers to integers the expected type ι ι (where ι is the type of flat natural numbers satisfying ι = 1 ⊕ ι), the simplest type one can give to such a term is ι ?ι which complicates its denotational interpretation 1 . Not being polarized on the right side of implications, Λ HP remains "intuitionistic" just as standard functional programming languages whose paradigmatic example is PCF. So what is the benefit of this special status given to positive formulas considered as "data types"? There are several answers to this question.</p><p>• First, and most importantly, it gives a call-by-value access to data types: when translating PCF into Linear Logic, the simplest type for a function from integers to integers is !ι ι. This means that arguments of type ι are used in a call-by-name way: such arguments are evaluated again each time they are used. This can of course be quite inefficient. It is also simply wrong if we extend our language with a random integer generator since in that case each evaluation of such an argument can lead to a different value: in PCF there is no way to keep memory of the value obtained for one evaluation of such a parameter and probabilistic programming is therefore impossible. In Λ HP data types such as ι can be accessed in call-by-value, meaning that they are evaluated once and that the resulting value is kept for further computation: this is typically the behavior of a function of type ι ι. This is not compulsory however and an explicit ! type constructor still allows to define functions of type !ι ι in Λ HP , with the usual PCF behavior. • Positive types being closed under positive Linear Logic connectives (direct sums and tensor product) and under "least fixpoint" constructions, it is natural to allow corresponding constructions of positive types in Λ HP as well, leading to a language with rich data type constructions (various kinds of trees, streams etc are freely available) and can be accessed in call-by-value as explained above for integers. From this data types point of view, the ! Linear Logic connective corresponds to the type of suspensions or thunks which are boxes (in the usual Linear Logic sense) containing unevaluated pieces of program. • As already mentioned, since the Linear Logic type constructors and ! are available in Λ HP (with the restriction explained above on the use of that the left side type must be positive), one can represent in Λ HP both Girard's translations from lambda-calculus into Linear Logic introduced in <ref type="bibr" target="#b11">[12]</ref>: the usual one which is call-by-name and the "boring one" which is call-by-value. So our language Λ HP is not intrinsically call-by-value and hosts 1 One can also consider ? as the computational monad of linear continuations and use a translation from direct style into monadic style (which, for this monad, is just a version of the familiar CPS translation). This is just a matter of presentation and of syntactic sugar and does not change the denotational interpretation in the kind of concrete models of Linear Logic we have in mind such as the relational model, the coherence space model etc.</p><p>Probabilities in Λ HP . Because of the possibility offered by Λ HP of handling values in a call-by-value manner, this language is particularly suitable for probabilistic functional programming. Contrarily to the common monadic viewpoint on effects, we consider an extension of the language where probabilistic choice is a primitive coin(p) of type 1 ⊕ 1 (the type of booleans) 2 parameterized by p ∈ [0, 1] ∩ Q which is the probability of getting t (and 1 − p is the probability of getting f ). So our probabilistic extension Λ p HP of Λ HP is in direct style, but, more importantly, the denotational semantics we consider is itself in "direct style" and does not rely on any auxiliary computational monad of probability distributions <ref type="bibr" target="#b28">[29,</ref><ref type="bibr" target="#b16">17]</ref> (see <ref type="bibr" target="#b17">[18]</ref> for the difficulties related with the monadic approach to probabilistic computations), random variables <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b13">14,</ref><ref type="bibr" target="#b24">25]</ref>, or measures <ref type="bibr" target="#b30">[31,</ref><ref type="bibr" target="#b15">16]</ref>.</p><p>On the contrary, we interpret our language in the model of probabilistic coherence spaces <ref type="bibr" target="#b3">[4]</ref> that we already used for providing a fully abstract semantics for probabilistic PCF <ref type="bibr" target="#b8">[9]</ref>. A probabilistic coherence space X is given by an at most countable set |X| (the web of X) and a set PX of |X|-indexed families of non-negative real numbers, to be considered as some kind of "generalized probability distributions". This set of families of real numbers is subject to a closure property implementing a simple intuition of probabilistic observations. Probabilistic coherence spaces are a model of classical Linear Logic and can be seen as ω-continuous domains equipped with an operation of convex linear combination, and the linear morphisms of this model are exactly the Scott continuous functions commuting with these convex linear combinations.</p><p>Besides, probabilistic coherence spaces can be seen as particular d-cones <ref type="bibr" target="#b31">[32]</ref> and even Kegelspitzen <ref type="bibr" target="#b18">[19]</ref>, that is, complete partial orders equipped with a Scott continuous "convex structure" allowing to compute probabilistic linear combinations of their elements. Kegelspitzen have been used recently by Rennela to define a denotational model of a probabilistic extension of FPC <ref type="bibr" target="#b27">[28]</ref>. The main difference with respect to our approach seems to be the fact that non-linear morphisms (corresponding to morphisms of type !σ τ in our setting) are general Scott continuous functions in Rennela's model 3 , whereas they are analytic functions 4 in ours, which can be seen as very specific Scott continuous functions. See also <ref type="bibr" target="#b10">[11]</ref> where these functions are seen to be stable in a generalized sense.</p><p>As shown in <ref type="bibr" target="#b3">[4]</ref> probabilistic coherence spaces have all the required completeness properties for interpreting recursive type definitions (that we already used in <ref type="bibr" target="#b6">[7]</ref> for interpreting the pure lambda-calculus) and so we are able to associate a probabilistic coherence space with all types of Λ p HP . In this model the type 1 ⊕ 1 is interpreted as the set of sub-probability distributions on {t, f } so that we have a straightforward interpretation of coin(p). Similarly the type of flat integers ι is interpreted as a probabilistic coherence space N such that |N| = N and PN is the set of all probability distributions on the natural numbers. Given probabilistic spaces X and Y , the space X Y has |X| × |Y | as web and P(X Y ) is the set of all |X| × |Y | matrices which, when applied to an element of PX gives an element of PY . The web of the space !X is the set of all finite multisets of elements of |X| so that an element of !X Y can be considered as a power series on as many variables as there are elements in |X| (the composition law associated with the Kleisli category of the !-comonad is compatible with this interpretation of morphisms as power series).</p><p>From a syntactic point of view, the only values of 1 ⊕ 1 are t and f , so coin(p) is not a value. Therefore we cannot reduce λx 1⊕1 M coin(p) to M [coin(p)/x] and this is a good thing since then we would face the problem that the boolean values of the various occurrences of coin(p) might be different. We have first to reduce coin(p) to a value, and the reduction rules of our probabilistic Λ HP stipulate that coin(p) reduces to t with probability p and to f with probability 1 − p (in accordance with the kind of operational semantics that we considered in our earlier work on this topic, starting with <ref type="bibr" target="#b3">[4]</ref>). So λx 1⊕1 M coin(p) reduces to M [t/x] with probability p and to M [f /x] with probability 1 − p, which is perfectly compatible with the intuition that in Λ HP application is a linear operation (and that implication is linear: the type of</p><formula xml:id="formula_0">λx 1⊕1 M is (1 ⊕ 1)</formula><p>σ for some type σ): in this operational semantics as well as in the denotational semantics outlined above, linearity corresponds to commutation with (probabilistic) convex linear combinations.</p><p>Contents. The results presented in this paper illustrate the tight connection between the syntactic and the denotational intuitions underpinning our understanding of this calculus.</p><p>We first introduce in Section 2 the syntax and operational semantics of Λ p HP , an abstract programming language very close to Paul Levy's Call by Push Value (CBPV) <ref type="bibr" target="#b21">[22]</ref>. It however differs from Levy's language mainly by the fact that CBPV computation types products and recursive type definitions have no counterparts in our language. This choice is mainly motivated by the wish of keeping the presentation reasonably short. It is argued in Sections 2.3 and 2.4 that Λ p HP is expressive enough for containing well behaved lazy data types such as the type of streams, and for encoding call-by-name languages with products.</p><p>In Section 3, we present the Linear Logic model of probabilistic coherence spaces, introducing mainly the underlying linear category Pcoh, where Λ p HP general types are interpreted, and the Eilenberg-Moore category Pcoh ! , where the positive types are interpreted. In order to simplify the Adequacy and Full Abstraction proofs, we restrict actually our attention to a well-pointed subcategory of Pcoh ! whose objects we call "dense coalgebras": this will allow to consider all morphisms as functions. As suggested by one of the referees, there are probably smaller well-pointed subcategories of Pcoh ! where we might interpret our positive types, and in particular the category of families introduced in <ref type="bibr" target="#b0">[1]</ref> describing call-by-value games. This option will be explored in further work. We prefer here to work with the most general setting as it is also compatible with a probabilistic extension of the last system of <ref type="bibr" target="#b4">[5]</ref>, which features classical call/cc-like capabilities. We prove then in Section 4 an Adequacy Theorem whose statement is extremely simple: given a closed term M of type 1 (which has exactly one value ()), the denotational semantics of M , which is an element of [0, 1], coincides with its probability to reduce to () (such a term can only diverge or reduce to ()). In spite of its simple statement the proof of this result requires some efforts mainly because of the presence of unrestricted<ref type="foot" target="#foot_0">5</ref> recursive types in Λ p HP . The method used in the proof relies on an idea of Pitts <ref type="bibr" target="#b25">[26]</ref> and is described in the introduction of Section 4.</p><p>Last we prove Full Abstraction in Section 5 adapting the technique used in <ref type="bibr" target="#b6">[7]</ref> to the present Λ p HP setting. The basic idea consists in associating, with any element a of the web of the probabilistic coherence space [σ] interpreting the type σ, a term a − of type<ref type="foot" target="#foot_1">6</ref> !σ !ι 1 such that, given two elements w and w of P[σ] such that w a = w a , the elements [a − ] w ! and [a − ] (w ) ! of P(!ι 1) are different power series depending on a finite number n of parameters (this number n depends actually only on a) so that we can find a rational number valued sub-probability distribution for these parameters where these power series take different values in <ref type="bibr">[0,</ref><ref type="bibr" target="#b0">1]</ref>. Applying this to the case where w and w are the interpretations of two closed terms M and M of type σ, we obtain, by combining a − with the rational sub-probability distribution which can be represented in the syntax using coin(p) for various values of p, a Λ HP closed term C of type !σ 1 such that the probability of convergence of C M ! and C (M ) ! are different (by adequacy). This proves that if two (closed) terms are operationally equivalent then they have the same semantics in probabilistic coherence spaces, that is, equational full abstraction.</p><p>Further developments. These results are similar to the ones reported in <ref type="bibr" target="#b9">[10]</ref> but are actually different, and there is no clear logical connection between them, because the languages are quite different, and therefore, the observation contexts also. And this even in spite of the fact that PCF can be faithfully encoded in Λ HP . This seems to show that the semantical framework for probabilistic functional programming offered by probabilistic coherence spaces is very robust and deserves further investigations. One major outcome of the present work is a natural extension of probabilistic computation to rich data-types, including types of potentially infinite values (streams etc).</p><p>Our full abstraction result cannot be extended to inequational full abstraction with respect to the natural order relation on the elements of probabilistic coherence spaces: a natural research direction will be to investigate other (pre)order relations and their possible interactive definitions. Also, it is quite tempting to replace the equality of probabilities in the definition of contextual equivalence by a distance; this clearly requires further developments.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Probabilistic Call By Push Value</head><p>We introduce the syntax of Λ p HP of CBPV (where HP stands for "half polarized"). Types are given by the following BNF syntax. We define by mutual induction two kinds of types: positive types and general types, given type variables ζ, ξ. . . : positive ϕ, ψ, . . .</p><formula xml:id="formula_1">:= 1 | !σ | ϕ ⊗ ψ | ϕ ⊕ ψ | ζ | Rec ζ • ϕ (2.1) general σ, τ . . . := ϕ | ϕ σ (2.2)</formula><p>The type 1 is the neutral element of ⊗ and it might seem natural to have also a type 0 as the neutral element of ⊕. We didn't do so because there is no associated constructor in the syntax of terms, and the only closed terms of type 0 that one can write are ever-looping terms.</p><p>Observe also that there are no restrictions on the variance of types in the recursive type construction: for instance, in</p><formula xml:id="formula_2">Rec ζ • ϕ is a well-formed positive type if ϕ = !(ζ ζ)</formula><p>, where ζ has a negative and a positive occurrence. Do well notice that our "positive types" are positive in the sense of logical polarities, and not of the variance of type variables! Terms are given by the following BNF syntax, given variables x, y, . . . :</p><formula xml:id="formula_3">M, N . . . := x | () | M ! | (M, N ) | in M | in r M | λx ϕ M | M N | case(M, x • N , x r • N r ) | pr M | pr r M | der M | fix x !σ M | fold(M ) | unfold(M ) | coin(p), p ∈ [0, 1] ∩ Q</formula><p>Remark. This functional language Λ p HP , or rather the sublanguage Λ HP which is Λ p HP stripped from the coin(p) construct, is formally very close to Levy's CBPV. As explained in the Introduction, our intuition however is more related to Linear Logic than to CBPV and its general adjunction-based models. This explains why our syntax slightly departs from Levy's original syntax as described e.g. in <ref type="bibr" target="#b20">[21]</ref> and is much closer to the SFPL language of [23]: Levy's type constructor F is kept implicit and U is "!". We use LL inspired notations: M ! corresponds to thunk(M ) and der M to force(M ). Our syntax is also slightly simpler than that of SFPL in that our general types do not feature products and recursive types definitions, we will explain in Section 2.4 that this is not a serious limitation in terms of expressiveness.</p><p>Figure <ref type="figure" target="#fig_2">1</ref> provides the typing rules for these terms. A typing context is an expression P = (x 1 : ϕ 1 , . . . , x k : ϕ k ) where all types are positive and the x i s are pairwise distinct variables.</p><p>2.1. Reduction rules. Values are particular Λ p HP terms (they are not a new syntactic category) defined by the following BNF syntax: The distinguishing feature of this reduction system is the role played by values in the definition of → w . Consider for instance the case of the term pr (M , M r ); one might expect P, x : ϕ x : ϕ P, x : ϕ M : σ P λx ϕ M : ϕ σ P M : ϕ σ P N : ϕ P M N : σ P M : σ P M ! : !σ P () : 1 this term to reduce directly to M but this is not the case. One needs first to reduce M and M r to values before extracting the first component of the pair (the terms pr (M , M r ) and M have not the same denotational interpretation in general). Of course replacing M i with M ! i allows a lazy behavior. Similarly, in the → w rule for case, the term on which the test is made must be reduced to a value (necessarily of shape in V or in r V if the expression is well typed) before the reduction is performed. As explained in the Introduction this allows to "memoize" the value V for further usage: the value is passed to the relevant branch of the case through the variable x i .</p><formula xml:id="formula_4">V, W . . . := x | () | M ! | (V, W ) | in V | in r V | fold(V ) .</formula><formula xml:id="formula_5">P M : ϕ P M r : ϕ r P (M , M r ) : ϕ ⊗ ϕ r P M : ϕ i i ∈ { , r} P in i M : ϕ ⊕ ϕ r P M : !σ P der M : σ P M : ϕ ⊗ ϕ r i ∈ { , r} P pr i M : ϕ i P, x : !σ M : σ P fix x !σ M : σ P M : ϕ ⊕ ϕ r P, x : ϕ M : σ P, x r : ϕ r M r : σ P case(M, x • M , x r • M r ) : σ P coin(p) : 1 ⊕ 1 P M : ψ [Rec ζ • ψ/ζ] P fold(M ) : Rec ζ • ψ P M : Rec ζ • ψ P unfold(M ) : ψ [Rec ζ • ψ/ζ]</formula><p>Given two terms M , M and a real number p ∈ [0, 1], M p → M means that M reduces in one step to M with probability p.</p><p>We say that M is weak normal if there is no reduction M p → M . It is clear that any value is weak normal. When M is closed, M is weak normal iff it is a value or an abstraction.</p><p>In order to simplify the presentation we choose in Figure <ref type="figure" target="#fig_1">2</ref> a reduction strategy. For instance we decide that, for reducing (M , M r ) to a value, one needs first to reduce M to a value, and then M r ; this choice is of course completely arbitrary. A similar choice is made for reducing terms of shape M N , where we require the argument to be reduced first. This choice is less arbitrary as it will simplify a little bit the proof of adequacy in Section 4 (see for instance the proof of <ref type="bibr">Lemma 22)</ref>.</p><p>We could perfectly define a more general weak reduction relation as in <ref type="bibr" target="#b4">[5]</ref> for which we could prove a "diamond" confluence property but we would then need to deal with a reduction transition system where, at each node (term), several probability distributions of reduced terms are available and so we would not be able to describe reduction as a simple (infinite dimensional) stochastic matrix. We could certainly also define more general reduction rules allowing to reduce redexes anywhere in terms (apart for coin(p) which can be reduced only when in linear position) but this would require the introduction of additional σ-rules as in <ref type="bibr" target="#b5">[6]</ref>. As in that paper, confluence can probably be proven, using ideas coming from <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b32">33]</ref> for dealing with reduction in an algebraic lambda-calculus setting.</p><formula xml:id="formula_6">der M ! → w M λx ϕ M V → w M [V /x] i ∈ { , r} pr i (V , V r ) → w V i fix x !σ M → w M (fix x !σ M ) ! /x i ∈ { , r} case(in i V, x • M , x r • M r ) → w M i [V /x i ] unfold(fold(V )) → w V M → w M M 1 → M coin(p) p → in () coin(p) 1−p → in r () M p → M der M p → der M M p → M M V p → M V N p → N M N p → M N M p → M i ∈ { , r} pr i M p → pr i M M p → M (M , M r ) p → (M , M r ) M r p → M r (V, M r ) p → (V, M r ) M p → M i ∈ { , r} in i M p → in i M M p → M case(M, x • M , x r • M r ) p → case(M , x • M , x r • M r ) M p → M fold(M ) p → fold(M ) M p → M unfold(M ) p → unfold(M )</formula><p>Figure <ref type="figure" target="#fig_1">2</ref>: Weak and Probabilistic reduction axioms and rules for Λ p HP 2.2. Observational equivalence. In order to define observational equivalence, we need to represent the probability of convergence of a term to a normal form. As in <ref type="bibr" target="#b3">[4]</ref>, we consider the reduction as a discrete time Markov chain whose states are terms and stationary states are weak normal terms. We then define a stochastic matrix Red ∈ [0, 1] Λ p HP ×Λ p HP (indexed by terms) as</p><formula xml:id="formula_7">Red M,M =      p if M p → M 1 if M is weak-normal and M = M 0 otherwise.</formula><p>Saying that Red is stochastic means that the coefficients of Red belong to [0, 1] and that, for any given term M , one has M Red M,M = 1 (actually there are at most two terms M such that Red M,M = 0). For all M, M ∈ Λ p HP , if M is weak-normal then the sequence (Red n M,M ) ∞ n=1 is monotone and included in [0, 1], and therefore has a lub that we denote as Red ∞ M,M which defines a sub-stochastic matrix (taking Red ∞ M,M = 0 when M is not weak-normal). When M is weak-normal, the number p = Red ∞ M,M is the probability that M reduces to M after a finite number of steps.</p><p>Let us say when two closed terms M 1 , M 2 of type σ are observationally equivalent: Ever-looping program. Given any type σ, we define Ω σ = fix x !σ der x which satisfies Ω σ : σ.</p><formula xml:id="formula_8">M 1 ∼ M 2 , if for all closed term C of type !σ 1, Red ∞</formula><p>It is clear that Ω σ → w der (Ω σ ) ! → w Ω σ so that we can consider Ω σ as the ever-looping program of type σ.</p><p>Booleans. We define the type o = 1 ⊕ 1, so that P coin(p) : o. We define the "true" constant as t = in () and the "false" constant as f = in r (). The corresponding eliminator is defined as follows. Given terms M , N and</p><formula xml:id="formula_9">N r we set if(M, N , N r ) = case(M, x • N , x r • N r ) where x i is not free in N i for i ∈ { , r}, so that P M : o P N : σ P N r : σ P if(M, N , N r ) : σ</formula><p>We have the following weak and probabilistic reduction rules, derived from Figure <ref type="figure" target="#fig_1">2</ref>:</p><formula xml:id="formula_10">if(t, N , N r ) → w N if(f , N , N r ) → w N r M p → M if(M, N , N r ) p → if(M , N , N r )</formula><p>Natural numbers. We define the type ι of unary natural numbers by ι = 1 ⊕ ι (by this we mean that ι = Rec ζ • (1 ⊕ ζ)). We define 0 = in () and n + 1 = in r n so that we have P n : ι for each n ∈ N.</p><p>Then, given a term M , we define the term suc(M ) = in r M , so that we have P M : ι P suc(M ) : ι Last, given terms M , N and N r and a variable x, we define an "ifz" conditional by ifz(M, N , x</p><formula xml:id="formula_11">• N r ) = case(M, z • N , x • N r ) where z is not free in N , so that P M : ι P N : σ P, x : ι N r : σ P ifz(M, N , x • N r ) : σ</formula><p>We have the following weak and probabilistic reduction rules, derived from Figure <ref type="figure" target="#fig_1">2</ref>:</p><formula xml:id="formula_12">i ∈ { , r} ifz(in i V, M , x • M r ) → w M i [V /x] M p → M ifz(M, N , x • N r ) p → ifz(M , N , x • N r )</formula><p>These conditionals will be used in the examples below.</p><p>Streams. Let ϕ be a positive type and S ϕ be the positive type defined by</p><formula xml:id="formula_13">S ϕ = !(ϕ ⊗ S ϕ ), that is S ϕ = Rec ζ • !(ϕ ⊗ ζ).</formula><p>We can define a term M such that M : S ϕ ι ϕ which computes the nth element of a stream: M = fix f !(Sϕ ι ϕ) λx Sϕ λy ι ifz(y, pr (der x), z • der f pr r (der x) z)</p><p>Let O = (Ω ϕ⊗Sϕ ) ! , a term which represents the "undefined stream" (more precisely, it is a stream which is a value, but contains nothing, not to be confused with Ω Sϕ which has the same type but is not a value). We have O : S ϕ , and observe that the reduction of M O converges (to an abstraction) and that M O 0 diverges.</p><p>Conversely, we can define a term N such that N : !(ι ϕ) S ϕ which turns a function into the stream of its successive applications to an integer.</p><formula xml:id="formula_14">N = fix F !(!(ι ϕ) Sϕ) λf !(ι ϕ) der f 0, der F (λx ι der f suc(x)) ! !</formula><p>Observe that the recursive call of F is encapsulated into a box, which makes the construction lazy. As a last example, consider the following term P such that P :</p><formula xml:id="formula_15">(S ϕ ⊗ S ϕ ) (ι ⊕ ι) ϕ given by P = λy Sϕ⊗Sϕ λc ι⊕ι case(c, x • M x pr y, x • M x pr r y) Take ϕ = 1 and consider the term Q = ((), O) ! , O , then we have Q : S 1 ⊗ S 1</formula><p>, and observe that P Q in 0 converges to () whereas P Q in r 0 diverges.</p><p>These examples suggest that S ϕ behaves as should behave a type of streams of elements of type ϕ.</p><p>Lists. There are various possibilities for defining a type of lists of elements of a positive type ϕ. The simplest definition is λ 0 = 1 ⊕ (ϕ ⊗ λ 0 ). This corresponds to the ordinary ML type of lists. But we can also define λ 1 = !(1 ⊕ (ϕ ⊗ λ 1 )) and then we have a type of lazy lists (or terminable streams) where the tail of the list is computed only when required. Here is an example of a term L such that L : λ 1 , with ϕ = o = 1 ⊕ 1 which is a list of random length containing random booleans:</p><formula xml:id="formula_16">L = fix x !λ 1 (if(coin(1/4), in (), in r (coin(1/2), der x))) !</formula><p>Then der L will reduce with probability 1  4 to the empty list in (), and with probability 3 8 to each of the values in r (t, L) and in r (f , L).</p><p>We can iterate this process, defining a term R of type λ 1 λ 0 which evaluates completely a terminable stream to a list:</p><formula xml:id="formula_17">R = fix f !(λ 1 λ 0 ) λx λ 1 case(der x, z • in (), z • (pr z, der f pr r z)) .</formula><p>Then R L, which is a closed term of type λ 0 , terminates with probability 1. The expectation of the length of this "random list" is ∞ n=0 n( 3 4 ) n = 12.</p><p>Probabilistic tests.</p><formula xml:id="formula_18">If P M i : σ for i = 1, 2, we set dice p (M 1 , M 2 ) = if(coin(p), M 1 , M 2 )</formula><p>and this term satisfies P dice p (M 1 , M 2 ) : σ. If M i reduces to a value V i with probability q i , then dice p (M 1 , M 2 ) reduces to V 1 with probability p q 1 and to V 2 with probability (1 − p)q 2 . Let n ∈ N and let #» p = (p 0 , . . . , p n ) be such that</p><formula xml:id="formula_19">p i ∈ [0, 1] ∩ Q and p 0 + • • • + p n ≤ 1.</formula><p>Then one defines a closed term ran( #» p ), such that ran( #» p ) : ι, which reduces to i with probability p i for each i ∈ {0, . . . , n}. The definition is by induction on n.</p><formula xml:id="formula_20">ran( #» p ) =      0 if p 0 = 1 whatever be the value of n if(coin(p 0 ), 0, Ω ι ) if n = 0 if(coin(p 0 ), 0, suc(ran( p 1 1−p 0 , . . . , pn 1−p 0 ))) otherwise</formula><p>As an example of use of the test to zero conditional, we define, by induction on k, a family of terms eq k such that eq k : ι 1 and that tests the equality to k:</p><formula xml:id="formula_21">eq 0 = λx ι ifz(x, (), z • Ω 1 ) eq k+1 = λx ι ifz(x, Ω 1 , z • eq k z)</formula><p>For M such that M : ι, the term eq k M reduces to () with a probability which is equal to the probability of M to reduce to k.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2.3.1.</head><p>Notation. Now, we introduce terms that will be used in the definition of testing terms in the proof of Full Abstraction in Section 5.</p><p>First, we define prod k such that</p><formula xml:id="formula_22">prod k : 1 • • • 1 ϕ ϕ (with k occurrences of 1): prod 0 = λy ϕ y prod k+1 = λx 1 prod k .</formula><p>Given for each i ∈ {0, . . . , k}, M i such that P M i : 1 and P N : ϕ, the term prod k+1 M 0 • • • M k N reduces to a value V with probability p 0 • • • p k q where p i is the probability of M i to reduce to () and q is the probability of N to reduce to V . We use the notations:</p><formula xml:id="formula_23">M 0 • N = prod 1 M 0 N M 0 ∧ • • • ∧ M k−1 = () if k = 0 prod k M 0 • • • M k−1 otherwise, so that P M 0 • N : ϕ and the probability that M 0 • N reduces to V is p 0 q and P M 0 ∧ • • • ∧ M k−1 : 1 and M 0 ∧ • • • ∧ M k−1 reduces to () with probability p 0 • • • p k−1 .</formula><p>Given a general type σ and terms M 0 , . . . , M k−1 such that, for any i ∈ {0, . . . , k − 1},</p><formula xml:id="formula_24">M i : σ, we define close terms choose σ i (M 0 , . . . , M k−1 ) for i ∈ {0, . . . , n − 1} such that choose σ i (M 0 , . . . , M k−1 ) : ι σ choose σ 0 (M 0 , . . . , M k−1 ) = λz ι Ω σ choose σ i+1 (M 0 , . . . , M k−1 ) = λz ι ifz(z, M 0 , y • choose σ i (M 1 , . . . , M k−1 ) y) if i ≤ k − 1</formula><p>Given a term P such that P P : ι and p i the probability of P to reduce to i for any i, the first steps of the reduction are probabilistic: ∀i ∈ {0, . . . , k}, choose σ k+1 (M 0 , . . . , M k ) P p i → * choose ϕ k+1 (M 0 , . . . , M k ) i the next steps of the reduction are deterministic:</p><formula xml:id="formula_25">choose ϕ k+1 (M 0 , . . . , M k ) i → * w M i</formula><p>As we will see more precisely in Paragraph 3.2.12, a term of type ι can be seen as a sub-probability distribution over N. Given integers 0 ≤ l ≤ r, we define by induction the term ext (l, r) of type ι ι:</p><formula xml:id="formula_26">ext (0, 0) = λz ι ifz(z, 0, x • Ω ι ) ∀r &gt; 0, ext (0, r) = choose ι r+1 (0, . . . , r) ext (l + 1, r + 1) = λz ι ifz(z, Ω ι , x • suc( ext (l, r) x))</formula><p>such that if P : ι, then ext (l, r) P extracts the sub-probability distribution with support ⊆ {l, . . . , r}. Indeed, for any i ∈ {l, . . . , r} ext (l, r) P reduces to i with probability p i where p i is the probability of P to reduce to i.</p><p>We also introduce, for #» n = (n 0 , . . . , n k ) a sequence of k + 1 natural numbers, a term win i ( #» n ) of type ι ι which extracts the sub-probability distribution whose support is in the i th window of length n i for 0 ≤ i &lt; k:</p><formula xml:id="formula_27">win 0 ( #» n ) = ext (0, n 0 − 1) win i+1 ( #» n ) = ext (n 0 + • • • + n i , n 0 + • • • + n i + n i+1 − 1) .</formula><p>2.4. On products and recursive definitions of general types. This section has nothing to do with probabilities, so we consider the deterministic language Λ HP , which is just Λ p HP without the coin(p) construct. Our Λ HP general types, which are similar to Levy's CBPV computation types <ref type="bibr" target="#b21">[22]</ref> or to the SFPL general types <ref type="bibr" target="#b22">[23]</ref>, have as only type constructor. This may seem weird when one compares our language with CBPV where products and recursive definitions are possible on computation types and are used for encoding CBN functional languages such as PCF extended with products.</p><p>For keeping our presentation reasonably short, we will not consider the corresponding extensions of Λ HP in this paper. Instead, we will shortly argue that such a PCF language with products can be easily encoded in our Λ HP .</p><p>Concerning recursive type definitions, it is true that adding them as well as the cartesian product &amp; at the level of general types would allow to define interesting types such as</p><formula xml:id="formula_28">Rec ζ • 1 &amp; (!ζ</formula><p>ζ), yielding a straightforward encoding of the pure lambda-calculus in our language. This goal can nevertheless be reached (admittedly in a slightly less natural way) by using the positive recursive type definition</p><formula xml:id="formula_29">ϕ = Rec ζ • !(ζ ζ).</formula><p>A pure term t will be translated into a Λ HP term t * such that x 1 : ϕ 1 , . . . , x n : ϕ t * : ϕ ϕ, where the list x 1 , . . . , x n contains all the free variables of t. This translation is defined inductively as follows: x * = der x, ((s) t) * = der ( s * (t * ) ! ) and (λx s) * = λx (s * ) ! . A simple computation shows that β-reduction is validated by this interpretation, but observe that it is not the case for η. The examples we provide in Section 2.3 also show that our recursive definitions restricted to positive types allow to introduce a lot of useful data types (integers, lists, trees, streams etc). So we do not see any real motivations for adding recursive general type definitions (and their addition would make the proof of adequacy in Section 4 even more complicated).</p><p>Coming back to the encoding of products, consider the following grammar of types</p><formula xml:id="formula_30">A, B, • • • := nat | A ⇒ B | A × B</formula><p>and the following language of terms s, t, u,</p><formula xml:id="formula_31">• • • := x | n | suc s | pred s | ifz(s, t, u) | λx A s | (s) t | (s, t) | pr s | pr r s | fix x A • s</formula><p>We call this language PCF as it is a straightforward extension of the original PCF of <ref type="bibr" target="#b26">[27]</ref>. The typing rules are described in Figure <ref type="figure" target="#fig_17">3</ref>. A typing context is a sequence Γ = (x 1 : A 1 , . . . , x n : A n ) where the variables are pairwise distinct.</p><p>We explain now how we interpret this simple programming language in Λ HP .</p><p>Translating PCF types. With any type A, we associate a finite sequence of general types</p><formula xml:id="formula_32">A * = (A * 1 , . . . , A * n ) whose length n = l(A) is given by: l(nat) = 1, l(A ⇒ B) = l(B) and l(A × B) = l(A) + l(B).</formula><p>Given a sequence #» σ = (σ 1 , . . . , σ n ) of general types we define ! #» σ by induction: !() = 1 and !(σ, #» σ ) = !σ ⊗ ! #» σ . Given a positive type ϕ and a sequence #» σ = (σ 1 , . . . , σ n ) of general types, we define ϕ #» σ = (ϕ σ 1 , . . . , ϕ σ n ). Using these notations, we can now define A * as follows:</p><p>• nat * = (ι) (a one element sequence) where ι is the type of integers introduced in Section 2.3,</p><formula xml:id="formula_33">ι = Rec ζ • (1 ⊕ ζ), • (A ⇒ B) * = !A * B * , • (A × B) * = A * • B * (list concatenation).</formula><p>Translating PCF terms. Let now s be a PCF term with typing judgment 7 Γ s : A. Let n = l(A), we define a sequence s * of length n such that !Γ s * i :</p><formula xml:id="formula_34">A * i (for i = 1, . . . , n) as follows (if Γ = (x 1 : C 1 , . . . , x k : C k ), then !Γ = (x 1 : !C 1 * , . . . , x k : !C k * )). If s = x j , so that A = C j (for some j ∈ {1, . . . , k}), let (σ 1 , . . . , σ n ) = A * . Since !A * = !σ 1 ⊗ (!σ 2 ⊗ • • • (!σ n−1 ⊗ (!σ n ⊗ 1)) • • •) we can set x * = (x *</formula><p>1 , . . . , x * n ) where x * i = der pr pr r pr r • • • pr r x (with i − 1 occurrences of pr r ).</p><p>We set n * = in r • • • in r in () (n occurrences of in r ), (suc s) * = in r s * , (pred s) * = case(s * , x • in (), x • x). Assume that s = ifz(t, u, v) with Γ t : ι, Γ u : A and Γ v : A for some PCF type A. Let l = l(A). By inductive hypothesis we have !Γ * t * : ι, !Γ * u * i :</p><formula xml:id="formula_35">A * i and !Γ * v * i : A * i for i = 1, . . . , l. So we set s * = (case(t * , z • u * i , z • v * i )) l i=1</formula><p>where z is a variable which does not occur free in u or v.</p><p>Assume now that Γ, x : A s : B, we set (λx A s)</p><formula xml:id="formula_36">* = (λx !A * s * i ) l(B)</formula><p>i=1 . Assume that Γ s : A ⇒ B and Γ t : A. Then, setting n = l(B), we have !Γ * s * i : !A * B * i for i = 1, . . . , n and !Γ * t * j : A * j for j = 1, . . . , m where m = l(A). Then, setting</p><formula xml:id="formula_37">N = (t 1 * ) ! , • • • , (t m−1 * ) ! , (t m * ) ! , () • • • we have !Γ * N : !A * and we set ((s) t) * = ( s * i N ) n i=1 . Assume that s = (s 1 , s 2 ) with Γ s i : A i for i = 1, 2 and Γ s : A 1 × A 2 . Then we set s * = s 1 * • s 2 * (list concatenation). Assume that Γ s : A 1 × A 2 , with n i = l(A i ) for i = 1, 2.</formula><p>Then we set (pr s) * = (s * 1 , . . . , s * n 1 ) and (pr r s) * = (s * n 1 +1 , . . . , s * n 1 +n 2 ). Last assume that s = fix x A • t with Γ, x : A t : A so that, setting n = l(A), we have !Γ * , x : !A * t * i : A * i for i = 1, . . . , n. Let x 1 , . . . , x n be pairwise distinct fresh variables, and set</p><formula xml:id="formula_38">M i = t * i [(x 1 , • • • (x n−1 , (x n , ())) • • • )/x] for i = 1, . . . , n. We have !Γ * , x 1 : !A * 1 , . . . , x n : !A * n M i : A * i .</formula><p>We are in position of applying the usual trick for encoding mutual recursive definitions using fixpoints operators. For the 7 So our translation depends on the typing judgment and not only on the term; this is fairly standard and can be avoided by considering typed free variables.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Γ, x : A</head><formula xml:id="formula_39">x : A Γ n : nat Γ s : nat Γ suc s : nat Γ s : nat Γ pred s : nat Γ s : nat Γ t : A Γ u : A Γ ifz(s, t, u) : A Γ, x : A s : B Γ λx A s : A ⇒ B Γ s : A ⇒ B Γ t : A Γ (s) t : B Γ s : A Γ s r : A r Γ (s , s r ) : A × A r Γ s : A × A r i ∈ { , r} Γ pr i s : A i Γ, x : A M : A Γ fix x A • M : A Figure 3:</formula><p>Typing rules for a simple call-by-name language with products, PCF sake of readability, assume that n = 2, so we have !Γ * , x</p><formula xml:id="formula_40">1 : !A * 1 , x 2 : !A * 2 M i : A * i for i = 1, 2. Let N 1 = fix x !A * 1 1 M 1 so that !Γ * , x 2 : !A * 2 N 1 : A * 1 . Then we have !Γ * , x 2 : !A * 2 M 2 N ! 1 /x 1 : A * 2 . Therefore we can set s * 2 = fix x !A * 2 2 M 2 N ! 1 /x 1 and we have !Γ * s * 2 : A * 2 . Finally we set s * 1 = N 1 (s * 2 ) ! /x 2 with !Γ * s * 1 : A * 1 .</formula><p>We should check now that this translation is compatible with the operational semantics of our extended PCF language. A simple way to do so would be to choose a simple model of linear logic (for instance, the relational model) and to prove that the semantics of a PCF term is equal to the semantics of its translation in Λ p HP stripped from its probabilistic construct coin(p) (interpreting tuples of types using the "additive" cartesian product &amp;). This is a long and boring exercise.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Probabilistic Coherent Spaces</head><p>3.1. Semantics of LL, in a nutshell. The kind of denotational models we are interested in, in this paper, are those induced by a model of LL, as explained in <ref type="bibr" target="#b4">[5]</ref>. We remind the basic definitions and notations, referring to that paper for more details.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.1.">Models of Linear Logic. A model of LL consists of the following data.</head><p>A symmetric monoidal closed category (L, ⊗, 1, λ, ρ, α, σ) where we use simple juxtaposition g f to denote composition of morphisms f ∈ L(X, Y ) and g ∈ L(Y, Z). We use X Y for the object of linear morphisms from X to Y , ev ∈ L((X Y ) ⊗ X, Y ) for the evaluation morphism and cur ∈ L(Z ⊗ X, Y ) → L(Z, X Y ) for the linear curryfication map. For convenience, and because it is the case in the concrete models we consider (such as Scott Semantics <ref type="bibr" target="#b4">[5]</ref> or Probabilistic Coherent Spaces here), we assume this SMCC to be a * -autonomous category with dualizing object ⊥. We use X ⊥ for the object X ⊥ of L (the dual, or linear negation, of X).</p><p>The category L is cartesian with terminal object , product &amp;, projections pr i . By * -autonomy L is co-cartesian with initial object 0, coproduct ⊕ and injections in i . By monoidal closeness of L, the tensor product ⊗ distributes over the coproduct ⊕.</p><p>We are given a comonad ! : L → L with co-unit der X ∈ L(!X, X) (dereliction) and co-multiplication dig X ∈ L(!X, !!X) (digging) together with a strong symmetric monoidal structure (Seely isos m 0 and m 2 ) for the functor ! , from the symmetric monoidal category (L, &amp;) to the symmetric monoidal category (L, ⊗) satisfying an additional coherence condition wrt. dig. We use ? for the "De Morgan dual" of ! : ?X = (!(X ⊥ )) ⊥ and similarly for morphisms. It is a monad on L.</p><p>3.1.2. The Eilenberg-Moore category. It is then standard to define the category L ! of !coalgebras. An object of this category is a pair P = (P , h P ) where P ∈ Obj(L) and h P ∈ L(P , !P ) is such that der P h P = Id and dig</p><formula xml:id="formula_41">P h P = !h P h P . Then f ∈ L ! (P, Q) iff f ∈ L(P , Q) such that h Q f = !f h P .</formula><p>The functor ! can be seen as a functor from L to L ! mapping X to (!X, dig X ) and f ∈ L(X, Y ) to !f . It is right adjoint to the forgetful functor U : L ! → L. Given f ∈ L(P , X), we use f ! ∈ L ! (P, !X) for the morphism associated with f by this adjunction, one has</p><formula xml:id="formula_42">f ! = !f h P . If g ∈ L ! (Q, P ), we have f ! g = (f g) ! .</formula><p>Then L ! is cartesian (with product of shape P ⊗ Q = (P ⊗ Q, h P ⊗Q ) and terminal object (1, h 1 ), still denoted as 1). This category is also co-cartesian with coproduct of shape P ⊕ Q = (P ⊕ Q, h P ⊕Q ) and initial object (0, h 0 ) still denoted as 0. The complete definitions can be found in <ref type="bibr" target="#b4">[5]</ref>. We use c P ∈ L ! (P, P ⊗ P ) (contraction) for the diagonal and w P ∈ L ! (P, 1) (weakening) for the unique morphism to the terminal object.</p><p>We also consider occasionally the Kleisli category<ref type="foot" target="#foot_2">8</ref> L ! of the comonad !: its objects are those of L and L ! (X, Y ) = L(!X, Y ). The identity at X in this category is der X and composition of f ∈ L ! (X, Y ) and g ∈ L ! (Y, Z) is defined as</p><formula xml:id="formula_43">g • f = g !f dig X .</formula><p>This category is cartesian closed but this fact will not play an essential role in this work.</p><p>3.1.3. Fixpoints. For any object X, we assume to be given fix X ∈ L(!(!X X), X), a morphism such that<ref type="foot" target="#foot_3">9</ref> ev (der !X X ⊗ fix ! X ) • c !(!X X) = fix X which will allow to interpret term fixpoints.</p><p>In order to interpret fixpoints of types, we assume that the category L is equipped with a notion of embedding-retraction pairs, following a standard approach. We use L ⊆ for the corresponding category. It is equipped with a functor F : L ⊆ → L op × L such that F(X) = (X, X) and for which we use the notation (ϕ − , ϕ + ) = F(ϕ) and assume that ϕ − ϕ + = Id X . We assume furthermore that L ⊆ has all countable directed colimits and that the functor E = pr 2 F : L ⊆ → L is continuous. We also assume that all the basic operations on objects (⊗, ⊕, ( ) ⊥ and ! ) are continuous functors from L ⊆ to itself 10 .</p><p>Then it is easy to carry this notion of embedding-retraction pairs to L ! , defining a category L ! ⊆ , to show that this category has all countable directed colimits and that the functors ⊗ and ⊕ are continuous on this category: L ! ⊆ (P, Q) is the set of all ϕ ∈ L ⊆ (P , Q) such that ϕ + ∈ L ! (P, Q). One checks also that ! defines a continuous functor from L ⊆ to L ! ⊆ . This allows to interpret recursive types, more details can be found in <ref type="bibr" target="#b4">[5]</ref>.</p><p>not seem to be necessary as far as soundness of our semantics is concerned even if the fixpoint operators arising in concrete models satisfy these further properties. 10 This is a rough statement; one has to say for instance that if ϕi ∈ L ⊆ (Xi, Yi) for i = 1, 2 then</p><formula xml:id="formula_44">(ϕ1 ⊗ ϕ2) − = ϕ − 1 ⊗ ϕ − 2 etc</formula><p>. The details can be found in <ref type="bibr" target="#b4">[5]</ref>. Given a typing context P = (x 1 : ϕ 1 , . . . , x k : ϕ k ), we define</p><formula xml:id="formula_45">[P] = [ϕ 1 ] ! ⊗ • • • ⊗ [ϕ k ] ! ∈ L ! .</formula><p>In the model or probabilistic coherence spaces considered in this paper, we define L ⊆ in such a way that the only isos are the identity maps. This implies that the types Rec ζ • ϕ and ϕ [(Rec ζ • ϕ)/ζ] are interpreted as the same object (or functor). Such definitions of L ⊆ are possible in many other models (relational, coherence spaces, hypercoherences etc).</p><p>We postpone the description of term interpretation because this will require constructions specific to our probabilistic semantics, in addition to the generic categorical ingredients introduced so far.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.2.</head><p>The model of probabilistic coherence spaces. Given a countable set I and u, u ∈ (R + ) I , we set u, u = i∈I u i u i . Given F ⊆ (R + ) I , we set</p><formula xml:id="formula_46">F ⊥ = {u ∈ (R + ) I | ∀u ∈ F u, u ≤ 1}.</formula><p>A probabilistic coherence space (PCS) is a pair X = (|X|, PX) where |X| is a countable set and PX ⊆ (R + ) |X| satisfies • PX ⊥⊥ = PX (equivalently, PX ⊥⊥ ⊆ PX),</p><p>• for each a ∈ |X| there exists u ∈ PX such that u a &gt; 0,</p><p>• for each a ∈ |X| there exists A &gt; 0 such that ∀u ∈ PX u a ≤ A. If only the first of these conditions holds, we say that X is a pre-probabilistic coherence space (pre-PCS).</p><p>The purpose of the second and third conditions is to prevent infinite coefficients to appear in the semantics. This property in turn will be essential for guaranteeing the morphisms interpreting proofs to be analytic functions, which will be the key property to prove full abstraction. So these conditions, though aesthetic at first sight, are important for our ultimate goal. Lemma 1. Let X be a pre-PCS. The following conditions are equivalent:</p><formula xml:id="formula_47">• X is a PCS, • ∀a ∈ |X| ∃u ∈ PX ∃u ∈ PX ⊥ u a &gt; 0 and u a &gt; 0, • ∀a ∈ |X| ∃A &gt; 0 ∀u ∈ PX ∀u ∈ PX ⊥ u a ≤ A and u a ≤ A.</formula><p>The proof is straightforward. We equip PX with the most obvious partial order relation: u ≤ v if ∀a ∈ |X| u a ≤ v a (using the usual order relation on R). Theorem 2. PX is an ω-continuous domain. Given u, v ∈ PX and α, β ∈ R + such that α + β ≤ 1, one has αu + βv ∈ PX. This is an easy consequence of the hypothesis PX ⊥⊥ ⊆ PX. See <ref type="bibr" target="#b3">[4]</ref> for details; from this result, we will only use the closure properties: PX is closed under sub-probabilistic linear combinations and under lubs of monotonic sequences. Though the ω-continuity property (and the associated way-below relation) does not play any technical role, it is an intuitively satisfactory fact <ref type="foot" target="#foot_4">11</ref> which means that the "size" of our domains remains bounded.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.1.">Morphisms of PCSs.</head><p>Let X and Y be PCSs. Let t ∈ (R + ) |X|×|Y | (to be understood as a matrix). Given u ∈ PX, we define t u ∈ R + |Y | by (t u) b = a∈|X| t a,b u a (application of the matrix t to the vector u) 12 . We say that t is a (linear</p><formula xml:id="formula_48">) morphism from X to Y if ∀u ∈ PX t u ∈ PY , that is ∀u ∈ PX ∀v ∈ PY ⊥ (a,b)∈|X|×|Y | t a,b u a v b ≤ 1 .</formula><p>The diagonal matrix Id ∈ (R + ) |X|×|X| given by Id a,b = 1 if a = b and Id a,b = 0 otherwise is a morphism. In that way we have defined a category Pcoh whose objects are the PCSs and whose morphisms have just been defined. Composition of morphisms is defined as matrix multiplication: let s ∈ Pcoh(X, Y ) and t ∈ Pcoh(Y, Z), we define t s</p><formula xml:id="formula_49">∈ (R + ) |X|×|Z| by (t s) a,c = b∈|Y | s a,b t b,c</formula><p>and a simple computation shows that t s ∈ Pcoh(X, Z). More precisely, we use the fact that, given u ∈ PX, one has (t s) u = t (s u). Associativity of composition holds because matrix multiplication is associative. Id X is the identity morphism at X.</p><p>Given u ∈ PX, we define u X = sup{ u, u | u ∈ PX ⊥ }. By definition, we have u X ∈ [0, 1].</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.2.">Multiplicative constructs. One sets X</head><formula xml:id="formula_50">⊥ = (|X|, PX ⊥ ). It results straightforwardly from the definition of PCSs that X ⊥ is a PCS. Given t ∈ Pcoh(X, Y ), one has t ⊥ ∈ Pcoh(Y ⊥ , X ⊥ ) if t ⊥ is the transpose of t, that is (t ⊥ ) b,a = t a,b . One defines X ⊗ Y by |X ⊗ Y | = |X| × |Y | and P(X ⊗ Y ) = {u ⊗ v | u ∈ PX and v ∈ PY } ⊥⊥ where (u ⊗ v) (a,b) = u a v b . Then X ⊗ Y is a pre-PCS.</formula><p>We have</p><formula xml:id="formula_51">P(X ⊗ Y ⊥ ) ⊥ = {u ⊗ v | u ∈ PX and v ∈ PY ⊥ } ⊥ = Pcoh(X, Y ) . It follows that X Y = (X ⊗Y ⊥ ) ⊥ is a pre-PCS. Let (a, b) ∈ |X|×|Y |. Since X and Y ⊥ are PCSs, there is A &gt; 0 such that u a v b &lt; A for all u ∈ PX and v ∈ PY ⊥ . Let t ∈ (R + ) |X Y | be such that t (a ,b ) = 0 for (a , b ) = (a, b) and t (a,b) = 1/A, we have t ∈ P(X Y )</formula><p>. This shows that ∃t ∈ P(X Y ) such that t (a,b) &gt; 0. Similarly we can find u ∈ PX and v ∈ PY ⊥ such that ε = u a v b &gt; 0. It follows that ∀t ∈ P(X Y ) one has t (a,b) ≤ 1/ε. We conclude that X Y is a PCS, and therefore X ⊗ Y is also a PCS.</p><p>Lemma 3. Let X and Y be PCSs. One has P(X Y ) = Pcoh(X, Y ). That is, given t ∈ (R + ) |X|×|Y | , one has t ∈ P(X Y ) iff for all u ∈ PX, one has t u ∈ PY .</p><p>This results immediately from the definition above of X Y .</p><formula xml:id="formula_52">Lemma 4. Let X 1 , X 2 and Y be PCSs. Let t ∈ (R + ) |X 1 ⊗X 2 Y | . One has t ∈ Pcoh(X 1 ⊗ X 2 , Y ) iff for all u 1 ∈ PX 1 and u 2 ∈ PX 2 one has t (u 1 ⊗ u 2 ) ∈ PY .</formula><p>Proof. The condition stated by the lemma is clearly necessary. Let us prove that it is sufficient: under this condition, it suffices to prove that</p><formula xml:id="formula_53">t ⊥ ∈ Pcoh(Y ⊥ , (X 1 ⊗ X 2 ) ⊥ ) . Let v ∈ PY ⊥ , it suffices to prove that t ⊥ v ∈ P(X 1 ⊗ X 2 ) ⊥ . So let u 1 ∈ PX 1 and u 2 ∈ PX 2 , it suffices to prove that t ⊥ v , u 1 ⊗ u 2 ≤ 1, that is t (u 1 ⊗ u 2 ), v ≤ 1, which follows from our assumption.<label>2</label></formula><p>Let s i ∈ Pcoh(X i , Y i ) for i = 1, 2. Then one defines</p><formula xml:id="formula_54">s 1 ⊗ s 2 ∈ (R + ) |X 1 ⊗X 2 Y 1 ⊗Y 2 | by (s 1 ⊗ s 2 ) ((a 1 ,a 2 ),(b 1 ,b 2 )) = (s 1 ) (a 1 ,b 1 ) (s 2 ) (a 2 ,b 2 )</formula><p>and one must check that</p><formula xml:id="formula_55">s 1 ⊗ s 2 ∈ Pcoh(X 1 ⊗ X 2 , Y 1 ⊗ Y 2 ) .</formula><p>This follows directly from Lemma 4. Let 1 = ({ * }, [0, 1]). There are obvious choices of natural isomorphisms</p><formula xml:id="formula_56">λ X ∈ Pcoh(1 ⊗ X, X) ρ X ∈ Pcoh(X ⊗ 1, X) α X 1 ,X 2 ,X 3 ∈ Pcoh((X 1 ⊗ X 2 ) ⊗ X 3 , X 1 ⊗ (X 2 ⊗ X 3 )) σ X 1 ,X 2 ∈ Pcoh(X 1 ⊗ X 2 , X 2 ⊗ X 1 )</formula><p>which satisfy the standard coherence properties. This shows that (Pcoh, 1, λ, ρ, α, σ) is a symmetric monoidal category.</p><p>3.2.3. Internal linear hom. Given PCSs X and Y , let us define ev</p><formula xml:id="formula_57">∈ (R + ) |(X Y )⊗X Y | by ev (((a ,b ),a),b) = 1 if (a, b) = (a , b ) 0 otherwise.</formula><p>Then it is easy to see that (X Y, ev) is an internal linear hom object in Pcoh, showing that this SMCC is closed. If t ∈ Pcoh(Z ⊗ X, Y ), the corresponding linearly curryfied morphism cur(t) ∈ Pcoh(Z, X Y ) is given by cur(t) (c,(a,b)) = t ((c,a),b) .</p><p>3.2.4. * -autonomy. Take ⊥ = 1, then one checks readily that (Pcoh, 1, λ, ρ, α, σ, ⊥) is a * -autonomous category. The duality functor X → (X ⊥) can be identified with the strictly involutive contravariant functor X → X ⊥ . 3.2.5. Additives. Let (X i ) i∈I be a countable family of PCSs. We define a PCS &amp;i∈I X i by | &amp;i∈I X i | = i∈I {i} × |X i | and u ∈ P( &amp;i∈I X i ) if, for all i ∈ I, the family u(i)</p><formula xml:id="formula_58">∈ (R + ) |X i | defined by u(i) a = u (i,a) belongs to PX i . Lemma 5. Let u ∈ (R + ) |&amp; i∈I X i | . One has u ∈ P( &amp;i∈I X i ) ⊥ iff • ∀i ∈ I u (i) ∈ PX ⊥ i • and i∈I u (i) X ⊥ i ≤ 1.</formula><p>The proof is quite easy. It follows that &amp;i∈I X i is a PCS. Moreover we can define pr i ∈ Pcoh( &amp;j∈I X j , X i ) by (pr i ) (j,a),a = 1 if j = i and a = a 0 otherwise.</p><p>Then ( &amp;i∈I X i , (pr i ) i∈I ) is the cartesian product of the family (X i ) i∈I in the category Pcoh.</p><p>The coproduct (⊕ i∈I X i , (in i ) i∈I ) is the dual operation, so that</p><formula xml:id="formula_59">| ⊕ i∈I X i | = i∈I {i} × |X i | and u ∈ P(⊕ i∈I X i ) if ∀i ∈ I u(i) ∈ PX i and i∈I u(i) X i ≤ 1.</formula><p>The injections in j ∈ Pcoh(X j , ⊕ i∈I X i ) are given by (in i ) a ,(j,a) = 1 if j = i and a = a 0 otherwise.</p><p>Given morphisms s i ∈ Pcoh(X i , Y ) (for each i ∈ I), then the unique morphism s ∈ Pcoh(⊕ i∈I X i , Y ) is given by s (i,a),b = (s i ) a,b and denoted as case i∈I s i (in the binary case, we use case(s 1 , s 2 )). </p><formula xml:id="formula_60">!X = (M fin (|X|), {u ! | u ∈ PX} ⊥⊥ )</formula><p>which is a pre-PCS.</p><p>We check quickly that !X so defined is a PCS. Let b = [a 1 , . . . , a n ] ∈ M fin (|X|). Because X is a PCS, and by Theorem 2, for each i = 1, . . . , n there is u(i) ∈ PX such that u(i) a i &gt; 0. Let (α i ) n i=1 be a family of strictly positive real numbers such that n i=1 α i ≤ 1. Then u = n i=1 α i u(i) ∈ PX satisfies u a i &gt; 0 for each i = 1, . . . , n. Therefore u ! b = u b &gt; 0. This shows that there is U ∈ P(!X) such that U b &gt; 0.</p><p>Let now A ∈ R + be such that ∀u ∈ PX ∀i ∈ {1, . . . , n} u a i ≤ A. For all u ∈ PX we have u b ≤ A n . We have</p><formula xml:id="formula_61">(P(!X)) ⊥ = {u ! | u ∈ PX} ⊥⊥⊥ = {u ! | u ∈ PX} ⊥ .</formula><p>Let t ∈ (R + ) |!X| be defined by t c = 0 if c = b and t b = A −n &gt; 0; we have t ∈ (P(!X)) ⊥ . We have exhibited an element t of (P(!X)) ⊥ such that t b &gt; 0. By Lemma 1 it follows that !X is a PCS. This is an easy consequence of the fact that two polynomials of n variables with real coefficients are identical iff they are the same function on any open subset of R n .</p><p>Terminology. We say that s ∈ P(!X Y ) is a power series whose monomial u c has coefficient s c,b . Since s is characterized by the function s we sometimes say that s is a power series.</p><p>We can consider the elements of Pcoh ! (X, Y ) (the morphisms of the Kleisli category of the comonad ! on the category Pcoh) as particular Scott continuous functions PX → PY and this identification is compatible with the definition of identity maps and of composition in Pcoh ! , see Section 3.1.2. Of course, not all Scott continuous function are morphisms in Pcoh ! .</p><p>Theorem 8. Let s, s ∈ Pcoh ! (X, Y ) be such that s ≤ s (as elements of P(!X Y )). Then ∀u ∈ PX s(u) ≤ s (u). Let (s(i)) i∈N be a monotone sequence of elements of Pcoh ! (X, Y ) and let s = sup i∈N s(i). Then ∀u ∈ PX s(u) = sup i∈I s i (u).</p><p>The first statement is obvious. The second one results from the monotone convergence Theorem.</p><p>Given  </p><formula xml:id="formula_62">t ∈ Pcoh(X, Y ), we define !t ∈ (R + ) !X !Y by (!t) c,d = r∈L(c,d) d! r! t r .</formula><p>Observe that the coefficients in this sum are all non-negative integers.</p><p>Lemma 9. For all u ∈ PX one has !t u ! = (t u) ! .</p><p>This results from a simple computation applying the multinomial formula.</p><p>Theorem 10. For all t ∈ Pcoh(X, Y ) one has !t ∈ Pcoh(!X, !Y ) and the operation t → !t is functorial.</p><p>Immediate consequences of Lemma 9 and Theorem 7.</p><p>3.2.8. Description of the exponential comonad. We equip now this functor with a structure of comonad: let der X ∈ (R + ) |!X X| be given by (der X ) b,a = δ [a],b (the value of the Kronecker symbol δ i,j is 1 if i = j and 0 otherwise) and dig</p><formula xml:id="formula_63">X ∈ (R + ) |!X !!X| be given by (dig X ) b,[b 1 ,...,bn] = δ n i=1 b i ,b . Then we have der X ∈ Pcoh(!X, X) and dig X ∈ Pcoh(!X, !!X) simply because der X (u) = u and dig X (u) = (u ! ) !</formula><p>for all u ∈ PX, as easily checked. Using these equations, one also checks easily the naturality of these morphisms, and the fact that (! , der, dig) is a comonad.</p><p>As to the monoidality of this comonad, we introduce m 0 ∈ (R</p><formula xml:id="formula_64">+ ) |1 ! | by m 0 * ,[] = 1 and m 2 X,Y ∈ (R + ) |!X⊗!Y !(X&amp;Y )| by (m 2 X,Y ) b,c,d = δ d,1•b+2•c where i • [a 1 , . . . , a n ] = [(i, a 1 ), . . . , (i, a n )].</formula><p>It is easily checked that the required commutations hold (again, we refer to <ref type="bibr" target="#b23">[24]</ref>).</p><p>3.2.9. Fixpoints in Pcoh ! . For any object Y of Pcoh, a morphism t ∈ Pcoh ! (Y, Y ) defines a Scott-continuous function f = t : P(Y ) → P(Y ) which has a least fixpoint sup n∈N f n (0). Let X be an object of Pcoh and set Y = !(!X X) X. Then we have a morphism t = cur s ∈ Pcoh ! (Y, Y ) where s ∈ Pcoh(!Y ⊗ !(!X X), X) is defined as the following composition of morphisms in Pcoh:</p><formula xml:id="formula_65">!Y ⊗ !(!X X) !Y ⊗ !(!X X) ⊗ !(!X X) !X ⊗ (!X X) X s !Y ⊗ c !X X (ev (der Y ⊗ !(!X X))) ! ⊗ der (!X X) ev σ</formula><p>Then t is a Scott continuous function PY → PY whose least fixpoint is fix, considered as a morphism fix ∈ Pcoh ! (!X X, X), satisfies fix(u) = sup ∞ n=0 u n (0). </p><formula xml:id="formula_66">Lemma 11. If X ⊆ Y then X ⊥ ⊆ Y ⊥ , η + X ⊥ ,Y ⊥ = (η − X,Y ) ⊥ and η − X ⊥ ,Y ⊥ = (η + X,Y ) ⊥ .</formula><p>The proof is a straightforward verification. We contend that Pcoh ⊆ is directed co-complete. Let (X γ ) γ∈Γ be a countable directed family in Pcoh ⊆ (so Γ is a countable directed poset and γ ≤ γ ⇒ X γ ⊆ X γ ), we have to check that this family has a least upper bound X. We set</p><formula xml:id="formula_67">|X| = γ∈Γ |X γ | and PX = {w ∈ (R + ) |X| | ∀γ ∈ Γ η − X,Y w ∈ PX γ }.</formula><p>This defines an object of Pcoh which satisfies PX = {η + Xγ ,X u | γ ∈ Γ and u ∈ PX γ } ⊥⊥ and is therefore the lub of the family (X γ ) γ∈Γ in Pcoh ⊆ . This object X is denoted γ∈Γ X γ . One checks easily that ( γ∈Γ X γ ) ⊥ = γ∈Γ X ⊥ γ . Then the functor E :</p><formula xml:id="formula_68">Pcoh ⊆ → Pcoh defined by E(X) = X and E(η X,Y ) = η + X,Y</formula><p>is continuous: given a directed family (X γ ) γ∈Γ whose lub is X and given a collection of morphisms t γ ∈ Pcoh(X γ , Y ) such that t γ η + Xγ ,X γ = t γ for any γ, γ ∈ Γ such that γ ≤ γ , there is exactly one morphism t ∈ Pcoh(X, Y ) such that t η + Xγ ,X = t γ for each γ ∈ Γ. Given a ∈ |X| and b ∈ |Y |, t a,b = (t γ ) a,b for any γ such that a ∈ |X γ | (our hypothesis on the t γ 's means that (t γ ) a,b does not depend on the choice of γ).</p><p>All the operations of Linear Logic define monotone continuous functionals on Pcoh ⊆ which moreover commute with the functor F. This means for instance that if</p><formula xml:id="formula_69">X ⊆ Y then !X ⊆ !Y , η + !X,!Y = !(η + X,Y ), η − !X,!Y = !(η − X,Y</formula><p>) and !( γ∈Γ X γ ) = γ∈Γ !X γ and similarly for ⊗ and ⊕. As a consequence, and as a consequence of <ref type="bibr">Lemma 11,</ref><ref type="bibr">if</ref> </p><formula xml:id="formula_70">X i ⊆ Y i for i = 1, 2 then X 1 X 2 ⊆ Y 1 Y 2 , η + X 1 X 2 ,Y 1 Y 2 = η − X 1 ,Y 1 η + X 1 ,Y 1 and η − X 1 X 2 ,Y 1 Y 2 = η + X 1 ,Y 1 η − X 1</formula><p>,Y 1 and commutes with directed colimits in Pcoh ⊆ . This notion of inclusion on probabilistic coherence spaces extends to coalgebras as outlined in Section 3.1.3 (again, we refer to <ref type="bibr" target="#b4">[5]</ref> for more details). We describe briefly this notion of inclusion in the present concrete setting.</p><p>Let P and Q be object of Pcoh ! , we have</p><formula xml:id="formula_71">P ⊆ Q in Pcoh ! ⊆ if P ⊆ Q and h Q η + P ,Q = !(η + P ,Q ) h P .</formula><p>The lub of a directed family (P γ ) γ∈Γ of coalgebras (for this notion of substructure) is the coalgebra P = γ∈Γ P γ defined by P = γ∈Γ P γ and h P is characterized by the equation h P η + Pγ ,P = !η + Pγ ,P h Pγ which holds for each γ ∈ Γ. As outlined in Section 3.1.4, this allows to interpret any type σ as an object [σ] of Pcoh and any positive type ϕ as an object</p><formula xml:id="formula_72">[ϕ] ! such that [ϕ] ! = [ϕ], in such a way that the coalgebras [Rec ζ • ϕ] ! and [ϕ [Rec ζ • ϕ/ϕ]] ! are exactly the same objects of Pcoh ! . We use h ϕ for h [ϕ] ! .</formula><p>3.2.11. Dense coalgebras. Let P be an object of Pcoh ! , so that P = (P , h P ) where P is a probabilistic coherence space and h P ∈ Pcoh(P , !P ) satisfies dig P h P = !h P h P . Given coalgebras P and Q,</p><formula xml:id="formula_73">a morphism t ∈ Pcoh(P , Q) is coalgebraic (that is t ∈ Pcoh ! (P, Q)) if h Q t = !t h P .</formula><p>In particular, we say that u ∈ P(P ) is coalgebraic if, considered as a morphism from 1 to P , u belongs to Pcoh ! (1, P ). This means that u ! = h P u. Definition 12. Given an object P of Pcoh ! , we use P ! (P ) for the set of coalgebraic elements of P(P ).</p><p>The following lemma is useful in the sequel and holds in any model of Linear Logic.</p><p>Lemma 13. Let X be a probabilistic coherence space, one has P ! (!X) = {u ! | u ∈ PX}. Let P and P r be objects of Pcoh ! .</p><p>P ⊗ P r is the cartesian product of P and P r in Pcoh ! . The function P ! (P ) × P ! (P r ) → P ! (P ⊗ P r ) which maps (u, v) to u⊗v is a bijection. The projections pr ⊗ i ∈ Pcoh ! (P ⊗P r , P i ) are characterized by pr ⊗ i (u ⊗ u r ) = u i . The function { } × P ! (P ) ∪ {r} × P ! (P r ) → P ! (P ⊕ P r ) which maps (i, u) to in i (u) is a bijection. The injection u → in i (u) has a left inverse pr i ∈ Pcoh(P ⊕ P r , P i ) defined by</p><formula xml:id="formula_74">(pr i ) (j,a),b = δ i,j δ a,b , which is not a coalgebra morphism in general. Proof. Let v ∈ P ! (!X), we have v ! = h !X v = dig X v hence (der X v) ! = !der X v ! = !der X dig X v = v.</formula><p>The other properties result from the fact that the Eilenberg-Moore category Pcoh ! is cartesian and co-cartesian with ⊗ and ⊕ as product and co-product, see <ref type="bibr" target="#b23">[24]</ref> for more details.</p><p>Because of these properties we write sometimes (u , u r ) instead of u ⊗ u r when u i ∈ P ! P i for i ∈ { , r}. Definition 14. An object P of Pcoh ! is dense if, for any object Y of Pcoh and any two morphisms t, t ∈ Pcoh(P , Y ), if t u = t u for all u ∈ P ! (P ), then t = t . Theorem 15. For any probabilistic coherence space X, !X is a dense coalgebra. If P and P r are dense coalgebras then P ⊗ P r and P ⊕ P r are dense. The colimit in (Pcoh ! ) ⊆ of a directed family of dense coalgebras is dense.</p><p>Proof. Let X be an object of Pcoh, one has P ! (!X) = {u ! | u ∈ PX} by Lemma 13. It follows that !X is a dense coalgebra by Theorem 7. Assume that P and P r are dense coalgebras. Let t, t ∈ Pcoh(P ⊗ P r , Y ) be such that t w = t w for all w ∈ P ! (P ⊗ P r ). We have cur (t), cur (t ) ∈ Pcoh(P , P r Y ) so, using the density of P , it suffices to prove that cur (t) u = cur (t ) u for each u ∈ P ! (P ). So let u ∈ P ! (P ) and let s = cur (t) u and s = cur (t ) u . Let u r ∈ P ! (P r ), we have s u r = t (u ⊗ u r ) = t (u ⊗ u r ) = s u r since u ⊗ u r ∈ P ! (P ⊗ P r ) and therefore s = s since P r is dense. Let now t, t ∈ Pcoh(P ⊕ P r , Y ) be such that t w = t w for all w ∈ P ! (P ⊕ P r ). To prove that t = t , it suffices to prove that t in i = t in i for i ∈ { , r}. Since P i is dense, it suffices to prove that t in i u = t in i u for each u ∈ P ! (P i ) which follows from the fact that in i u ∈ P ! P i . Last let (P γ ) γ∈Γ be a directed family of dense coalgebras (in Pcoh ! ⊆ ) and let P = γ∈Γ P γ , and let t, t ∈ Pcoh ! (P , Y ) be such that t w = t w for all w ∈ P ! (P ). It suffices to prove that, for each γ ∈ Γ, one has t η + Pγ ,P = t η + Pγ ,P and this results from the fact that P γ is dense and η + Pγ ,P is a coalgebra morphisms (and therefore maps P ! (P γ ) to P ! (P )).</p><p>The sub-category Pcoh ! of dense coalgebras is cartesian and co-cartesian and is wellpointed by Theorem 15. We use Pcoh ! den for this sub-category and (Pcoh ! den ) ⊆ for the sub-class of Pcoh ! ⊆ whose objects are the dense coalgebras (with the same order relation). </p><formula xml:id="formula_75">[ϕ] ! #» ζ ( #» P ) is a dense coalgebra. In particular, when ϕ is closed, the coalgebra [ϕ] ! is dense.</formula><p>This is an immediate consequence of the definition of [ϕ] ! and of Theorem 15.</p><p>Remark. It turns out that the interpretation of positive types in the model Pcoh/Pcoh ! are dense coalgebras. This is mainly due to the fact that the colimit of a directed family of dense coalgebras in the partially ordered class Pcoh ! ⊆ is dense, see Theorem 15. From the viewpoint of Levy's CBPV <ref type="bibr" target="#b21">[22]</ref>, whose semantics is described in terms of adjunctions, we are using a resolution of the comonad "!" through the category Pcoh ! (or, equivalently, through the category Pcoh ! den ). As pointed out to us by one of the referees and already mentioned in the introduction, there is another resolution through a category of families and introduced in <ref type="bibr" target="#b0">[1]</ref>, which is initial among all resolutions that model CBPV. This other option will be explored in further work.</p><formula xml:id="formula_76">Then o = 1 ⊕ 1 satisfies |[o]| = {( , * ), (r, * )} and u ∈ (R + ) |[o]| satisfies u ∈ P[o] iff u ( , * ) + u (r, * ) ≤ 1.</formula><p>The coalgebraic structure of this object is given by <ref type="figure">(r, ( ,  *</ref> )), (r, (r, ( , * ))), . . . } and we use n for the element of |N| which has n occurrences of r. Given u ∈ (R + ) |N| , we use l(u) for the element of (R + ) |N| defined by l(u) n = u n+1 . By definition of N, we have u ∈ PN iff u 0 + l(u) N ≤ 1, and then</p><formula xml:id="formula_77">(h o ) (j, * ),[(j 1 , * ),...,(j k , * )] = 1 if j = j 1 = • • • = j k 0 otherwise. The object N = [ι] satisfies N = 1 ⊕ N so that |N| = {( , * ),</formula><formula xml:id="formula_78">u N = u 0 + l(u) N . It follows that u ∈ PN iff ∞ n=0 u n ≤ 1 and of course u N = ∞ n=0 u n .</formula><p>Then the coalgebraic structure h ι is defined exactly as h o above. In the sequel, we identify |N| with N.</p><p>Given a typing context P = (x 1 : ϕ 1 , . . . , x k : ϕ k ), a type σ and a term M such that P M : σ, M is interpreted as a morphism [M ] P ∈ Pcoh([P], [σ]). For all constructs of the language but probabilistic choice, this interpretation uses the generic structures of the model described in Section 3.1, the description of this interpretation can be found in <ref type="bibr" target="#b4">[5]</ref>. We set [coin(p)] = pe ( , * ) + (1 − p)e (r, * ) .</p><p>If x 1 : ϕ 1 , . . . , x k : ϕ k M : σ, the morphism [M ] P is completely characterized by its values on (u 1 , . . . , u k ) ∈ P ! ([P] ! ). We describe now the interpretation of terms using this observation.</p><formula xml:id="formula_79">• [()] = 1 ∈ P1 = [0, 1]. • [x i ] P (u 1 , . . . , u k ) = u i . • N ! P (u 1 , . . . , u k ) = ([N ] P (u 1 , . . . , u k )) ! . • [(M , M r )] P (u 1 , . . . , u k ) = [M ] P (u 1 , . . . , u k ) ⊗ [M r ] P (u 1 , . . . , u k ). • [in i N ] P (u 1 , . . . , u k ) = in i ([N ] P (u 1 , . . . , u k )), i ∈ { , r}. • [der N ] P (u 1 , . . . , u k ) = der [σ] ([N ] P (u 1 , . . . , u k )), assuming that P N : !σ. • If P N : ϕ σ and P R : ϕ then [N ] P (u 1 , . . . , u k ) ∈ P([ϕ] [σ]</formula><p>), and [R] P (u 1 , . . . , u k ) ∈ P([ϕ]) and using the application of a matrix to a vector we have</p><formula xml:id="formula_80">[ N R] P (u 1 , . . . , u k ) = [N ] P (u 1 , . . . , u k ) [R] P (u 1 , . . . , u k ). • If P, x : ϕ N : σ then [λx ϕ N ] P (u 1 , . . . , u k ) ∈ P([ϕ]</formula><p>[σ]) is completely described by the fact that, for all u ∈ P ! ([ϕ] ! ), one has [λx ϕ N ] P (u 1 , . . . , u k ) u = [N ] P,x:ϕ (u 1 , . . . , u k , u). This is a complete characterization of this interpretation by Theorem 16.</p><p>• If P N : ϕ ⊕ ϕ r and P, y i :  M,() . This is an immediate consequence of Theorem 17 and of the definition of Red ∞ , see Section 2.2.</p><formula xml:id="formula_81">ϕ i R i : σ for i ∈ { , r}, then [case(N, y • R , y r • R r )] P (u 1 , . . . , u k ) = [R ]</formula><formula xml:id="formula_82">. • If P, x : !σ N : σ then [N ] P,x:!σ ∈ Pcoh([P] ⊗ ![σ], [σ]) and fix x !σ N P (u 1 , . . . , u k ) = sup ∞ n=0 f n (0) where f : P[σ] → P[σ] is the Scott-continuous function given by f (u) = [N ] P,x:!σ (u 1 , . . . , u k , u ! ). • If P N : ψ [Rec ζ • ψ/ζ]</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.3.</head><p>Examples of term interpretations. We give the interpretation of terms that we gave as examples in Subsection 2.3.</p><formula xml:id="formula_83">• [Ω σ ] = fix x !σ der x = 0 • [t] = e ( , * ) and [f ] = e (r, * ) • [if(M, N , N r )] P (u 1 , . . . , u k ) = [M ] P ( , * ) (u 1 , . . . , u k ) [N ] P (u 1 , . . . , u k ) + [M ] P (r, * ) (u 1 , . . . , u k ) [N r ] P (u 1 , . . . , u k ) • [dice p (M , M r )] P (u 1 , . . . , u k ) = p [M ] P (u 1 , . . . , u k ) + (1 − p) [M r ] P (u 1 , . . . , u k ) • [n] = n for n ∈ N • [suc(M )] P n+1 (u 1 , . . . , u k ) = [M ] n (u 1 , . . . , u k ) • [ifz(M, N , x • N r )] P (u 1 , . . . , u k ) = [M ] P 0 (u 1 , . . . , u k ) [N ] P (u 1 , . . . , u k ) + ∞ n=0 [M ] P n+1 (u 1 , . . . , u k ) [N r ] P (u 1 , . . . , u k )(n) • [ran( #» p )] = n i=1 p i e i • [ eq M ] P (u 1 , . . . , u k ) = [M ] P (u 1 , . . . , u k ) e * • [M 0 • N ] P (u 1 , . . . , u k ) = [M 0 ] P (u 1 , . . . , u k ) [N ] P (u 1 , . . . , u k ) • [M 0 ∧ • • • ∧ M l ] P (u 1 , . . . , u k ) = l i=0 [M i ] P (u 1 , . . . , u k ) • choose σ l+1 (N 0 , . . . , N l ) P P (u 1 , . . . , u k ) = l i=0 [P ] P i (u 1 , . . . , u k ) • [N i ] P (u 1 , . . . , u k ) • ∀u ∈ P([ι]), [ext (l, r)] (u) = r i=l u i e i and [win l ( #» n )] (u) = n 1 +•••+n l i=n 1 +•••+n l−1 +1</formula><p>u i e i</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Adequacy</head><p>Our goal is to prove the converse of Corollary 18: for any closed term M such that M : 1, the probability that M reduces to () is larger than or equal to [M ] ∈ P[1] [0, 1], so that we shall know that these two numbers are actually equal.</p><p>In spite of its very simple statement, the proof of this property is rather long mainly because we have to deal with the recursive type definitions allowed by our syntax. As usual, the proof is based on the definition of a logical relations between terms and elements of the model (more precisely, given any type σ, we have to define a relation between closed terms of types σ and elements of P[σ]; let us call such a relation a σ-relation).</p><p>Since we have no positivity restrictions on the occurrence of type variables wrt. which recursive types are defined so that types are neither covariant nor contravariant wrt. these type variables, we use a very powerful technique introduced in <ref type="bibr" target="#b25">[26]</ref> for defining this logical relation.</p><p>Indeed a type variable ζ can have positive and negative occurrences in a positive 13  R) (which can be defined using R as a "logical relation" in a fairly standard way). Relations are naturally ordered by inclusion, and this strongly suggests to define the above fixpoint using this order relation by e.g. Tarski's Fixpoint Theorem. The problem however is that Φ is neither a monotone nor an anti-monotone operation on relations, due to the fact that ζ has a positive and a negative occurrence in ϕ.</p><p>It is here that Pitts's trick comes in: we replace the relations R with pairs of relations R = (R − , R + ) ordered as follows: R S if R + ⊆ S + and S − ⊆ R − . Then we define accordingly Φ(R) as a pair of relations by Φ(R) − = !(R + R − ) and Φ(R) + = !(R − R + ). Now the operation Φ is monotone wrt. the relation and it becomes possible to apply Tarski's Fixpoint Theorem to Φ and get a pair of relations R such that R = Φ(R). The next step consists in proving that R − = R + . This is obtained by means of an analysis of the definition of the interpretation of fixpoints of types as colimits in the category Pcoh ⊆ . One is finally in position of proving a fairly standard "Logical Relation Lemma" from which adequacy follows straightforwardly.</p><p>Vol. 15:1 PROBABILISTIC CBPV 3:27  In this short description of our adequacy proof, many technicalities have obviously been hidden, the most important one being that values are handled in a special way so that we actually consider two kinds of pairs of relations. Also, a kind of "biorthogonality closure" plays an essential role in the handling of positive types, no surprise for the readers acquainted with Linear Logic, see for instance the proof of normalization in <ref type="bibr" target="#b11">[12]</ref>. 4.1. Pairs of relations and basic operations. Given a closed type σ, we define Rel(σ) as the set of all pairs of relations R = (R − , R + ) such that, for ε ∈ {+, −}, each element of R ε is a pair (M, u) where M : σ and u ∈ P[σ]. For a closed positive type ϕ, we also define Rel v (ϕ) as the set of all pairs of relations V = (V − , V + ) such that, for ε ∈ {+, −}, each element of V ε is a pair (V, v) where V : ϕ is a value and v ∈ P ! [ϕ].</p><formula xml:id="formula_84">• Let R ∈ Rel(σ), we define !R ∈ Rel v (!σ) by: !R ε = {(M ! , u ! ) | (M, u) ∈ R ε } for ε ∈ {−, +}. • Let V i ∈ Rel v (ϕ i ) for i ∈ { , r}. We define (V ⊗ V r ) ε = {((V , V r ) , v ⊗ v r )} | (V i , v i ) ∈ V ε i } for ε ∈ {−, +}, so that V ⊗ V r ∈ Rel v (ϕ ⊗ ϕ r ). • Let V i ∈ Rel v (ϕ i ) for i ∈ { , r}. We define (V ⊕ V r ) ε = {(in i V, in i (v))} | i ∈ { , r} and (V, v) ∈ V ε i } for ε ∈ {−, +}, so that V ⊕ V r ∈ Rel v (ϕ ⊕ ϕ r ). • Let V ∈ Rel v (ϕ) and R ∈ Rel(σ). We define V R ∈ Rel(ϕ σ) as follows: (V R) ε = {(M, u) | M : ϕ σ, u ∈ P[ϕ σ] and ∀(V, v) ∈ V −ε ( M V, uv ) ∈ R ε }. • Last, given V ∈ Rel v (ϕ),</formula><p>Given R, S ∈ Rel(σ), we write R S if R + ⊆ S + and S − ⊆ R − . We define similarly V W for V, W ∈ Rel v (ϕ). Then Rel(σ) is a complete meet-lattice, the infimum of a collection (R i ) i∈I being i∈I R i = ( i∈I R − i , i∈I R + i ). The same holds of course for Rel v (ϕ) and we use the same notations.</p><p>We define R(1) as the set of all pairs (M, p) such that M : 1, p ∈ [0, 1] and Red ∞ M,() ≥ p. We define in Figure <ref type="figure" target="#fig_14">4</ref> logical operations on these pairs of relations. The last one is the aforementioned biorthogonality closure operation on pairs of relations.</p><p>Observe that all these operations are monotone wrt. . For instance V W ∧ R S ⇒ (V R) (W S), and V W ⇒ V W. </p><formula xml:id="formula_85">R(σ) #» ζ : n i=1 Rel v (ϕ i ) → Rel(σ #» ϕ/ #» ζ ) .</formula><p>Let also ϕ be a positive type whose free variables are contained in #» ζ , we define</p><formula xml:id="formula_86">V(ϕ) #» ζ : n i=1 Rel v (ϕ i ) → Rel v (ϕ #» ϕ/ #» ζ ) .</formula><p>Vol. 15:1 PROBABILISTIC CBPV 3:37</p><p>Assume last that M = coin(p) for some p ∈ [0, 1] ∩ Q and the typing derivation consists of the axiom P coin(p) : 1 ⊕ 1 so that σ = 1 ⊕ 1. We must prove that (coin(p), [coin(p)] ) ∈ R(1 ⊕ 1). Remember that [coin(p)] = pe ( , * ) + (1 − p)e (r, * ) . Let ε ∈ {−, +} and let (T, t) ∈ (V(1 ⊕ 1) R( <ref type="formula" target="#formula_95">1</ref>)) ε , we must prove that ( T coin(p), t(pe ( , * ) +(1−p)e (r, * ) )) ∈ R(1). We have Theorem 38 (Adequacy). Let M be a closed term such that M : 1. Then [M ] = Red ∞ M,() . By Corollary 18 and Theorem 37.</p><formula xml:id="formula_87">Red ∞ T coin(p),() = pRed ∞ T in (),() + (1 − p)Red ∞ T inr(),</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Full Abstraction</head><p>We prove now the Full Abstraction Theorem 41, that is the converse of the Adequacy Theorem.</p><p>5.1. Outline of the proof. We reason by contrapositive. Assume that two closed terms M 1 and M 2 have different semantics. Remember from Section 3.2, that a closed term of type σ is interpreted as a vector with indices in the web |[σ]|, so that there is a</p><formula xml:id="formula_88">∈ |[σ]| such that [M 1 ] a = [M 2 ] a .</formula><p>We want to design a term that will separate M 1 and M 2 observationally.</p><p>We define a testing term a − : !ι (!σ 1) that will depend only on the structure of the element a of the web. We then use properties of the semantics (namely that terms of type !ι τ can be seen as power series) to find reals p such that a − ran( p) ! separates M 1 and M 2 :</p><formula xml:id="formula_89">Red ∞ a − ran( p) ! M ! 1 ,() = Red ∞ a − ran( p) ! M ! 2 ,()</formula><p>Let us detail the key points of the proof. Remember from Section 3.2.7 that, because a − : !ι (!σ 1), its interpretation [a − ] can be seen as a power series <ref type="bibr">Theorem 6)</ref>. The first key point is to remark that the testing term a − is defined in such a way that The second key point is a separation property of [a − ]: we prove that, in the power series λy !σ λx !ι a − x y u ! , the coefficient of the unitary monomial 16 |a| − k=0 ζ k is equal to m − (a) u a with a coefficient m − (a) = 0 which depends only on a. Now, by assumption, [M 1 ] a and [M 2 ] a have different coefficient. For i = 1, 2, we have λx !ι a − x M ! i = λy !σ λx !ι a − x y [M i ] ! . Thus, the power series λx !ι a − x M ! i (for i = 1, 2) have different coefficients. The last key point uses classical analysis: if two power series with non-negative real coefficients and finitely many parameters have different coefficients, then they differ on non-negative arguments p close enough to zero:</p><formula xml:id="formula_90">[a − ]( ζ) = a − ζ ! =   [k 1 ,...,kn]∈|!ι| a − [k 1 ,...,kn],b n i=1 ζ k i   b∈|!σ 1| with infinitely many parameters ζ = (ζ 0 , . . . , ζ n , . . . ). Moreover, if ∞ i=0 ζ i ≤ 1, then ζ ∈ P[ι] and [a − ]( ζ) ∈ P[!σ 1] (see</formula><formula xml:id="formula_91">p i ≤ 1, so that p ∈ P[ι] and λx !ι a − x M ! 1 p ! = λx !ι a − x M ! 2 p ! .</formula><p>Finally, in order to substitute in a − the parameters ζ with the reals p, we use ran( p) as introduced in Paragraph 2.3. Indeed,</p><formula xml:id="formula_92">a − ran( p) ! M ! i = λx !ι a − x M ! i p ! .</formula><p>We conclude thanks to the Adequacy Theorem 38 that ensures that</p><formula xml:id="formula_93">Red ∞ a − ran( p) ! M ! 1 ,() = Red ∞ a − ran( p) ! M ! 2 ,()<label>5</label></formula><p>.2. Notations. In order to define the testing term a − , we will reason by induction and we will need to associate three kinds of testing terms with the points of the webs. More precisely:</p><p>• Given a positive type ϕ and a ∈ |[ϕ]|, we define a term a 0 such that a 0 : !ι ϕ 1.</p><p>• Given a general type σ and a ∈ |[σ]|, we define terms a + and a − such that</p><formula xml:id="formula_94">a + : !ι σ a − : !ι !σ 1.</formula><p>We also introduce natural numbers |a| 0 , |a| − and |a| + depending only on a. They represent the finite numbers of parameters on which the power series [a 0 ], [a − ] and [a + ] depend respectively.</p><p>We denote as m 0 (a), m − (a) and m + (a) natural numbers depending only on a and that will appear as the coefficient of the unitary monomial We use the terms introduced in the probabilistic tests paragraph of Subsection 2.3 and whose semantics are given in Subsection 3.3:</p><p>• ran( #» p ) which reduces to i with probability p i for k−1 i=0 p i ≤ 1, • M 0 • N which reduces to V with probability p q if M 0 reduces to () with probability p and N reduces to V with probability q, • M 0 ∧ . . . ∧ M k−1 which reduces to () with probability k−1 i=0 p i if M i reduces to () with probability p i , • choose σ k (M 0 , . . . , M k−1 ) P which reduces to M i with probability p i if p i is the probability of P to reduce to i, • ext (l, r) der Z and win k ( n) der Z to partition the parameters der Z. Indeed Z will denote a variable of type !ι and der Z has to be considered as the sequence of parameters #» ζ of the power series interpreting testing terms. |a| 0 , |a| − and |a| + represent the number of parameters on which the respective testing terms depend. We use win i ( n) der Z to Vol. 15:1 PROBABILISTIC CBPV 3:39 extract subsequences of #» ζ that will be given as arguments to subterms in the inductive definition of the testing terms. Remember that win i (n 0 , . . . , n k ) der Z</p><formula xml:id="formula_95">p l → l if l is in the ith window of size n i , that is n 0 + • • • + n i−1 ≤ l ≤ n 0 + • • • + n i −<label>1</label></formula><p>and p l is the probability that der Z reduces to l, that is the non-negative real parameter ζ l . This is a key ingredient in the computation of the coefficient of the unitary monomial of the interpretation of testing terms by induction on type and on the structure of a. </p><formula xml:id="formula_96">a 0 = λZ !ι λx !τ b − 0 win 0 (|b 0 | − , . . . , |b k−1 | − ) der Z ! x ∧ • • • ∧ b − k−1 win k−1 (|b 0 | − , . . . , |b k−1 | − ) der Z ! x, m 0 (a) = k−1 i=0 m − (b i ), and |a| 0 = |b 0 | − + • • • + |b k−1 | − . a + = λZ !ι choose τ k b + 0 win 1 (k, |b 0 | + , • • • , |b k−1 | + ) der Z ! , . . . , b + k−1 win k (k, |b 0 | + , • • • , |b k−1 | + ) der Z ! der Z ! , m + (a) = a! k−1 i=0 m + (b i ), and |a| + = k + |b 0 | + + • • • + |b k−1 | + .</formula><p>Remember that the factorial a! of a multiset a has been defined in Paragraph 3.2.7 as the number of permutations that fix a. It is easy to check that these terms satisfy the announced typing judgments. It is also clear that m 0 (a), m + (a) and m − (a) are non zero natural numbers.</p><p>We will now tackle the proof of the main observation: that is that the semantics of a − is a power series with finitely many parameters and whose coefficient of the unitary monomial can be seen as a morphism in P[!σ 1]. Lemma 39 introduces notations for the unitary monomials and provides useful properties for proving the key Lemma 40 which gives the coefficients of these monomials.   </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2</head><label>2</label><figDesc>Figure 2 defines a deterministic weak reduction relation → w and a probabilistic reduction p → relation. This reduction is weak in the sense that we never reduce within a "box" M ! or under a λ.The distinguishing feature of this reduction system is the role played by values in the definition of → w . Consider for instance the case of the term pr (M , M r ); one might expect</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Typing system for Λ p HP</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Vol. 15 2. 3 .</head><label>153</label><figDesc>Examples. For the sake of readability, we drop the fold/unfold constructs associated with recursive types definitions; they can easily be inserted at the right places. This also means that, in these examples, we consider the types Rec ζ •ϕ and ϕ [Rec ζ • ϕ/ζ] as identical.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>3. 1 . 4 .</head><label>14</label><figDesc>Interpreting types. Using straightforwardly the object 1 and the operations ⊗, ⊕, ! and of the model L as well as the completeness and continuity properties explained in Section 3.1.3, we associate with any positive type ϕ and any repetition-free list #» ζ = (ζ 1 , . . . , ζ n ) of type variables containing all free variables of ϕ a continuous functor [ϕ] ! #» ζ : (L ! ⊆ ) n → L ! ⊆ and with any general type σ and any list #» ζ = (ζ 1 , . . . , ζ n ) of pairwise distinct type variables containing all free variables of σ we associate a continuous functor [σ]#» ζ : (L ! ⊆ ) n → L ⊆ .When we write [σ] or [ϕ] ! (without subscript), we assume implicitly that the types σ and ϕ have no free type variables. Then [σ] is an object of L and [ϕ] ! is an object of L ! . We have [ϕ] = [ϕ] ! that is, considered as a generalized type, the semantics of a positive type ϕ is the carrier of the coalgebra [ϕ] ! .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>3. 2 . 6 .</head><label>26</label><figDesc>Exponentials. Given a set I, a finite multiset of elements of I is a function b : I → N whose support supp(b) = {a ∈ I | b(a) = 0} is finite. We use M fin (I) for the set of all finite multisets of elements of I. Given a finite family a 1 , . . . , a n of elements of I, we use [a 1 , . . . , a n ] for the multiset b such that b(a) = #{i | a i = a}. We use additive notations for multiset unions: k i=1 b i is the multiset b such that b(a) = k i=1 b i (a). The empty multiset is denoted as 0 or [ ]. If k ∈ N, the multiset kb maps a to k b(a). Let X be a PCS. Given u ∈ PX and b ∈ M fin (|X|), we define u b = a∈|X| u b(a) a ∈ R + . Then we set u ! = (u b ) b∈M fin (|X|) and finally</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>3. 2 . 7 .Theorem 6 .Theorem 7 .</head><label>2767</label><figDesc>Kleisli morphisms as functions. Let s ∈ (R + ) |!X Y | . We define a function s : PX → R + |Y | as follows. Given u ∈ PX, we set s(u) = s u ! = One has s ∈ P(!X Y ) iff, for all u ∈ PX, one has s(u) ∈ PY .This is an immediate consequence of the definition. Let s ∈ Pcoh(!X, Y ). The function s is Scott-continuous. Moreover, given s, s ∈ Pcoh(!X, Y ), one has s = s (as matrices) iff s = s (as functions PX → PY ).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head></head><label></label><figDesc>a multiset b ∈ M fin (I), we define its factorial b! = i∈I b(i)! and its multinomial coefficient mn(b) = (#b)!/b! ∈ N + where #b = i∈I b(i) is the cardinality of b. Remember that, given an I-indexed family a = (a i ) i∈I of elements of a commutative semi-ring, one has the multinomial formula a b where M n (I) = {b ∈ M fin (I) | #b = n}. Given c ∈ |!X| and d ∈ |!Y | we define L(c, d) as the set of all multisets r in M fin (|X| × |Y |) such that ∀a ∈ |X| b∈|Y | r(a, b) = c(a) and ∀b ∈ |Y | a∈|X| r(a, b) = d(b) .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Let</head><label></label><figDesc></figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>3. 2 . 10 .</head><label>210</label><figDesc>The partially ordered class of probabilistic coherence spaces. We define the category Pcoh ⊆ . This category is actually a partially ordered class whose objects are those of Pcoh. The order relation, denoted as ⊆, is defined as follows:X ⊆ Y if |X| ⊆ |Y | and the matrices η + X,Y and η − X,Y defined, for a ∈ |X| and b ∈ |Y |, by (η + X,Y ) a,b = (η − X,Y ) b,a = δ a,b satisfy η + X,Y ∈ Pcoh(X, Y ) and η − X,Y ∈ Pcoh(Y, X).In other words: given u ∈ PX, the element η + X,Y u of (R + ) |Y | obtained by extending u with 0's outside |X| belongs to PY . And conversely, given v ∈ PY , the element η − X,Y v of (R + ) |X| obtained by restricting v to |X| belongs to PX. Considering Pcoh ⊆ as a category, η X,Y is a notation for the unique element of Pcoh ⊆ (X, Y ) when X ⊆ Y , in accordance with the notations of Paragraph 3.1.3.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>3. 2 . 12 . 4 . 16 .</head><label>212416</label><figDesc>Interpreting types and terms in Pcoh. Given a type σ with free type variables contained in the repetition-free list #» ζ , and given a sequence #» P of length n of objects of Pcoh ! , we define [σ] #» ζ ( #» P ) as an object of Pcoh and when ϕ is a positive type (whose free variables are contained in #» ζ ) we define [ϕ] ! #» ζ ( #» P ) as an object of Pcoh ! . These operations are continuous and their definition follows the general pattern described in Section 3.1.Theorem Let ϕ be a positive type and let #» ζ = (ζ 1 , . . . , ζ n ) be a repetition-free list of type variables which contains all the free variables of ϕ. Let #» P be a sequence of n dense coalgebras. Then</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head></head><label></label><figDesc>then [fold(N )] P = [N ] P which makes sense since [ψ [Rec ζ • ψ/ζ]] = [Rec ζ • ψ]. • If P N : Rec ζ • ψ then [unfold(N )] P = [N ] P . Theorem 17 (Soundness). If M satisfies P M : σ then [M ] P = P M :σ Red M,M M P The proof is done by induction and is a straightforward verification. Corollary 18. Let M be a term such that M : 1 so that [M ] ∈ [0, 1]. Then [M ] ≥ Red ∞</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head></head><label></label><figDesc>type ϕ, consider for instance the case ϕ = !(ζ ζ) where the type variable ζ has a positive (on the right of the ) and a negative occurrence (on the left). To define the logical relation associated with Rec ζ • ϕ, we have to find a fixpoint for the operation which maps a (Rec ζ • ϕ)-relation R to the relation Φ(R) = !(R</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head></head><label></label><figDesc>we define V ∈ Rel(ϕ) as follows: V ε is the set of all (M, u) such that M : ϕ, u ∈ P[ϕ] and, for all (T, t) ∈ (V R(1)) −ε , one has ( T M, t u) ∈ R(1).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Logical operations for pairs of relations</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head></head><label></label><figDesc>[a − ] has actually only finitely many parameters ζ 0 , . . . , ζ |a| − (meaning that if the support of the multiset c is not included in {0, . . . , |a| − }, then [a − ] (c,b) = 0). Now, for any u ∈ P[σ], λy !σ λx !ι a − x y u ! ∈ P[!ι 1]. It is also a power series that depends on the same finitely many parameters ζ 0 , . . . , ζ |a| − .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16"><head></head><label></label><figDesc>|a| 0 k=0 ζ k , |a| − k=0 ζ k and |a| + k=0 ζ k respectively of the corresponding power series. These numbers are all &gt; 0.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17"><head>5. 3 .</head><label>3</label><figDesc>Testing terms. We define the terms a 0 , a + and a − and the associated natural numbers |a| 0 , |a| + and |a| − , by induction on the structure of the point a. Let ϕ be a positive type and a ∈ |[ϕ]|. We define a 0 and a + by induction on the size of a using the structure of ϕ Let ϕ = !τ and a = [b 0 , . . . , b k−1 ] with b i ∈ |[τ ]|. By inductive hypothesis, we have built terms b − i : !ι !τ 1 and b + i : !ι τ . Then we set</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18"><head></head><label></label><figDesc>If ϕ = ϕ ⊗ ϕ r and a = (b , b r ) with b i ∈ |[ϕ i ]| for i ∈ { , r}, then we seta 0 = λZ !ι λx ϕ b 0 win 0 (|b | 0 , |b r | 0 ) der Z ! pr x ∧ b 0 r win 1 (|b | 0 , |b r | 0 ) der Z ! pr r x, m 0 (a) = m 0 (b ) m 0 (b r ), and |a| 0 = |b | 0 + |b r | 0 . a + = λZ !ι b + win 0 (|b | + , |b r | + ) der Z ! , b + r win 1 (|b | + , |b r | + ) der Z ! , If ϕ = ϕ ⊕ ϕ rand a = ( , a ) with b ∈ |[ϕ ]| (the case a = (r, a r ) is similar), then we set a 0 = λZ !ι λx ϕ ⊕ϕr case(x, y • a 0 Z y , y r • Ω 1 ), m 0 (a) = m 0 (a ) and |a| 0 = |a | 0 . a + = λZ !ι in a + Z, m + (a) = m + (a ) and |a| + = |a | + . Finally, for a general type σ and a ∈ |[σ]|, we define a + and a − . If σ = ϕ is positive, then we have already defined a + . Let us now define a − . This term does not depend on the structure of ϕ: a − = λZ !ι λx !ϕ a 0 Z der x, m − (a) = m 0 (a) and |a| − = |a| 0 . If σ = ϕ τ and a = (b, c) with b ∈ |[ϕ]| and c ∈ |[τ ]|, then we set a + = λZ !ι λx ϕ b 0 win 0 (|b| 0 , |c| + ) der Z ! x • c + win 1 (|b| 0 , |c| + ) der Z ! , m + (a) = m 0 (b) m + (c) , and |a| + = |b| 0 + |c| + . a − = λZ !ι λf !(ϕ τ ) c − win 1 (|b| + , |c| − ) der Z ! der f b + win 0 (|b| + , |c| − ) der Z ! ! m − (a) = m + (b) m − (c), and |a| − = |b| + + |c| − .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19"><head>Lemma 39 . 2 )i=0 ζ i is c 1 ζso that c 1 ζ</head><label>39211</label><figDesc>Let σ be a general type and t ∈ P[!ι σ]. (1) Assume that there is k ∈ N such that for any c ∈ |[σ]|, the power series t c over P[ι] depends on the k first parameters. For any c ∈ |[σ]|, let us denote as c 1 ζ t c the coefficient of the monomial ζ 0 . . . ζ k−1 of t c . Then, k −k c 1 ζ t ∈ P[σ]. (Assume moreover that σ = ϕ τ where ϕ is a positive type and τ a general type. Let m∈ P[τ ] and a ∈ |[ϕ]|. If ∀u ∈ P ! [ϕ] ! c 1 ζ t u = mu a then ∀u ∈ P[ϕ] c 1 ζ t u = mu a .Proof. We prove<ref type="bibr" target="#b0">(1)</ref>.First notice that ∀c ∈ |[σ]|, the coefficient of the monomial k−1t c = t ([0,...,k−1],c) . Now, let #» 1 k be the sequence of k coefficients all equal to 1 k : t c ( 1 k ) = µ∈|[!ι]| supp(µ)⊆{0,...,k−1} t c k −k ≤ t( 1 k ) c . Since #» 1 k ∈ P[ι], t(1k ) ∈ P[σ] which is downward closed, we have that k −k c 1 ζ t ∈ P[σ]. Now we prove (2).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_20"><head>k− 1 i=0m 1 )m 1 ζa − u ! = c 1 ζ 1 c 1 ζ 2 c 1 ζ</head><label>11121</label><figDesc>− (b i ) u b i = m 0 (a) (u ! ) a .We can apply (2) of Lemma 39, so that we have c 1 ζ a 0 u = m 0 (a) u a for all u ∈ P[!τ ].We prove<ref type="bibr" target="#b1">(2)</ref>.Let a = [b 0 , . . . , b k −1 ] ∈ [!τ ] and ζ ∈ P[ι] be the concatenation of the finite sequences ζ * , ζ 0 , . . . , ζ k−1 ∈ P[ι] such that the length of #» ζ * is k and the length of ζ i is |b i | + for i ≥ 0. By inductive hypothesis, [a + ] a depends on finitely many parameters |a|0 = k + |b 0 | + + • • • + |b k−1 | + , since [a + ] a ( ζ) = ( a +ζ ! We want to compute the coefficient of the unitary monomial, which contains exactly one copy of each parameter of each #» ζ i . If k = k then expression (5.1) contains no monomial where each parameter of #» ζ * appears exactly once, so that c 1 ζ ([a + ]) a = 0 in that case. If k = k and S k is the set of permutations over k, then by using the fact that factorial a! = #{ρ ∈ S k | ∀i b i = b ρ(i) }, by denoting the Kronecker symbol as δ a,a and by the inductive hypothesis, we get:+ (b i )δ b i ,b i = m + (a) δ a,a = m + (a) (e a ) a . Assume that ϕ = ϕ ⊗ ϕ r and that a = (b , b r ) with a i ∈ |[ϕ i ]|. Let ζ ∈ P[ι] be the concatenation of the finite sequences ζ , ζ r ∈ P[ι] such that the length of ζ i is |b i | + . We prove (1). Let a = (b , b r ) ∈ |[ϕ ⊗ ϕ r ]|. By Theorem 16, [a 0 ] (a , * ) ( ζ) = ( a 0 ζ ! ) (a , * ) ∈ P[ϕ ⊗ ϕ r 1] is completely determined by the function u → a 0 ζ ! u ! defined on P[ϕ ⊗ ϕ r ]. Besides, if u ∈ P ! ([ϕ ⊗ ϕ r ] ! ), then u = u ⊗ u r where u i = pr ⊗ i (u) ∈ P ! ([ϕ i ] ! ) for Last, let σ = ϕ τ . Let a = (b, c) ∈ |[σ]|.We prove<ref type="bibr" target="#b1">(2)</ref>. Let a = (b , c ) ∈ |[σ]|. Let ζ ∈ P[ι] be the concatenation of the finite sequences ζ 1 , ζ 2 ∈ P[ι] such that the length of ζ 1 is |b| 0 and the length of ζ 2 is |c| + . By inductive hypothesis, for any u ∈ P[ϕ],[a + ]( ζ)u = a + ζ ! u = ( b 0 ζ 1 ! u) * ( c + ζ 2 ! ). Now, let ε &gt; 0 such that εe b ∈ P[ϕ], we compute [a + ] (b ,c ) ( ζ ! ) = 1 ε ( a + ζ ! εe b ) c = 1 ε ( b 0 ζ 1 ! εe b ) * ( c + ζ 2 ! ) c = [b 0 ] (b , * ) ( ζ 1 ) [c + ] c ( ζ 2 ).Therefore, by inductive hypothesis, [a + ] (b ,c ) depends on finitely many coefficients |a| + = |b| 0 + |c| + . We compute using inductive hypothesis that c = m 0 (b) δ b,b m + (c) δ c,c . We conclude that c 1 ζ ([a + ]) = m 0 (b) m + (c) e b,c = m + (a) e a . We prove (3). Let a = [(b 0 , c 0 ), . . . , (b k−1 , c k−1 )]) ∈ |[!σ]|. Let ζ ∈ P[ι] be the concatenation of the finite sequences ζ 1 , ζ 2 ∈ P[ι] such that the length of ζ 1 is |b| + and the length of ζ 2 is |c| − . For any w ∈ P[!(ϕ τ ]), we have:a − ζ ! w = c − ζ 2 ! der [ϕ τ ] (w) b + ζ 1 ! ! . Let ε &gt; 0 such that εe a ∈ P[!(ϕ τ )], then [a − ] (a , * ) ( ζ) = 1 ε ( a − ζ ! εe a ) * = 1 ε ( c − ζ 2 ! der [ϕ τ ] (εe a ) b + ζ 1 ! ! ) * .By inductive hypothesis, we get that [a − ] (a , * ) depends on |a| − = |b| 0 + |c| − coefficients.Let now u ∈ P[ϕ τ ], then by Lemma 13 der [(ϕ τ )] (u ! ) = u and we compute:c − u b + ζ 1 ! ! .By inductive hypothesis, we havec 1 ζ 2 ([c − ]) (u [b + ] ζ 1 ! ) ! = m − (c) (u [b + ] ζ 1 ! ) c . Moreover, notice that u ∈ P[ϕ τ ], seen as a morphism in Pcoh([ϕ], [τ ]) is linear, and there is ε &gt; 0 such that εe b ∈ P[ϕ]), so that we can apply u to e b . Now, by using inductive hypothesis, we get that c 1ζ 1 (u [b + ]) c = (u c 1 ζ 1 ([b + ])) c = (u m + (b) e b ) c = m + (b) u (b,c). Therefore, we have c([a − ]) u ! = m + (b) m − (c) u (b,c) = m − (a) u a .Theorem 41 (Full Abstraction).If M 1 : σ and M 2 :σ satisfy M 1 ∼ M 2 then [M 1 ] = [M 2 ]. Proof. By contrapositive. Assume that [M 1 ] = [M 2 ]. There is a ∈ |[σ]| such that [M 1 ] a = [M 2] a . Then by Lemma 40, λx !ι a − x M ! i , for i ∈ {1, 2}, are power series with different coefficients, namely the coefficients of the monomial ζ 0 . . . ζ |a| − −1 are m − (a) [M i ] a for i ∈ {1, 2} as λx !ι a − x M ! i #» ζ ! = [a − ] #» ζ ! [M i ] ! . There is ζ = (ζ 0 , . . . , ζ |a| − −1 ) ∈ P[ι] withζ i ∈ Q∩[0, 1] such that [a − ] ζ ! [M 1 ] ! = [a − ] ζ ! [M 2 ] ! . Yet, a − ran( #» ζ ) ! M ! i = [a − ] ζ ! ([M i ]).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head></head><label></label><figDesc>P,y :ϕ (u 1 , . . . , u k , pr ([N ] P (u 1 , . . . , u k ))) + [R r ] P,yr:ϕr (u 1 , . . . , u k , pr r ([N ] P (u 1 , . . . , u k ))) where pr i ∈ Pcoh(P ⊕ P r , P i ) is the ith "projection" introduced in 3.2.11, left inverse for in i</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head></head><label></label><figDesc>4.2. Fixpoints of pairs of relations.To deal with fixpoint types Rec ζ • ϕ, we need to consider types parameterized by relations as follows.Let σ be a type and let#» ζ = (ζ 1 , . . . , ζ n) be a list of type variables without repetitions and which contains all free variables of σ. For all list #» ϕ = (ϕ 1 , . . . , ϕ n ) of closed positive types, we define</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head></head><label></label><figDesc>3:45 By Theorem 38, we get that a − ran( #» ζ ) ! M ! 1 and a − ran( #» ζ ) ! M ! 2 converge to () with different probabilities. It follows that M 1 ∼ M 2 .</figDesc><table /></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_0">Meaning that recursive type definitions are not restricted to covariant types.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_1">For technical reasons and readability of the proof, the type we give to a − in Section 5 slightly differs</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="8" xml:id="foot_2">It is the full subcategory of L ! of free coalgebras, see any introductory text on monads and co-monads.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="9" xml:id="foot_3">It might seem natural to require the stronger uniformity conditions of Conway operator<ref type="bibr" target="#b29">[30]</ref>. This does</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="11" xml:id="foot_4">The ω-continuity is similar to separability for topological vector spaces.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>3:10 T. Ehrhard and C. Tasson Vol. 15:1</p><p>Acknowledgements. We would like to thank the referees for their many useful and constructive comments and suggestions. We are also grateful to Michele Pagani and Raphaëlle Crubillé for numerous and deep discussions. This work has been partly funded by the ANR Project RAPIDO ANR-14-CE25-0007, by the French-Chinese project ANR-11-IS02-0002 and NSFC 61161130530 Locali.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The definition is by simultaneous induction on σ and ϕ. All cases but one consist in applying straightforwardly the above defined logical operations on pairs of relations, for instance</p><p>We are left with the case of recursive definitions of types, so assume that ϕ = Rec ζ • ψ. Let #» ϕ = (ϕ 1 , . . . , ϕ n ) be a list of closed positive types and let</p><p>where we use the following notation: given</p><p>We recall the statement of Tarski's fixpoint theorem.</p><p>Theorem 19. Let S and T be complete meet semi-lattices and let f : S × T → T be a monotone function. For x ∈ S, let g(x) be the meet of the set {y ∈ T | f (x, y) ≤ y}. Then the function g is monotone and satisfies f (x, g(x)) = g(x) for each x ∈ S.</p><p>Applying this theorem we obtain, by induction on types, the following property. </p><p>4.3. Some useful closeness lemmas. We state and prove a series of lemmas expressing that our pairs of relations are closed under various syntactic and semantic operations.</p><p>Lemma 21. Let M and M be terms such that M : 1 and M : 1. If M → w M then Red ∞ M,() = Red ∞ M ,() . This is straightforward since any reduction path from M to () must start with the step M → w M , and this is a probability 1 step. Lemma 22. Let ϕ be a closed positive type and let σ be a closed type. Let (M, u) ∈ R(ϕ) −ε and (R, r) ∈ R(ϕ σ) ε . Then ( R M, r u) ∈ R(σ) ε .</p><p>Proof. We can write σ = ϕ 1 • • • ϕ n ψ for some n and ϕ 1 , . . . , ϕ n , ψ positive and closed. Given (V i , v i ) ∈ V(ϕ i ) −ε for i = 1, . . . , n, we have to prove that</p><p>Similarly let s ∈ P[ϕ 1] be the linear morphism defined by s u = t(r u v  and from the fact that r and t are morphisms in Pcoh).</p><p>since we have assumed that (T, t)</p><p>and by Lemma 21, it follows that ( S V, s v) ∈ R <ref type="bibr" target="#b0">(1)</ref>. Hence (S, s) ∈ R(ϕ 1) ε and therefore ( S M, s u) ∈ R(1) since we have (M, u) ∈ R(ϕ) −ε .</p><p>We finish the proof by observing that s u = t(r u v  </p><p>For this it suffices to observe (by inspection of the reduction rules) that each reduction path</p><p>where</p><p>the last step resulting from the definition of S. In that way, we have defined a probability preserving bijection between the reduction paths from </p><p>R(1)) −ε , we must prove that ( T (M , M r ) , t(u ⊗u r )) ∈ R <ref type="bibr" target="#b0">(1)</ref>. Let S = λx ϕ λx ϕr r T (x , x r ) and s ∈ P[ϕ (ϕ r 1)] be defined by s u u r = t(u ⊗u r ) (again, s is a morphism in Pcoh by symmetric monoidal closeness of that category). It is clear that (S, s)</p><p>. Observing that there is a probability preserving bijection between the reduction paths from S M M r to () and the reduction paths from T (M , M r ) to (), we conclude that ( T (M , M r ) , t(u ⊗ u r )) ∈ R(1) as contended (in both terms one has to reduce first M and then M r to a value).</p><p>Lemma 24. Let ϕ and ϕ r be closed positive types.</p><p>R(1)) −ε , we have to prove that ( T pr i M, t (pr i u)) ∈ R(1). Let S = λx ϕ ⊗ϕr T pr i x and s ∈ P[ϕ ⊗ ϕ r 1] be defined by s u 0 = t (pr i u 0 ) for all u 0 ∈ P[ϕ ⊗ ϕ r ]. Let (W, w) ∈ V(ϕ ⊗ ϕ r ) ε , which means that W = (V , V r ) and w = v ⊗ v r with (V j , v j ) ∈ V(ϕ j ) ε for j ∈ { , r}. We have S W → w T V i and s w = t v i and we know that ( T V i , t v i ) ∈ R(1) from which it follows by Lemma 21 that ( S W, s w) ∈ R(1). So we have proven that (S, s) ∈ (V(ϕ ⊗ ϕ r ) R(1)) −ε and hence ( S M, s u) ∈ R(1). We have s u = t (pr i u). Moreover we have a probability preserving bijection between the reduction paths from T pr i M to () and the reduction paths from S M to (), and hence we have ( T pr i M, t (pr i u)) ∈ R(1) as contended.</p><p>Indeed, any reduction path π from T pr i M to () has shape π = λρ where λ is a reduction path</p><p>and ρ is a reduction path from T V i to (). The first steps λ of this reduction are determined → W from M to the value W . This reduction path determines uniquely the reduction path S M = S M</p><p>followed by the reduction ρ from T V i to () by ρ.</p><p>Lemma 25. Let ϕ and ϕ r be closed positive types and let</p><p>) −ε and it follows that ( S M, s u) ∈ R(1) which implies ( T in i M, t (in i u)) ∈ R(1) by the usual bijective and probability preserving bijection on reductions.</p><p>The next lemma uses notations introduced in Section 3.2.5.</p><p>Lemma 26. Let ϕ and ϕ r be closed positive type and σ be a closed type. Let (M, u) ∈ R(ϕ ⊕ ϕ r ) ε . For i ∈ { , r}, let R i be a term such that y i : ϕ i R i : σ and assume that (λx</p><p>ψ where ψ and the ψ j 's are closed and positive types. Given (W j , w j ) ∈ V(ψ j ) ε for j = 1, . . . , k, we have to prove that</p><p>and, by our assumptions and Lemma 21,</p><p>Therefore ( S M, s u) ∈ R(1). There is a bijective and probability preserving correspondence between the reductions from S M to () and the reductions from</p><p>3) holds and hence we have (4.2), this ends the proof of the lemma.</p><p>ψ where ψ and the ψ j 's are closed and positive types. Given (W j , w j ) ∈ V(ψ i ) −ε , we have to prove that</p><p>We set S = λx !σ T der x # » W and we define s ∈ P[!σ 1] by s u 0 = t (der u 0 #» w) for all u 0 ∈ P[!σ], and we prove that (S, s) ∈ (V(!σ) R( <ref type="formula">1</ref>)) −ε as in the proof of Lemme 26 (for Vol. 15:1 PROBABILISTIC CBPV 3:31 instance). We finish the proof in the same way, showing (4.5) by establishing a bijective and probability preserving correspondence between reductions. Our contention (4.4) follows.</p><p>Lemma 28. Let ϕ be a closed positive type of shape <ref type="formula">1</ref>)) −ε , we must prove that ( T unfold(M ), u) ∈ R(1). As usual one defines S = λx ϕ T unfold(x) and one proves that (S, t)</p><p>from Lemma 21 and from the fact that unfold(fold(W )) → w W (and of course from our assumption on (T, t)). It follows that ( S M, t u) ∈ R(1) from which we deduce ( T unfold(M ), u) ∈ R(1) by the usual reasoning involving a bijective probability preserving correspondence on reductions.</p><p>Lemma 21 and from our assumption about (T, t). Therefore we have ( S M, t u) ∈ R( <ref type="formula">1</ref>)) from which we deduce ( T fold(M ), u) ∈ R(1) by the usual reasoning.</p><p>Lemma 30. Let σ be a closed type and let M be a closed term of type σ.</p><p>Proof. We can write σ = ϕ 1</p><p>• • • ϕ n ψ for some n and ϕ 1 , . . . , ϕ n , ψ positive and closed. Let us prove the second statement. For i = 1, . . . , n, let</p><p>This results from the fact that, given</p><p>. The first statement of the lemma results from the fact that this function maps 0 to 0. The last one results from the fact that this function is monotone. 4.4. Uniqueness of the relation. With any closed type σ we have associated a pair of relations R(σ). We need now to prove that this pair satisfies R(σ) + = R(σ) − so that we have actually associated a unique relation with any type.</p><p>To this end we prove first that R(σ) + ⊆ R(σ) − . Defining, for any pair of relations R, the relation R op as (R + , R − ), this amounts to proving that R(σ) R(σ) op . We use the same notation for the elements of Rel v (ϕ) for ϕ positive.</p><p>For the next lemma, we use the same notational conventions as above.</p><p>Lemma 31. Let #» V be a list of pairs of relations such that</p><p>Proof. The proof is by induction on types. All cases result straightforwardly from the monotony of the logical operations on pairs of relations, but the case of fixpoints of types. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>So assume that</head><p>) and let us prove that V V op . For this, because of the definition of V as a glb (4.1), it suffices to show that</p><p>By the first statement of Lemma 20 and our assumption on the V i 's we have</p><p>.</p><p>By inductive hypothesis we have fold(V(ψ</p><p>We are left with proving the converse property, namely that R(σ) op R(σ) for each closed type σ. This requires a bit more work, and is based on a notion of "finite" approximation of elements of the model, that we define by syntactic means as follows.</p><p>4.4.1. Restriction operators. We define 14 closed terms p g (n, σ) and p v (n, ϕ) (for n ∈ N, σ a type and ϕ a positive type) typed as follows: p g (n, σ) : !σ σ and p v (n, ϕ) : ϕ ϕ.</p><p>This is a well-founded lexicographic inductive definition on triples (n, σ, l) (where l ∈ {v, g}) if we order the symbols v and g by v &lt; g. We consider actually only triples (n, σ, l) such that σ is positive if l = v. We describe similarly the interpretation of these terms: we give an explicit description of the matrices [p g (n, σ)] and [p v (n, ϕ)] . To this end, we define a family of sets</p><p>14 This definition as well as our reasoning below features some similarities with step-indexing that we would like to understand better.</p><p>Vol. 15:1 PROBABILISTIC CBPV 3:33</p><p>Lemma 32. Let n ∈ N, ϕ be a closed positive type and σ be a closed type. One has</p><p>Proof. By Theorem 16, for a closed positive type ϕ and for u ∈ P ! [ϕ] ! , it suffices to prove that</p><p>And for a closed type σ and for u ∈ P[σ], it suffices to prove</p><p>Both statements are easily proved by induction.</p><p>We need now to prove that, given u ∈ P[σ], the sequence [p g (n, σ)] (u ! ) is monotone and has u as lub.</p><p>Lemma 33. For any triple (n, σ, l) where σ is positive if l = v, one has</p><p>Proof. The first statement is straightforward, by induction on (n, σ, l). For the second statement, we only have to prove the right-to-left inclusions. We define the height h(a) of an element a of |[σ]| as follows.</p><p>• h( * ) = 1 • h(a 1 , a 2 ) = 1 + max (h(a 1 ), h(a 2 )) (this definition is used when ϕ is a tensor and when σ is a linear implication)</p><p>Then by induction on h(a) one proves that</p><p>We deal only with the statement relative to I v (n, ϕ). The closed positive type ϕ is of shape</p><p>where ψ is not of shape Rec ζ • ρ. We introduce auxiliary closed types ϕ 1 , . . . , ϕ k as follows:</p><p>. . .</p><p>and all these types have the same interpretation in Pcoh </p><p>for each i so that we can apply the inductive hypothesis: for each i there is n i such that b i ∈ I g (n i , σ ). Using the monotonicity property (first statement of the lemma) and setting n = max(n 1 , . . . , n l ) we have b i ∈ I g (n, σ ) and hence a ∈ I v (n, !σ ). Therefore a ∈ I v (n + k, ϕ) (coming back to the definition of this set). The other cases are dealt with similarly.</p><p>Lemma 34. Let σ be a closed type and let ϕ be a closed positive type. </p><p>Proof. By lexicographic induction on triples (n, σ, l) (with σ positive when l = v).</p><p>Until further notice, we assume that l = v.</p><p>The only case where "n decreases" in this induction is when ϕ = Rec ζ • ψ, we start with this case.</p><p>Assume that ϕ = Rec ζ •ψ and that (V, v) ∈ V(ϕ) − . If n = 0 we have [p v (n, ϕ)] v = 0 and hence (V, [p v (n, ϕ)] v) ∈ R(ϕ) + by Lemma 30. Assume that the implication holds for n and let us prove it for n</p><p>and we must prove that (fold</p><p>R( <ref type="formula">1</ref>)) − by Lemma 21 and therefore</p><p>by (4.6) and Lemma 22 and this implies (</p><p>Assume that ϕ = ϕ ⊗ϕ r and that ( Assume that ϕ = ϕ ⊕ ϕ r and (V, v) ∈ V(ϕ ⊕ ϕ r ) − . This means that for some i ∈ { , r}, one has V = in i W and v = in i w for (W, w) ∈ V(ϕ i ) − . By inductive hypothesis we have (W, [p g (n,</p><p>We assume now that l = g. If σ is a closed positive type ϕ and let (M, u) ∈ R(σ) − , we must prove that</p><p>which follows directly from the definition of p g (n, ϕ) and from the inductive hypothesis applied to (n, ϕ, v).</p><p>which follows from the fact that [p g (n, ϕ <ref type="bibr">Lemma 22</ref>, from which we derive (4.7) by Lemma 34 and Lemma 30.</p><p>Lemma 36. For any closed type σ one has R(σ</p><p>Proof. Immediate consequence of lemmas 30, 34 and 35.</p><p>From now on we simply use the notation R(σ) instead of R(σ) − and R(σ) + . 4.5. Logical relation lemma. We can prove now the main result of this section.</p><p>Theorem 37 (Logical Relation Lemma). Assume that x 1 : ϕ 1 , . . . , x k : ϕ k M : σ and let</p><p>Remark. One would expect to have rather assumptions of the shape "(V i , v i ) ∈ V(ϕ i )"; the problem is that we don't know whether V(ϕ i ) + = V(ϕ i ) − . Proof. By induction on the typing derivation of M , that is, on M . We set P = (x 1 : ϕ 1 , . . . , x k : ϕ k ) and, given a term R, we use R for the term R [V 1 /x 1 , . . . , V k /x k ]. We also use #» v for the sequence v 1 , . . . , v k and #» x for the sequence x 1 , . . . , x k .</p><p>The case M = x i is straightforward.</p><p>Assume that M = N ! and that ϕ = !σ with P N : σ. By inductive hypothesis we have</p><p>Assume that M = (N , N r ) and σ = ψ ⊗ψ r with P N i : ψ i for i ∈ { , r}. By inductive hypothesis we have (N i ,</p><p>The case M = in i N (and σ = ψ ⊕ ψ r ) is handled similarly, using Lemma 25. 15 It is not clear whether V(ϕ) − = V(ϕ) + for any closed positive type ϕ, but we don't need this property in this proof, so we leave this technical question unanswered. Assume that M = λx ϕ N and σ = ϕ τ , with P, x : ϕ N : τ . We must prove that <ref type="bibr">Lemma 21</ref>, proving our contention.</p><p>Assume that M = R N with P R : ϕ σ and P N : ϕ where ϕ is a closed positive type. By inductive hypothesis we have (R</p><p>Assume that M = fix x !σ N with P, x : !σ N : σ. The function f :</p><p>is Scott continuous and we have</p><p>. By induction on k, we prove that</p><p>The base case is proven by Lemma 30. Assume that (M , f k (0)) ∈ R(σ). Choosing an arbitrary ε, we have ((M ) ! , (f k (0)) ! ) ∈ V(!σ) ε ⊆ R(!σ) and hence by our "outermost" inductive hypothesis we have (N (M ) ! /x , f k+1 (0)) ∈ R(σ) from which we get (M , f k+1 (0)) ∈ R(σ) by Lemma 21 and this ends the proof of (4.8). We conclude that (</p><p>Assume that M = der N with P N : !σ. By inductive hypothesis we have (</p><p>Assume that M = pr j N with j ∈ { , r}, σ = ϕ ⊗ ϕ r and P M : ϕ ⊗ ϕ r . By inductive hypothesis we have (</p><p>Assume that M = case(N, y • R , y r • R r ) with P N : ϕ ⊕ ϕ r and P, y j : ϕ j R j : σ for j ∈ { , r}. By inductive hypothesis we have (</p><p>(λy</p><p>by <ref type="bibr">Lemma 21)</ref>. By Lemma 26 we get</p><p>Assume that M = unfold(N ) where P N : ϕ with ϕ = Rec ζ • ψ. We apply Lemma 28 straightforwardly.</p><p>Assume that M = () and the typing derivation consists of the axiom P () : We are now ready to prove that the coefficient of the unitary monomial of a testing term associated with a point a of the web allows to extract the a-coefficient of an argument, up to a non-zero coefficient depending only on a. This is central in the proof of Full Abstraction. Let us first introduce some notations that will be used along this proof.  Proof. Let us argue by mutual induction on the size of a and the structure of ϕ.</p><p>Let ϕ be a positive type and a ∈ |[ϕ]|. We prove (2) and (1) by induction on the structure of ϕ 17 We follow the common mathematical practice of using the same notation #» ζ = (ζ0, . . . , ζn) to refer to the formal parameters of a power series and to real arguments of the corresponding function. </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Call-by-value games</title>
+		<author>
+			<persName><forename type="first">Samson</forename><surname>Abramsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guy</forename><surname>Mccusker</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1998">1998</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="page" from="1" to="17" />
+			<pubPlace>Berlin Heidelberg; Berlin, Heidelberg</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">On Classical PCF, Linear Logic and the MIX Rule</title>
+		<author>
+			<persName><forename type="first">Shahin</forename><surname>Amini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">24th EACSL Annual Conference on Computer Science Logic, CSL 2015</title>
+				<editor>
+			<persName><forename type="first">Stephan</forename><surname>Kreutzer</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin, Germany</addrLine></address></meeting>
+		<imprint>
+			<publisher>Schloss Dagstuhl -Leibniz-Zentrum fuer Informatik</publisher>
+			<date type="published" when="2015">September 7-10, 2015. 2015</date>
+			<biblScope unit="volume">41</biblScope>
+			<biblScope unit="page" from="582" to="596" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title level="m" type="main">A monad for randomized algorithms</title>
+		<author>
+			<persName><forename type="first">Tyler</forename><surname>Barker</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+		<respStmt>
+			<orgName>Tulane University</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">PhD thesis</note>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Probabilistic coherence spaces as a model of higher-order probabilistic computation</title>
+		<author>
+			<persName><forename type="first">Vincent</forename><surname>Danos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Information and Computation</title>
+		<imprint>
+			<biblScope unit="volume">152</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="111" to="137" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Call-By-Push-Value from a Linear Logic Point of View</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Held as Part of the European Joint Conferences on Theory and Practice of Software, ETAPS 2016</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">Peter</forename><surname>Thiemann</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Eindhoven, The Netherlands</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2016-04-02">2016. April 2-8, 2016. 2016</date>
+			<biblScope unit="volume">9632</biblScope>
+			<biblScope unit="page" from="202" to="228" />
+		</imprint>
+	</monogr>
+	<note>Programming Languages and Systems -25th European Symposium on Programming</note>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title level="m" type="main">The bang calculus: an untyped lambda-calculus generalizing call-by-name and call-by-value</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Giulio</forename><surname>Guerrieri</surname></persName>
+		</author>
+		<ptr target="https://www.irif.univ-paris-diderot.fr/~giuliog/" />
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note>To appear</note>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">The computational meaning of probabilistic coherent spaces</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michele</forename><surname>Pagani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christine</forename><surname>Tasson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th Annual IEEE Symposium on Logic in Computer Science, LICS 2011</title>
+				<meeting>the 26th Annual IEEE Symposium on Logic in Computer Science, LICS 2011<address><addrLine>Toronto, Ontario, Canada</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2011">June 21-24, 2011. 2011</date>
+			<biblScope unit="page" from="87" to="96" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">The differential lambda-calculus</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Laurent</forename><surname>Regnier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">309</biblScope>
+			<biblScope unit="issue">1-3</biblScope>
+			<biblScope unit="page" from="1" to="41" />
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Probabilistic coherence spaces are fully abstract for probabilistic PCF</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christine</forename><surname>Tasson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michele</forename><surname>Pagani</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">POPL</title>
+				<editor>
+			<persName><forename type="first">Suresh</forename><surname>Jagannathan</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Peter</forename><surname>Sewell</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="309" to="320" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Full Abstraction for Probabilistic PCF</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christine</forename><surname>Tasson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michele</forename><surname>Pagani</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Preuves, Programmes et Systèmes</title>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Technical report</note>
+	<note>Submitted for publication to a journal</note>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">The cartesian closed category of measurable cones and stable, measurable functions</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Ehrhard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christine</forename><surname>Tasson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michele</forename><surname>Pagani</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM SIGPLAN annual Symposium on Principles of Programming Languages</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note>To appear</note>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Linear logic</title>
+		<author>
+			<persName><forename type="first">Jean-Yves</forename><surname>Girard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">50</biblScope>
+			<biblScope unit="page" from="1" to="102" />
+			<date type="published" when="1987">1987</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">A new constructive logic: classical logic</title>
+		<author>
+			<persName><forename type="first">Jean-Yves</forename><surname>Girard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mathematical Structures in Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="225" to="296" />
+			<date type="published" when="1991">1991</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Continuous random variables</title>
+		<author>
+			<persName><forename type="first">Jean</forename><surname>Goubault</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">-Larrecq</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniele</forename><surname>Varacca</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">LICS</title>
+				<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="97" to="106" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">The formulae-as-types notion of control</title>
+		<author>
+			<persName><forename type="first">Timothy</forename><forename type="middle">G</forename><surname>Griffin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 17h ACM Symposium on Principles of Programming Languages (POPL)</title>
+				<meeting>the 17h ACM Symposium on Principles of Programming Languages (POPL)</meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="1990-01">January 1990</date>
+			<biblScope unit="page" from="47" to="57" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">A convenient category for higher-order probability theory</title>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Heunen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ohad</forename><surname>Kammar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Staton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hongseok</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">32nd Annual ACM/IEEE Symposium on Logic in Computer Science, LICS 2017</title>
+				<meeting><address><addrLine>Reykjavik, Iceland</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2017">June 20-23, 2017. 2017</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">A probabilistic powerdomains of evaluation</title>
+		<author>
+			<persName><forename type="first">Claire</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gordon</forename><surname>Plotkin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 4th Annual IEEE Symposium on Logic in Computer Science</title>
+				<meeting>the 4th Annual IEEE Symposium on Logic in Computer Science</meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="1989">1989</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">The troublesome probabilistic powerdomain</title>
+		<author>
+			<persName><forename type="first">Achim</forename><surname>Jung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Regina</forename><surname>Tix</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Electronic Notes in Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="70" to="91" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Mixed powerdomains for probability and nondeterminism</title>
+		<author>
+			<persName><forename type="first">Klaus</forename><surname>Keimel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gordon</forename><forename type="middle">D</forename><surname>Plotkin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Logical Methods in Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">About Translations of Classical Logic into Polarized Linear Logic</title>
+		<author>
+			<persName><forename type="first">Olivier</forename><surname>Laurent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Laurent</forename><surname>Regnier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">18th IEEE Symposium on Logic in Computer Science (LICS 2003)</title>
+				<meeting><address><addrLine>Ottawa, Canada, Proceedings</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2003-06">June 2003. 2003</date>
+			<biblScope unit="page" from="11" to="20" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Adjunction Models For Call-By-Push-Value With Stacks. Electronic Notes in Theoretical Computer Science</title>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Blain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Levy</forename></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="page" from="248" to="271" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Call-By-Push-Value: A Functional/Imperative Synthesis, volume 2 of Semantics Structures in Computation</title>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Blain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Levy</forename></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<publisher>Springer-Verlag</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Full Abstraction and Universality via Realisability</title>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Marz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexander</forename><surname>Rohr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Streicher</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">14th Annual IEEE Symposium on Logic in Computer Science</title>
+				<meeting><address><addrLine>Trento, Italy</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="1999">July 2-5, 1999. 1999</date>
+			<biblScope unit="page" from="174" to="182" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Categorical semantics of linear logic</title>
+		<author>
+			<persName><forename type="first">Paul-André</forename><surname>Melliès</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Panoramas et Synthèses</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Domains and random variables</title>
+		<author>
+			<persName><forename type="first">Michael</forename><forename type="middle">W</forename><surname>Mislove</surname></persName>
+		</author>
+		<idno>CoRR, abs/1607.07698</idno>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Computational Adequacy via &quot;Mixed&quot; Inductive Definitions</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Andrew</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Pitts</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Mathematical Foundations of Programming Semantics, 9th International Conference</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">Stephen</forename><forename type="middle">D</forename><surname>Brookes</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Michael</forename><forename type="middle">G</forename><surname>Main</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Austin</forename><surname>Melton</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Michael</forename><forename type="middle">W</forename><surname>Mislove</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">David</forename><forename type="middle">A</forename><surname>Schmidt</surname></persName>
+		</editor>
+		<meeting><address><addrLine>New Orleans, LA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1993">April 7-10, 1993. 1993</date>
+			<biblScope unit="volume">802</biblScope>
+			<biblScope unit="page" from="72" to="82" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">LCF considered as a programming language</title>
+		<author>
+			<persName><forename type="first">Gordon</forename><surname>Plotkin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="223" to="256" />
+			<date type="published" when="1977">1977</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Convexity and order in probabilistic call-by-name FPC</title>
+		<author>
+			<persName><forename type="first">Mathys</forename><surname>Rennela</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">CPOs of measures for nondeterminism</title>
+		<author>
+			<persName><forename type="first">Nasser</forename><surname>Saheb-Djahromi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="19" to="37" />
+			<date type="published" when="1980">1980</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Complete Axioms for Categorical Fixed-Point Operators</title>
+		<author>
+			<persName><forename type="first">Alex</forename><forename type="middle">K</forename><surname>Simpson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gordon</forename><forename type="middle">D</forename><surname>Plotkin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">15th Annual IEEE Symposium on Logic in Computer Science</title>
+				<meeting><address><addrLine>Santa Barbara, California, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2000">June 26-29, 2000. 2000</date>
+			<biblScope unit="page" from="30" to="41" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Semantics for probabilistic programming: higher-order functions, continuous distributions, and soft constraints</title>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Staton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hongseok</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Frank</forename><surname>Wood</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Heunen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ohad</forename><surname>Kammar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in Computer Science, LICS &apos;16</title>
+				<editor>
+			<persName><forename type="first">Martin</forename><surname>Grohe</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Eric</forename><surname>Koskinen</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Natarajan</forename><surname>Shankar</surname></persName>
+		</editor>
+		<meeting>the 31st Annual ACM/IEEE Symposium on Logic in Computer Science, LICS &apos;16<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2016">July 5-8, 2016. 2016</date>
+			<biblScope unit="page" from="525" to="534" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Semantic domains for combining probability and non-determinism</title>
+		<author>
+			<persName><forename type="first">Regina</forename><surname>Tix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Klaus</forename><surname>Keimel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gordon</forename><forename type="middle">D</forename><surname>Plotkin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Electr. Notes Theor. Comput. Sci</title>
+		<imprint>
+			<biblScope unit="volume">222</biblScope>
+			<biblScope unit="page" from="3" to="99" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">The algebraic lambda-calculus</title>
+		<author>
+			<persName><forename type="first">Lionel</forename><surname>Vaux</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mathematical Structures in Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1029" to="1059" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

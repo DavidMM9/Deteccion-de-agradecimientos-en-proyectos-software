@@ -1,0 +1,1122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Undulate: A framework for data-driven software engineering enabling soft computing</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Elsevier BV</publisher>
+				<availability status="unknown"><p>Copyright Elsevier BV</p>
+				</availability>
+				<date type="published" when="2022-12">2022-12</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Timo</forename><surname>Asikainen</surname></persName>
+							<email>timo.o.asikainen@helsinki.fi</email>
+							<idno type="ORCID">0000-0002-7885-8715</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Tomi</forename><surname>Männistö</surname></persName>
+							<email>tomi.mannisto@helsinki.fi</email>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="laboratory">ScienceDirect Information and Software Technology</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">Department of Computer Science</orgName>
+								<orgName type="institution">University of Helsinki</orgName>
+								<address>
+									<country key="FI">Finland</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Undulate: A framework for data-driven software engineering enabling soft computing</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">Information and Software Technology</title>
+						<title level="j" type="abbrev">Information and Software Technology</title>
+						<idno type="ISSN">0950-5849</idno>
+						<imprint>
+							<publisher>Elsevier BV</publisher>
+							<biblScope unit="volume">152</biblScope>
+							<biblScope unit="page">107039</biblScope>
+							<date type="published" when="2022-12" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">CDE781DE6EA2901C9F50E61FBA30B32B</idno>
+					<idno type="DOI">10.1016/j.infsof.2022.107039</idno>
+					<note type="submission">Received 30 November 2021; Received in revised form 26 May 2022; Accepted 4 August 2022</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>Soft computing Multilevel modelling Dimensional database Continuous experimentation Data-driven software engineering</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Context. Especially web-facing software systems enable the collection of usage data at a massive scale. At the same time, the scale and scope of software processes have grown substantively. Automated tools are needed to increase the speed and quality of controlling software processes. The usage data has great potential as a driver for software processes. However, research still lacks constructs for collecting, refining and utilising usage data in controlling software processes.</p><p>Objective. The objective of this paper is to introduce a framework for data-driven software engineering. The Undulate framework covers generating, collecting and utilising usage data from software processes and business processes supported by the software produced. In addition, we define the concepts and process of extreme continuous experimentation as an exemplar of a software engineering process. Method. We derive requirements for the framework from the research literature, with a focus on papers inspired by practical problems. In addition, we apply a multilevel modelling language to describe the concepts related to extreme continuous experimentation. Results. We introduce the Undulate framework and give requirements and provide an overview of the processes of collecting usage data, augmenting it with additional dimensional data, aggregating the data along the dimensions and computing different metrics based on the data and other metrics. Conclusions. The paper represents significant steps inspired by previous research and practical insight towards standardised processes for data-driven software engineering, enabling the application of soft computing and other methods based on artificial intelligence.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>Managing software processes has become increasingly complex. New features and versions of software-based services are introduced continuously. Consequently, the number of decisions concerning the evolution and content of such services to be made has grown. Ideally, the decisions should be made based on all the available data, including the data from both software and business processes. After all, any value created by the software is typically created in the business processes. Therefore, the data generated in the business processes can be assumed to contain more information about the value of software.</p><p>Given the large number of decisions that are needed and the required pace of decisions, there is a dire demand for various forms of automated decisions and decision support: In cases where the best course of action is clear based on data, we argue that a decision should be made and executed automatically. However, if the data is ambiguous, the relevant data should be presented to a human, and a ticket or other entity prompting a decision should be created. The approach T. Asikainen and T. Männistö in a fixed format. Often there are benchmark data sets available to solve the problem. However, this setting is not as such applicable to software processes nor the business processes powered by software: there is too much variety in those processes, primarily due to the fact that the business process can be almost any conceivable process. This condition severely hinders the straightforward application of artificial intelligence to software engineering and driving processes with data.</p><p>To better support the application of soft computing and other artificial intelligence methods in software engineering, we introduce the Undulate framework. The framework covers <ref type="bibr" target="#b0">(1)</ref> the software processes and their control interfaces, (2) business processes powered by the software produced in the software engineering processing, (3) collecting and processing data from the above-mentioned processes, resulting in dimensional data, (4) applying computational methods to the dimensional data, thus enabling the control of software processes and generating stimuli for making decisions.</p><p>The framework is extensible: a software process may have a control interface (or many of them) or not, and its data may be captured or not. Similarly, the data from the business processes may be available or not (or something in between). Furthermore, new computational methods can be added as needed. Also, the dimensional database can be augmented with new metrics that may be defined in terms of other metrics or (augmented) raw data.</p><p>The remainder of this paper is structured as follows. Next, in Section 2, we will discuss previous work, followed by a description of the research method applied in this paper (Section 3). After that, we provide an overview of Nivel 2 (Section 4), an advanced multilevel modelling language based on our earlier work that will be employed later in the paper. After that, we proceed to discuss the Undulate framework, starting with an overview of the related processes in Section 5. We proceed by giving a declarative description of experimentation concepts in Nivel 2 and describing the experimentation process in the context of Undulate in Section 6. The part concerning Undulate is concluded by a discussion of soft computing and decision support enabled by the data. Discussion and comparison with previous work follow in <ref type="bibr">Section 7.</ref> Conclusions and an outlook for further work round up the paper in Section 8.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Previous work</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1.">Software processes as a mapping from data to data</head><p>Table <ref type="table" target="#tab_0">1</ref> contains a summary of various software processes from the data processing point of view. The table contains our abstraction of a number of software engineering processes as they are commonly defined in textbooks, see e.g. <ref type="bibr" target="#b8">[8]</ref>. The table illustrates that even though two software processes can have independent traditions and identities, they may resemble each other from the data processing point of view: processes are controlled using some (meta) data and produce some form of data as output. The resemblance suggests that the same theoretical and pragmatic tools can be used to manage the data produced by software processes, and by the same token, by business processes. Also, as the processes are controlled by data, the similarities also enable driving the processes with data.</p><p>It is worth noting that although software testing has been largely based on tests that either pass/fail, information will be lost if the test outcome is reduced to this dichotomy. For example, in mechanical engineering, a prominent example of the application of artificial intelligence is related to maintenance: the failure of a device is often preceded by signals such as extra vibrations, different use of power or similar. In a similar vein, an increasing trend in the run time of an operation may imply that failures are about to occur, e.g. due to an impending timeout, and corrective action is needed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.">Data-driven development</head><p>Data-driven development has been defined as the ability of a company to acquire, process, and leverage data in order to create efficiencies, iterate and develop new products, and navigate the competitive landscape <ref type="bibr" target="#b9">[9]</ref>. To be useful, the ability should naturally be accompanied by action.</p><p>The setting resembles various forms of process automation in traditional engineering domains, such as chemical processing and power generation. In such settings, a human operator is often too slow to control the process efficiently; hence, automation is needed. Also, efficiency requires that the control is centralised to a control room instead of operators staffing various control panels distributed over the facility. <ref type="foot" target="#foot_0">1</ref> In many cases, the data generated within the process itself is enough to make decisions about continuing the process. This is the case in, e.g. a customary pipeline. On the other hand, all the available data should be leveraged when making critical decisions. Also, the data can be leveraged in making daily decisions once it has been made easily accessible to all processes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.">Continuous software engineering and experimentation</head><p>During recent years, various continuous practices have become a significant trend both in the practice of and research on software engineering <ref type="bibr" target="#b10">[10]</ref>. Simultaneously, experimentation has gained popularity as a way of acquiring knowledge from real users <ref type="bibr" target="#b11">[11,</ref><ref type="bibr" target="#b12">12]</ref>. The continuous principles have been applied to experimentation as well, leading to continuous experimentation <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b13">13,</ref><ref type="bibr" target="#b14">14]</ref>. Continuous experimentation has been studied from various points of view, including conceptual <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b11">11,</ref><ref type="bibr" target="#b15">15]</ref>, adoption <ref type="bibr" target="#b16">[16]</ref>, deployment <ref type="bibr" target="#b15">[15]</ref> and metrics <ref type="bibr" target="#b17">[17,</ref><ref type="bibr" target="#b18">18]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Research method</head><p>In this paper, we apply the constructive research method. In more detail, we generalise from previous research on software processes, data-driven approaches and automating software processes to come up with a generally applicable framework for data-driven software engineering.</p><p>Although empirical data is essential for keeping software engineering research aligned with the software engineering practice in the industry, we believe that constructive research is likewise necessary. Constructive research enables academia to introduce and elaborate on new ideas that would be too risky to study in the industry. It may also be the case that the most innovative ideas are only published as research or otherwise openly discussed only several years after their conception.</p><p>We base our understanding of the relevant fields, i.e. software processes, data-driven approaches and automating software processes, on previous research literature. We have collected no empirical data as a part of the research being reported. Also, for the research literature, we apply the classical literature review approach, with the aim to focus on the most representative papers in each field. In addition, we run a number of literature searches on relevant keywords in order to identify additional relevant papers.</p><p>The fact that we do not restrict ourselves to specific application domains or software processes implies that the kind of data we consider in the Undulate framework is likewise highly general. This, in turn, implies that the kind of data or even the situations in which decisions need to be made are unknown. Consequently, it is not possible to elaborate on specific computing methods.</p><p>We use experimentation as an example of a software process that may benefit from data and be driven by it. Several reasons motivate this choice. First, experimentation has not yet been thoroughly studied  in research. Instead, there is room for new conceptions of the process and data involved in it. Second, experimentation is essentially linked to data: experimentation is about obtaining and analysing data from two or more variants. Third, the data is typically generated in a production environment, i.e. outside the context of the software processes themselves, which makes the set-up interesting. The research questions we set out to answer are as follows:</p><p>RQ1 What constituents are necessary to support data-driven software processes? RQ2 What concepts and processes are required for extreme continuous experimentation for web-facing software services? RQ3 How should the data generated by the software and business processes be processed and analysed to support software development? RQ4 How can soft computing be used to support extreme continuous experimentation?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Nivel 𝟐 -a short introduction</head><p>We use a variant/extension of a metamodelling language Nivel that we have created in our previous work <ref type="bibr" target="#b19">[19]</ref>. The idea that a model may span an arbitrary number of levels spun by an instance of relationship is not new; see, e.g. <ref type="bibr" target="#b20">[20]</ref>, where the authors argue that such modelling concepts can be used to reduce the accidental complexity due to restricting to two levels in domain models. Nivel is based on a core set of conceptual modelling concepts: class, generalisation, instantiation, attribute, value and association. Nivel can be used to express models spanning an arbitrary number of levels defined by the instance of relationship: this is in contrast with conventional conceptual modelling methods, such as object-oriented modelling or entity-relationship modelling, in which there are only two levels available: one for types (classes and tables, respectively) and instances (objects and rows/tuples, respectively). However, in Nivel<ref type="foot" target="#foot_1">2</ref> an entity 2 can be both an instance of another entity and a type of an entity at the same time.</p><p>The version we use is named Nivel 2 and remains still unpublished. The most important aspect in which Nivel 2 is different from Nivel is that instead of associations, Nivel 2 uses references for representing relationships between entities. This is justified by the predominance of references in modern knowledge representation. E.g. the JSON data format/language uses a form of references in that an object can include another object as a named value. The use of references will be discussed extensively below.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.">Concepts</head><p>Nivel 2 modelling concepts are illustrated in Fig. <ref type="figure" target="#fig_0">1</ref>, such as the concepts of pizza and its toppings at various levels of abstraction. At the top, the entities Pizza and Topping are defined. The first order instances of Pizza represent pizza recipes or varieties, such as Margherita shown in the figure. Further, a second-order instance of Pizza represents physical pizzas, each an instance of a first-order instance, e.g. the Guido's Margherita. On the other hand, first-order instances of Topping are toppings appearing in pizza recipes, such as mozzarella or tomato sauce, whereas second-order instances of toppings are physical ingredients in pizzas.</p><p>Entities can be characterised using attributes and their manifestations, values. An attribute has the usual characteristics of identifier, name, and description and a value type, and in addition a potency, a positive integer with the semantics as follows: an instance of an entity containing an attribute of potency p has an attribute of potency 𝑝−1, for 𝑝 &gt; 1, and may have values with the identifier, name and type defined by the attribute for 𝑝 = 1. As an example, Pizza defines an attribute size of potency = 2, which is manifested as values in second order instances, e.g. physical pizzas: size is a choice that a customer makes when ordering a pizza. On the other hand, the attribute crust represents the type of crust in a pizza recipe. As an example, Margherita has crust type thin.</p><p>The relationship between pizzas and toppings is represented by Pizza having a reference to Topping. The reference has potency = 2: this implies that the first and second-order instances of Pizza may have a reference to one or more toppings. In the example of Fig. <ref type="figure" target="#fig_0">1</ref>, the reference toppings of Margherita has Mozzarella and Tomato sauce as its targets. More generally, each reference target in an instance of the source must be an instance of one of the targets of the source.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.">Implementation</head><p>We have implemented Nivel 2 as follows. The data is stored in a relational database (Microsoft SQL Server Azure) using tables for each basic concept (entity, instance of, reference, reference target, attribute, value, generalisation). A stored procedure can be used to query the data related to an entity. The database can be accessed using an API component datapi implemented in Python. <ref type="foot" target="#foot_2">3</ref> A generic interface component, implemented in React, <ref type="foot" target="#foot_3">4</ref> can be used to edit and view Nivel 2 entities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Overview of the Undulate framework</head><p>In this section, we provide an overview of the Undulate framework supporting data-driven software engineering. Next, we will describe the concepts and process of the experimentation process, a stereotypical example of a software process founded on data that would greatly benefit from the application of soft computing techniques. Thereafter, we outline how the data produced in experiments and other executions of software can be refined and made accessible to the experimentation and other software processes.</p><p>As far as information systems, supported at least partially by software, implement a significant part of a company's business processes, the framework can also be applied to the business processes themselves and support the transition towards a data-driven business. Fig. <ref type="figure" target="#fig_1">2</ref> illustrates the general processes underlying the Undulate framework. A more detailed view of data processing can be found in Fig. <ref type="figure" target="#fig_2">3</ref>. As can readily be seen from the figure, the processes linked by data flows form a cycle: this cycle demonstrates the fact that data drives the processes. In the following subsections, we will discuss various parts of the processes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.">Data generation</head><p>Let us start from software (engineering) processes and the information they produced. First and foremost, software processes produce software that is later run as a part of business processes. Second, software processes themselves produce data, such as test reports, ticket data, activity data from version control systems etc.</p><p>It is assumed that the software produced by the software (engineering) processes is used in one or more business processes: as an example, the software could be used to implement a web-facing service, such as an online store running in a browser or a mobile application, and its backend running on a server and connected to various databases. Depending on to what extent the software is instrumented, details of user interactions with the software as well as its inner working can be collected and sent for further processing and analysis.</p><p>While the data produced by the software processes themselves is undoubtedly valuable for many purposes, usage data from the business processes should, in general, better reflect the behaviour of the users of the software and, consequently, the value that the software is producing. For example, in an online store, the software should enable a smooth payment process. However, transaction data from the online store could reveal that users have difficulties completing their purchases.</p><p>In the software engineering context, particularly related to online experiments, data is often assumed to be sent one record at a time using, e.g. an HTTP API endpoint or small batches. This is in contrast with traditional data warehouses, in which approaches such as ETL (extract, transform, load) based on files and scheduled (e.g. daily) updates have been the predominating approach. If the data is received with significant delay, it cannot be used for real-time analytics or process control. On the other hand, once the data has been received and appropriately incorporated into the database, the majority of analytics should remain the same, notwithstanding how the data was received. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.">Data processing and dimensional database</head><p>Both the data produced by software processes and business processes enter the dimensional database through the data processing process. Data processing is described in more detail in Fig. <ref type="figure" target="#fig_2">3</ref>.</p><p>The first stage of data processing is receiving and augmenting the data, also called preprocessing. Data may be received by an API service or similar, either one record at a time or, especially where a data connection is not continuously available, in batches. Upon receiving the data, the data may be augmented with additional metadata: for example, a user ID may be used to supplement the record with other dimensional data, such as geographical location, age, gender or similar information that can legally and technically be used in further analysis.</p><p>After preprocessing, the data is forked into two distinct storages: raw data storage and dimensional database. As the name suggests, the raw data storage contains the data in the form in which it was received, with no loss of information. The purpose of storing raw data is that it enables ad hoc analysis, i.e. computing aspects of data that were not preconceived when implementing the software. As an example, social media platforms enable different forms of malicious behaviour, some of which may not have been considered by the designers of the platform at the design time. However, when such behaviour emerges, it is useful to be able to go back to the data can analyse it with respect to the behaviour.</p><p>Privacy As the raw data has not been aggregated or otherwise anonymised, it is possible or even likely, depending on the application, that the raw data is personal data: names, user IDs, IP addresses, email addresses etc. but also free text may be individually, or in combination with other data, sufficient to link the data to a person with certainty or significant likelihood. Therefore, special legislation concerning personal data may apply to the raw data. The general data protection regulation (GDPR) of the European Union is a prominent example of such legislation. In essence, such legislation may, in effect, prevent the processing of data beyond prescribed purposes and tasks. Further, safeguards are needed to keep track of who has accessed the data etc. Therefore, raw data or other data that has not been anonymised cannot be freely used for explanatory analyses or making decisions in innovative ways.</p><p>Privacy legislation, such as GDPR, usually makes no general exemption to its provisions concerning data analysis. In other words, the restrictions on processing data apply to analysis as well, and so do the obligations of providing information on the processing of the data subjects. This makes developing analytical methods more difficult. To alleviate this situation, simulation can be used to produce sample data that can be used as a basis for implementing various forms of analysis. While simulated data may be different from real user data in many respects, it is still likely to be syntactically and structurally, and it can be used to validate that the computations that are to be applied to real data later work as intended. We will discuss simulating user behaviour below; see Section 6.2.2.</p><p>The main body of analysis and further computations are ideally based on a dimensional database. The dimensional database resembles functionally a data warehouse or a data mart<ref type="foot" target="#foot_4">5</ref> : The data is stored as facts in fact tables. Fact tables are linked to dimensions, such as date or geographic location, and facts correspondingly with dimension values. Each dimension includes only a manageable number of values, also termed levels. For example, instead of storing timestamp with the millisecond accuracy or higher, the dimension would only include the date or have the precision of at most seconds. The purpose of reducing the number of possible levels is to be able to aggregate data based on dimensions.</p><p>Aggregating data serves several purposes. First, aggregation may, if the characteristics of data are adequately considered and implemented, enables the anonymisation of data, making it possible to utilise the data in the application and freely analyse it.</p><p>Second, aggregating data also helps reduce the size of the data, resulting in faster analysis and lower storage requirements.</p><p>Third, aggregation enables joining data from multiple fact tables based on dimensions for analysis and other purposes. For example, it is possible to study the interrelation between application failures and server load levels by joining the two fact tables according to the time and service instance dimensions. Note that the more fine-grained level of dimension is used, the more direct the link between the variables should be; on the other hand, there will be fewer units available for analysis, and random factors will play a larger role. Taken to an extreme, there may be no matching values available at all if the level of granularity is too high.</p><p>In addition to joining the fact tables along the matching dimensions, i.e. dimensions that are the same, it may also be relevant to study lagged time dimensions which help to answer questions related to delayed behaviour and reason about leading and lagging indicators. As an example, a campaign, other event or an update may have long term effects which can be analysed by means of time series analysis of the related time series. Also, retention is defined as the proportion of customers a business is able to keep over a period of time and can be defined as the number of customers left from the initial set at the end of the period, i.e. the start of the next period.</p><p>T. Asikainen and T. Männistö</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.">Control processes</head><p>The loop in Fig. <ref type="figure" target="#fig_1">2</ref> is closed when data from the dimensional database is used in control processes to drive the software processes. For example, the data generated in business and software processes can be used to decide which tests to run, which features to develop further or roll out or how much server capacity should be made available in the future. In general, control processes can be either manual or automated in part or entirely. We will discuss continuous experimentation as an example of a software engineering process that is essentially data-driven and may benefit from automation in Section 6.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.">Metrics engineering</head><p>In addition to the processing of data itself, we believe that it is crucial to pay effort to the definition and content of metrics themselves. We term this activity metrics engineering and the related, organised storage of data pertaining to metrics database, see Fig. <ref type="figure" target="#fig_2">3</ref>. Recognising metrics engineering as an activity of its own is based on the observation that significant statistical and application-specific expertise enters the way how metrics are defined and computed. We believe that identifying this as an activity of its own will improve the quality of the collected data and, maybe more importantly, the quality of the processed data that is eventually used to drive software engineering and other processes. Also, the metrics database supports reuse at the level of metrics and may also serve as the platform for publishing information related to metrics. The metrics database should contain data similar to a quality description in statistics, including, e.g. how often the data is updated, possible sources of error, if and how corrections are made etc.</p><p>It may also be reasonable to compute known high-level metrics already in the client or server depending on the availability of computing and other resources, the possibility of changes in the definition of high-level events etc. Finally, it is also possible to define new metrics based on metrics. As an example, the standard 𝑍 score related to the null hypothesis</p><formula xml:id="formula_0">𝜇 0 = 𝜇 is 𝑍 = X−𝜇 0</formula><p>𝑠 , where X is the sample mean and 𝑠 is the standard deviation of a sample.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.5.">Adopting data-driven software engineering</head><p>For a framework such as Undulate to be practically useful, it is of paramount importance that the framework can be implemented in a company within a reasonable time frame and preferably in an incremental manner. This is since it is typically economically not feasible to commit to multi-year projects that provide no early paybacks. Also, the framework should not require extensive changes to a large number of processes in order to be useful. In this section, we discuss how the design Undulate addresses these issues.</p><p>The adoption of the Undulate framework is illustrated in Fig. <ref type="figure">4</ref>. In the figure, the curves in the time-level of automation space represent different software processes controlled using data.</p><p>The dimensional database and the related data processing are the key architectural components (not shown in Fig. <ref type="figure">4</ref>) that must be in place for the framework to work. In addition, driving processes using data requires two components: First, the data used to drive a process must be made available in the dimensional database. This is illustrated using dependency arrows from the processes to the parts of the dimensional database (cylindric shapes).</p><p>Second, automation is only possible if there is a machine-operable interface to the process, e.g. a REST API or a command-line interface, which can typically, with ease, be turned into an API. The diamond symbols represent the control mechanisms enabling automated control over the processes.</p><p>The illustration of the adoption process is, necessarily, an idealisation. The degree of automation does not need to grow smoothly nor approach 100% as time passes. Also, new features and subsystems are Fig. <ref type="figure">4</ref>. An example of the transition towards data-driven software engineering. In the course of time, new data sources and control mechanisms can be added incrementally instead of committing to fully data-driven processes at once. The level of automation (proportion of decisions made automatically) increases in each process as the data becomes better understood through learning from past data and decisions. Legend (entity -graphical symbol): curve -the level of automation of a software engineering process as a function of time; diamond -the introduction of a control mechanism (related to a process); cylinder -data source; dashed arrow -dependency of a process on a data source. introduced, and the proportion of manual decisions may also decrease. It should also be noted that automation should not be a value as such but a means towards other goals, e.g. making decisions quicker and enabling the expert staff to focus on decisions with high risks or otherwise of importance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Experimentation</head><p>In this section, we discuss the software engineering process experimentation. In more detail, we define the main concept related to experiments using Nivel 2 . In addition, we will outline the experimentation process.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.">Concepts</head><p>Fig. <ref type="figure" target="#fig_3">5</ref> illustrates the Nivel 2 entities used to represent concepts related to experiments. We will use a sans serif typeface when referring to Nivel 2 concepts.</p><p>The main concept is naturally Experiment. The first order instances of Experiment represent experiments in the conventional sense: such an instance defines a number of hypotheses and test groups, where each group is treated with different software. Both hypotheses and groups are represented by Nivel 2 entities, Group and Hypothesis. In addition, an experiment instance defines a target duration, answering the question of how long the experiment should run.</p><p>An instance of Group defines aspects related to an experiment. Most importantly, an instance of Group defines an implementation (represented by the references implementation) used to produce the service for the users in that group. The implementation is represented as a reference to one or more containers: an instance of the group refers to one or more instances of Container, corresponding to source code or a container image, e.g. Docker<ref type="foot" target="#foot_5">6</ref> image: here, the first order instances of Container have a different name in common language than the secondorder instances, i.e. containers created from an image. A group also defines the target size of its instances, i.e. how many users the group should have when the experiment is run.</p><p>Note that an instance of Experiment may be dynamic in that the active groups of the experiment may change over time as new groups are added. Old ones are completed, i.e. the timespan scheduled for the group has ended, or the group has been otherwise terminated, e.g. due to sufficient level of statistical significance has been reached. The changes in groups can be done manually, or they may be done automatically based on the search strategy, defined by a referenced Nivel 2 entity. The role and semantics of search strategy are discussed in more detail in the following subsection concerning the experimentation process. Due to its dynamic character, an experiment can also be termed an experiment programme, although experiment is preferred here in most cases for brevity.</p><p>A Hypothesis defines a condition related to a metric or a statistic computed based on the experimentation data. For example, the hypotheses could state that a target variable in an experiment, say click-through rate, should have a value that is statistically significantly greater than the baseline observed in production.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>T. Asikainen and T. Männistö</head><p>An experiment makes a distinction between target and control hypothesis, represented by references with respective names. The idea behind the distinction is that while an improvement, such as an increase in click-through rate, is expected in the primary hypotheses, there is simultaneously expected to be no change in the control hypotheses. For example, one would expect that a change in the user interface does not cause the number of application crashes (per page load) to increase. To automate the decisions based on experiment results, a reasonable strategy could be to introduce a sufficient number of control hypotheses covering all aspects of the correct behaviour of service and then check these hypotheses automatically, enabling the experts to concentrate on the primary hypotheses.</p><p>A second-order instance of Experiment represents a run of an experiment. The content of the experiment is defined naturally by its type, the first order Experiment instance. The second-order instance has values tied to the attributes and references defined at the top level. For example, the second-order instance has a start and end time, and the groups of the experiment have actual sizes and respective start and end times. Also, the hypotheses related to the experiment have values that enable reasoning on them.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.">Experimentation process</head><p>The experimentation process is illustrated using a flow chart in Fig. <ref type="figure" target="#fig_4">6</ref>. The experimentation process begins with the experiment design that will result in a Nivel 2 experiment entity along with the entities it refers to. Designing an experiment is typically an iterative and cross-disciplinary process, the details of which will depend on the characteristics of the experiment and organisation and are outside the scope of this paper. For the software experimentation process in general, see, e.g. <ref type="bibr" target="#b22">[22]</ref>. In addition to manual experiment design, previously acquired data can be used to generate new experiments also even automatically or at least extend existing experiment programmes with new test groups.</p><p>Using the design of the experiment as input, the software that will be used to implement the experimental services must be prepared. This part of the process may include different activities based on the situation. Suppose the features being experimented on have already been implemented and instrumented to generate the data needed to compute the outcomes of the experiment, i.e. resolve the hypotheses. In that case, the required source code can be automatically generated. If, on the other hand, features have not yet been implemented or instrumented to produce the data, this must be done using the software processes of the company running the experiment.</p><p>Overall, instrumentation plays a significant role in experimentation. Depending on the application domain and devices used, it may not be feasible to collect all data related to all features but rather seek a balance between performance, bandwidth usage etc. and the availability of data. In any case, the instrumentation should include the information about the experiment group it relates to: this will enable linking the usage data to the experiment in a reliable way.</p><p>Once the source code is ready, it can be built using the processes and tools that are generally used in the company. The build pipeline may, for example, include automated tests at different stages of the pipeline. In Fig. <ref type="figure" target="#fig_4">6</ref>, it is assumed that Docker images are built, but the process itself does not commit to a particular technology. However, some assumptions are made about deploying the images (or other encapsulated units of software). First, it is assumed that such images can be deployed independently of each other. Second, it is assumed that there are available mechanisms for routing some requests to certain implementations of service at runtime dynamically based on, e.g. cookies. An example of such mechanisms is Kubernetes 7 (for managing 7 https://kubernetes.io/. containerised workloads) and Istio 8 (for routing the traffic to the correct implementation of a service based on experiment group membership, encoded in a cookie or similar part of a request). The above-mentioned technologies are mainly practical tools, but they have been discussed in the research [see e.g. <ref type="bibr" target="#b23">[23]</ref><ref type="bibr" target="#b24">[24]</ref><ref type="bibr" target="#b25">[25]</ref>.</p><p>Once the containers providing the experimental software are running, and the routings have been updated, the cluster is ready for executing the experiment and the experiment is ready to run. The users in experiment groups are routed to the experimental version of the software, and the usage data is sent for processing as described in Section 5.2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.1.">User registry and management</head><p>In parallel with preparing the experimental software, the users participating in the experiment need to be selected and allocated to experiment groups. In this paper, we assume for simplicity that users need to register and log in to use the software under experimentation. In practice, this is not an assumption that would be true in all circumstances. Further, identifying users that have not registered may be difficult or even impossible between sessions. Users are allocated to groups randomly. The number of users allocated to each group should be larger than the desired size of the group: users inevitably drop out of the experiment during its course, and some allocated users may even never actually enter the experiment.</p><p>It may also be the case that a user may not be allocated to an experiment. Various reasons for this may exist: for instance, the user may have participated in an experiment previously and needs, therefore, to be excluded from further experiments until a predefined time, e.g. two weeks, has passed. In addition, judicial reasons may prevent users from participating in an experiment. The experiment or the group itself may have specific requirements for the users participating in an experiment. For example, the experiment may be restricted to a particular geographical area or a previously identified cluster of users. Overall, a large variety of different considerations must be taken into account and combined with various forms of data related to the users. The logical site for such computation is called the user registry.</p><p>Once the cluster is ready for execution and the users have been allocated, the experiment may be started. The start of an experiment may be specified in the second-order experiment instance (start date value). At that time, users allocated to groups should receive their group ID when authenticating to the service along with other data. This group ID is subsequently used to route the user requests to the software related to that group and sent back with usage data for processing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.2.">Simulated users</head><p>Usage data is essential in any experiment. As we cannot rely on real user data in our work, we have implemented a simulation system to overcome the lack of actual user data.</p><p>In a simulation, each user belongs to a group. A group defines a set of possible states in which a user can be at a given time. In addition to its state, each user has a set of variables that affect its behaviour. The simulation happens in rounds. On each round, an action is selected for the user. The action to be performed is selected randomly based on action weight formulas defined for the group of the user: each action weight formula is evaluated, resulting in a weight value, used subsequently in the draw. The action may involve invoking the service related to an experiment. Through the calls to the service that may be external to the simulation, the users can also interact with each other; otherwise, each user is encapsulated and not affected by other users.</p><p>In the next step of the round, the result of the selected action enters the state transition formulas, defined for each group and state. The formulas may also involve the variables of the users. Similarly as, 8 https://istio.io/.</p><p>when selecting the action, the new state is drawn based on the weight values from the formulas.</p><p>After choosing the new state, the variables are updated based on variable formulas defined likewise for the group. The variable formulas may involve the current values of the variables as well as the state and the result of the action.</p><p>Finally, a formula is used to compute the delay (in seconds) until the next round begins.</p><p>Each formula may also involve a random component drawn from a predefined distribution, such as the normal distribution. This enables stochastic simulations. Another source of stochasticity is that each variable may be defined as an initial distribution. Due to the differences in initial values of the variables, each user belonging to the same group may have a different type.</p><p>The group as defined above can be modelled in Nivel 2 ; the corresponding entity is called a group definition. Similarly, a simulation is defined in Nivel 2 . A simulation is characterised by a set of groups, each to referring a group definition and a number of users to be created for the group. A simulation also defines a time scale that defines how quickly the simulation should be run in comparison to real-time; a simulation can also be run as quickly as possible, i.e. without scheduled delay between rounds of simulation.</p><p>The simulations described above have been implemented in a component called simulient in Python. The simulient system sends the simulation results to an API called results_api after each round. The results involve the user ID (running number), group ID, initial and final state and the action taken. In addition, the values of each variable are sent as details. The simulation runs for a scheduled duration of simulation time. It can also be stopped using an API endpoint on request.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.3.">Updating and stopping the experiment</head><p>While the experiment is running, the accumulating results, as received from the dimensional database, may be used for various tasks. Soft computing and other methods may be used for this task. As an example, if one or more of the control hypotheses show that some group is performing badly, alerts can be sent for human intervention or the group or entire experiment may be aborted altogether. Similarly, based on the results, new groups can be added. For example, in a search-based approach, if a group 𝐺 corresponding to a certain point in an 𝑛 dimensional parameter space performs significantly better than other groups currently running, the search may be extended to points closest to 𝐺 (in a grid). If, on the other hand, no currently running group is better than the others and each group has been running for the scheduled time and is ready for analysis, a ticket may be added suggesting human intervention to the experiment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.4.">Implementation</head><p>Checking the experiments. Periodically, the Nivel 2 database is queried for active experiments, i.e. experiments that are running. Each running experiment is checked, and groups may be terminated (moved under completed groups) or added based on the results so far, the attribute values of the experiment (e.g. the maximum number of groups running in parallel). A search strategy for linear search has been implemented as a Transact-SQL stored procedure.</p><p>If and when the experiment is run as a simulation instead of using real users, the corresponding simulient configuration is updated with the newly created groups so that data will be generated corresponding to the new groups as well.</p><p>Updating the cluster. Another process, likewise invoked periodically, goes through each combination of service and cluster to check which experiment groups should run in each cluster. Based on this information, JSON files containing Kubernetes specifications (deployment, destination rule, virtual service) as generated and applied to the respective clusters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Simulated users.</head><p>In parallel with the experiment, a simulient session is running. The simulient component checks the simulient configuration in Nivel 2 database using data API provided by datapi for new or completed groups and updates its internal configuration accordingly: users in the terminated groups are removed, and new users are added for the new groups.</p><p>Viewing the experiment results. We have implemented a web interface for viewing the experiment results. The interface is implemented using the Shiny<ref type="foot" target="#foot_6">9</ref> package of the R<ref type="foot" target="#foot_7">10</ref> programming language. The interface allows selecting a run of the experiment for further analysis. The groups and metrics related to the run are shown, and any subset can be selected. In the current implementation, the results are shown as curves, one for each combination of selected metric and group; other visualisation can be added with relative ease.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Discussion</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.1.">Answering the research questions</head><p>In the following subsections, we will answer each of the research questions RQ1-RQ4, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>What components are necessary to support data-driven software processes?</head><p>The question is answered by the construction of the Undulate framework in Section 5. Its key components are:</p><p>• Control interfaces of software processes. If automation is required, the interfaces should be programmable. Otherwise, manual interfaces will do as well. New interfaces can be added and old ones automated as new data-driven practices are introduced. • Data collection from both software and business processes. Initially, it is not required to collect all data from all processes. • The dimensional database, which is a key and mandatory component of the framework. A centralised database organised using the same dimensions, where applicable, enables joining data stemming from different processes, thereby vastly expanding the possibilities of utilising the data. • Controlling processes based on the data is the very essence of data-driven software engineering. Similarly, as in the items above, not all decisions need to be based on quantitative data and or automated.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>What are the concepts and processes required for extreme continuous experimentation for web-facing software services?</head><p>The concepts related to experimentation were discussed extensively in Section 6, see esp. Figs. <ref type="figure" target="#fig_4">5 and 6</ref>. In addition to the basic concepts, some technical concepts may be necessary depending on the deployment technology used. dee</p><p>How should the data generated by the software and business processes be processed and analysed to support software development? Data processing as a part of the Undulate framework is discussed in Section 5.2. The storage of data is centralised, which allows joining data from different sources for various analytical tasks. The same goal is supported by the use of dimensions to characterise data. The use of dimensions, as well as metrics computed based on augmented raw data and other metrics, works towards the same goal.</p><p>Further, the Undulate framework is mainly based on using data that is anonymised by aggregating it to large enough units. This approach makes the data more useable from a privacy point of view. On the other hand, raw data is saved and made accessible on a more restrictive basis for ad hoc analysis, process mining etc. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>How can soft computing be used to support extreme continuous experimentation?</head><p>The data made available in the dimensional database can be used as such as an input for soft computing methods. In addition, in Section 7.5, we will argue that aspects of softness are also present in various familiar software and statistical processes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.">Experimentation</head><p>In the following subsections, we compare the work presented in Section 6 with previous work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.1.">Knowledge representation</head><p>In this paper, we are using Nivel 2 , a declarative multilevel modelling language for representing experimentation knowledge. This is in contrast with most previous approaches to experimentation: the predominant style of knowledge representation seems to be various configuration files in JSON or similar languages and even procedural knowledge in the form of computer programs written in general-purpose programming languages.</p><p>Although configuration files and programming languages have the benefit of familiarity to software professionals, we believe that applying declarative knowledge representation techniques provides a number of benefits. First, languages such as Nivel 2 provide tool support for creating, viewing and maintaining the knowledge base. Second, the languages provide schema-like support for creating entities and ensuring their consistency. Third, the tool support resembles standard form editing functionalities, which makes the knowledge more accessible to non-technical experts.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.2.">Process</head><p>The overall experimentation process described in this paper resembles the processes discussed in existing research [see e.g. <ref type="bibr" target="#b5">6,</ref><ref type="bibr" target="#b7">7]</ref>. This has also been the intent. However, unlike in previous research, we allow the experiment to take the form of an experiment program, consisting of multiple related stages in which groups may be added and completed groups removed. The changes in groups are based on the results from previous phases and are an example of extreme continuous experimentation driven by data.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.3.">Metrics</head><p>Metrics are artefacts, and like any other artefact, large amounts of both explicit and implicit or tacit knowledge are related to metrics. Traditionally, statistics and analytics has been an expert task with a limited amount of automation. When automation has been available, it has been supported by a thorough understanding of the accumulating data, both from the content and statistical and analytical point of view.</p><p>In previous research, metrics have been classified as OEC (Overall Evaluation Criteria) metrics, data-quality metrics, guardrail metrics and local feature and diagnostic metrics <ref type="bibr" target="#b17">[17,</ref><ref type="bibr" target="#b18">18]</ref>. The OEC metrics correspond to target hypotheses in the experiment entity of Fig. <ref type="figure" target="#fig_3">5</ref>. More generally, in the approach presented in this paper, the classification does not apply to the metrics themselves and not even the hypotheses, but rather the hypotheses in the context of an experiment. Further, the other metrics roughly correspond to control metrics. The extent to which changes are allowed to each kind of the remaining metrics varies. In our approach, this would be addressed by defining the corresponding hypotheses, e.g. setting the reference value.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.">Dimensional databases</head><p>In previous research, the general characteristics of storing experiment data have not been studied extensively. As the experiment data is typically stemming from the production system, experiment data is a subset of usage data generated as the software is used.</p><p>In the case of data-driven software engineering, the characteristics of data will depend on a large number of factors, including the software under study, the instrumentation in particular, how collected data is sent for analysis, possible with delay or omitted altogether; these conditions are relevant, especially in the context of mobile apps. Also, the users have control over the cookies that can be set, which is bound to affect the amount and quality of data that is available and will show up as omitted values for some users/session variables. In addition, the data is affected by the application itself, including possible errors.</p><p>The complexity of managing data is also emphasised by the emergence of specialised roles, such as data engineer, data scientist and business analyst [see e.g. 26].</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>T. Asikainen and T. Männistö</head><p>Although dimensional databases seem well suited for many analytical tasks related to software engineering, not all kinds of data fit their scope. As an example, clusterings, or more generally, embeddings of users, products, items of news etc., would best be represented as attributes of the dimensional values rather than facts.</p><p>Although dimensional databases are not a topic of intense scientific work, they are practically still relevant. As an example, Google Analytics, a part of Google Marketing Platform 11 seems to be essentially a dimensional database, although not explicitly phrased as such. Google Analytics also provides an example of computations that are made based on the raw data and not the (aggregated) dimensional data: an attribution is a calculated assignment of a quantity (such as the value of a sale transaction expressed in currency) to one or more contributed elements, such as landing page or other pages visited before the sale was completed. The attribution is more likely to be useful if it is based on individual page views and sales transactions instead of aggregated data from even a short period. The attributions themselves can be aggregated.</p><p>The raw data store and analysis based on it illustrated in Fig. <ref type="figure" target="#fig_2">3</ref> provide the opportunity for trying out different advanced computations. Once completed, such computations can be incorporated into the data augmentation phase.</p><p>In addition to the abundant technical challenges related to collecting, processing and utilising data, also legal challenges are increasing. Most importantly, GDPR sets significant requirements on any controller or processor of personal data situated in the European Union or processing the data of citizens of the union. Although there is some initial research on the effects of GDPR on software development [see e.g. 27], the GDPR, along with other privacy concerns, remain largely unaddressed in research. The aggregating performed as a part of the data processing in Undulate is, in principle, an efficient form of anonymisation and therefore resolves the privacy concerns.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4.">Simulation</head><p>As a part of validating the implementation of the experiment process in Section 6, we introduced the simulient component that generates a simulated database based on a configuration declaratively represented using Nivel 2 . The simulation shows that the experimental software is correctly built and deployed and that the routing to the software using cookies works as intended. Finally, the data thus generated is received by the API component result_data_api and available for analysis.</p><p>However, simulation has other purposes beyond the kind of validation described above. During recent years, digital twins of different physical entities, such as factories, have become the topic of intense discussions. The underlying idea or assumption is that the data describing the entity is more or less readily available for simulations, which enables running different scenarios. This, in turn, allows analysing of the effects of specific alternatives and different optimisations to be made.</p><p>Digital twins may also be useful in the digital world, as has been shown by Facebook <ref type="bibr" target="#b28">[28]</ref><ref type="bibr" target="#b29">[29]</ref><ref type="bibr" target="#b30">[30]</ref>. The authors report the use of simulations for various purposes. The simulations may be run against the actual production platform, an offline copy of the platform (in which the responses to specific events have been recorded), and a model-based version of the platform in which data from production has been used to train a statistical model of the platform. Simulations provide a quick and low-cost way to study various aspects of the platform, such as the possibility of malicious behaviour. From the software engineering point of view, simulations also provide an interesting alternative for testing and experimentation. As argued in Section 2, software processes that are different at first sight may turn out to be similar in many respects, and these similarities can be exploited when implementing and automating these processes.</p><p>11 https://marketingplatform.google.com/about/analytics/.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.5.">On the notion of softness</head><p>In this subsection, we discuss how softness in various forms is manifested in different software engineering and other applications.</p><p>CI/CD (continuous integration/continuous deployment) pipelines and other practices have become increasingly popular in software engineering. However, CI/CD pipelines lack a commonly agreed definition. However, the common understanding is that the pipelines automate a number of steps, each using as input the output from the previous stage or stages. There are few, if any, alternative paths: if the pipeline fails at any point, the execution stops and some kind of error is raised. Therefore, there is little softness as such in these pipelines. Therefore, the Undulate framework as such and in particular applied to continuous experimentation would significantly increase the potential for applying data-driven soft computing techniques in continuous software engineering processes.</p><p>Examples of data-based optimisations in software processes include:</p><p>• Different kinds of resources can already be elastic in clusters in that their capacity changes based on the usage data in real-time. Also, usage forecasts based on usage data can be used to alter the capacity before actual changes in usage occur • Also, other forms of resource optimisation in a cloud environment can be implemented • Relational databases use previous execution data to optimise queries as well</p><p>The above implies that the idea of leveraging usage data to drive software engineering processes is not new. Aspects of softness can also be seen in risk-based methods. Examples of such methods include inspecting only certain passengers entering a country, tax returns or components in complex machinery. What is common to these scenarios is that exhaustive inspection of all the entities is not possible due to the costs to the inspector and subjects. The cases selected for inspection are based on various sources of data, for example, the personal data of a passenger or some model of how components age and break does, or which components would cause the largest damage should they fail. In addition, some cases may be selected for inspection randomly: this is important if the inspection is related to detecting fraud or similar malicious human behaviour.</p><p>On the other hand, in software engineering, especially software testing, the emphasis has been on achieving full coverage: all the cases or combinations of values should ideally be tested, and testing should cover the entire code base. This may be due to the fact that software can, in many cases, be tested with relatively little cost nowadays with the aid of test automation. However, in some cases, software testing may be costly. As an example, this may happen in the case of embedded software when specialised, high-cost equipment is needed for testing. That equipment may then become the bottleneck in the production process. To optimise the process, one would like to select the tests that have the highest potential to reveal broken functionality in the devices and even to predict future problems; tests that are not useful for this purpose could be omitted. The Undulate approach is well suited for such optimisation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.6.">Transition towards data-driven software engineering</head><p>The Undulate framework introduced in this paper is unequivocally based on centralised data storage and control based on its data. In practical settings, implementing such data storage may be prohibitively expensive in time-consuming. Indeed, it has been reported that the application of artificial intelligence methods can be difficult to achieve due to various reasons, such as management scepticism, pressure to develop new features and challenges of combining data from multiple sources <ref type="bibr" target="#b26">[26]</ref>. The dimensional database in Undulate should, however, help to resolve the challenge of combining data from multiple sources. The acceptability may be improved when the same infrastructure is created with the aim of supporting both software engineering and business processes, all the way to the strategic level. Also, the fact that not all data sources need to be included at once should reduce the initial investment required. The same applies to the fact that not all software processes need to be included in the initial applications, as well as the fact that the target need not be full automation at once, if at all. Setting up such an infrastructure is still likely to require high-level management commitment from both the business and technical sides.</p><p>A possibly overlooked aspect is related to making the data useable; it may not be obvious what is available. Even when considering the software processes alone, not all stakeholders are likely to find and make use of the data directly using technical interfaces. Also, especially from the privacy point of view, access rights and logging access may be a problem. Towards this end, the dimensional database should contain a declarative model of the data, including descriptions in natural language, and have constructs for providing access to different users in a fine-grained manner. Also, the database should provide an interface that allows exploring both the metadata (descriptions of data) and the data itself. Making the data collected visible and useable more widely may also improve the acceptability of the investment.</p><p>Indeed, the focus on managing data may have been too much on technology. Tackling challenges such as ingesting vast amounts of data and running queries involving vast amounts of data have been extensively studied. Unquestionably, these issues must be resolved but eventually, data must be made available for people in order for them to run the processes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.7.">Nivel 2 vs. standard UML class diagrams</head><p>In this paper, we have applied the Nivel 2 , a multi-level modelling language under development, to represent both the concepts used to model experiments as well as the experiments and their instances, i.e. runs themselves. Given that standard UML <ref type="foot" target="#foot_8">12</ref> class diagrams enjoy extensive tool support and are well understood in the software engineering community, one may justifiably ask what are the benefits of using a modelling language still under development.</p><p>Fig. <ref type="figure" target="#fig_5">7</ref> contains a model of the experimentation concept at various levels of abstraction represented using Nivel 2 , in panel (a), and UML class diagrams with objects, panel (b). The levels of abstraction are: (1) the concept of experiment itself, represented by the entity and class Experiment in Nivel 2 and UML, respectively; (2) the experiment definitions (ColourExperiment) containing at hypotheses etc. that can be run at various times or in various areas, resulting in (3) experiment runs (an instance of ColourExperiment ExperimentRun). The benefits of Nivel 2 become apparent especially when considering the second level: in Nivel 2 , entities on that level are both instances of Experiment and types of experiment runs, and the Nivel 2 instantiation semantics covers the instantiation between both levels (1) and (2), and ( <ref type="formula">2</ref>) and (3). In UML, on the other hand, the object of type ExperimentRun is both linked to the ColourExperiment and in class ExperimentRun: hence, two model elements are needed to characterise the object. Moreover, the instance of link bears no semantics as such. Instead, the semantics should be defined using some auxiliary construct.</p><p>The benefits of Nivel 2 over UML extend even beyond the conceptual difficulties described above. Whereas Nivel 2 tool support is largely based on the ability to create instances of entities in a straightforwards and guided manner, much of the UML tool support is still, to the best of our knowledge organised around creating class diagrams and mapping the classes in a programming language. Instantiation takes place only when the software is run, and objects of the classes are created.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.8.">Threats to validity</head><p>Validity can be considered as the approximate truth of an inference or knowledge claim <ref type="bibr">[31, p. 34</ref>]. In the following, we address the potential threats to validity in the proposed artefact or the rationale of the design decisions behind it, and the answers we have provided to the research questions. In more detail, we address the threats to validity by addressing internal, construct and external validity <ref type="bibr" target="#b31">[31,</ref><ref type="bibr" target="#b32">32]</ref>.</p><p>Internal validity is essentially about causal claims. We do not make any strong causal claims in the paper. However, some aspects of this kind are implied by the necessary support and conceptualisation addressed in RQ1 and RQ2, which in constructive research turns into a question of whether they can be feasibly conceptualised and implemented. A straightforward way of addressing that is by creating artefacts that demonstrate the feasibility. This was done in the form of the Undulate framework.</p><p>Construct validity concerns the constructs used or created in the research, e.g. whether they are conceptually clearly explicated and coherent with respect to each other and to the more general usage of the same concepts. The concepts used in the Undulate framework are rigorously defined, so the threat to their explication or coherence in relation to each other can be considered minimal. Furthermore, the implementation of the framework described in Section 4.2 further helps to ensure the non-existence of any major issues with the conceptualisation. The conceptual basis of Nivel 2 has a solid basis in existing work in multi-level modelling which lessens the potential for any confusion with the usage of the concepts in more general.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>T. Asikainen and T. Männistö</head><p>There are, however, central concepts that may have different interpretations in different contexts. For example, the terms experiment and hypothesis have established meanings in research methodology, and their usage in continuous experimentation in software engineering reflects those but is not always exactly the same. Experimentation in software engineering practice is not based on scientifically solid theories, but the hypotheses may have a more practical purpose in explicating what is being tested. This may cause confusion and misinterpretation, thus posing a potential threat to construct validity, particularly if the reader considers experimentation from a scientific perspective rather than as a practical means in soft computing.</p><p>External validity concerns how the knowledge claims are valid, or in more general terms the results, applicable beyond the context of the current research. From yet another point of view, the external validity pertains to the limitations of the applicability of the results. Our scope in the paper was the development of web-facing software services, as it gives a clear and simple setting for experimentation. There are several characteristics that make web-based software highly suitable for continuous experimentation, such as the ability to easily route users to different software variants, flexible means to dynamically deploy software, vast possibilities for collecting usage data, etc. In another application domain or development setting, variations in these may affect the feasibility of the approach. As an example, physical devices without a network connection are considerably more difficult to experiment with, although, in principle, it would be possible to alter the software or its configuration in different devices and collect data from the devices in offline mode. When considering applying the results in other contexts, these should be considered. The external validity is thus highly dependent on the context and assumes the responsibility from the one aiming to transfer any of the results to another context.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.9.">Implications</head><p>The Undulate framework introduced in this paper has a number of implications both for the research and practice of data-driven software engineering in general and continuous experimentation in particular. So far, both data-driven software engineering and continuous experimentation have not become widely applied but are to a large extent only practised by large companies. This is most likely due to the significant investments in various forms of infrastructure and process development required to implement such processes.</p><p>The Undulate framework facilitates the implementation of datadriven practices in a number of ways. First, software engineering and business processes are given characterisations by the data they use as input and produce as output. Second, the characterisations enable utilising the process output for controlling the processes themselves, thus creating a feedback loop. The processes can be controlled in part or whole automatically, and the automatic control may involve soft computing technologies.</p><p>From the experimentation point of view, a representation of experimentation knowledge using Nivel 2 was defined. Such a representation and the tool support for Nivel 2 make managing experiment data at various levels of abstraction easier, thus reducing the investment required to introduce more ambitious forms of continuous experimentation.</p><p>In summary, the contributions in this paper make advanced software engineering techniques available to a larger portion of software companies. From the scientific point of view, key implications include demonstrating the usability of multilevel modelling languages for representing engineering knowledge as well as creating a more solid conceptual basis of experimentation knowledge.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.">Conclusions and further work</head><p>In this paper, we have contributed towards the theory and practice of data-driven software engineering by introducing the Undulate framework. Further, in the context of the framework, we have elaborated on the experimentation process as an example of a continuous software engineering process that can be driven by and automated using data.</p><p>The work presented in this paper can be extended in multiple ways. An obvious avenue would be to study other software processes to see if they indeed fit the framework as expected or should the framework be extended.</p><p>Another perspective would be to study the literature and available implementations, both open source and proprietary, of dimensional databases. As noted in the paper, there is relatively little research on the topic available. Such a database would need to ingest and contain large amounts of data while still providing near real-time query performance for usability. Any existing implementation or a prototype implemented as a part of research would need to match these stringent requirements.</p><p>Case studies in real companies would be needed to evaluate the applicability of the framework in practice. Ideally, the case studies should cover companies producing different kinds of software (online, on-premise, embedded, etc.) and a scale of processes as wide as possible. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CRediT authorship contribution statement</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Declaration of competing interest</head><p>The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. An example of Nivel 2 modelling concepts.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. The main processes underlying Undulate. Legend (entity -graphical symbol): Process -box, arrow -data flow, cylinder -database, grouping of processesnested box and overlapping boxes.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Data processing in Undulate. Legend (entity -graphical symbol): Process -box, arrow -data flow, cylinder -database, grouping of processes -nested box and overlapping boxes.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Concepts related to experiments and sample instances represented in Nivel 2 .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Flow chart of the experimentation process.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Comparing the representation of the experiment concept using (a) Nivel 2 and (b) standard UML class diagrams.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Timo Asikainen :</head><label>Asikainen</label><figDesc>Conceptualization, Methodology, Software, Writing -original draft, Writing -review &amp; editing. Tomi Männistö: Conceptualization, Methodology, Writing -original draft, Writingreview &amp; editing.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 1</head><label>1</label><figDesc>Comparison of the inputs and outputs of different software processes.</figDesc><table><row><cell>Process</cell><cell>Input</cell><cell>Environment</cell><cell>Output</cell><cell>Utilisation</cell></row><row><cell>Experimentation</cell><cell>Minimum viable feature or</cell><cell>Production</cell><cell>Data on selected metrics</cell><cell>Feature backlog (further development), Decide</cell></row><row><cell></cell><cell>product</cell><cell></cell><cell></cell><cell>whether to deploy in production</cell></row><row><cell>Testing</cell><cell>Test cases (with variable degree</cell><cell>Test (unit, integration)</cell><cell>(test case × execution)</cell><cell>Alerts, tickets for bug fixes</cell></row><row><cell></cell><cell>of specification on the results)</cell><cell></cell><cell>↦ {pass, fail}</cell><cell></cell></row><row><cell>Feature roll-out</cell><cell>Schedule of features to be rolled</cell><cell>Production</cell><cell>Control metrics conferred</cell><cell>Perform rollouts in a systematic manner, roll</cell></row><row><cell></cell><cell>out</cell><cell></cell><cell>with hypothesis</cell><cell>back if necessary</cell></row><row><cell>Monitoring</cell><cell>Production</cell><cell>Metrics on system health etc.</cell><cell>React and repair</cell><cell></cell></row><row><cell>Simulation</cell><cell>Agents (with specified behaviour),</cell><cell>Production, Offline copy of</cell><cell>Execution traces, user graphs</cell><cell>Comments on code changes, traces, etc.</cell></row><row><cell></cell><cell>software under study</cell><cell>product</cell><cell></cell><cell></cell></row><row><cell>Business processes</cell><cell>Software</cell><cell>Production</cell><cell>Usage data, User behaviour</cell><cell>Analytics, tactical and strategic decision making</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">https://en.wikipedia.org/wiki/Process_control.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1">In Nivel, the term class was used instead of entity used in Nivel 2 : the term class implies the role of being a classifier or other entities, which is undesired as an entity need not be a type of another entity.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_2">https://www.python.org/.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_3">https://reactjs.org/.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_4">Although dimensional databases have been applied in practice for decades [see e.g. 21], there is somewhat surprisingly only a little research on the topic.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_5">https://www.docker.com/.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="9" xml:id="foot_6">https://shiny.rstudio.com/.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="10" xml:id="foot_7">https://www.r-project.org/.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="12" xml:id="foot_8">Unified Modeling Language, https://www.uml.org/.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgements</head><p>The work was supported by the Academy of Finland (project 317657).</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Data driven development : Challenges in online, embedded and on-premise software</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Holmstöm Olsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Product-Focused Software Process Improvement (PROFES) 2019</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">X</forename><surname>Franch</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><surname>Männistö</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Martínez-Fernández</surname></persName>
+		</editor>
+		<meeting>Product-Focused Software Process Improvement (PROFES) 2019</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">11915</biblScope>
+			<biblScope unit="page" from="515" to="527" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">An infrastructure for platform-independent experimentation of software changes</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Auer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Felderer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SOFSEM 2021: Theory and Practice of Computer Science</title>
+				<editor>
+			<persName><forename type="first">T</forename><surname>Bureš</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Dondi</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Gamper</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">G</forename><surname>Guerrini</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><surname>Jurdziński</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">C</forename><surname>Pahl</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">F</forename><surname>Sikora</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><forename type="middle">W H</forename><surname>Wong</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="445" to="457" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Continuous experiment definition characteristics</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Auer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">S</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Felderer</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SEAA51224.2020.00041</idno>
+		<ptr target="http://dx.doi.org/10.1109/SEAA51224.2020.00041" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings -46th Euromicro Conference on Software Engineering and Advanced Applications</title>
+				<meeting>-46th Euromicro Conference on Software Engineering and Advanced Applications</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">2020</biblScope>
+			<biblScope unit="page" from="186" to="190" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">The RIGHT model for continuous experimentation</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Fagerholm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sanchez Guinea</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Mäenpää</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Münch</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jss.2016.03.034</idno>
+		<ptr target="http://dx.doi.org/10.1016/j.jss.2016.03.034" />
+	</analytic>
+	<monogr>
+		<title level="j">J. Syst. Softw</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">The HYPEX model: From opinions to data-driven software development</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Holmström Olsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-319-11283-1_13</idno>
+		<ptr target="http://dx.doi.org/10.1007/978-3-319-11283-1_13" />
+	</analytic>
+	<monogr>
+		<title level="m">Continuous Software Engineering</title>
+				<editor>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="155" to="164" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Data-driven elicitation, assessment and documentation of quality requirements in agile software development</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Franch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gómez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jedlitschka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>López</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Martínez-Fernández</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Oriol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Partanen</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-319-91563-0_36</idno>
+		<ptr target="http://dx.doi.org/10.1007/978-3-319-91563-0_36" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of CAiSE 2018: Advanced Information Systems Engineering</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Krogstie</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">H</forename><forename type="middle">A</forename><surname>Reijers</surname></persName>
+		</editor>
+		<meeting>CAiSE 2018: Advanced Information Systems Engineering</meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">10816</biblScope>
+			<biblScope unit="page" from="587" to="602" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">T</forename><surname>Asikainen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Männistö</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Holistic data-driven requirements elicitation in the big data era</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Henriksson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zdravkovic</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s10270-021-00926-6</idno>
+		<ptr target="http://dx.doi.org/10.1007/s10270-021-00926-6" />
+	</analytic>
+	<monogr>
+		<title level="j">Softw. Syst. Model. online fir</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<author>
+			<persName><forename type="first">I</forename><surname>Sommerville</surname></persName>
+		</author>
+		<title level="m">Software Engineering</title>
+				<meeting><address><addrLine>Harlow, England</addrLine></address></meeting>
+		<imprint>
+			<publisher>Addison-Wesley</publisher>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+	<note>9th ed.</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Building Data Science Teams</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Patil</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<pubPlace>O&apos;Reilly Media</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Continuous software engineering: A roadmap and agenda</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Fitzgerald</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">J</forename><surname>Stol</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jss.2015.06.063</idno>
+		<ptr target="http://dx.doi.org/10.1016/j.jss.2015.06.063" />
+	</analytic>
+	<monogr>
+		<title level="j">J. Syst. Softw</title>
+		<imprint>
+			<biblScope unit="volume">123</biblScope>
+			<biblScope unit="page" from="176" to="189" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Towards continuous customer validation: A conceptual model for combining qualitative customer feedback with quantitative customer observation</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Holmström Olsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Software Business</title>
+				<editor>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Fernandes</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Machado</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">K</forename><surname>Wnuk</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="154" to="166" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Your system gets better every day you use it: Towards automated continuous experimentation</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">I</forename><surname>Mattos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Holmström Olsson</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SEAA.2017.15</idno>
+		<ptr target="http://dx.doi.org/10.1109/SEAA.2017.15" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings -43rd Euromicro Conference on Software Engineering and Advanced Applications</title>
+				<meeting>-43rd Euromicro Conference on Software Engineering and Advanced Applications</meeting>
+		<imprint>
+			<date type="published" when="2017">2017, 2017</date>
+			<biblScope unit="page" from="256" to="265" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Building blocks for continuous experimentation</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Fagerholm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sanchez Guinea</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Mäenpää</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Münch</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2593812.2593816</idno>
+		<ptr target="http://dx.doi.org/10.1145/2593812.2593816" />
+	</analytic>
+	<monogr>
+		<title level="m">1st International Workshop on Rapid Continuous Software Engineering</title>
+				<imprint>
+			<date type="published" when="2014">2014 -Proceedings, 2014</date>
+			<biblScope unit="page" from="26" to="35" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Continuous experimentation: Challenges, implementation techniques, and current research</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Schermann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Cito</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Leitner</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MS.2018.111094748</idno>
+		<ptr target="http://dx.doi.org/10.1109/MS.2018.111094748" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Softw</title>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="26" to="31" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Bifrost -Supporting continuous deployment with automated enactment of multi-phase live testing strategies</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Schermann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Schöni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Leitner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">C</forename><surname>Gall</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2988336.2988348</idno>
+		<ptr target="http://dx.doi.org/10.1145/2988336.2988348" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 17th International Middleware Conference (Middleware&apos;16)</title>
+				<meeting>the 17th International Middleware Conference (Middleware&apos;16)<address><addrLine>Trento, Italy</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Introducing continuous experimentation in large softwareintensive product and service organisations</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">G</forename><surname>Yaman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Munezero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Münch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Fagerholm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Syd</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Aaltola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Palmu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Männistö</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jss.2017.07.009</idno>
+		<ptr target="http://dx.doi.org/10.1016/j.jss.2017.07.009" />
+	</analytic>
+	<monogr>
+		<title level="j">J. Syst. Softw</title>
+		<imprint>
+			<biblScope unit="volume">133</biblScope>
+			<biblScope unit="page" from="195" to="211" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">An activity and metric model for online controlled experiments</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">Issa</forename><surname>Mattos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Dmitriev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fabijan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Holmström Olsson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Product-Focused Software Process Improvement</title>
+				<editor>
+			<persName><forename type="first">M</forename><surname>Kuhrmann</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">K</forename><surname>Schneider</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">D</forename><surname>Pfahl</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Amasaki</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><surname>Ciolkowski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Hebig</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><surname>Tell</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Klünder</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Küpper</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="182" to="198" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">A Dirty Dozen: Twelve common metric interpretation pitfalls in online controlled experiments</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Dmitriev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">W</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Vaz</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3097983.3098024</idno>
+		<ptr target="http://dx.doi.org/10.1145/3097983.3098024" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</title>
+				<meeting>the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">1296</biblScope>
+			<biblScope unit="page" from="1427" to="1436" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Nivel: A metamodelling language with a formal semantics</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Asikainen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Männistö</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s10270-008-0103-2</idno>
+		<ptr target="http://dx.doi.org/10.1007/s10270-008-0103-2" />
+	</analytic>
+	<monogr>
+		<title level="j">Softw. Syst. Model</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="521" to="549" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Reducing accidental complexity in domain models</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Atkinson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kühne</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s10270-007-0061-0</idno>
+		<ptr target="http://dx.doi.org/10.1007/s10270-007-0061-0" />
+	</analytic>
+	<monogr>
+		<title level="j">Softw. Syst. Model</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="345" to="359" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<author>
+			<persName><forename type="first">W</forename><surname>Inmon</surname></persName>
+		</author>
+		<title level="m">Building the Data Warehouse</title>
+				<imprint>
+			<publisher>Wiley</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="volume">4</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Experimentation in Software Engineering</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wohlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Runeson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Höst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Ohlsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Regnell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Wesslén</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<publisher>Springer Science &amp; Business Media</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Service mesh : Challenges, state of the art, and future research opportunities</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lemieux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Han</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SOSE.2019.00026</idno>
+		<ptr target="http://dx.doi.org/10.1109/SOSE.2019.00026" />
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE International Conference on Service-Oriented System Engineering (SOSE)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="122" to="1225" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><surname>Burns</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Grant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Oppenheimer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Brewer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wilkes</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Borg</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kubernetes</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2890784</idno>
+		<ptr target="http://dx.doi.org/10.1145/2890784" />
+	</analytic>
+	<monogr>
+		<title level="j">Commun. ACM</title>
+		<imprint>
+			<biblScope unit="volume">59</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="50" to="57" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Containers and cloud: From LXC to docker to kubernetes</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bernstein</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MCC.2014.51</idno>
+		<ptr target="http://dx.doi.org/10.1109/MCC.2014.51" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Cloud Comput</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="81" to="84" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Breaking the vicious circle: A case study on why AI for software analytics and business intelligence does not take off in practice iris</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Figalist</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Elsner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Holmström Olsson</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jss.2021.111135</idno>
+		<ptr target="http://dx.doi.org/10.1016/j.jss.2021.111135" />
+	</analytic>
+	<monogr>
+		<title level="j">J. Syst. Softw</title>
+		<imprint>
+			<biblScope unit="page">111135</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Model driven engineering for data protection and privacy: Application and experience with GDPR</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Torre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Alferez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Soltana</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sabetzadeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Briand</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s10270-021-00935-5</idno>
+		<ptr target="http://arxiv.org/abs/2007.12046" />
+	</analytic>
+	<monogr>
+		<title level="j">Softw. Syst. Model. online fir</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ahlgren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">E</forename><surname>Berezin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bojarczuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Dulskyte</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Dvortsova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>George</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gucevska</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Harman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Lämmel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Meijer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sapora</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Spahr-Summers</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3387940.3392089</idno>
+		<ptr target="http://dx.doi.org/10.1145/3387940.3392089" />
+		<title level="m">Proceedings -2020 IEEE/ACM 42nd International Conference on Software Engineering Workshops</title>
+				<meeting>-2020 IEEE/ACM 42nd International Conference on Software Engineering Workshops</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">2020</biblScope>
+			<biblScope unit="page" from="276" to="284" />
+		</imprint>
+	</monogr>
+	<note>WES: Agent-based user interaction simulation on real infrastructure</note>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Facebook&apos;s cyber-cyber and cyber-physical digital twins</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ahlgren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bojarczuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Drossopoulou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Dvortsova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>George</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gucevska</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Harman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lomeli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Lucas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Meijer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Omohundro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Rojas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sapora</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Zhou</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3463274.3463275</idno>
+		<ptr target="http://dx.doi.org/10.1145/3463274.3463275" />
+	</analytic>
+	<monogr>
+		<title level="m">ACM International Conference Proceeding Series</title>
+				<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="9" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Behavioural and structural imitation models in Facebook&apos;s ww simulation system</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Ahlgren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bojarczuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dvortsova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Harman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Hatout</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lomeli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Meijer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sapora</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of International Workshop on Realizing Artificial Intelligence Synergies in Software Engineering (RAISE)</title>
+				<meeting>International Workshop on Realizing Artificial Intelligence Synergies in Software Engineering (RAISE)</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Experimental and Quasi-Experimental Designs for Generalized Causal Inference</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Shadish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">D</forename><surname>Cook</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">T</forename><surname>Campbell</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<pubPlace>Houghton Mifflin; Boston</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Guidelines for conducting and reporting case study research in software engineering</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Runeson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Höst</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Empir. Softw. Eng</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="131" to="164" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
