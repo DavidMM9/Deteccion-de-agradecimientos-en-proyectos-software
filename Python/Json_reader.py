@@ -3,6 +3,9 @@ import os
 from grobid_client_python.grobid_client.grobid_client import GrobidClient
 from bs4 import BeautifulSoup as bs
 
+from transformers import AutoTokenizer, AutoModelForTokenClassification
+from transformers import pipeline
+
 def useGrobid(input, output):
     client = GrobidClient(config_path="./config.json")
     client.process("processFulltextDocument", input, output, force = True, verbose = True)
@@ -29,16 +32,37 @@ def XMLtoTXT(path):
                 fp.close()
                 # print(back.find("p").getText() + "\n")
 
-useGrobid("./../Articulos", "./../TEI/XML")
+def useModel(modelo, input, output):
+    tokenizer = AutoTokenizer.from_pretrained(modelo)
+    model = AutoModelForTokenClassification.from_pretrained(modelo)
 
+    nlp = pipeline('ner', model=model, tokenizer=tokenizer, aggregation_strategy="simple")
+
+    path = "./../TEI/TXT/"
+    target = "./../HuggingFace/" + modelo
+    if not os.path.exists(target):
+        os.makedirs(target)
+    for x in os.listdir(path):
+        f = open(path + x, "r")
+        contents = f.read()
+        result = nlp(contents)
+        jsonFile = open(target + x + ".json", "w")
+    for dic in result:
+        dic["score"] = str(dic["score"])
+    final = json.dumps(result)
+    jsonFile.write(final)
+
+
+useGrobid("./../Articulos", "./../TEI/XML")
 XMLtoTXT("./../TEI/XML")
+useModel("Jean-Baptiste/camembert-ner")
 
 
 # # De donde cojo los json para probar
-# pathBert = r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\HuggingFace\bert-large-NER"
-# pathJean = r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\HuggingFace\Jean-Baptiste"
+# pathBert = "./../HuggingFace/bert-large-NER"
+# pathJean = "./../HuggingFace/Jean-Baptiste"
 # # Donde estan los json buenos
-# compared = r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI\Json"
+# compared = "./../TEI/Json"
 # res = 0
 # total = 0
 # total2 = 0

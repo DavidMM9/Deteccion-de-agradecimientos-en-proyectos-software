@@ -1,14 +1,23 @@
 from transformers import AutoTokenizer, AutoModelForTokenClassification
-from transformers import pipeline
+from transformers import pipeline, PipelineDataFormat
+import os
+import json
 
 tokenizer = AutoTokenizer.from_pretrained("Jean-Baptiste/camembert-ner")
 model = AutoModelForTokenClassification.from_pretrained("Jean-Baptiste/camembert-ner")
 
-nlp = pipeline('ner', model=model, tokenizer=tokenizer, agregation_strategy="simple")
-nlp("This work was supported in part by EU H2020 project Serums (826278-SERUMS-H2020-SC1-FA-DTS-2018-2020), by National Science Foundation USA (NSF HDR:TRIPODS-1934884), and by National Research Foundation Singapore under its NRF Fellowship Programme [NRF-NRFFAI1-2019-0004] and AI Singapore Programme [AISG-RP-2018-005]. Any opinions, findings and conclusions or recommendations expressed in this material are those of the author(s) and do not reflect the views of National Research Foundation, Singapore.")
+nlp = pipeline('ner', model=model, tokenizer=tokenizer, aggregation_strategy="simple")
 
-# tokenizer.save_pretrained("./prueba")
-# model.save_pretrained("./prueba")
-
-# tokenizer = AutoTokenizer.from_pretrained("./prueba")
-# model = AutoModelForTokenClassification.from_pretrained("./prueba")
+path = "./../TEI/TXT/"
+target = "./prueba/"
+if not os.path.exists(target):
+   os.makedirs(target)
+for x in os.listdir(path):
+    f = open(path + x)
+    contents = f.read()
+    result = nlp(contents)
+    jsonFile = open(target + x + ".json", "w")
+    for dic in result:
+        dic["score"] = str(dic["score"])
+    final = json.dumps(result)
+    jsonFile.write(final)
