@@ -6,6 +6,13 @@ from bs4 import BeautifulSoup as bs
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from transformers import pipeline
 
+camembert_NER = "Jean-Baptiste/camembert-ner"
+bert_base_NER = "dslim/bert-base-NER"
+bert_large_NER = "dslim/bert-large-NER"
+bert_base_multilingual_cased_ner_hrl = "Davlan/bert-base-multilingual-cased-ner-hrl"
+roberta_large_ner_english = "Jean-Baptiste/roberta-large-ner-english"
+bert_base_NER_uncased = "dslim/bert-base-NER-uncased"
+
 def useGrobid(input, output):
     client = GrobidClient(config_path="./config.json")
     client.process("processFulltextDocument", input, output, force = True, verbose = True)
@@ -13,6 +20,8 @@ def useGrobid(input, output):
 def XMLtoTXT(path):
     content = []
     destination = "./../TEI/TXT"
+    a,b = 'áéíóúü','aeiouu'
+    trans = str.maketrans(a,b)
     # Read the XML file
     for x in os.listdir(path):
         with open(path + "/" + x, "r", encoding="UTF-8") as file:
@@ -28,73 +37,90 @@ def XMLtoTXT(path):
             if(bs_content.find("div", {"type": "acknowledgement"}).find("p")):
                 print(x)
                 fp = open(destination + "/" + x + ".txt", 'w')
-                fp.write(back.find("p").getText())
+                texto = back.find("p").getText()
+                texto = texto.translate(trans)
+                fp.write(texto)
                 fp.close()
-                # print(back.find("p").getText() + "\n")
 
-def useModel(modelo, input, output):
+def useModel(modelo, path, output):
+    # Inicializamos el tokenizer y el modelo
     tokenizer = AutoTokenizer.from_pretrained(modelo)
     model = AutoModelForTokenClassification.from_pretrained(modelo)
 
+    # Cargamos el modelo
     nlp = pipeline('ner', model=model, tokenizer=tokenizer, aggregation_strategy="simple")
 
-    path = "./../TEI/TXT/"
-    target = "./../HuggingFace/" + modelo
+    target = output + modelo
+    # Vemos si la carpeta donde queremos guardar los Json existe, si no la creamos
     if not os.path.exists(target):
         os.makedirs(target)
+    # Recorremos los directorios de la carpeta
     for x in os.listdir(path):
-        f = open(path + x, "r")
+        f = open(path + x)
         contents = f.read()
+        # Aplicamos el modelo al texto
         result = nlp(contents)
-        jsonFile = open(target + x + ".json", "w")
-    for dic in result:
-        dic["score"] = str(dic["score"])
-    final = json.dumps(result)
-    jsonFile.write(final)
+        jsonFile = open(target + "/" + x + ".json", "w")
+        # Cambiamos los scores a string para poder pasarlo a Json
+        for dic in result:
+            dic["score"] = str(dic["score"])
+            dic["word"] = dic["word"].lstrip()
+        # Cambiamos la estructura del modelo a Json y lo escribimos
+        final = json.dumps(result)
+        jsonFile.write(final)
+
+def calcF1Score (modelo, compared):
+    # Donde estan los json buenos
+    res = 0
+    total = 0
+    total2 = 0
+
+    # Hago un bucle para abrir de uno en uno los archivos
+    for k in os.listdir(modelo):
+        print(k)
+        # Abrimos el json
+        f = open(modelo + k)
+        data = json.load(f)
+        c = open(compared + k)
+        dataCompared = json.load(c)
+
+        # Bucle para cada uno de los elementos del archivo
+        for i in data:
+            # Bucle para comparar los elementos de los dos archivos
+            for j in dataCompared:
+                # i['word'] = lo que ha reconocido
+                # i['entity_group'] = que ha dicho que es
+                # Compruebo que tanto el entity_group como el word sean iguales para comprobar
+                # si el modelo ha detectado bien el elemento
+                if ((i['word'] == j['word']) and (i['entity_group'] == j['entity_group'])):
+                    res = res + 1
+                    break
+
+        # Voy añadiendo cuantos elementos hay en cada archivo para obtener el total
+        total = total + len(data)
+        total2 = total2 + len(dataCompared)
+
+        # Cerramos el json
+        f.close()
+        c.close()
+
+    print("El modelo ha detectado " + str(total) + " elementos")
+    print("Hay que encontrar " + str(total2) + " elementos")
+    print("De los resultados obtenidos " + str(res) + " estan bien")
+
+    falsos_positivos = total - res
+    falsos_negativos = total2 - res
+
+    precision = res/(res + falsos_positivos)
+    recall = res/(res + falsos_negativos)
+    f1Score = 2*((precision * recall)/(precision + recall))
+
+    print("La precision del modelo es: " + str(precision))
+    print("El recall del modelo es: " + str(recall))
+    print("La f1-score obtenida por el modelo es: " + str(f1Score))
 
 
-useGrobid("./../Articulos", "./../TEI/XML")
-XMLtoTXT("./../TEI/XML")
-useModel("Jean-Baptiste/camembert-ner")
-
-
-# # De donde cojo los json para probar
-# pathBert = "./../HuggingFace/bert-large-NER"
-# pathJean = "./../HuggingFace/Jean-Baptiste"
-# # Donde estan los json buenos
-# compared = "./../TEI/Json"
-# res = 0
-# total = 0
-# total2 = 0
-
-# # Hago un bucle para abrir de uno en uno los archivos
-# for k in os.listdir(pathBert):
-#     # Abrimos el json
-#     f = open(pathBert + "\\" + k)
-#     data = json.load(f)
-#     c = open(compared + "\\" + k)
-#     dataCompared = json.load(c)
-
-#     # Bucle para cada uno de los elementos del archivo
-#     for i in data:
-#         # Bucle para comparar los elementos de los dos archivos
-#         for j in dataCompared:
-#             # i['word'] = lo que ha reconocido
-#             # i['entity_group'] = que ha dicho que es
-#             # Compruebo que tanto el entity_group como el word sean iguales para comprobar
-#             # si el modelo ha detectado bien el elemento
-#             if ((i['word'] == j['word']) and (i['entity_group'] == j['entity_group'])):
-#                 res = res + 1
-#                 break
-
-#     # Voy añadiendo cuantos elementos hay en cada archivo para obtener el total
-#     total = total + len(data)
-#     total2 = total2 + len(dataCompared)
-
-#     # Cerramos el json
-#     f.close()
-#     c.close()
-
-# print("El modelo ha detectado " + str(total) + " elementos")
-# print("Hay que encontrar " + str(total2) + " elementos")
-# print("De los resultados obtenidos " + str(res) + " estan bien")
+# useGrobid("./../Articulos", "./../TEI/XML")
+# XMLtoTXT("./../TEI/XML")
+useModel(camembert_NER, "./../TEI/TXT/", "./../HuggingFace/")
+calcF1Score("./../HuggingFace/" + camembert_NER + "/", "./../TEI/Json/")

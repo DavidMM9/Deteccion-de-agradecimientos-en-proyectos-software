@@ -1,0 +1,358 @@
+[
+    {
+        "entity_group": "ORG",
+        "word": "FORCE11"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "Software Citation Implementation Working Group"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Daniel Garijo"
+    },
+    {
+        "entity_group": "PER",
+        "word": "Lorraine Hwang"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Herve Menager"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alice Allen"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Michael Hucka"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Thomas Morrell"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Ana Trisovic"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alain Monteil"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alejandra Gonzalez-Beltran"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alexandros Ioannidis"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alice Allen"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Allen Lee"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Andre Jackson"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Bryce Mecum"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Caifan Du"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Carly Robinson"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Daniel Katz"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Genevieve Milliken"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Herve Menager"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Jurriaan Spaaks"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Katrina Fenlon"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Kristin Vanderbilt"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Daniel Garijo"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Lorraine Hwang"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Michael Hucka"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Neil Chue Hong"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "P. Wesley Ryan"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Peter Teuben"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Shelley Stall"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Stephan Druskat"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Ted Carnevale"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Thomas Morrell"
+    }
+    ,
+    {
+        "entity_group": "ORG",
+        "word": "SciCodes"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alain Monteil"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alejandra Gonzalez-Beltran"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alexandros Ioannidis"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Alice Allen"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Allen Lee"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Ana Trisovic"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Daniel Garijo"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Anita Bandrowski"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Bruce Wilson"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Bryce Mecum"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Carly Robinson"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Celine Sarr"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Colin Smith"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Daniel Garijo"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "David Long"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Harry Bhadeshia"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Herve Menager"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Jeanette M. Sperhac"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Joy Ku"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Jurriaan Spaaks"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Kristin Vanderbilt"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Lorraine Hwang"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Matt Jones"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Merce Crosas"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Michael R. Crusoe"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Mike Hucka"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Moritz Schubotz"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Olaf Teschke"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Pete Meyer"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Peter Teuben"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Piotr Sliz"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Sara Studwell"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Shelley Stall"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Ted Carnevale"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Tom Morrell"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Tom Pollard"
+    }
+    ,
+    {
+        "entity_group": "PER",
+        "word": "Wolfram Sperber"
+    }
+]
