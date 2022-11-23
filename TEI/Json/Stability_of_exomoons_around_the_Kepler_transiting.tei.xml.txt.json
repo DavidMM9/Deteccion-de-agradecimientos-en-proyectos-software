@@ -1,0 +1,130 @@
+[
+	{
+		"entity_group": "MISC",
+		"word": "Moving Planets Around educational book project"
+	},
+	{
+		"entity_group": "PER",
+		"word": "Piet Hut"
+	},
+	{
+		"entity_group": "PER",
+		"word": "Jun Makino"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "RIKEN Center for Computational Science"
+	},
+	{
+		"entity_group": "PER",
+		"word": "Evgeni Grishin"
+	},
+	{
+		"entity_group": "PER",
+		"word": "Scott Tremaine"
+	},
+	{
+		"entity_group": "PER",
+		"word": "Daniel Fabrycky"
+	},
+	{
+		"entity_group": "PER",
+		"word": "René Heller"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "ASH"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "Institute for Advanced Study"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "The Peter Svennilson Membership"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "NASA"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "grant NNX14AM24G"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "Netherlands Research Council"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "NWO"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "grants #643.200.503"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "#639.073.803"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "#614.061.608"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "Netherlands Research School for Astronomy"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "NOVA"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "Interuniversity Attraction Poles Programme"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "Belgian Science Policy Office"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "IAP P7/08 CHARM"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "European Union"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "Horizon 2020"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "grant agreement No 671564"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "COMPAT project"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "MXC"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "Institute for Advanced Study"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "Jet Propulsion Laboratory"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "California Institute of Technology"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "National Aeronautics and Space Administration"
+	}
+]

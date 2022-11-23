@@ -1,0 +1,15 @@
+[
+	{
+		"entity_group": "ORG",
+		"word": "Ministry of Science and Technological Development"
+	},
+	{
+		"entity_group": "LOC",
+		"word": "Republic of Serbia"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "Projects TR32007 and TR32051"
+	}
+]

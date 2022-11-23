@@ -1,0 +1,55 @@
+[
+	{
+		"entity_group": "PER",
+		"word": "Fabien Lehuede"
+	},
+	{
+		"entity_group": "PER",
+		"word": "Renaud Masson"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Olivier Peton"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "MDLS"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Michael Schilde"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Karl Doerner"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Sophie Parragh"
+	}
+    ,
+	{
+		"entity_group": "ORG",
+		"word": "Austrian Science Fund"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "FWF Grants P20342-N13 and L628-N15"
+	}
+    ,
+	{
+		"entity_group": "ORG",
+		"word": "Austrian Research Promotion Agency"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "FFG Grant 822739"
+	}
+]

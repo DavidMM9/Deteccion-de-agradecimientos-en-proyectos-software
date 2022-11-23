@@ -1,0 +1,125 @@
+[
+	{
+		"entity_group": "PER",
+		"word": "Shlomo Berkovsky"
+	},
+	{
+		"entity_group": "LOC",
+		"word": "EU"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "FP7"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "STELLAR Network of Excellence"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "grant agreement no. 231913"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Katrien Verbert"
+	}
+    ,
+	{
+		"entity_group": "ORG",
+		"word": "Research Foundation—Flanders"
+	}
+    ,
+	{
+		"entity_group": "ORG",
+		"word": "FWO"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Nikos Manouselis"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "project VOA3R - 250525"
+	}
+    ,
+	{
+		"entity_group": "LOC",
+		"word": "EU"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "CIP PSP Programme"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "CIP PSP Programme"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Martin Wolpers"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "EC Seventh Framework Programme"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "FP7/2007-2013"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "grant agreement no 231396"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "ROLE"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Xavier Ochoa"
+	}
+    ,
+	{
+		"entity_group": "ORG",
+		"word": "VLIR"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "RIP Project ZEIN2010RIP09"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Hendrik Drachsler"
+	}
+    ,
+	{
+		"entity_group": "ORG",
+		"word": "Netherlands Laboratory for Lifelong Learning"
+	}
+    ,
+	{
+		"entity_group": "ORG",
+		"word": "NELLL"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "AlterEgo project"
+	}
+]

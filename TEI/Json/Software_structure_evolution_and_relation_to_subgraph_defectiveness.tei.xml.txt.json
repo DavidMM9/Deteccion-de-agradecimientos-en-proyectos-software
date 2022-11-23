@@ -1,0 +1,19 @@
+[
+	{
+		"entity_group": "ORG",
+		"word": "Croatian Science Foundation"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "project UIP-2014-09-7945"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "University of Rijeka"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "grant no. 13.09.2.2.16"
+	}
+]

@@ -1,0 +1,26 @@
+[
+	{
+		"entity_group": "PER",
+		"word": "Michele Pagani"
+	}
+    ,
+	{
+		"entity_group": "PER",
+		"word": "Raphaelle Crubille"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "Project RAPIDO ANR-14-CE25-0007"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "project ANR-11-IS02-0002"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "NSFC 61161130530"
+	}
+]

@@ -1,0 +1,15 @@
+[
+	{
+		"entity_group": "ORG",
+		"word": "Fundacao para a Ciencia e Tecnologia"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "FCT"
+	}
+    ,
+	{
+		"entity_group": "MISC",
+		"word": "projects RESCUE (PTDC/EIA/65862/2006), FAVAS (PTDC/EIA-CCO/105034/2008), and CROSS (PTDC/EIA-CCO/108995/2008)"
+	}
+]

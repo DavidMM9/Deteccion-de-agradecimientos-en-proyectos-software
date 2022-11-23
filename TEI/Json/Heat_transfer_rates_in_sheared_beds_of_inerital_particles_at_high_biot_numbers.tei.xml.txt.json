@@ -1,0 +1,30 @@
+[
+	{
+		"entity_group": "ORG",
+		"word": "Graz University of Technology"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "European Commission"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "FP7"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "Grant agreement no. 604656"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "project NanoSim"
+	},
+	{
+		"entity_group": "ORG",
+		"word": "NAWI Graz"
+	},
+	{
+		"entity_group": "MISC",
+		"word": "dcluster.tugraz.at"
+	}
+]
