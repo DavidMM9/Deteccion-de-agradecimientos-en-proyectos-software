@@ -1,10 +1,10 @@
 """ Generic API Client """
 from copy import deepcopy
 import json
-import requests
+import pip._vendor.requests as requests
 
 try:
-    from urlparse import urljoin
+    from urllib.parse import urljoin
 except ImportError:
     from urllib.parse import urljoin
 

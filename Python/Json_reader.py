@@ -1,6 +1,6 @@
 import json
 import os
-from grobid_client.grobid_client import GrobidClient
+from grobid_client_python.grobid_client.grobid_client import GrobidClient
 from bs4 import BeautifulSoup as bs
 
 def useGrobid(input, output):
@@ -9,10 +9,10 @@ def useGrobid(input, output):
 
 def XMLtoTXT(path):
     content = []
-    destination = r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI\TXT"
+    destination = "./../TEI/TXT"
     # Read the XML file
     for x in os.listdir(path):
-        with open(path + "\\" + x, "r", encoding="UTF-8") as file:
+        with open(path + "/" + x, "r", encoding="UTF-8") as file:
             # Read each line in the file, readlines() returns a list of lines
             content = file.readlines()
             # Combine the lines in the list into a string
@@ -24,15 +24,14 @@ def XMLtoTXT(path):
                 continue
             if(bs_content.find("div", {"type": "acknowledgement"}).find("p")):
                 print(x)
-                fp = open(destination + "\\" + x + ".txt", 'w')
+                fp = open(destination + "/" + x + ".txt", 'w')
                 fp.write(back.find("p").getText())
                 fp.close()
                 # print(back.find("p").getText() + "\n")
 
-useGrobid(r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\Articulos"
-, r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI")
+useGrobid("./../Articulos", "./../TEI/XML")
 
-# XMLtoTXT(r"C:\Users\david\Desktop\TFG\Deteccion-de-agradecimientos-en-proyectos-software\TEI\XML")
+XMLtoTXT("./../TEI/XML")
 
 
 # # De donde cojo los json para probar

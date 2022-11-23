@@ -21,7 +21,7 @@ import argparse
 import time
 import concurrent.futures
 import ntpath
-import requests
+import pip._vendor.requests as requests
 import pathlib
 
 from .client import ApiClient
