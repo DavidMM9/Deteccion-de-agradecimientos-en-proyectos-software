@@ -6,12 +6,13 @@ from bs4 import BeautifulSoup as bs
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from transformers import pipeline
 
+from prettytable import PrettyTable 
+
 camembert_NER = "Jean-Baptiste/camembert-ner"
 bert_base_NER = "dslim/bert-base-NER"
 bert_large_NER = "dslim/bert-large-NER"
 bert_base_multilingual_cased_ner_hrl = "Davlan/bert-base-multilingual-cased-ner-hrl"
 roberta_large_ner_english = "Jean-Baptiste/roberta-large-ner-english"
-bert_base_NER_uncased = "dslim/bert-base-NER-uncased"
 
 def useGrobid(input, output):
     client = GrobidClient(config_path="./config.json")
@@ -74,6 +75,8 @@ def calcF1Score (modelo, compared):
     res = 0
     total = 0
     total2 = 0
+    nombre_modelo = modelo.split("/")
+    nombre_modelo = nombre_modelo[-2]
 
     # Hago un bucle para abrir de uno en uno los archivos
     for k in os.listdir(modelo):
@@ -104,9 +107,9 @@ def calcF1Score (modelo, compared):
         f.close()
         c.close()
 
-    print("El modelo ha detectado " + str(total) + " elementos")
-    print("Hay que encontrar " + str(total2) + " elementos")
-    print("De los resultados obtenidos " + str(res) + " estan bien")
+    # print("El modelo ha detectado " + str(total) + " elementos")
+    # print("Hay que encontrar " + str(total2) + " elementos")
+    # print("De los resultados obtenidos " + str(res) + " estan bien")
 
     falsos_positivos = total - res
     falsos_negativos = total2 - res
@@ -114,15 +117,27 @@ def calcF1Score (modelo, compared):
     precision = res/(res + falsos_positivos)
     recall = res/(res + falsos_negativos)
     f1Score = 2*((precision * recall)/(precision + recall))
+  
+    # print("La precision del modelo es: " + str(precision))
+    # print("El recall del modelo es: " + str(recall))
+    # print("La f1-score obtenida por el modelo es: " + str(f1Score))
 
-    print("La precision del modelo es: " + str(precision))
-    print("El recall del modelo es: " + str(recall))
-    print("La f1-score obtenida por el modelo es: " + str(f1Score))
+    myTable.add_row([nombre_modelo, round(precision, 2), round(recall, 2), round(f1Score, 2)])
 
+
+myTable = PrettyTable(["Model name", "Precision", "Recall", "F1-score"])   
 
 # useGrobid("./../Articulos", "./../TEI/XML")
 # XMLtoTXT("./../TEI/XML")
 useModel(camembert_NER, "./../TEI/TXT/", "./../HuggingFace/")
+useModel(bert_base_NER, "./../TEI/TXT/", "./../HuggingFace/")
+useModel(bert_large_NER, "./../TEI/TXT/", "./../HuggingFace/")
+useModel(bert_base_multilingual_cased_ner_hrl, "./../TEI/TXT/", "./../HuggingFace/")
+useModel(roberta_large_ner_english, "./../TEI/TXT/", "./../HuggingFace/")
 calcF1Score("./../HuggingFace/" + camembert_NER + "/", "./../TEI/Json/")
+calcF1Score("./../HuggingFace/" + bert_base_NER + "/", "./../TEI/Json/")
+calcF1Score("./../HuggingFace/" + bert_large_NER + "/", "./../TEI/Json/")
+calcF1Score("./../HuggingFace/" + bert_base_multilingual_cased_ner_hrl + "/", "./../TEI/Json/")
+calcF1Score("./../HuggingFace/" + roberta_large_ner_english + "/", "./../TEI/Json/")
 
-#### PENDIENTE PROBAR DE NUEVO ####
+print(myTable)
