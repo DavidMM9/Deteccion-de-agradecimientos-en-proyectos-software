@@ -11,7 +11,12 @@
     ,
 	{
 		"entity_group": "MISC",
-		"word": "Project RAPIDO ANR-14-CE25-0007"
+		"word": "Project RAPIDO"
+	}
+	,
+	{
+		"entity_group": "MISC",
+		"word": "ANR-14-CE25-0007"
 	}
     ,
 	{
@@ -20,7 +25,12 @@
 	}
     ,
 	{
+		"entity_group": "ORG",
+		"word": "NSFC"
+	}
+	,
+	{
 		"entity_group": "MISC",
-		"word": "NSFC 61161130530"
+		"word": "61161130530"
 	}
 ]

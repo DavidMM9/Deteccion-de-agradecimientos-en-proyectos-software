@@ -37,19 +37,29 @@
 		"entity_group": "ORG",
 		"word": "Austrian Science Fund"
 	}
+	,
+	{
+		"entity_group": "ORG",
+		"word": "FWF"
+	}
     ,
 	{
 		"entity_group": "MISC",
-		"word": "FWF Grants P20342-N13 and L628-N15"
+		"word": "Grants P20342-N13 and L628-N15"
 	}
     ,
 	{
 		"entity_group": "ORG",
 		"word": "Austrian Research Promotion Agency"
 	}
+	,
+	{
+		"entity_group": "ORG",
+		"word": "FFG"
+	}
     ,
 	{
 		"entity_group": "MISC",
-		"word": "FFG Grant 822739"
+		"word": "Grant 822739"
 	}
 ]

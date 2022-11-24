@@ -121,6 +121,8 @@ def calcF1Score (modelo, compared):
 
 
 # useGrobid("./../Articulos", "./../TEI/XML")
-XMLtoTXT("./../TEI/XML")
+# XMLtoTXT("./../TEI/XML")
 useModel(camembert_NER, "./../TEI/TXT/", "./../HuggingFace/")
 calcF1Score("./../HuggingFace/" + camembert_NER + "/", "./../TEI/Json/")
+
+#### PENDIENTE PROBAR DE NUEVO ####

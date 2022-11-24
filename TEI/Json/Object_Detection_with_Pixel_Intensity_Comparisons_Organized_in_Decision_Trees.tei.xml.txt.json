@@ -17,7 +17,11 @@
     },
     {
         "entity_group": "MISC",
-        "word": "ACROSS project, 285939 FP7-REGPOT-2011-1"
+        "word": "ACROSS project"
+    },
+    {
+        "entity_group": "MISC",
+        "word": "285939 FP7-REGPOT-2011-1"
     },
     {
         "entity_group": "LOC",
