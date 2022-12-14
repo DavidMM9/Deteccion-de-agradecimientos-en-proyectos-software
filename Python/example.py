@@ -1,4 +1,6 @@
-from grobid_client.grobid_client import GrobidClient
+import re
 
-client = GrobidClient(config_path="./config.json")
-client.process("processFulltextDocument", "./../Articulos", output="./../TEI",  force=True, verbose=True)
+prueba = "buenos dias buenos dios"
+x = re.split("buenos",prueba)
+
+print(x)

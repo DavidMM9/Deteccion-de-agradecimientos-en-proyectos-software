@@ -1,1 +1,1 @@
-[{"entity_group": "ORG", "score": "0.9924776", "word": "Croatian Science Foundation", "start": 39, "end": 67}, {"entity_group": "ORG", "score": "0.9771061", "word": "University of Rijeka Research", "start": 120, "end": 150}]
+[{"entity_group": "ORG", "score": "0.9924776", "word": "Croatian Science Foundation", "start": 39, "end": 67}, {"entity_group": "ORG", "score": "0.9771061", "word": "University of Rijeka Research", "start": 120, "end": 150}, {"entity_group": "PROY", "word": "project UIP-2014-09-7945"}, {"entity_group": "GRANT", "word": "grant no. 13.09.2.2.16."}]
