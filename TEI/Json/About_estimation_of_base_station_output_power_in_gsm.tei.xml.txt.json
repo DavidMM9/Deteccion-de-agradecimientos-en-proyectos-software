@@ -9,7 +9,11 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
-		"word": "Projects TR32007 and TR32051"
+		"entity_group": "PROY",
+		"word": "Projects TR32007"
+	},
+	{
+		"entity_group": "PROY",
+		"word": "TR32051"
 	}
 ]

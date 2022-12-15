@@ -5,7 +5,7 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "project UIP-2014-09-7945"
 	},
 	{
@@ -13,7 +13,7 @@
 		"word": "University of Rijeka"
 	},
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "grant no. 13.09.2.2.16"
 	}
 ]

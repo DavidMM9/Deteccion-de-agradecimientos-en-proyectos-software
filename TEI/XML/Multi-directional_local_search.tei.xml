@@ -9,9 +9,8 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 				<title level="a" type="main">Multi-directional local search</title>
 			</titleStmt>
 			<publicationStmt>
-				<publisher>Elsevier BV</publisher>
-				<availability status="unknown"><p>Copyright Elsevier BV</p>
-				</availability>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
 				<date type="published" when="2012-03-27">27 March 2012</date>
 			</publicationStmt>
 			<sourceDesc>
@@ -51,14 +50,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 						<title level="a" type="main">Multi-directional local search</title>
 					</analytic>
 					<monogr>
-						<title level="j" type="main">Computers &amp; Operations Research</title>
-						<title level="j" type="abbrev">Computers &amp; Operations Research</title>
-						<idno type="ISSN">0305-0548</idno>
 						<imprint>
-							<publisher>Elsevier BV</publisher>
-							<biblScope unit="volume">39</biblScope>
-							<biblScope unit="issue">12</biblScope>
-							<biblScope unit="page" from="3089" to="3101"/>
 							<date type="published" when="2012-03-27">27 March 2012</date>
 						</imprint>
 					</monogr>
@@ -69,7 +61,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+				<application version="0.7.2" ident="GROBID" when="2022-12-15T09:17+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>

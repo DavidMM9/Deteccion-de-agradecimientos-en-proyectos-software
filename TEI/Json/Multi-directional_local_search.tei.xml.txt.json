@@ -44,7 +44,7 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "Grants P20342-N13 and L628-N15"
 	}
     ,
@@ -59,7 +59,7 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "Grant 822739"
 	}
 ]

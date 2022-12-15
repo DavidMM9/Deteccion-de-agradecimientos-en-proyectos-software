@@ -6,12 +6,11 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 	<teiHeader xml:lang="en">
 		<fileDesc>
 			<titleStmt>
-				<title level="a" type="main">PRISM: a web server and repository for prediction of protein–protein interactions and modeling their 3D complexes</title>
+				<title level="a" type="main">PRISM: a web server and repository for prediction of protein-protein interactions and modeling their 3D complexes</title>
 			</titleStmt>
 			<publicationStmt>
-				<publisher>Oxford University Press (OUP)</publisher>
-				<availability status="unknown"><p>Copyright Oxford University Press (OUP)</p>
-				</availability>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
 				<date type="published" when="2022-10-19">19 October 2022</date>
 			</publicationStmt>
 			<sourceDesc>
@@ -95,17 +94,10 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 								</address>
 							</affiliation>
 						</author>
-						<title level="a" type="main">PRISM: a web server and repository for prediction of protein–protein interactions and modeling their 3D complexes</title>
+						<title level="a" type="main">PRISM: a web server and repository for prediction of protein-protein interactions and modeling their 3D complexes</title>
 					</analytic>
 					<monogr>
-						<title level="j" type="main">Nucleic Acids Research</title>
-						<idno type="ISSN">0305-1048</idno>
-						<idno type="eISSN">1362-4962</idno>
 						<imprint>
-							<publisher>Oxford University Press (OUP)</publisher>
-							<biblScope unit="volume">42</biblScope>
-							<biblScope unit="issue">W1</biblScope>
-							<biblScope unit="page" from="W285" to="W289"/>
 							<date type="published" when="2022-10-19">19 October 2022</date>
 						</imprint>
 					</monogr>
@@ -117,7 +109,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+				<application version="0.7.2" ident="GROBID" when="2022-12-15T09:19+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>

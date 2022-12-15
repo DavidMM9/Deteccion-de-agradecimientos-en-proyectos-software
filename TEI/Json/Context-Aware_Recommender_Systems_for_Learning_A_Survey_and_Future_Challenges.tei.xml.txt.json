@@ -19,7 +19,7 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "grant agreement no. 231913"
 	}
     ,
@@ -44,8 +44,8 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
-		"word": "project VOA3R - 250525"
+		"entity_group": "PROY",
+		"word": "project VOA3R"
 	}
     ,
 	{
@@ -74,12 +74,12 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "FP7/2007-2013"
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "grant agreement no 231396"
 	}
     ,
@@ -97,9 +97,14 @@
 		"entity_group": "ORG",
 		"word": "VLIR"
 	}
+	,
+	{
+		"entity_group": "PROY",
+		"word": "RIP Project"
+	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "Project ZEIN2010RIP09"
 	}
     ,
@@ -119,7 +124,7 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "AlterEgo project"
 	}
 ]

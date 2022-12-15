@@ -26,6 +26,7 @@ def useModel(modelo, path, output):
         # Cambiamos los scores a string para poder pasarlo a Json
         for dic in result:
             dic["score"] = str(dic["score"])
+            dic["word"] = dic["word"].translate(trans)
             dic["word"] = dic["word"].lstrip()
         # Cambiamos la estructura del modelo a Json y lo escribimos
         final = json.dumps(result)

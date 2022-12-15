@@ -1,6 +1,6 @@
 [
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "Collective Mind project"
 	},
 	{
@@ -9,12 +9,12 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "Grant number TEC2013-49430-EXP"
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "PRAISE project"
 	}
     ,
@@ -24,12 +24,12 @@
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "Grant number 388770"
 	}
     ,
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "ACE project"
 	}
     ,

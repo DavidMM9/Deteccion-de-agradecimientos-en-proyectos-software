@@ -9,9 +9,8 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 				<title level="a" type="main">Heat transfer rates in sheared beds of inertial particles at high Biot numbers</title>
 			</titleStmt>
 			<publicationStmt>
-				<publisher>Springer Science and Business Media LLC</publisher>
-				<availability status="unknown"><p>Copyright Springer Science and Business Media LLC</p>
-				</availability>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
 				<date type="published" when="2017-01-17">17 January 2017</date>
 			</publicationStmt>
 			<sourceDesc>
@@ -35,14 +34,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 						<title level="a" type="main">Heat transfer rates in sheared beds of inertial particles at high Biot numbers</title>
 					</analytic>
 					<monogr>
-						<title level="j" type="main">Granular Matter</title>
-						<title level="j" type="abbrev">Granular Matter</title>
-						<idno type="ISSN">1434-5021</idno>
-						<idno type="eISSN">1434-7636</idno>
 						<imprint>
-							<publisher>Springer Science and Business Media LLC</publisher>
-							<biblScope unit="volume">19</biblScope>
-							<biblScope unit="issue">1</biblScope>
 							<date type="published" when="2017-01-17">17 January 2017</date>
 						</imprint>
 					</monogr>
@@ -54,7 +46,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+				<application version="0.7.2" ident="GROBID" when="2022-12-15T09:18+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>

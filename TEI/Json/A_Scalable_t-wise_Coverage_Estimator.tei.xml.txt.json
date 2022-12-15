@@ -12,15 +12,15 @@
         "word": "EU H2020"
     },
     {
-        "entity_group": "MISC",
-        "word": "Serums"
+        "entity_group": "PROY",
+        "word": "project Serums"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "PROY",
         "word": "826278-SERUMS-H2020-SC1-FA-DTS-2018-2020"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "PROY",
         "word": "NSF HDR:TRIPODS-1934884"
     },
     {
@@ -28,7 +28,7 @@
         "word": "NRF Fellowship Programme"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "PROY",
         "word": "NRF-NRFFAI1-2019-0004"
     },
     {
@@ -36,7 +36,7 @@
         "word": "AI Singapore Programme"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "PROY",
         "word": "AISG-RP-2018-005"
     },
     {

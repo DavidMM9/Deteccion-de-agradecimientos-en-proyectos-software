@@ -32,7 +32,7 @@
         "word": "Seventh Framework Programme"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "GRANT",
         "word": "Grants Agreement no. 317184"
     },
     {
@@ -40,7 +40,7 @@
         "word": "Academy of Finland Centre of Excellence"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "PROY",
         "word": "Project number 307335"
     },
     {
@@ -48,11 +48,11 @@
         "word": "Academy of Finland"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "PROY",
         "word": "Project number 303757"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "GRANT",
         "word": "grant number 14-24-00020"
     },
     {
@@ -64,7 +64,7 @@
         "word": "Turku University Foundation"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "PROY",
         "word": "project number 9925"
     },
     {

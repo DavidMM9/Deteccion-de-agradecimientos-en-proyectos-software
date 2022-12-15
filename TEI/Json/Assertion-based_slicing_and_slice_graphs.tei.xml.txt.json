@@ -6,10 +6,29 @@
 	{
 		"entity_group": "ORG",
 		"word": "FCT"
-	}
-    ,
+	},
 	{
-		"entity_group": "MISC",
-		"word": "projects RESCUE (PTDC/EIA/65862/2006), FAVAS (PTDC/EIA-CCO/105034/2008), and CROSS (PTDC/EIA-CCO/108995/2008)"
+		"entity_group": "PROY",
+		"word": "projects RESCUE"
+	},
+	{
+		"entity_group": "PROY",
+		"word": "PTDC/EIA/65862/2006"
+	},
+	{
+		"entity_group": "PROY",
+		"word": "FAVAS"
+	},
+	{
+		"entity_group": "PROY",
+		"word": "PTDC/EIA-CCO/105034/2008"
+	},
+	{
+		"entity_group": "PROY",
+		"word": "CROSS"
+	},
+	{
+		"entity_group": "PROY",
+		"word": "PTDC/EIA-CCO/108995/2008"
 	}
 ]

@@ -6,12 +6,11 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 	<teiHeader xml:lang="en">
 		<fileDesc>
 			<titleStmt>
-				<title level="a" type="main">Interplay of SpkG kinase and the Slr0151 protein in the phosphorylation of ferredoxin 5 in &lt;i&gt;Synechocystis&lt;/i&gt; sp. strain PCC 6803</title>
+				<title level="a" type="main">Interplay of SpkG kinase and the Slr0151 protein in the phosphorylation of ferredoxin 5 in Synechocystis sp. strain PCC 6803</title>
 			</titleStmt>
 			<publicationStmt>
-				<publisher>Wiley</publisher>
-				<availability status="unknown"><p>Copyright Wiley</p>
-				</availability>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
 				<date type="published" when="2018-02-01">1 February 2018</date>
 			</publicationStmt>
 			<sourceDesc>
@@ -19,7 +18,6 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 					<analytic>
 						<author>
 							<persName><forename type="first">Martina</forename><surname>Angeleri</surname></persName>
-							<idno type="ORCID">0000-0002-1144-6580</idno>
 							<affiliation key="aff0">
 								<orgName type="department" key="dep1">Molecular Plant Biology</orgName>
 								<orgName type="department" key="dep2">Department of Biochemistry</orgName>
@@ -64,6 +62,9 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 							</affiliation>
 						</author>
 						<author>
+							<persName><forename type="first">Miguel</forename><surname>De La Rosa</surname></persName>
+						</author>
+						<author>
 							<affiliation key="aff2">
 								<orgName type="department">Department of Biochemistry</orgName>
 								<orgName type="institution">University of Turku</orgName>
@@ -74,17 +75,10 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 								</address>
 							</affiliation>
 						</author>
-						<title level="a" type="main">Interplay of SpkG kinase and the Slr0151 protein in the phosphorylation of ferredoxin 5 in &lt;i&gt;Synechocystis&lt;/i&gt; sp. strain PCC 6803</title>
+						<title level="a" type="main">Interplay of SpkG kinase and the Slr0151 protein in the phosphorylation of ferredoxin 5 in Synechocystis sp. strain PCC 6803</title>
 					</analytic>
 					<monogr>
-						<title level="j" type="main">FEBS Letters</title>
-						<title level="j" type="abbrev">FEBS Lett</title>
-						<idno type="ISSN">0014-5793</idno>
 						<imprint>
-							<publisher>Wiley</publisher>
-							<biblScope unit="volume">592</biblScope>
-							<biblScope unit="issue">3</biblScope>
-							<biblScope unit="page" from="411" to="421"/>
 							<date type="published" when="2018-02-01">1 February 2018</date>
 						</imprint>
 					</monogr>
@@ -96,7 +90,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+				<application version="0.7.2" ident="GROBID" when="2022-12-15T09:15+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>

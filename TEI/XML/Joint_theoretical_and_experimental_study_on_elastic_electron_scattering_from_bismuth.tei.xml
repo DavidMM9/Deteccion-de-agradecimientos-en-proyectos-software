@@ -9,9 +9,8 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 				<title level="a" type="main">Joint theoretical and experimental study on elastic electron scattering from bismuth</title>
 			</titleStmt>
 			<publicationStmt>
-				<publisher>American Physical Society (APS)</publisher>
-				<availability status="unknown"><p>Copyright American Physical Society (APS)</p>
-				</availability>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
 				<date type="published" when="2020-03-23">23 March 2020</date>
 			</publicationStmt>
 			<sourceDesc>
@@ -128,26 +127,19 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 						<title level="a" type="main">Joint theoretical and experimental study on elastic electron scattering from bismuth</title>
 					</analytic>
 					<monogr>
-						<title level="j" type="main">Physical Review A</title>
-						<title level="j" type="abbrev">Phys. Rev. A</title>
-						<idno type="ISSN">2469-9926</idno>
-						<idno type="eISSN">2469-9934</idno>
 						<imprint>
-							<publisher>American Physical Society (APS)</publisher>
-							<biblScope unit="volume">101</biblScope>
-							<biblScope unit="issue">3</biblScope>
 							<date type="published" when="2020-03-23">23 March 2020</date>
 						</imprint>
 					</monogr>
 					<idno type="MD5">355925AA0748AC789CB943B5A0667E47</idno>
-					<idno type="DOI">10.1103/physreva.101.032704</idno>
+					<idno type="DOI">10.1103/PhysRevA.101.032704</idno>
 					<note type="submission">Received 28 November 2019; revised manuscript received 28 January 2020; accepted 25 February 2020;</note>
 				</biblStruct>
 			</sourceDesc>
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+				<application version="0.7.2" ident="GROBID" when="2022-12-15T09:19+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>

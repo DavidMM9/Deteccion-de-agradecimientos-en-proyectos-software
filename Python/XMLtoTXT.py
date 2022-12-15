@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as bs
 def XMLtoTXT(path):
     content = []
     destination = "./../TEI/TXT"
-    a,b = 'áéíóúü','aeiouu'
+    a,b = 'áéíóúäëïöüâêîôûàèìòùãõäëïöüåç','aeiouaeiouaeiouaeiouaoaeiouac'
     trans = str.maketrans(a,b)
     # Read the XML file
     for x in os.listdir(path):

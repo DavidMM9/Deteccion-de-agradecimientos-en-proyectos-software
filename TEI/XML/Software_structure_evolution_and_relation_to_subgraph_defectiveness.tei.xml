@@ -9,9 +9,8 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 				<title level="a" type="main">Software structure evolution and relation to subgraph defectiveness</title>
 			</titleStmt>
 			<publicationStmt>
-				<publisher>Institution of Engineering and Technology (IET)</publisher>
-				<availability status="unknown"><p>Copyright Institution of Engineering and Technology (IET)</p>
-				</availability>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
 				<date type="published" when="2019-02-27">27th February 2019</date>
 			</publicationStmt>
 			<sourceDesc>
@@ -32,7 +31,17 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 							</affiliation>
 						</author>
 						<author>
-							<persName><forename type="first">Tihana</forename><surname>Galinac Grbac</surname></persName>
+							<persName><forename type="first">Tihana</forename><forename type="middle">Galinac</forename><surname>Grbac</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Faculty of Engineering</orgName>
+								<orgName type="institution">University of Rijeka</orgName>
+								<address>
+									<addrLine>Vukovarska 58</addrLine>
+									<postCode>HR-51000</postCode>
+									<settlement>Rijeka</settlement>
+									<country key="HR">Croatia</country>
+								</address>
+							</affiliation>
 						</author>
 						<author>
 							<persName><forename type="first">Željka</forename><surname>Car</surname></persName>
@@ -49,15 +58,8 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 						<title level="a" type="main">Software structure evolution and relation to subgraph defectiveness</title>
 					</analytic>
 					<monogr>
-						<title level="j" type="main">IET Software</title>
-						<title level="j" type="abbrev">IET softw.</title>
 						<idno type="ISSN">1751-8806</idno>
-						<idno type="eISSN">1751-8814</idno>
 						<imprint>
-							<publisher>Institution of Engineering and Technology (IET)</publisher>
-							<biblScope unit="volume">13</biblScope>
-							<biblScope unit="issue">5</biblScope>
-							<biblScope unit="page" from="355" to="367"/>
 							<date type="published" when="2019-02-27">27th February 2019</date>
 						</imprint>
 					</monogr>
@@ -69,7 +71,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+				<application version="0.7.2" ident="GROBID" when="2022-12-15T09:19+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>

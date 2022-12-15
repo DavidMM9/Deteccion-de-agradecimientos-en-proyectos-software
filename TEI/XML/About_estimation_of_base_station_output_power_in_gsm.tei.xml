@@ -6,21 +6,18 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 	<teiHeader xml:lang="en">
 		<fileDesc>
 			<titleStmt>
-				<title level="a" type="main">About estimation of base station output power in GSM like systems under real conditions</title>
+				<title level="a" type="main">ABOUT ESTIMATION OF BASE STATION OUTPUT POWER IN GSM LIKE SYSTEMS UNDER REAL CONDITIONS</title>
 			</titleStmt>
 			<publicationStmt>
-				<publisher>National Library of Serbia</publisher>
-				<availability status="unknown"><p>Copyright National Library of Serbia</p>
-				</availability>
-				<date type="published" when="2020">2020</date>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
 			</publicationStmt>
 			<sourceDesc>
 				<biblStruct>
 					<analytic>
-						<author role="corresp">
+						<author>
 							<persName><forename type="first">Aleksandar</forename><surname>Lebl</surname></persName>
 							<email>lebl@iritel.com</email>
-							<idno type="ORCID">0000-0001-6544-6618</idno>
 							<affiliation key="aff0">
 								<orgName type="institution">IRITEL a.d</orgName>
 								<address>
@@ -31,38 +28,57 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 							</affiliation>
 						</author>
 						<author>
-							<persName><forename type="first">Dragan</forename><surname>Mitic</surname></persName>
+							<persName><forename type="first">Dragan</forename><surname>Miti</surname></persName>
+							<email>mita@iritel.com</email>
+							<affiliation key="aff1">
+								<orgName type="institution">Ć IRITEL a.d</orgName>
+								<address>
+									<postCode>11080</postCode>
+									<settlement>Belgrade, Batajnički put 23</settlement>
+									<country key="RS">Serbia</country>
+								</address>
+							</affiliation>
 						</author>
 						<author>
-							<persName><forename type="first">Zarko</forename><surname>Markov</surname></persName>
+							<persName><forename type="first">Žarko</forename><surname>Markov</surname></persName>
+							<email>zmarkov@iritel.com</email>
+							<affiliation key="aff2">
+								<orgName type="institution">IRITEL a.d</orgName>
+								<address>
+									<postCode>11080</postCode>
+									<settlement>Belgrade, Batajnički put 23</settlement>
+									<country key="RS">Serbia</country>
+								</address>
+							</affiliation>
 						</author>
 						<author>
-							<persName><forename type="first">Verica</forename><surname>Vasiljevic</surname></persName>
+							<persName><forename type="first">Verica</forename><surname>Vasiljevi</surname></persName>
+							<email>vasiljevicv1@gmail.com</email>
+							<affiliation key="aff3">
+								<orgName type="department">Faculty of Information Technology</orgName>
+								<orgName type="institution">University Slobomir P</orgName>
+								<address>
+									<settlement>Bjeljina</settlement>
+									<country key="BA">Bosnia and Herzegovina</country>
+								</address>
+							</affiliation>
 						</author>
-						<title level="a" type="main">About estimation of base station output power in GSM like systems under real conditions</title>
+						<title level="a" type="main">ABOUT ESTIMATION OF BASE STATION OUTPUT POWER IN GSM LIKE SYSTEMS UNDER REAL CONDITIONS</title>
 					</analytic>
 					<monogr>
-						<title level="j" type="main">Yugoslav Journal of Operations Research</title>
-						<title level="j" type="abbrev">YUGOSLAV J OPERATION</title>
-						<idno type="ISSN">0354-0243</idno>
-						<idno type="eISSN">1820-743X</idno>
 						<imprint>
-							<publisher>National Library of Serbia</publisher>
-							<biblScope unit="volume">30</biblScope>
-							<biblScope unit="issue">1</biblScope>
-							<biblScope unit="page" from="109" to="119"/>
-							<date type="published" when="2020" />
+							<date/>
 						</imprint>
 					</monogr>
 					<idno type="MD5">E672D9B76D8F67C8675E25A943FB35DB</idno>
-					<idno type="DOI">10.2298/yjor190415017l</idno>
+					<idno type="DOI">10.2298/YJOR190415017L</idno>
 					<note type="submission">Received: April 2019 / Accepted: Jun 2019</note>
 				</biblStruct>
 			</sourceDesc>
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.7.2" ident="GROBID" when="2022-11-23T19:52+0000">
+				<application version="0.7.2" ident="GROBID" when="2022-12-15T09:13+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>

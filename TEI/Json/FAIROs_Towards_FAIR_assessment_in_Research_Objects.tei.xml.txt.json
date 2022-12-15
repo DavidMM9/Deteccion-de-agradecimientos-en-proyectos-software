@@ -20,11 +20,11 @@
         "word": "H2020 Programme"
     },
     {
-        "entity_group": "MISC",
-        "word": "RELIANCE"
+        "entity_group": "PROY",
+        "word": "project RELIANCE"
     },
     {
-        "entity_group": "MISC",
+        "entity_group": "GRANT",
         "word": "grant agreement no. 101017501"
     },
     {
@@ -32,8 +32,8 @@
         "word": "Multiannual Agreement"
     },
     {
-        "entity_group": "MISC",
-        "word": "Support for R&D"
+        "entity_group": "PROY",
+        "word": "R&D projects"
     },
     {
         "entity_group": "MISC",

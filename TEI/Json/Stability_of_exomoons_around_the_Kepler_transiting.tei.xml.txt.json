@@ -48,7 +48,7 @@
 		"word": "NASA"
 	},
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "grant NNX14AM24G"
 	},
 	{
@@ -60,16 +60,8 @@
 		"word": "NWO"
 	},
 	{
-		"entity_group": "MISC",
-		"word": "grants #643.200.503"
-	},
-	{
-		"entity_group": "MISC",
-		"word": "#639.073.803"
-	},
-	{
-		"entity_group": "MISC",
-		"word": "#614.061.608"
+		"entity_group": "GRANT",
+		"word": "grants #643.200.503, #639.073.803 and #614.061.608"
 	},
 	{
 		"entity_group": "ORG",
@@ -100,11 +92,11 @@
 		"word": "Horizon 2020"
 	},
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "grant agreement No 671564"
 	},
 	{
-		"entity_group": "MISC",
+		"entity_group": "PROY",
 		"word": "COMPAT project"
 	},
 	{

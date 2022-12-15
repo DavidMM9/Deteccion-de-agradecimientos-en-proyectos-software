@@ -12,12 +12,12 @@
 		"word": "FP7"
 	},
 	{
-		"entity_group": "MISC",
+		"entity_group": "GRANT",
 		"word": "Grant agreement no. 604656"
 	},
 	{
-		"entity_group": "ORG",
-		"word": "project NanoSim"
+		"entity_group": "PROY",
+		"word": "project 'NanoSim'"
 	},
 	{
 		"entity_group": "ORG",
