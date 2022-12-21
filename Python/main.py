@@ -24,14 +24,25 @@ def main(argv):
         "-s", "--goldstandard", type=str, help="Carpeta donde esta el goldstandard"
     )
     parser.add_argument(
-        "-g", "--grobid", help="Usar grobid para pasar articulos de PDF a XML"
+        "-g",
+        "--grobid",
+        action="store_true",
+        help="Usar grobid para pasar articulos de PDF a XML",
     )
     parser.add_argument(
-        "-x", "--toTXT", help="Sacar la seccion de Acknowledgements en TXT"
+        "-x",
+        "--toTXT",
+        action="store_true",
+        help="Sacar la seccion de Acknowledgements en TXT",
     )
-    parser.add_argument("-f", "--huggingface", help="Usar modelo de HuggingFace")
     parser.add_argument(
-        "-r", "--regex", help="Mete al json del modelo lo encontrado con regex"
+        "-f", "--huggingface", action="store_true", help="Usar modelo de HuggingFace"
+    )
+    parser.add_argument(
+        "-r",
+        "--regex",
+        action="store_true",
+        help="Mete al json del modelo lo encontrado con regex",
     )
     parser.add_argument(
         "-c", "--calcF1", action="store_true", help="Calcula el F1 score en una tabla"
