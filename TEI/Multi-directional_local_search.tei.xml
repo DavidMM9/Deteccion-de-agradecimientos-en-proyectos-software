@@ -1,0 +1,1470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Multi-directional local search</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Elsevier BV</publisher>
+				<availability status="unknown"><p>Copyright Elsevier BV</p>
+				</availability>
+				<date type="published" when="2012-03-27">27 March 2012</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Fabien</forename><surname>Tricoire</surname></persName>
+							<email>fabien.tricoire@univie.ac.at</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Business Administration</orgName>
+								<orgName type="institution">University of Vienna</orgName>
+								<address>
+									<addrLine>Bruenner Strasse 72</addrLine>
+									<postCode>1210</postCode>
+									<settlement>Wien</settlement>
+									<country key="AT">Austria</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">NICTA/UNSW</orgName>
+								<address>
+									<settlement>Sydney</settlement>
+									<country key="AU">Australia</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff2">
+								<orgName type="department">Department of Business Administration</orgName>
+								<orgName type="institution">University of Vienna</orgName>
+								<address>
+									<addrLine>Bruenner Strasse 72</addrLine>
+									<postCode>1210</postCode>
+									<settlement>Wien</settlement>
+									<country key="AT">Austria</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Multi-directional local search</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">Computers &amp; Operations Research</title>
+						<title level="j" type="abbrev">Computers &amp; Operations Research</title>
+						<idno type="ISSN">0305-0548</idno>
+						<imprint>
+							<publisher>Elsevier BV</publisher>
+							<biblScope unit="volume">39</biblScope>
+							<biblScope unit="issue">12</biblScope>
+							<biblScope unit="page" from="3089" to="3101"/>
+							<date type="published" when="2012-03-27">27 March 2012</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">5DDF02590B5EEC6D0ED42F572F29A7E5</idno>
+					<idno type="DOI">10.1016/j.cor.2012.03.010</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2022-12-21T19:38+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>Multi-objective optimization Metaheuristics</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This paper introduces multi-directional local search, a metaheuristic for multi-objective optimization. We first motivate the method and present an algorithmic framework for it. We then apply it to several known multi-objective problems such as the multi-objective multi-dimensional knapsack problem, the bi-objective set packing problem and the bi-objective orienteering problem. Experimental results show that our method systematically provides solution sets of comparable quality with state-of-the-art methods applied to benchmark instances of these problems, within reasonable CPU effort. We conclude that the proposed algorithmic framework is a viable option when solving multi-objective optimization problems.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>Despite indisputable progress in combinatorial optimization in the last 60 years, there still exists a gap between theory and practice; for instance, when confronted with hard combinatorial problems, decision makers are not always able to formulate them directly as linear or mixed integer-linear programs, not to mention solving them. There are several reasons for this, one of them being that many real-world problems are in fact multi-objective. This is typically the case when a decision maker wants to optimize several aspects of his problem, while being unable to express preferences among these objectives.</p><p>Many real-world optimization problems have several objectives and, in the last decade, research studies focusing on multiobjective problems became more common. This has been made possible by both technological progress (faster computers) and the construction of necessary theoretical tools for multi-objective optimization: although it is simple to compare two solutions when considering a single objective, it becomes more complicated when considering several objectives. A common approach, called the Pareto approach, is to consider a dominance rule such that a solution dominates another one if it is better in at least one objective and not worse in all objectives. A solution is Paretooptimal if there does not exist a solution that dominates it. In such a context, the goal of an optimization algorithm is to find not only one optimal solution, but the whole set of Pareto-optimal solutions. This set can be partitioned into supported and non-supported solutions. For any k-objective problem and any given weight vector of size k, there exists a single-objective projected problem obtained by performing a linear combination of all weighted objectives. Supported solutions are then defined as those solutions for which there exists a weight vector, with strictly positive weights, such that they are optimal for the associated single-objective projected problem.</p><p>Although only one solution can be implemented in practice, the Pareto approach has advantages when the decision maker's preference is not known a priori: no matter what this preference is, the solution that will be optimal under this preference is a Pareto-optimal solution, and providing the Pareto front can help eliciting the decision maker preference by presenting them a set of trade-off solutions. This is called the a posteriori approach <ref type="bibr" target="#b53">[54]</ref>. In some cases the set of trade-off solutions can grow very large, so the decision maker must be assisted in exploring it. Interactive analysis methods, such as the interactive trichotomy <ref type="bibr" target="#b29">[30]</ref>, aim at providing such assistance. An overview of these interactive methods is provided by Jaszkiewicz and Branke <ref type="bibr" target="#b28">[29]</ref>. The authors note a trend in integrating the two stages, thus allowing the decision maker to interfere in the search process in order to prune the solution space during the optimization. For instance, Branke et al. <ref type="bibr" target="#b4">[5]</ref> integrate the GRIP decision analysis method <ref type="bibr" target="#b17">[18]</ref> with NSGA-II <ref type="bibr" target="#b11">[12]</ref>.</p><p>Although decision analysis methods continuously improve and provide new mechanisms, they still rely on the ability to identify Pareto fronts efficiently. For that reason, Pareto optimization is a relevant research problem in relation to multi-criteria decision making.</p><p>For reasons including computational power limitations, heuristics and metaheuristics are a frequent choice when it comes to optimizing multiple objectives. In particular, evolutionary algorithms are quite popular. This dates back to the seminal contribution by Schaffer <ref type="bibr" target="#b44">[45]</ref>. Since then, numerous evolutionary algorithms for multi-objective optimization have been developed, like for instance the non-dominated sorting genetic algorithm (NSGA <ref type="bibr" target="#b48">[49]</ref>), the genetic algorithms by Coello and Christiansen <ref type="bibr" target="#b7">[8]</ref>, the multi-objective genetic algorithm (MOGA <ref type="bibr" target="#b20">[21]</ref>), the Pareto archived evolution strategy (PAES <ref type="bibr" target="#b31">[32]</ref>), the non-dominated sorting genetic algorithm (NSGA-II <ref type="bibr" target="#b11">[12]</ref>), or the strength Pareto evolutionary algorithm 2 (SPEA2 <ref type="bibr" target="#b56">[57]</ref>). In general, an important contribution of such methods lies in the adaptation of the concept of fitness to the multi-objective context. For instance, in NSGA and NSGA-II the population is sorted into different fronts (or levels): front 1 contains the non-dominated solutions, front 2 the solutions that are only dominated by solutions of front 1, and so on. The fitness of a solution is then the front level to which it belongs. With SPEA2, the fitness of a solution is based on its strength, which represents the number of individuals it dominates. With several popular multi-objective evolutionary algorithms, like for instance NSGA-II or SPEA2, dominated solutions are kept under certain conditions, usually in order to bring diversity. The reader interested in a deeper understanding of multi-objective evolutionary algorithms will find a good starting point in the book by Coello Coello et al. <ref type="bibr" target="#b8">[9]</ref>.</p><p>Other traditional metaheuristics have been adapted to multiobjective optimization as well. Simulated annealing was the basis for various contributions (e.g. <ref type="bibr" target="#b52">[53,</ref><ref type="bibr" target="#b9">10,</ref><ref type="bibr" target="#b25">26]</ref>), as well as tabu search (e.g. <ref type="bibr" target="#b23">[24,</ref><ref type="bibr" target="#b22">23]</ref>), a mix of both <ref type="bibr" target="#b1">[2]</ref>, ant colony optimization and variable neighborhood search <ref type="bibr" target="#b14">[15,</ref><ref type="bibr" target="#b40">41,</ref><ref type="bibr" target="#b45">46]</ref> to name a few. As already discussed with evolutionary algorithms, adapting the concept of solution quality to the multi-objective context is a major issue when developing multi-objective heuristic methods. One possibility is to use weighted-sum functions, but it has the drawback that non-supported solutions are not captured by such a projection. As an alternative, weighted Tchebycheff scalarizing functions can be used (see e.g. <ref type="bibr" target="#b0">[1]</ref>). Some algorithms still rely on weighted-sum functions. For instance Parragh et al. <ref type="bibr" target="#b40">[41]</ref> first solve various weighted-sum single-objective versions of the dial-a-ride problem (using variable neighborhood search), then search for non-supported solutions using path relinking.</p><p>Path relinking is a common ingredient of multi-objective optimization methods. It consists in, from an initial solution, performing moves to reach a guiding solution, thus linking both solutions with a path, in which each step is associated with an intermediate solution.</p><p>The underlying expectation is that these intermediate solutions might be Pareto-optimal, provided both initial and guiding solutions are good enough. For an introduction to path relinking, the interested reader should refer to Glover and Laguna <ref type="bibr" target="#b24">[25]</ref>.</p><p>A generalization of local search to the multi-objective context, called Pareto local search (PLS), has been proposed by Paquete et al. <ref type="bibr" target="#b38">[39]</ref>. It was further analyzed by Paquete et al. <ref type="bibr" target="#b39">[40]</ref>. The concept of local optimum is extended by Paquete et al. <ref type="bibr" target="#b38">[39]</ref> to the multi-objective context by two definitions: (i) a solution p is a Pareto local optimum with respect to neighborhood N if there exists no r A NðpÞ such that r dominates p, and (ii) P is a Pareto local optimum set with respect to neighborhood N if and only if it contains only Pareto local optima with respect to N. Building up on these definitions, PLS is defined as a procedure that iteratively improves a nondominated set through neighborhood exploration. More precisely, solutions are stored in an archive, and at each iteration a solution's neighborhood is explored, which leads to updating the archive. Each solution's neighborhood is explored only once, and the algorithm stops when the neighborhoods of all solutions in the archive have been processed; the archive is then a Pareto local optimum set.</p><p>This paper presents a new metaheuristic for multi-objective optimization, called multi-directional local search (MDLS). MDLS only keeps track of non-dominated solutions, like PLS, but unlike many well-known methods for multi-objective optimization. It can be seen as a multi-objective generalization of stochastic local search (SLS <ref type="bibr" target="#b26">[27]</ref>).</p><p>In Section 2 we introduce the method and describe its key ideas and general framework. In Section 3 we describe our experimental protocol, including the MDLS implementation. In Section 4 we validate it through experimentation by applying it to three multiobjective optimization problems, comparing the results with benchmark data from the literature. We conclude the paper with propositions for future research on multi-directional local search, and identify promising venues to broaden the validation of the method to a range of problems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Multi-directional local search</head><p>In this section, we present the new algorithmic framework MDLS. We first provide some overview on multi-objective metaheuristics as well as motivation for this method. We then present the algorithmic framework for MDLS.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1.">Rationale</head><p>When designing a metaheuristic, one should keep in mind to provide a general-purpose method, regardless of problem-specific ingredients: while heuristics are designed to solve a given problem, the purpose of metaheuristics is to solve a more general metaproblem. Problem-specific heuristics are usually specialized components of such metaheuristics. In the context of multi-objective optimization the usual preoccupations still matter (e.g. diversification and intensification), but the meta-problem we want to tackle is, given a multi-objective optimization problem, to provide a good non-dominated front (and not only a good solution). Existing multiobjective metaheuristics typically rely on theoretical and/or empirical knowledge about characteristics of exact Pareto fronts, and aim at exploiting various properties in order to provide good approximation of the Pareto front.</p><p>A first example is the use of weighted sums, present in many local search based multi-objective metaheuristics: it relies on the fact that the optimum of a single-objective problem using a weighted sum (with strictly positive weights) for the objective is also part of the Pareto set. It is therefore likely that a good metaheuristic for the single-objective problem will produce good solutions for the multi-objective problem. An interesting property of that approach is that given two solutions x 1 and x 2 , it holds that if x 1 is better than x 2 for at least one weighted sum function, then x 2 does not dominate x 1 . A direct consequence is that all traditional single-objective methods can be directly used with such weighted sums. However, only the supported solutions of the Pareto set are also optimal for a weighted sum objective.</p><p>A second example is that of evolutionary multi-objective metaheuristics. Such methods rely heavily on the fact that combining together elements of good solutions may help to produce other good solutions. In the single-objective case the term good refers directly to the fitness function, and in the multi-objective case it refers to the ability of a given solution to dominate others. Another key idea of such algorithms is that in order to make it possible to provide efficient exploration of the solution space, diversity has to be maintained in the population.</p><p>The very definition of multi-objective optimization contains a simple theoretical tool that can be used in the design of heuristic algorithms: the concept of Pareto dominance. If, from a solution x, efficient or not, we want to find a neighbor x 0 which is efficient, then this means that we are looking for solutions that are either (i) dominating x or (ii) non-comparable with x. In both cases, this means that x 0 has to be better than x for at least one objective. So in order to find new efficient solutions that are neighbors of x, it is sufficient to search only in one direction at a time, i.e. to use single-objective local search. This principle is illustrated in Fig. <ref type="figure" target="#fig_0">1</ref>, with an example on a bi-objective maximization problem. Search direction 1 is illustrated in Fig. <ref type="figure" target="#fig_0">1</ref>(a): the objective space around a given solution is cut in two halves, and the relevant half is the right one. The circular portion represents a neighborhood around the given solution. Fig. <ref type="figure" target="#fig_0">1</ref>(b) represents the relevant objective space for direction 2 in a similar fashion. Fig. <ref type="figure" target="#fig_0">1(c</ref>) represents the total relevant objective space around this same solution.</p><p>With these ideas in mind, we develop a method which consists in, given a non-dominated set of solutions, iteratively improving it by exploring neighborhoods using single-objective local search.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.">Algorithmic framework for multi-objective optimization</head><p>A key idea of MDLS is to use different local searches, each of them working on a single objective. More precisely, for each objective k a local search LS k is defined. This local search is later performed in order to improve solutions with respect to objective k. An iteration consists in (i) selecting a solution, (ii) performing local search on this solution for each objective/direction, thus producing a new solution in each direction and (iii) accepting or rejecting the newly produced solutions. A requirement for the local search procedures used in the second step is that they only produce feasible solutions.</p><p>A risk when solving multi-objective problems with a local search based on a single incumbent solution is to miss whole regions of the Pareto front. To address this issue, we consider an incumbent set of solutions instead (also called archive). More precisely, a set F of non-dominated solutions is maintained, which contains all solutions found during the search that are nondominated. This set is also what the MDLS returns when it stops.</p><p>Algorithm 1 gives an outline of MDLS, assuming a problem with K objectives. Algorithm 1. Multi-Directional Local Search for K objectives.</p><p>1: input: a set of non-dominated solutions F 2: repeat 3:</p><p>x'select_a_solutionðFÞ 4:</p><p>G'| 5:</p><p>for k'1 to K do 6:</p><p>G'G [ fLS k ðxÞg 7:</p><p>end for 8: updateðF,GÞ 9: until stopping criterion is met 10: return F We note similarities with PLS <ref type="bibr" target="#b38">[39]</ref>: at each iteration a solution is selected from the archive and the non-dominated set is updated through neighborhood exploration around this solution. However there are sensible differences: PLS requires complete neighborhood exploration around a solution, whereas MDLS performs any kind of local search, including stochastic local search methods; MDLS is based on the previously introduced concept of search direction; more generally, PLS is deterministic (and is proved to converge) whereas MDLS is stochastic.</p><p>In fact, various aspects of MDLS can be found in other methods. For instance, the idea of selecting solutions from an archive, applying local search and updating the archive is not new. An example of methods applying a similar idea can be found in multi-objective iterated greedy search (see e.g. <ref type="bibr" target="#b21">[22,</ref><ref type="bibr" target="#b36">37]</ref>). There are also other methods using single-objective local search, like the simulated annealing method of Varadharajan and Rajendran <ref type="bibr" target="#b54">[55]</ref>. However, we believe that the core idea of MDLS, i.e. selecting a solution, searching around it in each direction then updating the archive, is new.</p><p>Regarding neighborhood exploration, any local search method can be used; in particular, any stochastic local search <ref type="bibr" target="#b26">[27]</ref> can be used. Such methods are problem-specific components, and should be designed depending on the single-objective problem at hand.</p><p>In order to provide a concrete insight on how MDLS is designed to work and how it works in practice, we now present a graphical example on a bi-objective maximization problem in Fig. <ref type="figure" target="#fig_1">2</ref>. It shows the first iterations of our MDLS implementation on the multiobjective orienteering problem described in Section 4.3, on instance squ_t070. Fig. <ref type="figure" target="#fig_1">2</ref>(a) displays the starting set of solutions, at the beginning of the search. Fig. <ref type="figure" target="#fig_1">2(b)</ref> shows the two neighbors obtained during iteration 1, one for each direction (objective). Fig. <ref type="figure" target="#fig_1">2(c</ref>) presents the set of solutions at the end of iteration 1, after dominance checks. Fig. <ref type="figure" target="#fig_1">2(d)</ref> shows the two neighbors obtained during iteration 2, again one for each optimization direction. Fig. <ref type="figure" target="#fig_1">2(e)</ref> shows the set of solutions after dominance checks at iteration 2. Finally, Fig. <ref type="figure" target="#fig_1">2(f)</ref> shows the set of solutions a few iterations later, at the end of iteration 10.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Experimental setting</head><p>In this section we provide more details regarding our implementation of multi-directional local search, and how we evaluate the quality of the solution sets produced. The algorithm presented in the previous section is implemented as-is; however, some components still need to be specified. In the following subsection, we present the common components for MDLS; in the subsequent subsection, we describe the performance indicators used to assess the quality of the method.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.">Common components for MDLS</head><p>We first note here that the archive F can grow very large in some cases; it is therefore important to use an appropriate data structure. In the context of MDLS, there are three operations that we want to perform on F:</p><p>1. Test whether solutions in F are dominated by a new solution s. 2. Test whether this new solution s is dominated by solutions in F.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Select a solution from F.</head><p>The first two operations are typically time-consuming and special care should be taken in order to perform them as efficiently as possible.</p><p>Perhaps the simplest way to represent a non-dominated set is by using an unordered list. When doing so, 9F9 dominance tests have to be performed for operation 1, and 9F9 more for operation 2. When considering a bi-objective maximization problem, it is possible to simply sort the list using decreasing values of first objective to compare solutions. As a side-effect, the list will be sorted in increasing values for the second objective. By doing so, we can consider two interesting subsets of F: the right part of the list corresponds to the subset of solutions that have a chance of being dominated by s, while the left part of the list contains the solutions that have a chance of dominating s. If there is a solution in F that has a similar value as s for the first objective then it is in both subsets. By sorting the list, the number of required dominance tests for every new solution is divided by two. This trick only works for two objectives.</p><p>A more general principle, quad-trees allow to partition F into three subsets: the solutions that have a chance of dominating s, the solutions that have a chance of being dominated by s, and the solutions that we know are non-comparable with s. For a detailed explanation on how quad-trees work, as well as variants of quadtrees, see Mostaghim and Teich <ref type="bibr" target="#b37">[38]</ref>. Quad-trees offer a powerful partitioning of the non-dominated set, and work independently of the number of objectives considered.</p><p>In the context of this paper we use quad-trees to represent nondominated sets. More precisely, we use the quad-tree 1 structure described by Mostaghim and Teich <ref type="bibr" target="#b37">[38]</ref>.</p><p>There are many ways to select a solution from F in order to guide the search, but in the following we always select it randomly, with equal probabilities for each element of F; this way, no parameter is required. In order to do so, we enrich the quad-tree structure by storing, at each node, the number of solutions in the corresponding sub-tree. This allows us to select random solutions from the quadtree, by weighting the probability to select each node using the number of solutions it represents.</p><p>In order to stop the search any criterion can be used, but we always use the same one, which is to reach a predefined number of iterations. This number of iterations varies depending on the problem though, and is similar to CPU budget.</p><p>As explained in Section 2.2, any single-objective local search method can be used for directional search in MDLS. In the context of this paper, we use large neighborhood search (LNS) for that purpose. Different neighborhoods are used for the different problems we tackle, but they all follow a basic LNS scheme. We now summarize a few facts about LNS.</p><p>Large neighborhood search, also called ruin and recreate, is a metaheuristic introduced by Shaw <ref type="bibr" target="#b47">[48]</ref>. The name ''Large Neighborhood Search'' stems from the fact that all solutions that can be reached by successively destroying a part of the incumbent solution then reconstructing it in a different way define an implicit neighborhood around it. Such a neighborhood is considered to be large. Since an exhaustive exploration of such neighborhoods would be too time-consuming, heuristics are used in an aggressive manner in order to narrow the search: the ruin and recreate operators typically aim at exploring only interesting parts of the implicit neighborhood. So far, LNS has been used almost exclusively to solve transportation problems. Shaw uses it in a constraint programming framework in order to solve the vehicle routing problem with time windows (VRPTW). Two years later, a similar principle is introduced by Schrimpf et al. <ref type="bibr" target="#b46">[47]</ref> under the name ruin and recreate, and applied to the traveling salesman problem, the VRPTW, and network optimization. Pisinger and Ropke <ref type="bibr" target="#b41">[42]</ref> develop a general-purpose LNS method for a wide range of routing problems including capacitated vehicle routing problem, VRPTW, site-dependent vehicle routing problem, multi-depot vehicle routing problem, and open vehicle routing problem. A generalization of all these problems is considered, and each single problem is converted to the generalized version, then solved with the same LNS method. Experimental results are provided for standard benchmark instances on each of the five considered problems, which show LNS to outperform previous approaches. In an earlier research, Ropke and Pisinger <ref type="bibr" target="#b43">[44]</ref> present an adaptive version of LNS in which the heuristic is dynamically tuned to select appropriate neighborhoods, and use it to solve the pickup and delivery problem with time windows. All these contributions and more are reviewed in the recent survey by Pisinger and Ropke <ref type="bibr" target="#b42">[43]</ref>.</p><p>In the context of MDLS, single-objective local search consists of one or several iterations of LNS. Therefore, for each objective of the problem at hand, a set of ruin and recreate operators must be designed. Such operators, which define neighborhoods, are problem-specific and are described later on in the respective subsection of each problem. The selection of which neighborhood to use at a given LNS iteration can be performed in several ways. For instance, Ropke and Pisinger <ref type="bibr" target="#b43">[44]</ref> use an adaptive mechanism that emphasizes the use of the most successful neighborhoods. In this paper we use a very simple mechanism: the neighborhood is selected randomly, each neighborhood being equiprobable.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.">Performance indicators</head><p>In multi-objective optimization, one cannot simply compare the quality of two solutions. In order to provide a fair evaluation of the performance of various methods, indicators are used. Such indicators take as input the set of solutions provided by a method, and return a value reflecting one aspect of this set. Another part of the input can typically be a reference set to compare to. We now briefly present all performance indicators which are used to compare MDLS with other methods in the following sections. All these indicators are usually computed on normalized objective values, so that all objectives take values within the same range when considering the whole Pareto front. For detailed information on performance indicators for multi-objective optimization, we recommend the tutorial by Knowles et al. <ref type="bibr" target="#b32">[33]</ref>.</p><p>The hypervolume indicator, introduced by Zitzler and Thiele <ref type="bibr" target="#b57">[58]</ref>, represents the size of the space covered by a set of solutions. In the original paper it is actually called size of the space covered. For this indicator, a nadir point must be used in order to bound the space that is being measured. With this indicator, larger values are better.</p><p>The multiplicative unary epsilon indicator, introduced by Zitzler et al. <ref type="bibr" target="#b58">[59]</ref>, gives an indication on how far from a reference set R is an approximation set A. More precisely, and assuming all objectives should be minimized, it defines the smallest factor E such that for each element e A R and its objective values vector v e , E Á v e is dominated by at least one element in A. The smallest value for this indicator is 1, and smaller values are better.</p><p>The percentage of Pareto-optimal solutions found, called M1 <ref type="bibr" target="#b52">[53]</ref>, is also used. Highest values are the best, 1 being the maximum value (that of the Pareto set).</p><p>The convergence metric <ref type="bibr" target="#b30">[31]</ref> gives the average Euclidean distance from an approximation front to a reference front, ideally to the Pareto front. For each point in the approximation set, the Euclidean distance to the closest solution in the reference set is calculated, then the average of these produces the indicator value. The best value is 0, and smaller values are better.</p><p>Although they all provide information of some aspect of the examined non-dominated set, these indicators all have drawbacks, and none of them should be used as a single measurement of quality. However by using several indicators at the same time one can provide a more objective comparison of two different methods. We consider that the joint use of the hypervolume and unary epsilon indicators provides a fair enough point of view when comparing two multi-objective methods; in the following, we systematically use these two indicators whenever possible. However, detailed experimental data from other research works is not always available. In such cases, we use the same indicators as those presented in the research works we compare to.</p><p>A concept related to performance indicators is that of attainment sets <ref type="bibr" target="#b10">[11]</ref>. An attainment set is a set of solutions that are attained with a certain probability. A solution is attained by a set when there is another solution in this set that dominates it. For instance, the 50% attainment set of a given method on a given instance is the set of solutions that are attained at least 50% of the time by this method on this instance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">MDLS in practice</head><p>We now describe how to apply MDLS to three problems from the multi-objective optimization literature: the multi-objective multi-dimensional knapsack problem (MOMDKP), the bi-objective set packing problem (BOSPP) and the bi-objective orienteering problem (BOOP).</p><p>All experimental results presented in this section are available online at http://prolog.univie.ac.at/research/MDLS, as well as reusable code (ANSI Cþþ) of the general-purpose MDLS framework used in this section.</p><p>For each problem, we compare the results obtained with MDLS to existing results from the literature. Whenever possible, we use the same CPU as the one used for the results we compare to; otherwise, we use the fastest computer we currently have access to.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.">Multi-objective multi-dimensional knapsack problem</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.1.">Problem description</head><p>The knapsack problem is a traditional combinatorial optimization problem. When considering a set of items, each with a weight and a profit, and a knapsack with a given capacity, it consists in selecting items in order to maximize the sum of profits of these selected items, while keeping the sum of their weights below the capacity of the knapsack. A multi-objective version of this problem can simply be obtained by adding new profits to each item. Another extension of the knapsack problem, called the multi-dimensional knapsack problem, consists in considering not only one weight per item, but several dimensions, each associated to a given capacity. Then for each item a consumption for each dimension is considered, and the capacity for each dimension has to be respected. Here we consider the combination of these last two problems, i.e. the multiobjective multi-dimensional knapsack problem (MOMDKP). A mathematical model for m dimensions and k objectives, as presented by Florios et al. <ref type="bibr" target="#b18">[19]</ref>, follows:</p><formula xml:id="formula_0">max Px s:t: Wx r c x ¼ ðx 1 , . . . ,x n Þ T A f0; 1g n P A R þ ðkÂnÞ , W A R þ ðmÂnÞ , c ¼ ðc 1 , . . . ,c m Þ T A R m<label>ð1Þ</label></formula><p>Although it is not mandatory, it is common to have k¼m; it is the case for all the test instances used in this paper. In the last years, the MOMDKP has been used as a standard test problem for multi-objective optimization methods. Zitzler and Thiele <ref type="bibr" target="#b57">[58]</ref> introduce 12 benchmark instances with up to 750 items, 4 objectives and 4 dimensions, as well as comparative results for a number of evolutionary algorithms on these instances, including their SPEA. In a later work <ref type="bibr" target="#b56">[57]</ref>, they compare these results to SPEA2 and to NSGA-II, which both outperform all previous algorithms. Jaszkiewicz <ref type="bibr" target="#b27">[28]</ref> develops a multi-objective genetic local search (MOGLS) method, which outperforms all previous methods on the same instances. Jo ão Alves and Almeida <ref type="bibr" target="#b0">[1]</ref> introduce a multiple objective Tchebycheff based genetic algorithm (MOTGA) for the multi-dimensional knapsack problem, and compare it to the results of Jaszkiewicz. The main conclusion is that although MOTGA produces less non-dominated solutions, they are of slightly better quality. Some exact methods have also been developed for the MOMDKP. A natural border in terms of difficulty seems to lie between the bi-and tri-objective cases: although there are several methods to solve bi-objective instances with several hundred items, it is not possible when considering three objectives. Laumanns et al. <ref type="bibr" target="#b33">[34]</ref> propose the first exact method for the tri-objective knapsack problem, which is an epsilon-constraint framework, and solve instances with up to 50 items in 24 h. Bazgan et al. <ref type="bibr" target="#b2">[3]</ref> propose a dynamic programming algorithm for the multi-objective singledimensional knapsack problem (MOKP). They solve bi-objective instances with up to 4000 items; those are all instances with correlated profits. They also solve bi-objective instances with uncorrelated profits and up to 700 items. Additionally, they solve tri-objective uncorrelated instances with up to 110 items, and conflicting instances with up to 60 items. Florios et al. <ref type="bibr" target="#b18">[19]</ref> present a multi-criteria branch and bound (MCBB) algorithm for the MOMDKP. MCBB was introduced by Mavrotas and Diakoulaki <ref type="bibr" target="#b35">[36]</ref>; it is based on the well-known branch and bound algorithm, but uses a set of non-dominated solutions instead of a single upper bound for fathoming nodes. This method is applied to the MOMDKP with three objectives and three dimensions, with five test instances of respectively 10, 20, 30, 40 and 50 items. Since the run time of MCBB can be very high, they also implement two metaheuristics for this problem, NSGA-II and SPEA2, and evaluate them with the Pareto sets computed with MCBB.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.2.">Problem-dependent MDLS components for the MOMDKP</head><p>When applying MDLS to a specific problem, one must design a way to provide starting solutions, as well as single-objective local searches. Normalization factors are computed for each objective, such that the normalized sum of scores on all items is identical for each objective. With these, we can compute a normalized sum of scores p i for each item. A simple construction heuristic then consists in iteratively selecting unselected items with roulette wheel, using p i as weights, until no item can be selected without violating capacity constraints. We construct two starting solutions using this simple heuristic. Additionally, for each objective, we use a greedy construction algorithm. More precisely, we use the greedy recreate operator (described further) on an empty solution, once per objective. Overall, this results in a very small starting set of solutions. For instance when working with three objectives, the cardinality of the starting set of solutions is at most 5 (only non-dominated solutions are kept).</p><p>In order to produce neighborhoods for the MOMDKP, we compute a normalized weight w i over all dimensions for each item i. Normalization factors are computed, such that the total weighted sum of consumption over all items is the same for each dimension. For each item i we can then simply compute w i by summing its weighted consumption over all dimensions. The neighborhoods we use are combinations of ruin and recreate operations. We consider the following ruin operations: random: consists in removing from the solution a randomly chosen item.</p><p>worst k : remove the item i which brings the smallest p ik =w i for given objective k, where p ik is the profit associated to item i and objective k. conflict l : remove the selected item with the highest consumption for dimension l.</p><p>The number of items removed from the solution is chosen randomly between 1% and 60% of the number of selected items in this solution. Additionally, we consider the following recreate operations: greedy k : select the item i with the highest p ik =w i for given objective k.</p><p>random: randomly select an item. Now for each objective k we can define a set N k of neighborhoods. Table <ref type="table" target="#tab_0">1</ref> gives a description of N k , assuming K objectives and m dimensions. For the MOMDKP, local search (line 6 in Algorithm 1) simply consists in ruining and recreating once the incumbent solution, i.e. it consists in one LNS iteration. For each LNS iteration the neighborhood used is selected randomly, each neighborhood being equiprobable.</p><p>Ruining a solution is always feasible, as removing elements from a solution never results in a constraint violation. For both recreate operations, only feasible moves are considered, i.e. the only items that are considered are those that can be selected without violating any constraint. This guarantees that this LNS will never, starting from a feasible solution, provide an unfeasible solution. Since the first starting solutions are provided by calling recreate operators on empty solutions (which are feasible), only feasible solutions will be considered over a whole MDLS run.</p><p>We note here that Ulungu et al. <ref type="bibr" target="#b51">[52]</ref> also use a neighborhood operation for the MOMDKP which consists in ruining and recreating parts of a solution, in the context of their multi-objective simulated annealing (MOSA) objective. There are however two major differences. The first difference concerns the portion of the solution that is ruined. In MOSA, items are removed from the solution until each of the unselected items can be individually selected without violating any constraint. In MDLS, we use large neighborhoods which can destroy up to 60% of the solution, regardless of whether unselected items become selectable or not. In practice and on the instances on which we apply MDLS, our rule tends to ruin larger portions of the solution. The second difference concerns neighborhood exploration. In MOSA, both ruining and recreating the solution are performed randomly, and exploration is delegated to the simulated annealing algorithm. In MDLS, exploration is performed heuristically. In the case of this MDLS algorithm for the MOMDKP, exploration is guided by the combination of ruin and recreate operators. Furthermore, we note that we never use random ruin and random recreate operators together, as it is the case with MOSA.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.3.">Experimental results</head><p>In a first stage, we use the tri-objective instances for which exact Pareto fronts are known. There are five instances with 10, 20, 30, 40 and 50 items, for which exact results are published by Laumanns et al. <ref type="bibr" target="#b33">[34]</ref> and by Florios et al. <ref type="bibr" target="#b18">[19]</ref>. Results for the instance with 10 items are not available anymore, but this instance can be solved by enumeration in a few seconds (there are 2 10 ¼1024 possible solutions). We compare the results of MDLS to the exact Pareto front, as well as to two metaheuristics In a second stage we use the test instances by Zitzler and Thiele, in order to compare to other metaheuristics. As mentioned earlier, the competition on these instances has been important in the last decade.</p><p>To our knowledge the two best existing heuristics at the moment for the MOMDKP are MOTGA <ref type="bibr" target="#b0">[1]</ref> and MOEA/D <ref type="bibr" target="#b55">[56]</ref>. Results are also available or reproducible for both methods. Both MOTGA and MOEA/D were published in the same time period, and there exists no comparison of both in the literature to our knowledge. Since both methods provide the best results available that we are aware of, we use them for assessing the quality of MDLS. In the case of MOTGA, we use the results (non-dominated sets) available online and the CPU times provided <ref type="bibr" target="#b0">[1]</ref>. In the case of MOEA/D, we run the code provided by the authors on our computer.</p><p>There are nine instances named n.m where n is the number of items and m is the number of objectives and dimensions. We run MDLS 10 times with 200,000 iterations on each instance. We also run MOEA/D 10 times on each instance with the default parameter setting provided with the code available online. We consider the first 10 runs of MOTGA for each instance (there are 20 MOTGA runs per instance in total). MOTGA uses a different population size depending on the size of the problem. More precisely, this size is 20 for 250 items, 30 for 500 items and 40 for 750 items. MOEA/D uses a different parameter setting for each instance with regards to population size and aggregated objective functions. In our opinion this constitutes a bias to the comparison, in favor of MOEA/D. MDLS is set to run 200,000 iterations for each instance and has no other parameter.</p><p>We compare all three methods using the hypervolume (H) and unary multiplicative epsilon ðEÞ indicators, after normalizing all objective values to [0, 1]. The reference set for a given instance, used for normalizing and for the unary multiplicative epsilon indicator, consists of the non-dominated union of all solution sets provided by all compared methods on this given instance. Computing efficiently the hypervolume indicator is no trivial task when the number of objectives exceeds two; we use the hypervolume calculation program described in Fonseca et al. <ref type="bibr" target="#b19">[20]</ref> and available online at http://iridia.ulb.ac.be/ $ manuel/hypervolume. We also provide the average cardinality of the produced approximation set, since this varies a lot between the methods. These results are summarized in Table <ref type="table" target="#tab_2">3</ref>. We also present average CPU times for the three algorithms per instance in Table <ref type="table" target="#tab_3">4</ref>. The times for MOTGA are reported for an Intel Pentium 4 CPU at 3.2 GHz. MOEA/D and MDLS are run on the same computer, which is also  an Intel Pentium 4 CPU at 3.2 GHz. Looking at these results, we can see that MDLS is competitive with both other methods in terms of solution quality. None of the three methods seems to dominate the other two. We also note that it never happens that MDLS provides the worst indicator value, be it for hypervolume or unary epsilon.</p><p>Having examined various experiments, we conclude that MDLS is competitive with existing multi-objective metaheuristics for the MOMDKP. This conclusion should be understood in the context of an important competition on metaheuristics for this specific problem. With a CPU effort comparable to that required by state-of-the-art alternatives (MOTGA and MOEA/D), results of competitive quality are provided.</p><p>In order to provide insight on the neighborhoods and the way they work within MDNS, we provide a simple analysis. We define the success rate of a neighborhood as the number of times it provides a new non-dominated solution divided by the number of times it is called. In Appendix A.1 we indicate the success rate of each neighborhood used for the MOMDKP. Tables A1-A3 contain these values for the MDLS runs on problems with respectively 2, 3 and 4 objectives. Interestingly, the most successful neighborhoods are those that greedily insert items following objective i after greedily removing items following any objective other than i. We also note that more objectives involve more successful moves, which is likely due to the fact that more objectives imply more solutions in the Pareto front. Finally, we also note that no neighborhood is useless. The success rates vary, but within a given table the factor between the lowest and highest success rates is around 10. Without surprise the neighborhoods that use the random recreate operator are among the least successful, although they still provide some improvement.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.">Bi-objective set packing problem</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.1.">Problem description</head><p>In the set packing problem we consider a set I of elements and a set J of m subsets of I. Each subset has a score c j , and the goal is to maximize the total score of selected subsets, while each element of I may only appear in at most one selected subset. The set packing problem has received less attention than the covering and partitioning variants. One application is the maximization of profit when bidding on groups (subsets) of items <ref type="bibr" target="#b15">[16]</ref>, in which case it is not possible to bid several times on the same item. Another application is that of planning railway sections in which only one train may be present at a time <ref type="bibr" target="#b34">[35]</ref>.</p><p>To our knowledge the bi-objective set packing problem (BOSPP) was first mentioned by Delorme <ref type="bibr" target="#b12">[13]</ref>. Two profits are considered for each subset, one per objective, and the goal is to maximize total profit for both objectives. Considering a set I of n items and a set J of m subsets, the authors propose the following formulation:</p><formula xml:id="formula_1">max z 1 ¼ X j A J c 1 j x j max z 2 ¼ X j A J c 2 j x j s:t: X j A J t ij x j r 1 8i A I x j A f0; 1g 8j A J<label>ð2Þ</label></formula><p>where x j is the binary variable associated to the selection of set j, c 1 j and c 2 j are the two profits for subset j, and t ij indicates whether item i is covered by subset j or not. They then provide three metaheuristics for this problem. The first one is an Aggressive SPEA, which the authors introduce in the paper. Among its characteristics are four differences with SPEA, including removing the clustering procedure, storing all non-dominated solutions, the application of local search when a new solution is created and also at the end as post-processing. Their second metaheuristic is a l-GRASP. It embeds a standard GRASP procedure (see e.g. <ref type="bibr" target="#b16">[17]</ref>) for single-objective optimization. This procedure is iterated independently with various weighted sum objective functions. The third method proposed by the authors is a hybrid of the A-SPEA and the l-GRASP.</p><p>Set packing problems can also be seen as special cases of knapsack problems. However, as mentioned in Delorme et al. <ref type="bibr" target="#b13">[14]</ref>, this property does not help in finding good solutions. Indeed, we tried to apply our MDLS for the MOMDKP from the previous section, with very poor results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.2.">Problem-dependent MDLS components for the BOSPP</head><p>In order to provide a starting set of solutions, we use the same method as the one described in Section 4.1 for the multi-dimensional knapsack problem.</p><p>We now introduce the concept of conflict, used in some of the neighborhoods for the BOSPP. Two subsets are conflicting if they have at least one element in common. We can construct a graph G ¼ fV,Eg where the nodes in G correspond to the subsets, and for each conflict there is an edge in E. A feasible solution to the set packing problem is then associated to a stable set in this graph, and the maximum stable set problem is a special case of the single-objective set packing problem, where all subsets have the same profit.</p><p>We consider the following ruin operations:</p><p>random: consists in removing from the solution a randomly chosen subset.</p><p>worst k : remove the subset which brings the smallest profit when considering a given objective k.</p><p>conflict_random: randomly select an unselected subset s, then deselect from the solution all subsets that have a conflict with s.</p><p>conflict_greedy: select the unselected subset s with least conflicting selected subsets in the solution; then deselect from the solution all subsets that have a conflict with s.</p><p>conflict_alt: removes the selected subset with the highest number of conflicts.</p><p>The ruin quantity, i.e. the number of subsets removed from the solution, is a number chosen randomly between 1% and 60% of the number of selected subsets in this solution. Additionally, we consider the following recreate operations:</p><p>greedy k : select the subset which brings the highest profit for a given objective k.</p><p>random: randomly select a subset. closer: let U be the set of subsets that cannot be selected because they have a conflict with at least one selected subset; this operator selects the subset that minimizes 9U9.</p><p>Like for the MOMDKP, only feasible solutions are considered: ruining a solution is always feasible, and the recreate operations only consider selecting subsets if their selection does not result in a constraint violation. Now for each objective k we can define a set N k of neighborhoods. Table <ref type="table" target="#tab_5">5</ref> gives a description of N k . In the case of BOSPP, local search (line 6 in Algorithm 1) consists in iterating 10 times the following steps: (i) ruin the incumbent solution, (ii) recreate it and (iii) set the resulting neighbor as new incumbent. The same neighborhood is used for all 10 steps; as with the MOMDKP, the neighborhood is selected randomly, with an equal probability for each neighborhood. We let MDLS run for 50,000 iterations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.3.">Experimental results</head><p>To our knowledge, the only available experimental data for the BOSPP is contained in the paper by Delorme et al. <ref type="bibr" target="#b13">[14]</ref>. The test problems consist of 120 instances with 100 or 200 variables and from 300 to 1000 constraints. Since exact Pareto sets are also known, they can evaluate precisely the quality of each method. The three indicators used are the percentage of Pareto-optimal solutions found (M1 or coverage), the Euclidean distance to the Pareto set (convergence), and the hypervolume (H). More precisely, they report the percentage of the hypervolume of the Pareto set. Delorme et al. run each of their algorithms 16 times, and report average values on all three indicators for each of their methods. We report average values over 10 runs of MDLS for each of these indicators in Table <ref type="table">6</ref>. Best values over all methods are boldfaced.</p><p>On average, the hybrid method clearly dominates A-SPEA and l-GRASP, but the MDLS is even better. However, this comes at the cost of a higher CPU time. Since the results for k¼5 are always better than the others, we only report these here. We also report the average CPU time used by MDLS. These values are reported in Table <ref type="table" target="#tab_6">7</ref>. Although the values are lower for MDLS, it is clear that the CPU we use is also faster, clock speed aside. Therefore it is hard to conclude anything beside the fact that both approaches require CPU time of the same order of magnitude; MDLS is probably slower though. Additionally, the difference in CPU effort between 100-and 200-subset classes is much smaller for MDLS. However the stopping conditions are so different in both methods that it is not possible to conclude anything regarding scalability. In the end, it is safe to conclude that MDLS provides good quality results within reasonable CPU time.</p><p>We provide insight on the neighborhoods and their success rates in Appendix A.2. Table <ref type="table" target="#tab_3">A4</ref> indicates the success rates for each neighborhood. A first observation is that the success rates are very low. However Table <ref type="table">6</ref> clearly indicates that most of the Pareto optimal solutions are systematically found. In fact the more Pareto optimal solutions have been identified during a run, the least likely any neighborhood is to provide a new Pareto optimal solution during this same run. The average size of the Pareto front on all BOSPP instances is 21.1583, while the largest one is 126. Once these all have been identified, success becomes impossible. We also note that the factor between the lowest and highest success rates is less than 3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.">Bi-objective orienteering problem</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.1.">Problem description</head><p>The bi-objective orienteering problem (BOOP) was introduced by Schilde et al. <ref type="bibr" target="#b45">[46]</ref>; it is similar to the bi-objective traveling salesman problem with profits solved by Be ´rube ´et al. <ref type="bibr" target="#b3">[4]</ref>. Quoting Schilde et al., ''The motivation of the problem stems from planning individual tourist routes in cities and rural areas''. The different objectives correspond to various centers of interest for the tourists.</p><p>The BOOP is a bi-objective extension of the well-known orienteering problem (OP), introduced by Tsiligirides <ref type="bibr" target="#b50">[51]</ref>. In the OP, a set of points is given along with travel durations between those points. Starting and ending points are specified, while all other points are called control points. To each control point is associated a score. The goal is then to maximize the total score by visiting these control points, while keeping the total travel time under a given limit. Tsiligirides proposed benchmark instances; these were completed by other instances from Chao <ref type="bibr" target="#b5">[6]</ref>. All these instances, containing up to 66 points, have been used in several research works since then (see e.g. <ref type="bibr" target="#b6">[7,</ref><ref type="bibr" target="#b45">46,</ref><ref type="bibr" target="#b49">50]</ref>), and are no longer considered difficult. Schilde et al. introduced bi-objective instances by adding a second score to each control point of the existing instances. They also introduced new, bigger bi-objective instances with up to 2143 control points. These new instances are based on tourism attractions and use road network information for the distance matrix. These two scores can be seen as different centers of interest for tourists, and should both be maximized.</p><p>Be ´rube ´et al. provide an exact method, and use it to solve different instances with up to 150 control points. In the following, we focus on the heuristic solution of large instances.</p><p>Schilde et al. provide a mathematical model for the BOOP, considering profit s ik for point i and objective k, and travel duration c ij between points i and j. Their model is based on a directed graph G ¼ fV,Ag where nodes v 0 and v n þ 1 are the mandatory starting and ending points. It is a generic model for any number of objectives:</p><formula xml:id="formula_2">max f k ðyÞ ¼ X v i A V \fv 0 ,v n þ 1 g s ik y i ðk ¼ 1 . . . KÞ ð<label>3Þ</label></formula><p>s:t: </p><formula xml:id="formula_3">X v j A V \fv i g x ij ¼ y i ðv i A V\fv n þ 1 gÞ<label>ð4Þ</label></formula><formula xml:id="formula_4">X v i A V\fv j g x ij ¼ y j ðv j A V\fv 0 gÞ<label>ð5Þ</label></formula><formula xml:id="formula_5">X fv i ,v j g A S x ij r9S9À1 ðS DV4S a |Þ ð<label>6Þ</label></formula><formula xml:id="formula_6">y 0 ¼ y n þ 1 ¼ 1<label>ð7Þ</label></formula><formula xml:id="formula_7">X ðv i ,v j Þ A A c ij x ij rT max<label>ð8Þ</label></formula><formula xml:id="formula_8">x ij A f0; 1g ððv i ,v j Þ A AÞ ð 9Þ</formula><formula xml:id="formula_9">y i A f0; 1g ðv i A VÞ ð<label>10Þ</label></formula><p>Constraints (4) and ( <ref type="formula" target="#formula_4">5</ref>) ensure that for each visited control point there is an ingoing and an outgoing arc; Constraints (6) are for subtour elimination; Constraint (7) makes the tour start and end at the correct points, and Constraint (8) limits the total tour duration.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.2.">Problem-dependent MDLS components for the BOOP</head><p>In order to provide a starting set of solutions, we use the same method as the one described in Section 4.1 for the multi-dimensional knapsack problem. A problem-specific feature of the BOOP requires to define a specific dominance rule: for a given set of k control points, there exists up to k! feasible tours, i.e. different solutions, all with the same objective vector. Therefore the dominance rule is modified as follows: if two tours visit the same set of control points, the one with the shorter duration dominates the other one.</p><p>We consider the following ruin operations:</p><p>worst k : remove the control points which bring the smallest profit when considering a given objective k.</p><p>related: remove control points that are related. What we call related control points here is a set of control points that form a sequence in the solution. The position of this sequence in the solution is chosen randomly, depending on the quantity of nodes to remove.</p><p>conflict: a control point yields a conflict with its predecessor and successor when visiting this point takes a long time. For each control point in a solution we can compute how much time would be gained by not visiting this point anymore; then the points with the highest conflict value are removed.</p><p>random: consists in removing from the solution control points that are randomly selected.</p><p>The ruin quantity, i.e. the number of control points removed from the solution, is a number selected randomly between 1% and 50% of the number of points in this solution. Additionally, we consider the following recreate operations:</p><p>greedy k : insert the control points bringing the highest profit for a given objective k.</p><p>closer: insert the control points that are close to the current solution, i.e. those that would induce the smallest extra traveling time.</p><p>random: insert randomly selected control points in the solution.</p><p>Control points are inserted as long as it is possible without violating the route duration constraint. This guarantees that no constraint is violated in the solutions produced by these operators, similarly to the operators for the MOMDKP and the BOSPP. Each of these recreate operations is applied in a cheapest insertion fashion: the position where a node is inserted in the tour is systematically the one that brings the smallest extra traveling time. Additionally, a noise is applied to heuristic criteria in order to provide diversification. This is performed by multiplying the heuristic evaluation of moves by a random number between 0.75 and 1.25. Using all previously described operators, a set N k of neighborhoods is constructed for each objective k. Table <ref type="table" target="#tab_7">8</ref> gives a description of N k . For the BOOP, local search (line 6 in Algorithm 1) simply consists in ruining and recreating once the incumbent solution. Again, the neighborhood is selected randomly, all neighborhoods being equiprobable. A problem-specific diversification mechanism is also used. It consists in, given a solution x 0 , looking for solutions that do not contain any of the control points that are visited by x 0 . This can be seen as another large neighborhood around x 0 . In order to explore quickly this very large neighborhood, heuristics are used. More precisely, once a solution x 0 has been produced through the ruin and recreate steps, a new solution is produced by forbidding all the points in x 0 and recreating using the same operator that was used to produce x 0 . This diversification step is executed once every 30 calls to a same single-objective local search. The total number of iterations of MDLS is set to 50,000.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.3.">Experimental results</head><p>In order to solve the BOOP, Schilde et al. <ref type="bibr" target="#b45">[46]</ref> provide two methods: a Pareto variable neighborhood search (P-VNS) and a Pareto ant colony optimization (P-ACO). They consider six indicators that they compute for 20%, 50% and 80% attainment sets. For the sake of simplicity, we only report two of these indicators, hypervolume and unary epsilon. No Pareto front is available for these instances, and we found new non-dominated solutions that were unknown before. Therefore we provide new normalization functions which take into account these new non-dominated solutions. Since we have access to all solutions from Schilde et al., we also normalize their solutions and recompute the indicator values for their VNS and ACO.</p><p>The test instances are categorized, and each category represents problems with the same distance matrix but different time limits. Tables 9-11 summarize the results of all three methods on both hypervolume (H) and unary epsilon ðEÞ indicators, respectively for 20%, 50% and 80% attainment sets, with one line giving average indicator values for a category of instances. Since no exact method exists for this problem, the Pareto set is not known; therefore a heuristic reference set is used for the computation of the unary epsilon indicator. This heuristic front is obtained by considering all non-dominated solutions found by all three methods (P-VNS, P-ACO, MDLS).</p><p>The MDLS outperforms both previous methods, with the notable exception of the unary epsilon indicator for instance stm and 80% attainment. On the same instance category the hypervolume indicator is better for the MDLS though. The unary epsilon indicator grades the quality of the worst solution found.</p><p>Comparison data with regards to CPU effort is provided in Table <ref type="table" target="#tab_10">12</ref>. Each line corresponds to a class of instances, and the average run time is reported for each method, as well as the type of computer used. Since Schilde et al. used the exact same CPU time for both their methods, only one is reported. Times are reported in seconds. We use the same computer on which Schilde et al. run ACO and VNS. We simply conclude that MDLS provides better results for the BOOP, within comparable computational times. The noe instance set is the largest of all (2143 control points), which explains why all methods need more CPU time for that instance than for any other. Because of the travel time limitation and depending on its value, some control points can never be reached. Therefore it is possible to discard those control points before starting the optimization. Such a pre-processing is performed before MDLS, but not before ACO and VNS. In the case of noe, this pre-processing has a major impact, which explains the difference in CPU times between ACO and VNS on one side and MDLS on the other side. We provide insight on the neighborhoods and their success rates in Appendix A.3. Table <ref type="table" target="#tab_5">A5</ref> indicates the success rates for each neighborhood. The factor between the lowest and highest success rates is less than 2. Again, the neighborhoods incorporating a random component are among the least successful.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Summary</head><p>In this paper, we introduced multi-directional neighborhood search (MDLS), a new metaheuristic for multi-objective optimization. MDLS is based on the principle of using single-objective local search to iteratively improve the non-dominated front. An important feature is that only non-dominated solutions are kept. Another feature is that once problem-dependent components (i.e. singleobjective local search) are defined, the only parameter left is CPU budget. We provided a general framework for MDLS, and showed how to apply it to three different problems, every time with competitive results on benchmark data. These three problems were selected for the simplicity of their formulation, and the availability of benchmark data and/or Pareto sets. For all three problems, the objectives considered were uncorrelated. On all standard benchmark instances for the multi-dimensional multi-objective knapsack problem, bi-objective set packing problem and bi-objective orienteering problem, MDLS produce results competitive with the best known solution method known so far, with a required CPU effort of the same order of magnitude. Although two of these problems (the BOOP and the BOSPP) have direct applications, all solved problems have a fairly simple formulation.</p><p>One important feature of MDLS is that it relies on singleobjective local search. This has the advantage that good singleobjective local search methods are known for a number of problems. However it can also be seen as a disadvantage: it means that efficient single-objective local search has to be designed and implemented for each objective in the problem at hand. If the problem structure is relatively simple, like it is the case with all three problems studied in this paper, then it does not really matter, as the local searches are very similar for all considered objectives. However if the objectives are very different, more work will be required to design and implement an efficient MDLS. This is a disadvantage of MDLS to most other methods, since they usually do not rely on single-objective local search.</p><p>The next step is to validate MDLS on applied problems with complicated real-world constraints. Such problems already exist in the literature, like for instance the capacitated vehicle routing  </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Relevant portions of solution space for a bi-objective maximization problem. (a) Relevant portion of solution space in direction 1. (b) Relevant portion of solution space in direction 2. (c) Overall relevant portion of solution space.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. First steps of MDLS on a bi-objective maximization problem. (a) Starting set of solutions. (b) Neighbors obtained during iteration 1. (c) Set of solutions at the end of iteration 1. (d) Neighbors obtained during iteration 2. (e) Set of solutions at the end of iteration 2. (f) Set of solutions at the end of iteration 10.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 1</head><label>1</label><figDesc>N k : neighborhoods for objective k for the multi-objective multi-dimensional knapsack problem.</figDesc><table><row><cell cols="2">Neighborhood</cell><cell>Ruin</cell><cell>Recreate</cell></row><row><cell></cell><cell></cell><cell>operation</cell><cell>operation</cell></row><row><cell>1</cell><cell></cell><cell>random</cell><cell>greedy k</cell></row><row><cell>2</cell><cell></cell><cell>worst k</cell><cell>random</cell></row><row><cell>2 þ j</cell><cell cols="2">8jA ½1, . . . ,K worst j</cell><cell>greedy k</cell></row><row><cell cols="3">2 þ K þ l 8l A ½1, . . . ,m conflict l</cell><cell>greedy k</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>Table 2</head><label>2</label><figDesc>Metric values for small MOMDKP instances: NSGA-II, SPEA2 and MDLS.</figDesc><table><row><cell>Instance</cell><cell>Coverage</cell><cell></cell><cell></cell><cell cols="2">Convergence</cell><cell></cell></row><row><cell></cell><cell>NSGA-II</cell><cell>SPEA2</cell><cell>MDLS</cell><cell>NSGA-II</cell><cell>SPEA2</cell><cell>MDLS</cell></row><row><cell>3kp20</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Average</cell><cell>0.82</cell><cell>0.85</cell><cell>1.0</cell><cell>0.0057</cell><cell>0.0020</cell><cell>0.0</cell></row><row><cell>Min</cell><cell>0.72</cell><cell>0.79</cell><cell>1.0</cell><cell>0.0000</cell><cell>0.0000</cell><cell>0.0</cell></row><row><cell>Max</cell><cell>0.87</cell><cell>0.89</cell><cell>1.0</cell><cell>0.0160</cell><cell>0.0123</cell><cell>0.0</cell></row><row><cell>3kp30</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Average</cell><cell>0.773</cell><cell>0.803</cell><cell>0.999</cell><cell>0.0034</cell><cell>0.0026</cell><cell>0.0001</cell></row><row><cell>Min</cell><cell>0.733</cell><cell>0.780</cell><cell>0.995</cell><cell>0.0021</cell><cell>0.0011</cell><cell>0.0</cell></row><row><cell>Max</cell><cell>0.810</cell><cell>0.851</cell><cell>1.0</cell><cell>0.0048</cell><cell>0.0047</cell><cell>0.0003</cell></row><row><cell>3kp40</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Average</cell><cell>0.592</cell><cell>0.639</cell><cell>0.930</cell><cell>0.0076</cell><cell>0.0066</cell><cell>0.0005</cell></row><row><cell>Min</cell><cell>0.566</cell><cell>0.609</cell><cell>0.913</cell><cell>0.0056</cell><cell>0.0048</cell><cell>0.0002</cell></row><row><cell>Max</cell><cell>0.620</cell><cell>0.674</cell><cell>0.938</cell><cell>0.0098</cell><cell>0.0085</cell><cell>0.0008</cell></row><row><cell>3kp50</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Average</cell><cell>0.572</cell><cell>0.821</cell><cell>0.853</cell><cell>0.0719</cell><cell>0.0714</cell><cell>0.0010</cell></row><row><cell>Min</cell><cell>0.560</cell><cell>0.799</cell><cell>0.839</cell><cell>0.0711</cell><cell>0.0708</cell><cell>0.0006</cell></row><row><cell>Max</cell><cell>0.587</cell><cell>0.834</cell><cell>0.871</cell><cell>0.0733</cell><cell>0.0724</cell><cell>0.0013</cell></row><row><cell cols="5">Coverage: larger is better. Convergence: smaller is better.</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>Table 3</head><label>3</label><figDesc>Hypervolume (H), unary epsilon ðEÞ and non-dominated front size ð9front9Þ indicator values for the MOMDKP (average values over 10 runs).</figDesc><table><row><cell>Instance</cell><cell>MOTGA</cell><cell></cell><cell></cell><cell>MOEA/D</cell><cell></cell><cell></cell><cell>MDLS</cell><cell></cell><cell></cell></row><row><cell></cell><cell>H</cell><cell>E</cell><cell>9front9</cell><cell>H</cell><cell>E</cell><cell>9front9</cell><cell>H</cell><cell>E</cell><cell>9front9</cell></row><row><cell>250.2</cell><cell>0.80312</cell><cell>1.0151</cell><cell>99.5</cell><cell>0.79597</cell><cell>1.0237</cell><cell>141.7</cell><cell>0.80706</cell><cell>1.0123</cell><cell>216.0</cell></row><row><cell>250.3</cell><cell>0.53296</cell><cell>1.0638</cell><cell>536.6</cell><cell>0.53832</cell><cell>1.0751</cell><cell>1868.9</cell><cell>0.55118</cell><cell>1.0369</cell><cell>3842.9</cell></row><row><cell>250.4</cell><cell>0.32249</cell><cell>1.0958</cell><cell>1074.3</cell><cell>0.34433</cell><cell>1.0868</cell><cell>7669.4</cell><cell>0.33838</cell><cell>1.0924</cell><cell>16,410.8</cell></row><row><cell>500.2</cell><cell>0.78860</cell><cell>1.0070</cell><cell>168.1</cell><cell>0.75833</cell><cell>1.0451</cell><cell>174.9</cell><cell>0.78579</cell><cell>1.0096</cell><cell>341.2</cell></row><row><cell>500.3</cell><cell>0.51645</cell><cell>1.0428</cell><cell>1073.8</cell><cell>0.49010</cell><cell>1.0722</cell><cell>2702.8</cell><cell>0.50982</cell><cell>1.0379</cell><cell>5093.8</cell></row><row><cell>500.4</cell><cell>0.30908</cell><cell>1.0713</cell><cell>2092.3</cell><cell>0.28516</cell><cell>1.1226</cell><cell>10110.3</cell><cell>0.30934</cell><cell>1.0615</cell><cell>22,039.2</cell></row><row><cell>750.2</cell><cell>0.77636</cell><cell>1.0040</cell><cell>252.2</cell><cell>0.73043</cell><cell>1.0538</cell><cell>190.8</cell><cell>0.76716</cell><cell>1.0142</cell><cell>450.4</cell></row><row><cell>750.3</cell><cell>0.52101</cell><cell>1.0396</cell><cell>1425.0</cell><cell>0.45964</cell><cell>1.0926</cell><cell>2449.7</cell><cell>0.50519</cell><cell>1.0327</cell><cell>5838.0</cell></row><row><cell>750.4</cell><cell>0.29956</cell><cell>1.0632</cell><cell>3076.6</cell><cell>0.24082</cell><cell>1.1416</cell><cell>11343.6</cell><cell>0.28415</cell><cell>1.0562</cell><cell>26,868.0</cell></row></table><note>H: larger is better. E: smaller is better.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>Table 4</head><label>4</label><figDesc>Average computational effort per instance, in seconds, for the multi-objective multi-dimensional knapsack problem.</figDesc><table><row><cell>Instance</cell><cell>MOTGA</cell><cell>MOEA/D</cell><cell>MDLS</cell></row><row><cell>250.2</cell><cell>1.5</cell><cell>3.44</cell><cell>7.77</cell></row><row><cell>250.3</cell><cell>2.7</cell><cell>7.45</cell><cell>11.78</cell></row><row><cell>250.4</cell><cell>4.2</cell><cell>27.98</cell><cell>20.19</cell></row><row><cell>500.2</cell><cell>7.2</cell><cell>10.38</cell><cell>14.17</cell></row><row><cell>500.3</cell><cell>12.8</cell><cell>24.15</cell><cell>19.53</cell></row><row><cell>500.4</cell><cell>18.2</cell><cell>97.21</cell><cell>38.20</cell></row><row><cell>750.2</cell><cell>19.5</cell><cell>21.21</cell><cell>20.56</cell></row><row><cell>750.3</cell><cell>33.4</cell><cell>45.36</cell><cell>28.63</cell></row><row><cell>750.4</cell><cell>51.9</cell><cell>245.60</cell><cell>54.23</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4"><head></head><label></label><figDesc>Delorme et al. determine allowed CPU time based on the instance. More precisely, they compute a reference time T REF ¼ 10 À3 m 2 s (m being the number of subsets). They then provide results for total CPU times of value k Á T REF , where k is 1, 2, 3, 4 and 5.</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5"><head>Table 5</head><label>5</label><figDesc>N k : neighborhoods for objective k for the bi-objective set packing problem.</figDesc><table><row><cell>Neighborhood</cell><cell cols="2">Ruin operation</cell><cell cols="2">Recreate operation</cell></row><row><cell>1</cell><cell>random</cell><cell></cell><cell>greedy k</cell><cell></cell></row><row><cell>2</cell><cell>worst k</cell><cell></cell><cell>greedy k</cell><cell></cell></row><row><cell>3</cell><cell cols="2">conflict_greedy</cell><cell>greedy k</cell><cell></cell></row><row><cell>4</cell><cell cols="2">conflict_random</cell><cell>greedy k</cell><cell></cell></row><row><cell>5</cell><cell cols="2">conflict_alt</cell><cell>greedy k</cell><cell></cell></row><row><cell>6</cell><cell>worst k</cell><cell></cell><cell>closer</cell><cell></cell></row><row><cell>7</cell><cell>worst k</cell><cell></cell><cell>random</cell><cell></cell></row><row><cell>Table 6</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="2">Indicator values for the BOSPP.</cell><cell></cell><cell></cell><cell></cell></row><row><cell>Indicator</cell><cell>A-SPEA</cell><cell>l-GRASP</cell><cell>Hybrid</cell><cell>MDLS</cell></row><row><cell>Coverage</cell><cell>77.67</cell><cell>80.22</cell><cell>95.90</cell><cell>96.63</cell></row><row><cell>Convergence</cell><cell>3.60</cell><cell>4.28</cell><cell>0.70</cell><cell>0.65</cell></row><row><cell>H</cell><cell>98.90</cell><cell>99.83</cell><cell>99.88</cell><cell>99.96</cell></row><row><cell cols="5">Coverage: larger is better. Convergence: smaller is better. H: larger is better.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6"><head>Table 7</head><label>7</label><figDesc>Average computational effort, in seconds, for the bi-objective set packing problem.</figDesc><table><row><cell>m</cell><cell>Delorme et al.</cell><cell>MDLS</cell></row><row><cell></cell><cell>(A-SPEA, l-GRASP and hybrid)</cell><cell></cell></row><row><cell></cell><cell>Intel Pentium III 800 MHz</cell><cell>Intel Xeon 2.67 GHz</cell></row><row><cell>100</cell><cell>50</cell><cell>16.38</cell></row><row><cell>200</cell><cell>200</cell><cell>28.05</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7"><head>Table 8</head><label>8</label><figDesc>N k : neighborhoods for objective k for the bi-objective orienteering problem.</figDesc><table><row><cell>Neighborhood</cell><cell>Ruin operation</cell><cell>Recreate operation</cell></row><row><cell>1</cell><cell>random</cell><cell>greedy k</cell></row><row><cell>2</cell><cell>worst k</cell><cell>greedy k</cell></row><row><cell>3</cell><cell>related</cell><cell>greedy k</cell></row><row><cell>4</cell><cell>conflict</cell><cell>greedy k</cell></row><row><cell>5</cell><cell>worst k</cell><cell>closer</cell></row><row><cell>6</cell><cell>worst k</cell><cell>random</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8"><head>Table 9</head><label>9</label><figDesc>Indicator values for the bi-objective orienteering problem: 20% attainment sets.</figDesc><table><row><cell>Instances</cell><cell>VNS</cell><cell></cell><cell>ACO</cell><cell></cell><cell>MDLS</cell><cell></cell></row><row><cell></cell><cell>H</cell><cell>E</cell><cell>H</cell><cell>E</cell><cell>H</cell><cell>E</cell></row><row><cell>p21</cell><cell>0.374</cell><cell>1.123</cell><cell>0.374</cell><cell>1.123</cell><cell>0.718</cell><cell>1.000</cell></row><row><cell>p32</cell><cell>0.437</cell><cell>1.035</cell><cell>0.446</cell><cell>1.035</cell><cell>0.542</cell><cell>1.000</cell></row><row><cell>p33</cell><cell>0.586</cell><cell>1.094</cell><cell>0.587</cell><cell>1.090</cell><cell>0.772</cell><cell>1.000</cell></row><row><cell>dia</cell><cell>0.654</cell><cell>1.014</cell><cell>0.638</cell><cell>1.021</cell><cell>0.676</cell><cell>1.000</cell></row><row><cell>squ</cell><cell>0.656</cell><cell>1.008</cell><cell>0.649</cell><cell>1.014</cell><cell>0.673</cell><cell>1.001</cell></row><row><cell>pad</cell><cell>0.497</cell><cell>1.000</cell><cell>0.491</cell><cell>1.000</cell><cell>0.501</cell><cell>1.000</cell></row><row><cell>wie</cell><cell>0.571</cell><cell>1.068</cell><cell>0.543</cell><cell>1.059</cell><cell>0.710</cell><cell>1.006</cell></row><row><cell>ktn</cell><cell>0.619</cell><cell>1.052</cell><cell>0.645</cell><cell>1.041</cell><cell>0.724</cell><cell>1.014</cell></row><row><cell>stm</cell><cell>0.676</cell><cell>1.029</cell><cell>0.660</cell><cell>1.033</cell><cell>0.749</cell><cell>1.003</cell></row><row><cell>noe</cell><cell>0.563</cell><cell>1.073</cell><cell>0.574</cell><cell>1.086</cell><cell>0.825</cell><cell>1.021</cell></row></table><note>H: larger is better. E: smaller is better.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9"><head>Table 11</head><label>11</label><figDesc>Indicator values for the bi-objective orienteering problem: 80% attainment sets.</figDesc><table><row><cell>Instances</cell><cell>VNS</cell><cell></cell><cell>ACO</cell><cell></cell><cell>MDLS</cell><cell></cell></row><row><cell></cell><cell>H</cell><cell>E</cell><cell>H</cell><cell>E</cell><cell>H</cell><cell>E</cell></row><row><cell>p21</cell><cell>0.367</cell><cell>1.130</cell><cell>0.360</cell><cell>1.130</cell><cell>0.718</cell><cell>1.000</cell></row><row><cell>p32</cell><cell>0.412</cell><cell>1.036</cell><cell>0.440</cell><cell>1.035</cell><cell>0.529</cell><cell>1.006</cell></row><row><cell>p33</cell><cell>0.576</cell><cell>1.075</cell><cell>0.583</cell><cell>1.085</cell><cell>0.760</cell><cell>1.006</cell></row><row><cell>dia</cell><cell>0.626</cell><cell>1.024</cell><cell>0.610</cell><cell>1.034</cell><cell>0.670</cell><cell>1.005</cell></row><row><cell>squ</cell><cell>0.621</cell><cell>1.025</cell><cell>0.629</cell><cell>1.021</cell><cell>0.663</cell><cell>1.006</cell></row><row><cell>pad</cell><cell>0.497</cell><cell>1.000</cell><cell>0.489</cell><cell>1.004</cell><cell>0.501</cell><cell>1.000</cell></row><row><cell>wie</cell><cell>0.488</cell><cell>1.107</cell><cell>0.501</cell><cell>1.073</cell><cell>0.654</cell><cell>1.033</cell></row><row><cell>ktn</cell><cell>0.553</cell><cell>1.078</cell><cell>0.565</cell><cell>1.078</cell><cell>0.613</cell><cell>1.067</cell></row><row><cell>stm</cell><cell>0.611</cell><cell>1.049</cell><cell>0.595</cell><cell>1.069</cell><cell>0.634</cell><cell>1.060</cell></row><row><cell>noe</cell><cell>0.420</cell><cell>1.141</cell><cell>0.510</cell><cell>1.121</cell><cell>0.662</cell><cell>1.087</cell></row></table><note>H: larger is better. E: smaller is better.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10"><head>Table 12</head><label>12</label><figDesc></figDesc><table><row><cell cols="3">Average computational effort, in seconds, for the bi-objective</cell></row><row><cell>orienteering problem.</cell><cell></cell><cell></cell></row><row><cell>Instances</cell><cell>ACO and VNS</cell><cell>MDLS</cell></row><row><cell>p21</cell><cell>1.35</cell><cell>1.18</cell></row><row><cell>p32</cell><cell>3.25</cell><cell>1.84</cell></row><row><cell>p33</cell><cell>5.14</cell><cell>2.02</cell></row><row><cell>dia</cell><cell>14.97</cell><cell>5.20</cell></row><row><cell>squ</cell><cell>16.17</cell><cell>4.95</cell></row><row><cell>pad</cell><cell>1.17</cell><cell>0.64</cell></row><row><cell>wie</cell><cell>31.48</cell><cell>19.90</cell></row><row><cell>ktn</cell><cell>84.53</cell><cell>24.99</cell></row><row><cell>stm</cell><cell>36.57</cell><cell>20.08</cell></row><row><cell>noe</cell><cell>3319.52</cell><cell>193.81</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_11"><head>Table 10</head><label>10</label><figDesc>Indicator values for the bi-objective orienteering problem: 50% attainment sets. : larger is better. E: smaller is better. with route balancing, or the dial-a-ride problem. They will constitute the subject of our future research in this domain.Table A3Success rate of each neighborhood for the MOMDKP; instances with four objectives.</figDesc><table><row><cell>Instances</cell><cell>VNS</cell><cell></cell><cell>ACO</cell><cell></cell><cell>MDLS</cell><cell></cell></row><row><cell></cell><cell>H</cell><cell>E</cell><cell>H</cell><cell>E</cell><cell>H</cell><cell>E</cell></row><row><cell>p21</cell><cell>0.374</cell><cell>1.123</cell><cell>0.362</cell><cell>1.130</cell><cell>0.718</cell><cell>1.000</cell></row><row><cell>p32</cell><cell>0.433</cell><cell>1.035</cell><cell>0.446</cell><cell>1.035</cell><cell>0.531</cell><cell>1.006</cell></row><row><cell>p33</cell><cell>0.583</cell><cell>1.085</cell><cell>0.584</cell><cell>1.090</cell><cell>0.770</cell><cell>1.000</cell></row><row><cell>dia</cell><cell>0.642</cell><cell>1.016</cell><cell>0.623</cell><cell>1.029</cell><cell>0.673</cell><cell>1.003</cell></row><row><cell>squ</cell><cell>0.642</cell><cell>1.016</cell><cell>0.638</cell><cell>1.018</cell><cell>0.669</cell><cell>1.002</cell></row><row><cell>pad</cell><cell>0.497</cell><cell>1.000</cell><cell>0.491</cell><cell>1.000</cell><cell>0.501</cell><cell>1.000</cell></row><row><cell>wie</cell><cell>0.534</cell><cell>1.088</cell><cell>0.522</cell><cell>1.063</cell><cell>0.690</cell><cell>1.016</cell></row><row><cell>ktn</cell><cell>0.589</cell><cell>1.068</cell><cell>0.601</cell><cell>1.063</cell><cell>0.683</cell><cell>1.032</cell></row><row><cell>stm</cell><cell>0.649</cell><cell>1.036</cell><cell>0.624</cell><cell>1.050</cell><cell>0.729</cell><cell>1.015</cell></row><row><cell>noe</cell><cell>0.494</cell><cell>1.104</cell><cell>0.536</cell><cell>1.106</cell><cell>0.761</cell><cell>1.043</cell></row></table><note>Hproblem</note></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>The author wishes to thank Fabien Lehue ´de ´, Renaud Masson and Olivier Pe ´ton for fruitful discussions during which the idea of MDLS was born, Michael Schilde for providing detailed data and valuable information, Karl Doerner for his precious advices and useful comments, and Sophie Parragh for her support, help and remarkable patience. Financial support from the Austrian Science Fund (FWF Grants P20342-N13 and L628-N15) and from the Austrian Research Promotion Agency (FFG Grant 822739) is gratefully acknowledged. We also wish to thank the three anonymous referees for their fruitful comments; they helped us greatly improve the quality of this paper.</p></div>
+			</div>
+
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Computers &amp; Operations Research 39 (2012) 3089-3101</p><p>Open access under CC BY-NC-ND license.</p><p>Open access under CC BY-NC-ND license.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Appendix A. Comparison of the efficiency of different neighborhoods</head><p>A.1. Neighborhoods for the MOMDKP Neighborhoods for the MOMDKP are given in Tables A1-A3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.2. Neighborhoods for the BOSPP</head><p>Neighborhoods for the BOSPP are given in Table <ref type="table">A4</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.3. Neighborhoods for the BOOP</head><p>Neighborhoods for the BOOP are given in Table <ref type="table">A5</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Table A2</head><p>Success rate of each neighborhood for the MOMDKP; instances with three objectives.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Ruin operation</head><p>Recreate operation # Used # Success % Success</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">MOTGA: a multiobjective Tchebycheff based genetic algorithm for the multidimensional knapsack problem</title>
+		<author>
+			<persName><forename type="first">Jo</forename><surname>Ão Alves</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Almeida</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computers &amp; Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="3458" to="3470" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">An interactive method for 0-1 multiobjective problems using simulated annealing and tabu search</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Alves</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Climaco</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Heuristics</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="385" to="403" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Solving efficiently the 0-1 multiobjective knapsack problem</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Bazgan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Hugot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Vanderpooten</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computers &amp; Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="260" to="279" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">An exact epsilon-constraint method for biobjective combinatorial optimization problems: application to the traveling salesman problem with profits</title>
+		<author>
+			<persName><forename type="first">´jf</forename><surname>Be ´rube</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gendreau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">Y</forename><surname>Potvin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">194</biblScope>
+			<biblScope unit="page" from="39" to="50" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Interactive evolutionary multiobjective optimization using robust ordinal regression</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Branke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Greco</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Slowı ´nski R</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Zielniewicz</surname></persName>
+		</author>
+		<editor>Ehrgott M, et al.</editor>
+		<imprint>
+			<date type="published" when="2009">2009. 2009</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="page" from="554" to="568" />
+			<pubPlace>Berlin</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Algorithms and solutions to multi-level vehicle routing problems</title>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">M</forename><surname>Chao</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1993">1993</date>
+			<pubPlace>College Park, MD, USA. Chairman-Bruce L. Golden</pubPlace>
+		</imprint>
+	</monogr>
+	<note type="report_type">PhD thesis</note>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">A fast and effective heuristic for the orienteering problem</title>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">M</forename><surname>Chao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">L</forename><surname>Golden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">A</forename><surname>Wasil</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">88</biblScope>
+			<biblScope unit="page" from="475" to="489" />
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Two new GA-based methods for multiobjective optimization</title>
+		<author>
+			<persName><forename type="first">Cac</forename><surname>Coello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Christiansen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Civil Engineering and Environmental Systems</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="207" to="243" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Evolutionary algorithms for solving multi-objective problems</title>
+		<author>
+			<persName><forename type="first">Coello</forename><surname>Coello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Van Veldhuizen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Lamont</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<publisher>Kluwer Academic Publishers</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Pareto simulated annealing-a metaheuristic technique for multiple-objective combinatorial optimization</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Czyzak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jaszkiewicz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Multi-Criteria Decision Analysis</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="34" to="47" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Inferential performance assessment of stochastic optimisers and the attainment function</title>
+		<author>
+			<persName><forename type="first">Da</forename><surname>Fonseca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">G</forename><surname>Fonseca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">M</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">O</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">First international conference on evolutionary multi-criterion optimization</title>
+				<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="213" to="225" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">A fast and elitist multi-objective genetic algorithm: NSGA II</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Deb</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pratap</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Meyarivan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="182" to="197" />
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Mode ´lisation et re ´solution de probl emes lie ´s a l&apos;exploitation d&apos;infrastructures ferroviaires</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Delorme</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">PhD thesis</note>
+	<note>Universite ´de Valenciennes et du Hainaut Cambre ´sis. in French</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Evolutionary, constructive and hybrid procedures for the bi-objective set packing problem</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Delorme</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Gandibleux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Degoutin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">204</biblScope>
+			<biblScope unit="page" from="206" to="217" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Pareto ant colony optimization: a metaheuristic approach to multiobjective portfolio selection</title>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">F</forename><surname>Doerner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Gutjahr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">F</forename><surname>Hartl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Strauss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Stummer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">131</biblScope>
+			<biblScope unit="page" from="79" to="99" />
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Marı ´n A. A branch-and-cut algorithm for the winner determination problem</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Escudero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Landete</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Decision Support Systems</title>
+		<imprint>
+			<biblScope unit="volume">46</biblScope>
+			<biblScope unit="page" from="649" to="659" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">GRASP: an annotated bibliography</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Festa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Resende</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Essays and surveys in metaheuristics</title>
+				<editor>
+			<persName><forename type="first">C</forename><surname>Ribeiro</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><surname>Hansen</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Boston</addrLine></address></meeting>
+		<imprint>
+			<publisher>Kluwer Academic Publishers</publisher>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="325" to="367" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Building a set of additive value functions representing a reference preorder and intensities of preference: GRIP method</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Figueira</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Greco</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Slowı ´nski R</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">195</biblScope>
+			<biblScope unit="page" from="460" to="486" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Solving multiobjective, multiconstraint knapsack problems using mathematical programming and evolutionary algorithms</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Florios</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Mavrotas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Diakoulaki</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">203</biblScope>
+			<biblScope unit="page" from="14" to="21" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Lo ´pez-Iba ´n ˜ez M. An improved dimension-sweep algorithm for the hypervolume indicator</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Fonseca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Paquete</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+			<publisher>IEEE</publisher>
+			<biblScope unit="page" from="1157" to="1163" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Genetic algorithms for multiobjective optimization: formulation, discussion and generalization</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">M</forename><surname>Fonseca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Fleming</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Genetic algorithms: proceedings of the fifth international conference</title>
+				<imprint>
+			<date type="published" when="1993">1993</date>
+			<biblScope unit="page" from="416" to="423" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">A multi-objective iterated greedy search for flowshop scheduling with makespan and flowtime criteria</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Framinan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Leisten</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">OR Spectrum</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page" from="787" to="804" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Tabu search based procedure for solving the 0-1 multiobjective knapsack problem: the two objectives case</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Gandibleux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fre</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Heuristics</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="361" to="383" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">A tabu search procedure to solve multiobjective combinatorial optimization problems</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Gandibleux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Mezdaoui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fre</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in multiple objective and goal programming</title>
+				<editor>
+			<persName><forename type="first">R</forename><surname>Caballero</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">F</forename><surname>Ruiz</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Steuer</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Heidelberg-Berlin</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1997">1997</date>
+			<biblScope unit="page" from="103" to="108" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Tabu search</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Glover</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Laguna</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1997">1997</date>
+			<publisher>Kluwer</publisher>
+			<pubPlace>Norwell</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Pareto simulated annealing for fuzzy multi-objective combinatorial optimization</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hapke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jaszkiewicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Slowinski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Heuristics</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="329" to="345" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<title level="m" type="main">Stochastic local search: foundations &amp; applications</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Hoos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>St Ützle</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<publisher>Elsevier/Morgan Kaufmann</publisher>
+			<pubPlace>San Francisco, CA, USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">On the performance of multiple-objective genetic local search on the 0/1 knapsack problem-a comparative experiment</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jaszkiewicz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="402" to="412" />
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Interactive multiobjective evolutionary algorithms</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jaszkiewicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Branke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Multiobjective optimization</title>
+				<editor>
+			<persName><forename type="first">J</forename><surname>Branke</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="179" to="193" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Solving multiple criteria problems by interactive trichotomy segmentation</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jaszkiewicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">B</forename><surname>Ferhat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">113</biblScope>
+			<biblScope unit="page" from="271" to="280" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Performance scaling of multi-objective evolutionary algorithms</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Khare</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Deb</forename><forename type="middle">K</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">LNCS</title>
+		<editor>Fonseca CMea</editor>
+		<imprint>
+			<biblScope unit="page" from="376" to="390" />
+			<date type="published" when="2003">2003. 2003</date>
+			<publisher>Springer-Verlag</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Approximating the nondominated front using the Pareto archived evolution strategy</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Knowles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Corne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="149" to="172" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<title level="m" type="main">A tutorial on the performance assessment of stochastic multiobjective optimizers</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Knowles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Thiele</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Zitzler</surname></persName>
+		</author>
+		<idno>no. 214</idno>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+			<pubPlace>ETH Zurich</pubPlace>
+		</imprint>
+		<respStmt>
+			<orgName>Computer engineering and Networks Laboratory</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Technical report TIK-report</note>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">An efficient, adaptive parameter variation scheme for metaheuristics based on the epsilon-constraint method</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Laumanns</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Thiele</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Zitzler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">169</biblScope>
+			<biblScope unit="page" from="932" to="942" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<title level="m" type="main">Routing trains through railway junctions: a new set packing approach</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Lusby</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Larsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ryan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ehrgott</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+		<respStmt>
+			<orgName>Informatics and Mathematical Modelling, Technical University of Denmark ; DTU</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Technical report</note>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">A branch and bound algorithm for mixed zero-one multiple objective linear programming</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Mavrotas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Diakoulaki</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">107</biblScope>
+			<biblScope unit="page" from="530" to="541" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Restarted iterated Pareto greedy algorithm for multi-objective flowshop scheduling problems</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Minella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Ruiz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ciavotta</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computers &amp; Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page" from="1521" to="1533" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Quad-trees: a data structure for storing Pareto sets in multiobjective evolutionary algorithms with elitism</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Mostaghim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Teich</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Evolutionary multiobjective optimization</title>
+				<editor>
+			<persName><forename type="first">L</forename><surname>Jain</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">X</forename><surname>Wu</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Abraham</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">L</forename><surname>Jain</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Goldberg</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="81" to="104" />
+		</imprint>
+	</monogr>
+	<note>Advanced information and knowledge processing</note>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Pareto local optimum sets in the biobjective traveling salesman problem: an experimental study</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Paquete</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Chiarandini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>St Ützle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Lecture notes in economics and mathematical systems: metaheuristics for multiobjective optimization</title>
+				<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="volume">535</biblScope>
+			<biblScope unit="page" from="177" to="200" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">On local optima in multiobjective combinatorial optimization problems</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Paquete</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Schiavinotto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>St Ützle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">156</biblScope>
+			<biblScope unit="page" from="83" to="97" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">A heuristic two-phase solution method for the multi-objective dial-a-ride problem</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">N</forename><surname>Parragh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">F</forename><surname>Doerner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Gandibleux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">F</forename><surname>Hartl</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Networks</title>
+		<imprint>
+			<biblScope unit="volume">54</biblScope>
+			<biblScope unit="page" from="227" to="242" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">A general heuristic for vehicle routing problems</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Pisinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ropke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computers &amp; Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="2403" to="2435" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Large neighborhood search</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Pisinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ropke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Handbook of metaheuristics</title>
+				<editor>
+			<persName><forename type="first">M</forename><surname>Gendreau</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><forename type="middle">Y</forename><surname>Potvin</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="volume">146</biblScope>
+			<biblScope unit="page" from="399" to="419" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">An adaptive large neighborhood search heuristic for the pickup and delivery problem with time windows</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ropke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Pisinger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Transportation Science</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="page" from="455" to="472" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Multiple objective optimization with vector evaluated genetic algorithms</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schaffer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the third international conference on genetic algorithms</title>
+				<editor>
+			<persName><forename type="first">J</forename><surname>Grefenstette</surname></persName>
+		</editor>
+		<meeting>the third international conference on genetic algorithms<address><addrLine>Hillsdale</addrLine></address></meeting>
+		<imprint>
+			<publisher>Lawrence Erlbaum</publisher>
+			<date type="published" when="1985">1985</date>
+			<biblScope unit="page" from="93" to="100" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Metaheuristics for the bi-objective orienteering problem</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Schilde</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">F</forename><surname>Doerner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">F</forename><surname>Hartl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Kiechle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Swarm Intelligence</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="179" to="201" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Record breaking optimization results using the ruin and recreate principle</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Schrimpf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schneider</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Stamm-Wilbrandt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Dueck</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Computational Physics</title>
+		<imprint>
+			<biblScope unit="volume">159</biblScope>
+			<biblScope unit="page" from="139" to="171" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Using constraint programming and local search methods to solve vehicle routing problems</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Shaw</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Principles and practice of constraint programming CP98</title>
+				<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="1998">1998</date>
+			<biblScope unit="page" from="417" to="431" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Multiobjective optimization using non-dominated sorting in genetic algorithms</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Srinivas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="221" to="248" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Heuristics for the multi-period orienteering problem with multiple time windows</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Tricoire</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Romauch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">F</forename><surname>Doerner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">F</forename><surname>Hartl</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computers &amp; Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="page" from="351" to="367" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Heuristic methods applied to orienteering</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Tsiligirides</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of the Operational Research Society</title>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="page" from="797" to="809" />
+			<date type="published" when="1984">1984</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">MOSA method: a tool for solving multiobjective combinatorial optimization problems</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Ulungu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Teghem</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Fortemps</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Tuyttens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Multi-Criteria Decision Analysis</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="221" to="236" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Heuristics for multiobjective combinatorial optimization by simulated annealing</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">L</forename><surname>Ulungu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Teghem</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Fortemps</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the sixth national conference on multiple criteria decision making</title>
+				<editor>
+			<persName><forename type="first">J</forename><surname>Gu</surname></persName>
+		</editor>
+		<meeting>the sixth national conference on multiple criteria decision making</meeting>
+		<imprint>
+			<date type="published" when="1995">1995</date>
+			<biblScope unit="page" from="228" to="238" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Multiobjective evolutionary algorithms: analyzing the state-of-the-art</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Van Veldhuizen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Lamont</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="125" to="147" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">A multi-objective simulated-annealing algorithm for scheduling in flowshops to minimize the makespan and total flowtime of jobs</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Varadharajan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Rajendran</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Operational Research</title>
+		<imprint>
+			<biblScope unit="volume">167</biblScope>
+			<biblScope unit="page" from="772" to="795" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title level="a" type="main">MOEA/D: a multiobjective evolutionary algorithm based on decomposition</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="712" to="731" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Improving the strength Pareto evolutionary algorithm for multiobjective optimization</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Zitzler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Laumanns</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Thiele</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Evolutionary methods for design, optimisation, and control, CIMNE</title>
+				<meeting><address><addrLine>Barcelona, Spain</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="95" to="100" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Multiobjective evolutionary algorithms: a comparative case study and the strength Pareto approach</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Zitzler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Thiele</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="257" to="271" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Performance assessment of multiobjective optimizers: an analysis and review</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Zitzler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Thiele</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Laumanns</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="117" to="132" />
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

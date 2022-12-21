@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">FAIROs: Towards FAIR assessment in Research Objects</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Esteban</forename><surname>González</surname></persName>
+							<email>esteban.gonzalez@upm.es</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Universidad Politécnica de Madrid</orgName>
+								<address>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Alejandro</forename><surname>Benítez</surname></persName>
+							<email>guillermoalejandro.benitez@alumnos.upm.es</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Universidad Politécnica de Madrid</orgName>
+								<address>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Daniel</forename><surname>Garijo</surname></persName>
+							<email>daniel.garijo@upm.es</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Universidad Politécnica de Madrid</orgName>
+								<address>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">FAIROs: Towards FAIR assessment in Research Objects</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">E25E57458880A972C6DB18C62A7A73B5</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2022-12-21T19:37+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>FAIR assessment</term>
+					<term>Research object</term>
+					<term>Aggregation methods</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The FAIR principles have become a popular means to guide researchers when publishing their research outputs (i.e., data, software, etc.) in a Findable, Accessible, Interoperable and Reusable manner. In order to ease compliance with FAIR, different frameworks have been developed by the scientific community, offering guidance and suggestions to researchers. However, scientific outputs are rarely published in isolation. Research Objects have been proposed as a framework to capture the relationships and context of all constituents of an investigation. In this paper we present FAIROs, a framework for assessing the compliance of a Research Object (and its constituents) against the FAIR principles. FAIROs reuses existing FAIR validators for individual resources and proposes i) two scoring methods for assessing the fairness of Research Objects, ii) an initial implementation of the scoring methods in the FAIROs framework, and iii) an explanationbased approach designed to visualize the obtained scores. We validate FAIROs against 165 Research Objects, and discuss the advantages and limitations of different scoring systems.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>The Findable, Accessible, Interoperable and Reusable principles (FAIR) introduce a set of best practices to share data, make data more reusable and support the reproducibility of results in research <ref type="bibr" target="#b21">[22]</ref>. FAIR addresses using persistent identifiers for resources, rich metadata to favour discovery, explicit licenses to understand usage terms and using well established vocabularies to facilitate interoperability.</p><p>Although FAIR was originally proposed for datasets, additional initiatives are appearing to apply these principles to other research outputs, such as software <ref type="bibr" target="#b14">[15]</ref>  <ref type="bibr" target="#b15">[16]</ref>, ontologies <ref type="bibr" target="#b18">[19]</ref>, virtual research environments <ref type="foot" target="#foot_0">1</ref> or digital objects <ref type="bibr" target="#b3">[4]</ref> among others.</p><p>Since research outputs are rarely produced in isolation, the scientific community has proposed Research Objects <ref type="bibr" target="#b1">[2]</ref>  <ref type="bibr" target="#b19">[20]</ref> to capture the context around a scientific investigation. Research Objects also provide the means to pack all the resources within some research, easing its understandability and facilitating its dissemination. However, assessing the compliance of a Research Object against the FAIR principles (i.e., their FAIRness) is challenging, as Research Objects aggregate multiple resources which may be prompt to individual assessment.</p><p>In this work we describe FAIROs, a framework for assessing the FAIRness of a research investigation, modeled as Research Object. Our contributions include i) an approach to integrate the FAIRness scores of all resources in a Research Object, ii) an implementation of our approach in an executable tool, and iii) a visualization of the scoring system for helping users understand how to improve the FAIRness of their resources.</p><p>FAIROs integrates existing efforts developed to assess the FAIRness of individual datasets, software projects and ontologies. We have tested our framework by calculating the FAIRness scores of over 160 Research Objects available in public repositories, comparing two different aggregation metrics. Based on our results, we discuss the advantages and disadvantages of different scoring methods for Research Object FAIRness. Our results show that the score is severely affected by i) the number of tests associated to each category and ii) the number of resources of each RO.</p><p>The rest of the paper is structured as follows. Section 2 describes existing efforts for assessing FAIR in different domains. Section 3 describes our approach, while Section 4 compares differences when using two scoring methods. Section 5 discusses our results, and Section 6 concludes the paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related work</head><p>There are two main areas of related work: community efforts for guiding users when adopting FAIR, and quality assessment in Research Objects.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Adopting the FAIR principles</head><p>Checking whether a resource follows the FAIR principles has been a subject of discussion in the last years. For instance, in <ref type="bibr" target="#b22">[23]</ref>, the authors propose a community-driven framework to assess the FAIRness of digital objects. This framework is based on: i) a collection of maturity indicators, ii) principle compliance tests, and iii) a module to apply those tests to digital resources.</p><p>The proposed indicators are a starting point to define which tests are needed for each type of resource <ref type="bibr" target="#b17">[18]</ref>.</p><p>Community groups like FAIRassist.org<ref type="foot" target="#foot_1">2</ref> have compiled lists of guidelines and tools for assessing the FAIRness of digital resources. These range from self-assessment tools like questionnaires and checklists to semi-automated validators <ref type="bibr" target="#b7">[8]</ref>. Examples of automated validation tools include the F-UJI Automated FAIR Data Assessment Tool<ref type="foot" target="#foot_2">3</ref>  <ref type="bibr" target="#b6">[7]</ref>, FAIR Evaluator<ref type="foot" target="#foot_3">4</ref> and FAIR Checker<ref type="foot" target="#foot_4">5</ref> for datasets or digital objects; HowFairIs<ref type="foot" target="#foot_5">6</ref>  <ref type="bibr" target="#b20">[21]</ref> for code repositories; and FOOPS! <ref type="bibr" target="#b10">[11]</ref> to assess ontologies. In our work, we build and incorporate some of these validators when calculating the FAIRness of all resources contained within a Research Object.</p><p>However, different assessment tools may have different interpretations for each principle. In <ref type="bibr" target="#b8">[9]</ref> the authors compare different FAIRness evaluation tools (F-UJI, FAIR Evaluator and FAIR Checker), obtaining different scores and different level of detail when assessing resources. The study highlights the importance of transparency in the evaluation, making each metric and score explainable. Hence, we follow this principle in our work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Quality assessment models for Research Objects</head><p>Research Object are semantically rich aggregations of research resources designed to facilitate the publication, sharing and reuse of such entities <ref type="bibr" target="#b0">[1]</ref>. In order to evaluate Research Objects, <ref type="bibr" target="#b9">[10]</ref> proposes ROHUB, <ref type="foot" target="#foot_6">7</ref> a platform with metadata checklists to assess Research Object completeness. This indicator is calculated by checking the inclusion of metadata such as title, description, creator, publisher information, etc.; as well as the inclusion of certain resources like datasets, software or publications. However, this approach only takes into account the presence of general metadata, implementing only a subset of the FAIR principles. Our work builds on this approach, taking into account every resource in a Research Object and assessing their compliance against all FAIR principles. Lastly, FAIR Digital Objects (FDO) have been recently proposed as a self-contained, typed, machine-actionable data package <ref type="bibr" target="#b5">[6]</ref>. FDOs should be FAIR by definition but, to the best of our knowledge, there are no existing works measuring the degree of compliance with FAIR in FDOs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Fig. 1. FAIROs architecture 3 FAIROs: A Research Object FAIR assessment framework</head><p>Figure <ref type="figure">1</ref> shows an overview of the architecture of FAIROs. Our framework has two main components:</p><p>• Dispatcher. This component analyzes the Research Object metadata file and detects the different resources of the research object (datasets, software and ontologies). Once the resources are analyzed, the information is sent to the specific tool, as described in Section 3.1. • Aggregator. This component collects the results from the tests executed and aggregates the information to calculate a FAIR score for the Research Object. Tests depend of resource's type and the FAIR principle, as described in Section 3.</p><p>FAIROs is open source and available on GitHub<ref type="foot" target="#foot_7">8</ref> . The source code of the version presented in this paper can be found in Zenodo <ref type="bibr" target="#b2">[3]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Modules for individual resource FAIR assessment</head><p>In order to measure the FAIRness of Research Objects, FAIROs integrates existing tools to assess individual datasets, software and ontologies. These Table <ref type="table">1</ref>. FAIR principles coverage by the FAIR assessment tools used in FAIROs</p><formula xml:id="formula_1">Service F1 F2 F3 F4 A1 A1.1 A1.2 A2 I1 I2 I3 R1 R1.1 R1.2 R1.3 F-UJI X X X X X X X X X X X SOMEF X X X X FOOPS X X X X X X X X X X X X</formula><p>tools have been selected for four main reasons: i) their ability to assess the analyzed resources automatically, without human intervention, ii) their accessibility, iii) ease of use and iv) they implement metrics described in scientific publications.</p><p>For datasets, we have deployed in our server an instance of F-UJI. This application provides a REST service to assess the FAIRness of datasets based on 16 of the 17 metrics defined in the FAIRsFAIR Data Objects Assessment Metrics. <ref type="foot" target="#foot_8">9</ref> The results of these tests are sent to the aggregator module.</p><p>For ontologies, we use the service provided by the Ontology Pitfall Scanner for FAIR (FOOPS!). This tool analyzes an ontology with several tests based on <ref type="bibr" target="#b11">[12]</ref>  <ref type="bibr" target="#b18">[19]</ref> and returns a FAIRness score with an explanation of the results, categorized by each FAIR principle. The dispatcher module prepares the request and the response from FOOPS! is sent to the aggregator module.</p><p>Regarding software assessment, we have created a prototype validator based on the principles identified in <ref type="bibr" target="#b15">[16]</ref>.</p><p>In order to extract metadata associated with a given code repository, we use the Software Metadata Extraction Framework (SOMEF) <ref type="bibr" target="#b16">[17]</ref>, which analyzes repository documentation to retrieve the license, description, installation instructions, requirements, versions, citation text or provenance information (authors, creation date). These metadata fields are particularly relevant for reusability and are checked by our tests.</p><p>As shown in Figure <ref type="figure">1</ref>, an additional component has been developed to execute SOMEF, run a set of tests to validate the extracted metadata and send the results to the aggregator component. Table <ref type="table">1</ref> summarizes the FAIR principles <ref type="bibr" target="#b21">[22]</ref> covered by the different components of our framework.</p><p>The last component of the aggregator is in charge of evaluating the metadata of Research Objects themselves, by using the RO-Crate specification <ref type="bibr" target="#b19">[20]</ref> and the ro-crate-py library <ref type="bibr" target="#b4">[5]</ref>. We run the following tests:</p><p>• F1: We verify if the RO has a persistent identifier ['w3id.org', 'doi.org', 'purl.org', 'www.w3.org']. • F2: We verify if the following minimum metadata ['author', 'license', 'description'] are present in the RO-crate.</p><p>• F3: We verify that the hasPart elements exists and are described in the RO, as ROs aggregate resources.</p><p>• R1.1: We verify if there is at least one author, a datePublished and a citation in the root element.</p><p>• R1.2: We verify that all elements of the RO have the following fields: ['author', 'datePublished', 'citation']</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Scoring Aggregations of resources in Research Objects</head><p>A RO is composed by resources, including the metadata of the RO itself.</p><p>Each resource is evaluated against the FAIR principles, and each principle is evaluated by a set of tests (which depend on the type of the resource and the FAIR assessment tool used). The final FAIRness score associated with a Research Object may vary depending on the percentage of tests passed by each resource and on the design decisions used to aggregate the FAIR scores.</p><p>To illustrate this difference, we have defined two aggregation metrics in our framework to calculate the final FAIRness score of a Research Object. Note that the metrics are based on the tests defined for each principle and resource. Metrics do not change the tests executed, only how test results are dealt with in the aggregation formula. Our proposed metrics are:</p><p>• Global metric: calculated by formula <ref type="bibr" target="#b0">(1)</ref>. It represents the percentage of total passed tests. It doesn't take into account the principle to which a test belongs.</p><p>• FAIR average metric: calculated by formula <ref type="bibr" target="#b1">(2)</ref>. It represents the average of the passed tests ratios for each principle plus the ratio of passed tests used to evaluate the Research Object itself.</p><p>Both metrics are agnostic to the kind of resource analyzed. The score they produce ranges from [0 -100].</p><formula xml:id="formula_2">total_score global = #tests_passed #tests<label>(1)</label></formula><p>total_score</p><formula xml:id="formula_3">F AIR_average = i∈G #test_passed i #tests i #G ,<label>(2)</label></formula><p>where G represents the group of tests from the categories Findable (F), Accesible (A), Interoperable (I), Reusable (R) and Research Objects (RO).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Result format and visualization</head><p>FAIROs generates two outputs:</p><p>• A JSON file with the executed tests and the final/intermediate scores generated by a specific metric. The final score is calculated based on the selected metric. Each resource is analyzed based on the tests defined for each FAIR principle. Also, the different tests executed for each principle are described. • A visual diagram explaining the scores and each test. The diagram is generated in the Graphviz format. <ref type="foot" target="#foot_9">10</ref> An example can be seen in Figure <ref type="figure">2</ref>, where the first-level boxes represent the different digital objects that make up the Research Object. We can find information such as identifier, type, tool used and the score. In a second level box, the partial scores for each FAIR principle (Findable, Accesible, Interoperable, Reusable) can be found. Finally, we can find the final aggregation score calculated according with the metrics selected.</p><p>The output JSON file format is composed by a list of components (resources of the RO), which describes the executed tests and includes an explanation of the obtained scores. Listing 1.1 shows an example, showing some of the tests run for the Findable principle.</p><p>1 {"principle _ id": "F3", 2</p><p>"category _ id": "Findable", 3</p><p>"title": "Metadata clearly and explicitly include the identifier → of the data they describe",</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>4</head><p>"description": "This check verifies that the hasPart elements → exists and are describe in the ro",</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>5</head><p>"total _ passed _ tests": 1, 6 "total _ tests _ run": 1, 7</p><p>"status": "ok", 8</p><p>"explanation": "All element identifiers exists" 9 }</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Listing 1.1. Test execution with explanation</head><p>For each component, we include a summary of the tests categorized by principle. The final score calculated by the formula defined by the selected metric is included under the key overall_score, as shown in Listing 1.2. The output file format is the same for both of our proposed metrics.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Comparing FAIR Research Object Assessment Metrics</head><p>We have run a small experiment comparing the effect of our proposed metrics when assessing the FAIRness of more than 160 worflow-centric Research Objects (i.e., ROs containing at least a scientific workflow).</p><p>In all runs, we have used the release v0.0.1 of our framework <ref type="bibr" target="#b2">[3]</ref>.</p><p>The objective of our experiment was to analyze the behaviour and the impact of the two metrics defined in our framework on workflow-centric ROs. Therefore, we downloaded 168 ROs <ref type="bibr" target="#b12">[13]</ref> from the workflowhub <ref type="foot" target="#foot_10">11</ref> platform. These Research Objects are composed by a workflow and other resources such as datasets and other files (images of sketches in many cases). In total, 74 Research Objects contain one resource, 75 contain 2 resources, and 16 contain 3 or more resources. As an important note, 92% of the resources were evaluated as Datasets, but only 17% were CSV and JSON files (i.e., typically considered data inputs or outputs). The rest of the files range from images to configuration files, but are consistent with our analysis, as they can be described with metadata. Note that many times, images are deposited in data repositories.</p><p>As a result, each RO produces two JSON files, one for the global metric and another one for the FAIR_average metric.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Fig. 3. Distribution of FAIR RO scores in over 160 Research Objects</head><p>The distribution of scores is depicted in Figure <ref type="figure">3</ref>. The x-axis, shows the different Research Objects ordered by score. Both scores are different, but consistent, i.e., when the score of a metric is increased, the scores of the other metric increase too. We also detect regular patterns in the results, influenced by the number of resources and the publication of the Research Objects in the same platform.</p><p>Figure <ref type="figure" target="#fig_1">4</ref> a histogram with the distribution and frequency of the scores obtained by each metric on the corpus of analyzed ROs. In summary: • There are four clusters of scores among the analyzed Research Objects, due to their common number of resources. • When the value of the score is low, data from the global metric are more dispersed than the FAIR average metric. That is, the first metric generates scores with more variance. In general, the standard deviation of the global metric is higher than the standard of the FAIR average metric (5.59).</p><p>All the files used and produced in our experiment are available online <ref type="bibr" target="#b13">[14]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Discussion</head><p>Based on our initial results, we discuss several points we consider key for addressing the compliance of Research Objects against the FAIR principles:</p><p>Research Object resource metadata. As shown in Figure <ref type="figure">3</ref>, many of the FAIRness scores obtained for the Research Objects analyzed are not high (scores are below 40 out of 100 for the best metric). This is due, in part, to the lack of metadata for the resources included in a Research Object. However, additional work is needed to identify whether this behavior is commonplace in ROs belonging to other common platforms or not.</p><p>Research Object FAIRness as a proxy of RO quality? Figure <ref type="figure">3</ref> shows how by using different aggregation metrics, the FAIRness score of a RO can change significantly (even if scores are consistent with each other). This has two main implications: 1) scores may be used as a guideline to improve the quality of a Research Object, but should not act as a replacement for its quality; and 2) it is key to explain the aggregation method used to produce any Research Object FAIRness score. The objective of the scoring system should not be to produce a ranking, but become a mechanism to improve the FAIRness of ROs.</p><p>Resource tests in FAIR scores. Each type of resource (datasets, ontologies, etc.) has different number of tests, so the weight in the final score will depend on the proportion of resources defined in the Research Object. For example, imagine two ROs; one with 4 datasets and another with 6 datasets and 5 software packages. Since the number of tests to assess the FAIRness of software is lower than the number of tests for datasets, the score of the first Research Object will likely be better than the second one, even when the second Research Object may comply with more FAIR principles, in percentage.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>FAIROs limitations.</head><p>While our framework provides a first step towards assessing Research Object FAIRness, it also presents some limitations. For example, FAIROs makes some assumptions about concrete resources for which there is no FAIR validator (e.g., instance images and sketches may be considered datasets, which may miss metadata embedded in the files). This approach may introduce bias, but the tests defined for each resource category/principle are quite similar. For example, the process of testing the presence of a persistent identifier is the same, independently the type of the resource. Our study focused on workflow-centric ROs present in one platform, it does not represent a complete overview of the landscape of existing ROs. Nevertheless, these results can be used as a starting point and extended when applied to other categories of ROs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Conclusions and Future Work</head><p>In this work we have presented FAIROs, a framework for assessing the compliance of Research Objects against the FAIR principles. FAIROs integrates existing tools for assessing the FAIRness of datasets, software and ontologies; and provides two different aggregation metrics for calculating Research Object FAIRness scores.</p><p>Our results show a potential imbalance in the FAIRness score obtained depending on the number of tests run by each principle and resource. For example, if a dataset assessment runs more tests than software, or if more tests are run for the findable principle than for interoperability. Transforming our platform in a plug-in architecture where new assessment tools can be easily incorporated would make it easier to reduce this imbalance.</p><p>As for future work, we plan to increment the number of tests run in the Research Object to get a more detailed impression of the Research Object FAIRness. These tests will be accompanied with a collection of recommendations to improve the FAIRness of the target resource. In addition, we plan include partial results from each FAIR principle (Findable, Accesible, Interoperable and Reusable) into our final reports.</p><p>Also, we aim to open the aggregation metrics to users. This way, users may define their own metrics based on their preferences. For example, assigning more weight to some resources/principles than others, according to their use cases.</p><p>From the architecture point of view, we are in the process of transforming our framework into a service, providing support to the community. We are integrating FAIROs in the RELIANCE Research Object platform, <ref type="foot" target="#foot_11">12</ref> in order to test our work against hundreds of Research Objects in the Geosciences domain.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 2 .Listing 1 . 2 .</head><label>212</label><figDesc>Fig. 2. Scores visualization diagram</figDesc><graphic coords="8,134.77,115.84,345.82,285.25" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Distribution of the number of ROs with a given score.</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">https://rd-alliance.org/group/fair-virtual-research-environments-wg/casestatement/fair-virtual-research-environments-vres</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1">https://fairassist.org/</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_2">https://www.fairsfair.eu/f-uji-automated-fair-data-assessment-tool</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_3">https://fairsharing.github.io/FAIR-Evaluator-FrontEnd</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_4">https://github.com/IFB-ElixirFr/fair-checker</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_5">https://github.com/fair-software/howfairis/</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="7" xml:id="foot_6">https://www.rohub.org</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="8" xml:id="foot_7">https://github.com/oeg-upm/FAIR-Research-Object</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="9" xml:id="foot_8">https://www.fairsfair.eu/fairsfair-data-object-assessment-metrics-requestcomments</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="10" xml:id="foot_9">https://graphviz.org/doc/info/lang.html</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="11" xml:id="foot_10">https://www.workflowhub.eu</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="12" xml:id="foot_11">https://reliance.rohub.org/</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgements</head><p>This work has been funded by the European Commission within the H2020 Programme in the context of the project RELIANCE under grant agreement no. 101017501 and by the Madrid Government (Comunidad de Madrid-Spain) under the Multiannual Agreement with Universidad Politécnica de Madrid (UPM) in the line Support for R&amp;D projects for Beatriz Galindo researchers, in the context of the V PRICIT (Regional Programme of Research and Technological Innovation), and through the call Research Grants for Young Investigators from UPM.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Research objects: Towards exchange and reuse of digital knowledge</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bechhofer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>De Roure</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gamble</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Goble</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Buchan</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/npre.2010.4626.1</idno>
+		<ptr target="https://doi.org/https://doi.org/10.1038/npre.2010.4626.1" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature Precedings</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="1" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Using a suite of ontologies for preserving workflowcentric research objects</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Belhajjame</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gamble</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hettne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Palma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Mina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Corcho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gómez-Pérez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bechhofer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Klyne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Goble</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.websem.2015.01.003</idno>
+		<ptr target="https://doi.org/https://doi.org/10.1016/j.websem.2015.01.003" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Web Semantics</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="16" to="42" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title level="m" type="main">FAIROs: A framework to assess FAIR principles in research objects</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Benitez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>González</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<idno type="DOI">10.5281/zenodo.6599423</idno>
+		<ptr target="https://doi.org/10.5281/zenodo.6599423" />
+		<imprint>
+			<date type="published" when="2022-05">May 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Turning fair into reality: Final report and action plan from the european commission expert group on fair data</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Collins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Genova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Harrower</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Hodson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Laaksonen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mietchen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Petrauskaitė</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Wittenburg</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">ro-crate-py</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>De Geest</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Droesbeke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Eguinoa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gaignard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Huber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Leo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Pireddu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Rodríguez-Navas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sirvent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Soiland-Reyes</surname></persName>
+		</author>
+		<idno type="DOI">10.5281/zenodo.3956493</idno>
+		<ptr target="https://doi.org/10.5281/zenodo.3956493" />
+		<imprint>
+			<date type="published" when="2022">5 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Fair digital objects for science: From data pieces to actionable knowledge units</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>De Smedt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Koureas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Wittenburg</surname></persName>
+		</author>
+		<idno type="DOI">10.3390/publications8020021</idno>
+		<ptr target="https://doi.org/10.3390/publications8020021" />
+	</analytic>
+	<monogr>
+		<title level="j">Publications</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">F-uji -an automated fair data assessment tool</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Devaraju</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Huber</surname></persName>
+		</author>
+		<idno type="DOI">10.5281/zenodo.4063720</idno>
+		<ptr target="https://doi.org/10.5281/zenodo.4063720" />
+		<imprint>
+			<date type="published" when="2020-10">Oct 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">From conceptualization to implementation: Fair assessment of research data objects</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Devaraju</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mokrane</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Cepinskas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Huber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Herterich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>De Vries</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Akerman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>L'hours</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Davidson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Diepenbroek</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Data Science Journal</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="14" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">A comprehensive comparison of automated fairness evaluation tools</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dumontier</surname></persName>
+		</author>
+		<ptr target="http://ceur-ws.org/Vol-3127/paper-6.pdf" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Enabling fair research in earth science through research objects</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Garcia-Silva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gomez-Perez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Palma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Krystek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Mantovani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Foglini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Grande</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>De Leo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Salvi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Trasatti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Romaniello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Albani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Silvagni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Leone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Marelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Albani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lazzarini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Napier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">M</forename><surname>Glaves</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Aldridge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Meertens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Boler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">W</forename><surname>Loescher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Laney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Genazzio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Crawl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Altintas</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.future.2019.03.046</idno>
+		<ptr target="https://doi.org/https://doi.org/10.1016/j.future.2019.03.046" />
+	</analytic>
+	<monogr>
+		<title level="j">Future Generation Computer Systems</title>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="page" from="550" to="564" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">FOOPS!: An ontology pitfall scanner for the fair principles</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Corcho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Poveda-Villalón</surname></persName>
+		</author>
+		<ptr target="http://ceur-ws.org/Vol-2980/paper321.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">International Semantic Web Conference (ISWC) 2021: Posters, Demos, and Industry Tracks 2980</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<title level="m" type="main">Best practices for implementing fair vocabularies and ontologies on the web</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Poveda-Villalón</surname></persName>
+		</author>
+		<idno type="DOI">10.3233/SSW200034</idno>
+		<ptr target="https://doi.org/https://doi.org/10.3233/SSW200034" />
+		<editor>Giuseppe Cota, M.D., Pozzato, G.L.</editor>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>IOS Press</publisher>
+			<pubPlace>Netherlands</pubPlace>
+		</imprint>
+	</monogr>
+	<note>Applications and Practices in Ontology Design, Extraction, and Reasoning</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Tpdl2022 -experiment -research objects data</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Benitez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<idno type="DOI">10.5281/zenodo.6595409</idno>
+		<ptr target="https://doi.org/10.5281/zenodo.6595409" />
+		<imprint>
+			<date type="published" when="2022-05">May 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<title level="m" type="main">Tpdl2022 -experiment results</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Benitez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<idno type="DOI">10.5281/zenodo.6595466</idno>
+		<ptr target="https://doi.org/10.5281/zenodo.6595466" />
+		<imprint>
+			<date type="published" when="2022-05">May 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Taking a fresh look at fair for research software</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">S</forename><surname>Katz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gruenpeter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Honeyman</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.patter.2021.100222</idno>
+		<ptr target="https://doi.org/https://doi.org/10.1016/j.patter.2021.100222" />
+	</analytic>
+	<monogr>
+		<title level="j">Patterns</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page">100222</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Towards fair principles for research software</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">L</forename><surname>Lamprecht</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Garcia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kuzak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Martinez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Arcila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename><surname>Del Pico</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Dominguez Del Angel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Van De Sandt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ison</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Martinez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">A</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Data Science</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="37" to="59" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Somef: A framework for capturing scientific software metadata from its documentation</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fakhraei</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/BigData47090.2019.9006447</idno>
+		<ptr target="http://dgarijo.com/papers/SoMEF.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE International Conference on Big Data (Big Data)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="3032" to="3037" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Considerations for the conduction and interpretation of fairness evaluations</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>De Miranda Azevedo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dumontier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Data Intelligence</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">1-2</biblScope>
+			<biblScope unit="page" from="285" to="292" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Coming to terms with FAIR ontologies: A position paper</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Poveda-Villalón</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Espinoza-Arias</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Corcho</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-030-61244-3_18</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 22nd International Conference on Knowledge Engineering and Knowledge Management</title>
+				<meeting>the 22nd International Conference on Knowledge Engineering and Knowledge Management</meeting>
+		<imprint>
+			<publisher>EKAW</publisher>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="page" from="255" to="270" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Packaging research artefacts with ro-crate</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Soiland-Reyes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Sefton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Crosas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">J</forename><surname>Castro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Coppens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Fernández</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Garijo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Grüning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>La Rosa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Leo</surname></persName>
+		</author>
+		<idno type="DOI">10.3233/DS-210053</idno>
+		<ptr target="https://doi.org/https://doi.org/10.3233/DS-210053" />
+	</analytic>
+	<monogr>
+		<title level="j">Data Science</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="42" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Spaaks</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kuzak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Martinez-Ortiz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Van Werkhoven</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Etuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Saladi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Holding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Tjong Kim Sang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Diblen</surname></persName>
+		</author>
+		<idno type="DOI">10.5281/zenodo.4591110</idno>
+		<ptr target="https://doi.org/10.5281/zenodo.4591110" />
+		<imprint>
+			<date type="published" when="2021-03">Mar 2021</date>
+		</imprint>
+	</monogr>
+	<note>Verhoeven, S.: howfairis</note>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">The fair guiding principles for scientific data management and stewardship</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Wilkinson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dumontier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">J</forename><surname>Aalbersberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Appleton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Axton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Baak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Blomberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Boiten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">B</forename><surname>Da Silva Santos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">E</forename><surname>Bourne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific data</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="9" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Evaluating fair maturity through a scalable, automated, community-governed framework</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Wilkinson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dumontier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Sansone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">O</forename><surname>Bonino Da Silva Santos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Prieto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Batista</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Mcquilton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kuhn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Rocca-Serra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Crosas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific data</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="12" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

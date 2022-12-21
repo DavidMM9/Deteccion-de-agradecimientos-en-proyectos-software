@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">About estimation of base station output power in GSM like systems under real conditions</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>National Library of Serbia</publisher>
+				<availability status="unknown"><p>Copyright National Library of Serbia</p>
+				</availability>
+				<date type="published" when="2020">2020</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Aleksandar</forename><surname>Lebl</surname></persName>
+							<email>lebl@iritel.com</email>
+							<idno type="ORCID">0000-0001-6544-6618</idno>
+							<affiliation key="aff0">
+								<orgName type="institution">IRITEL a.d</orgName>
+								<address>
+									<postCode>11080</postCode>
+									<settlement>Belgrade, Batajnički put 23</settlement>
+									<country key="RS">Serbia</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Dragan</forename><surname>Mitic</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Zarko</forename><surname>Markov</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Verica</forename><surname>Vasiljevic</surname></persName>
+						</author>
+						<title level="a" type="main">About estimation of base station output power in GSM like systems under real conditions</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">Yugoslav Journal of Operations Research</title>
+						<title level="j" type="abbrev">YUGOSLAV J OPERATION</title>
+						<idno type="ISSN">0354-0243</idno>
+						<idno type="eISSN">1820-743X</idno>
+						<imprint>
+							<publisher>National Library of Serbia</publisher>
+							<biblScope unit="volume">30</biblScope>
+							<biblScope unit="issue">1</biblScope>
+							<biblScope unit="page" from="109" to="119"/>
+							<date type="published" when="2020" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">E672D9B76D8F67C8675E25A943FB35DB</idno>
+					<idno type="DOI">10.2298/yjor190415017l</idno>
+					<note type="submission">Received: April 2019 / Accepted: Jun 2019</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2022-12-21T19:37+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Base Station</term>
+					<term>Communication System Traffic</term>
+					<term>GSM</term>
+					<term>Mobile Network</term>
+					<term>Output Power. MSC: 68U35</term>
+					<term>68U20</term>
+					<term>90B22</term>
+					<term>90B18</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The output power of traffic channels in one cell of GSM like systems is estimated in this paper. We consider the real case: the number of users is much higher than the number of channels, the output power of one channel depends on the cube of the distance between a mobile user and the base station, and the distribution of users in the cell is uniform. We derive the expressions for cumulative distribution of output power of one channel and for the mean output power of the whole base station. Results of the calculation are confirmed by computer simulation.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">INTRODUCTION</head><p>The use of radio links and mobile communication is increasing fast and it is necessary to strictly save energy in this field. Energy should be saved because it is expensive and to preserve the environment. Otherwise, increased energy production has detrimental effect, <ref type="bibr" target="#b25">[26]</ref>, <ref type="bibr" target="#b2">[3]</ref>. Energy saving is important in modern mobile communications, too, <ref type="bibr" target="#b29">[30]</ref>, <ref type="bibr" target="#b1">[2]</ref>, <ref type="bibr" target="#b26">[27]</ref>, <ref type="bibr" target="#b18">[19]</ref>. The program of energy saving is called GREEN (Globally Resource-optimized and Energy-Efficient Networks) Radio. One part of this program deals with saving energy using the telephone traffic characteristics. This part is often called TANGO (Traffic-Aware Network planning and Green Operation). Energy consumption, that is, instantaneous consumption of electrical power of one base station (Base Transceiver Station, BTS) in the GSM network depends on different factors. One of the important factors is instantaneous number of mobile telephone calls, i.e., instantaneous value of telephone traffic. Minimizing the transmitter power leads to minimizing of self-interference in the system, to maintenance of requested quality of service (Quality of Service, QoS) in the conditions of optimal output power emission in BTS. Another part of the problem is correct dimensioning of battery backup in BTS, which is used if primary power source from electric power network is interrupted, or if alternative energy source is used. If all these reasons are considered, it is necessary to know characteristics of the output power of BTS. These characteristics are mean output power of one channel, cumulative distribution function (CDF) of output power determined for one channel and mean output power determined for the whole base station.</p><p>BTS emission power depends on many factors. Some of them are users' distance from BTS, their surface distribution over the BTS cell, implemented codec type (full-rate or half-rate codec), the characteristics of users' moving (direction, speed, changing BTS cells by handover), traffic type (intra-cell or external) and its value, implemented technology (GSM, CDMA, LTE), and so on. We investigated the influence of these factors and for each analyzed influence, we developed the simulation program ( <ref type="bibr" target="#b12">[13]</ref>, <ref type="bibr" target="#b13">[14]</ref>, <ref type="bibr" target="#b21">[22]</ref>, <ref type="bibr" target="#b22">[23]</ref>, <ref type="bibr" target="#b23">[24]</ref>, <ref type="bibr" target="#b24">[25]</ref>, <ref type="bibr" target="#b16">[17]</ref>, <ref type="bibr" target="#b17">[18]</ref>), thus simplifying the analysis. Simulations based on the same or similar principles may be found in many areas of human activities and scientific fields, as, for example, in operations researches <ref type="bibr" target="#b15">[16]</ref>. Besides, the goal in mobile system dimensioning is to achieve the optimum Quality of Service while reducing the applied base station emission power. Energy planning and, in this way, environmental protection is also one of the aims of investigations in operations researches <ref type="bibr" target="#b30">[31]</ref>. In mobile telephony, the BTS emission power is decreased by proper BTS positioning. This problem may be solved by integrated linear programming approach, characteristic for operations research <ref type="bibr" target="#b20">[21]</ref>. In our paper we calculate the value of this decreased emission power, adjusting it according to the mutual distance between BTS and the user.</p><p>The rest of the paper is split in four parts. Section 2. deals with the model presentation. This section also gives some important assumptions and the list of designations, which are used in the paper. In section 3., we calculate CDF of output power of one traffic channel and the mean output power for the group of channels. Some numerical examples are presented in section 4., and the conclusion of the paper is given in section 5.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">MODEL, ASSUMPTIONS, DESIGNATIONS AND PROBLEMS</head><p>It is supposed that dynamic power control is implemented in one BTS of GSM network, <ref type="bibr" target="#b28">[29]</ref>, <ref type="bibr" target="#b4">[5]</ref>, <ref type="bibr" target="#b6">[7]</ref>. The fundamental characteristic of this network is implementation of FDMA (Frequency Division Multiple Access) and TDMA (Time Division Multiple Access) on each dedicated frequency, <ref type="bibr" target="#b12">[13]</ref>. It is supposed that the number of frequencies is N f , and the number of time slots is N s (8, by default). All available channels are not intended to be traffic channels, i.e., some of the channels are used for signalling. The number of traffic channels, N t , used for telephone connection establishment, is N t &lt; N c = N f • N s . The total offered traffic in BTS is A and the served (handled) traffic is Y. The number of users, that is, mobile stations (MS) N ms in a cell, covered by the analyzed base station, is much greater than the number of traffic channels, that is, N ms &gt;&gt; N t . So, we can use Erlang model, which is usually used for traffic calculations, <ref type="bibr" target="#b6">[7]</ref>, <ref type="bibr" target="#b32">[33]</ref>, <ref type="bibr" target="#b0">[1]</ref>, <ref type="bibr" target="#b10">[11]</ref>. Each user generates small traffic <ref type="bibr" target="#b8">[9]</ref>. That is why the total offered traffic does not depend on the number of established connections. The call loss (or blocking), caused by lack of idle traffic channels, is designated by B.</p><p>We suppose that one traffic channel is used in the considered cell for each connection, i.e. that intra-cell traffic is negligible, <ref type="bibr" target="#b33">[34]</ref>. If this traffic is not negligible, as is in private and professional networks <ref type="bibr" target="#b5">[6]</ref>, <ref type="bibr" target="#b3">[4]</ref>, the calculation is performed by the implementation of multidimensional traffic models, <ref type="bibr" target="#b10">[11]</ref>, <ref type="bibr" target="#b3">[4]</ref>, <ref type="bibr" target="#b9">[10]</ref>, <ref type="bibr" target="#b13">[14]</ref>, <ref type="bibr" target="#b23">[24]</ref>, <ref type="bibr" target="#b24">[25]</ref>.</p><p>The output power of one traffic channel (W ) is defined as the mean power during the useful part of GSM burst.</p><p>The output power of one traffic channel, as part of total BTS power, is ω = W/8. The mean output BTS power is mean value of power as the sum of all traffic channel powers, W Bm = (ω i ), i = 1,2,..., N t , Fig. <ref type="figure" target="#fig_0">1</ref>.</p><p>We suppose that output power of BTS is adjusted for all active traffic channels on all frequencies only according to the user's distance. It means that output power of one channel (W ) is the random variable dependent on the random distance, (D), between MS and BTS. Let us suppose that in this case output power in one channel depends on the third power (cube) of the distance between MS and BTS:</p><formula xml:id="formula_0">W = g(D) = a • D 3 ,<label>(1)</label></formula><p>where w max = g(R) = a • R 3 is the largest emission power of one channel. The maximal output power of one channel, which is the part of the output power of BTS, is ω max = w max /8. It can be supposed that this dependence is the best approximation of real propagation conditions. The distance between BTS and MS, D, is independent random variable and its distribution function: represents probability that the distance is less or equal to some value x. This assumption means that output power of one traffic channel is continuous random variable (as also D), which is in practice not completely true because the output power changes in steps of 2 dB. The distribution density of random variable D is f D (D). We also suppose that mobile stations are uniformly distributed in the cell area. The cell area is the circle with radius R. In that case, for the CDF of the distance MS -BTS, it is valid</p><formula xml:id="formula_1">F D (x) = P (D ≤ x) ,<label>(2)</label></formula><formula xml:id="formula_2">F D (x) = P (D ≤ x) = π • x 2 π • R 2 = x 2 R 2 , 0 ≤ x ≤ R,<label>(3)</label></formula><p>and for the density (PDF) of this distance</p><formula xml:id="formula_3">f D (x) = 2 • x R 2 . (<label>4</label></formula><formula xml:id="formula_4">)</formula><p>The output power of a base station depends on the power of each traffic channel, on the mean number of active channels (traffic).</p><p>Estimation of the base station output power is the problem, which takes into account users' distance from BTS, dependence of output power in one radio channel on the distance MS-BTS, and the instantaneous number of active channels, that is instantaneous traffic. Estimation of the output power of one BTS is successful if we get dependence of mean power on traffic or, better, CDF of output power as the function of traffic.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">OUTPUT POWER OF ONE CHANNEL AND OUTPUT POWER OF THE GROUP OF CHANNELS</head><p>Output power of one traffic GSM channel (W ) depends on the distance between MS and BTS in one cell, D, which is the random variable. It can be said that output power is the function of the random variable D. Probability density function of the output power is, according to <ref type="bibr" target="#b27">[28]</ref>, section V and equation (1):</p><formula xml:id="formula_5">f W (w) = 1 |g (D)| • f D (D) = 1 3 • a • ( w a ) 2 3 • f D w a 1 3 ,<label>(5)</label></formula><p>and CDF of the probability of one channel output power</p><formula xml:id="formula_6">F W (x) = x 0 f W (w) • dw = 2 R 2 • a 2 3 • x 2 3 .<label>(6)</label></formula><p>The mean output power of one channel is:</p><formula xml:id="formula_7">w m (x) = wmax 0 w • f W (w) • dw = 2 5 • R 2 • a 2 3 • w max 2 3 .<label>(7)</label></formula><p>(Note: this method, equations ( <ref type="formula" target="#formula_5">5</ref>)-( <ref type="formula" target="#formula_7">7</ref>), derived for the cubic dependence of power on the distance between MS and BTS, equation <ref type="bibr" target="#b0">(1)</ref>, can be also carried out in the same way for other dependences.) Mean output power of one channel, which is the part of BTS output power, is</p><formula xml:id="formula_8">ω m = w m /8.</formula><p>The mean output power of all channels is:</p><formula xml:id="formula_9">W Bm = W (k) • P (k, A) ,<label>(8)</label></formula><p>where P (k,A) is the probability that k channels are busy (if the offered traffic is A), and W (k ) is the mean output power provided by k channels,</p><formula xml:id="formula_10">W (k ) = k • ω m .</formula><p>Our assumption is that the number of users (that is the number of MS) is great, N ms &gt;&gt; N t . In this case, truncated Poisson distribution, <ref type="bibr" target="#b10">[11]</ref>, section 4.3, can be adopted to express the probability P (k,A). This distribution determines the probability that k of N t channels are busy if the offered traffic is A in the Erlang model. This can be assigned as E RL(k, A, N t ). The mean output power of BTS is:</p><formula xml:id="formula_11">W Bm = Nt k=1 k • ω m • ERL(k, A, N t ) = ω m • A • (1 − B) ,<label>(9)</label></formula><p>as is</p><formula xml:id="formula_12">Nt k=1 k • ERL(k, A, N t ) = Y = A • (1 − B) ,<label>(10)</label></formula><p>the carried traffic in Erlang model, <ref type="bibr" target="#b10">[11]</ref>.</p><p>It is clear that the value of mean output power of the base station depends on traffic and can be in the range 0 ≤ W Bm ≤ N t • w max /8.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">NUMERICAL EXAMPLES</head><p>Let us suppose that we have a BTS in class 4, that is w max = 40W, R = 20 km. CDF of output power determined for one channel, W, according to <ref type="bibr" target="#b5">(6)</ref>, is presented in Fig. <ref type="figure" target="#fig_1">2</ref>. This distribution also presents the CDF of one channel power, that is the part of total base station power, ω = W/8. The mean output power of BTS, W Bm , as the function of traffic, is presented, in Fig. <ref type="figure" target="#fig_2">3</ref>. Line 1 presents dependence of mean output power of BTS when traffic load is small, that is when offered traffic causes negligible loss (B = 0.1%). Line 2 presents dependence of mean output power of BTS when offered traffic produces loss B = 1%. Lines 3 and 4 present the increase of mean output power of BTS in the case of traffic overload, which causes loss B = 5% (line 3) and B = 20% (line 4).</p><p>Results from Fig. <ref type="figure" target="#fig_1">2</ref> and Fig. <ref type="figure" target="#fig_2">3</ref> are verified by computer simulation. The simulation program is based on roulette or Monte Carlo modeling, <ref type="bibr" target="#b7">[8]</ref>, <ref type="bibr" target="#b14">[15]</ref>, <ref type="bibr" target="#b19">[20]</ref>, <ref type="bibr" target="#b11">[12]</ref>, <ref type="bibr" target="#b31">[32]</ref>. In the simulation, the distance between MS and BTS is selected randomly. The random selection of distance is made according to a priori determined density of mobile users in the cell <ref type="bibr" target="#b21">[22]</ref>. In this case it is uniform density of mobile users across the cell. The results of simulation are considered valuable after at least 1000 connections over each traffic channel. The simulation results confirm calculation results because the difference between them is negligible.</p><p>As the calculation of CDF of total BTS output power may be very complex, this CDF is determined only by simulation <ref type="bibr" target="#b22">[23]</ref>.</p><p>Two CDFs of BTS output power in class 4 (w max = 40 W) for the cell with diameter R = 20 km are presented in Fig. <ref type="figure" target="#fig_3">4</ref> and Fig. <ref type="figure" target="#fig_4">5</ref>. The number of traffic channels is N t = 14. The first line corresponds to small traffic load A = 5 Erl. This traffic load causes negligible traffic loss (B = 0.05%). The second line presents distribution function of the output power of the same BTS in the condition of great traffic load (A = 13 Erl). This traffic load causes great is enough traffic loss (B = 15%).</p><p>Fig. <ref type="figure" target="#fig_4">5</ref> presents details from Fig. <ref type="figure" target="#fig_3">4</ref>. It is obvious that power of 20.2 W is necessary to provide 95% of all connections at small traffic load (5 Erl). It is necessary to provide 33.5 W or 65.8% more for 95% of all connections at great   traffic <ref type="bibr">(13 Erl)</ref>.</p><p>The same analysis, as in Fig. <ref type="figure" target="#fig_3">4</ref> and Fig. <ref type="figure" target="#fig_4">5</ref>, is performed for N t = 30 traffic channels. The results are presented in Fig. <ref type="figure" target="#fig_5">6</ref> and Fig. <ref type="figure" target="#fig_6">7</ref>. The values of offered traffic are, again, chosen to have traffic loss of B = 0.05% (A = 15.8 Erl) and B = 15% (A = 31 Erl). In the case of small traffic load (15.8 Erl) it is necessary to provide 48.5 W, while in the case of great traffic load, it is necessary to provide 68.5 W or 41.2% more to satisfy 95% of all connections.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">CONCLUSION</head><p>The output power of a base station in GSM like systems depends on the cell traffic over the base station. In this paper, we derived the expression for cumulative distribution function calculation of output power of one traffic channel. The base of this calculation is the fact that the power of one channel is a random variable, which depends on the distance between the mobile and base station. The principle of power calculating for one channel is the same for all models, but we adopt real dependence of the power of channel on the distance and the distribution of users' density in the cell. In this paper we used cubic dependence of channel power on the distance and uniform users' distribution in the cell. Based on the distribution of one channel output power, we derived very simple expressions for calculating mean output power of base station. The values of cumulative distribution function of one channel output power and the mean values of output power of the whole base station are confirmed by computer simulation because the simulation results match calculated results noticeably very much. Cumulative distribution of total output power of a base station in the function of offered traffic is estimated only according to the simulation.  The important contribution of this paper is the development of a simulation model, which is the part of our simulation program collection intended for dimensioning in mobile telephony. The main goals in such a dimensioning are to determine the number of necessary traffic channels and the base station emission power. Our simulation programs are relatively simple, based on universal principles of Monte Carlo simulations. Their special value is in the analysis of relatively complicated systems, where it is difficult to define mathematical model because the base station emission power and traffic capacity depend on many factors. It is very difficult to obtain satisfactory analytical solutions even when a few of contributing factors are considered.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Symbolic presentation of output power for one BTS with 8 traffic channels: W 1output power of first traffic channel, ω 1 -output power of first channel as part of mean BTS output power, ω 1 = W 1 /8, W Bm -mean output power of BTS, W Bm = (ω i ) = 1, 2, • • • , 8.</figDesc><graphic coords="4,164.76,151.65,265.75,83.67" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2 :</head><label>2</label><figDesc>Figure2: Cumulative distribution of the probability Fw(x) of one channel output power W and cumulative distribution of the probability Fω(y) of one channel output power ω, which is the part of total power<ref type="bibr" target="#b12">[13]</ref> </figDesc><graphic coords="6,164.76,151.65,265.74,148.96" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Dependence of mean output power of BTS on traffic.</figDesc><graphic coords="7,164.76,192.26,265.76,163.12" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: CDF of output power for one BTS with Nt = 14 channels, A = 5 Erl and A=13 Erl.</figDesc><graphic coords="7,164.76,465.53,265.76,163.12" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: CDF of output power for one BTS with Nt = 14 channels, A = 5 Erl and A=13 Erl (detailed).</figDesc><graphic coords="8,164.76,151.65,265.76,163.12" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: CDF of output power for one BTS with Nt = 30 channels, A = 15.8 Erl and A = 31 Erl.</figDesc><graphic coords="9,164.76,187.80,265.76,163.12" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: CDF of output power for one BTS with Nt = 30 channels, A = 15.8 Erl and A = 31 Erl (detailed).</figDesc><graphic coords="9,164.76,460.08,265.76,163.12" type="bitmap" /></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Acknowledgement: This work is partially supported by the Ministry of Science and Technological Development of the Republic of Serbia within the Projects TR32007 and TR32051.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Teletraffic, Theory and application</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Akimaru</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kawashima</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1999">1999</date>
+			<publisher>Springer</publisher>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Energy savings in mobile networks based on adaptation to traffic statistics</title>
+		<author>
+			<persName><forename type="first">O</forename><surname>Blume</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Eckardt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Klein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kühn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">M</forename><surname>Wajda</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Bell Labs Technical Journal</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="77" to="94" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Green radio, aproaches and performance analysis</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Choi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">18th Asia-Pacific Conference on Communications</title>
+				<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="1" to="87" />
+		</imprint>
+		<respStmt>
+			<orgName>APCC) Jeju Island, South Corea</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Trunking capacity estimation for wide area multicell private mobile radio networks</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Canales</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Á</forename><surname>Hernández</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Valdovinos</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Electronics and Communications (AE Ü)</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="8" to="16" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ebersprächer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Vögel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ch</forename><surname>Bettstetter</surname></persName>
+		</author>
+		<title level="m">GSM, switching, services and protocols</title>
+				<meeting><address><addrLine>New York</addrLine></address></meeting>
+		<imprint>
+			<publisher>John Wiley &amp; Sons</publisher>
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+	</analytic>
+	<monogr>
+		<title level="m">ECC, Spectrum efficiency of CDMA-PAMR and other wideband systems PMR/PAMR</title>
+				<meeting><address><addrLine>Granada</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="volume">42</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<author>
+			<persName><forename type="first">H</forename><surname>Gunar</surname></persName>
+		</author>
+		<title level="m">GSM Networks: Protocols, terminology and implementation</title>
+				<meeting><address><addrLine>Artech House, London</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Effects of detail in wireless simulations</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Heidemann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Bulusu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Elson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Intanagonwiwat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Lan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Estin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Gowindan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Submitted to SCS Communication Networks and Distributed Systems Modeling and Simulation Conference</title>
+				<imprint>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Terminal mobility traffic modelling</title>
+		<idno>ITU-T Recommendation E.760</idno>
+		<imprint>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Document 8F/434-E, Refined calculation method of multidimensional Erlang-B formula and its sensitivity analysis for mixed circuit-switched traffic</title>
+		<author>
+			<persName><surname>Itu-T</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">DTU course 34340, Teletraffic engineering and network planning</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">B</forename><surname>Iversen</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+		<respStmt>
+			<orgName>Technical University of Denmark</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<title level="m" type="main">Simulation of communication systems, modeling, methodology and techniques</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Jeruchim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Balaban</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">S</forename><surname>Shanmugan</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<publisher>Kluwer Academic Publishers</publisher>
+			<pubPlace>US</pubPlace>
+		</imprint>
+	</monogr>
+	<note>second edition, section 7.2.2</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Calculation of the mean output power of base transceiver station in GSM</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Jovanović</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mileusnić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Measurement, Electronics, Computing and Communications</title>
+		<imprint>
+			<biblScope unit="volume">55</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="182" to="187" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note>Automatika: Journal for Control</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Influence of Intra-cell Connections on the Traffic Calculation of Radio Resources in Mobile Network</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Jovanović</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Šuh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Frequenz, Journal of RF-Engineering and Telecommunications</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="315" to="320" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">H</forename><surname>Kalos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">A</forename><surname>Whitelock</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<pubPlace>Monte Carlo methods, 2 nd Edition, Wiley USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Monte Carlo Simulation im Operations Research</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kohlas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Economics and Mathematical Systems</title>
+		<imprint>
+			<biblScope unit="page" from="138" to="157" />
+			<date type="published" when="1972">1972</date>
+			<publisher>Springer-Verlag</publisher>
+		</imprint>
+	</monogr>
+	<note>German Edition</note>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Influence of mobile users&apos; density distribution on the CDMA base station power</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Popović</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mileusnić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Matić</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Electrical Engineering</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="390" to="398" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Determination of Base Station Emission Power Change in a Mobile Network Cell with Movable Users</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Trenkić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Radioengineering</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="1174" to="1182" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Measurements and modelling of base station power consumption under real traffic loads</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lorincz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Garma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Petrović</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sensors</title>
+		<imprint>
+			<biblScope unit="volume">2012</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="4281" to="4310" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">A simple way for variance reduction of measured loss in teletraffic simulation</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Archiv fúr Elektronik und Úbertragungstechnik (AE Ü)</title>
+		<imprint>
+			<biblScope unit="volume">44</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<date type="published" when="1990">1990</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Optimal Base Station Positioning and Cahnnel Assignment for 3G Mobile Networks by Integer Programming</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Mathar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Schmeink</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">107</biblScope>
+			<biblScope unit="issue">1-4</biblScope>
+			<biblScope unit="page" from="25" to="236" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Influence of users&apos; density on the distribution of mean base station output power</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mileusnić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Popović</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Elektronika ir Elektrotechnika</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="74" to="79" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Use of computer simulation in estimation of GSM base station output power</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mileusnić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Šuh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Acta Polytechnica Hungarica</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="129" to="142" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Influence of intra-cell traffic on the output power of base station in GSM</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mileusnić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Jovanović</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Popović</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Radioengineering</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="601" to="608" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Influence of traffic model on the calculation of BTS output power in GSM network</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mitić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lebl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ž</forename><surname>Markov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Electronics and Communications (AE Ü)</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="836" to="840" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Niu</surname></persName>
+		</author>
+		<title level="m">Advances in green communications and networks, ieeevtc.org / vtc2012spring / Tutorials VTC2012-Spring</title>
+				<meeting><address><addrLine>Yokohama</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Toward dynamic energy-efficient operation of cellular network infrastructure</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Oh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Krishnamachari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Niu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Communications Magazine</title>
+		<imprint>
+			<biblScope unit="volume">49</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="56" to="61" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Probability, random variables, and stochastic processes</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Papoulis</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1991">1991</date>
+			<pubPlace>McGraw-Hill, USA</pubPlace>
+		</imprint>
+	</monogr>
+	<note>3 rd Edition</note>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<monogr>
+		<title level="m" type="main">Wireless communications-principles &amp; practice</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">S</forename><surname>Rappaport</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<publisher>Prentice Hall</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Energy efficiency aspects of base station deployment strategies for cellular networks</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Richter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">J</forename><surname>Fehske</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">P</forename><surname>Fettweis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Proceedings of VTC</title>
+				<imprint>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Operational research in energy and environment</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">K D</forename><surname>Saharidis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Operational Research International Journal</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="693" to="696" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">An LP Based Approximate Dynamic Programming Model to Address Airline Overbooking under Cancellation, Refund and No-show</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Soleymanifar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Yugoslav Journal of Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="113" to="133" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<title level="m" type="main">Introduction to congestion theory in telephone systems</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Syski</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1986">1986</date>
+			<pubPlace>North-Holland</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<monogr>
+		<title level="m" type="main">Indoor radio planning -a practical guide for</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Tolstrup</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dcs</forename><surname>Gsm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><surname>Hspa</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Wiley</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Sons</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

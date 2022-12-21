@@ -4,38 +4,89 @@ from useModelHuggingface import useModel
 from addRegex import addRegex
 from calcF1Score import calcF1Score
 
+import sys, getopt, argparse
 
-# Modelos de Huggingface utilizados
-camembert_NER = "Jean-Baptiste/camembert-ner"
-bert_base_NER = "dslim/bert-base-NER"
-bert_large_NER = "dslim/bert-large-NER"
-bert_base_multilingual_cased_ner_hrl = "Davlan/bert-base-multilingual-cased-ner-hrl"
-roberta_large_ner_english = "Jean-Baptiste/roberta-large-ner-english"
 
-# Campos: useGrobid(carpeta origen de los artículos, carpeta destino donde guardar los XML)
-# useGrobid("./../Articulos", "./../TEI/XML")
+def main(argv):
 
-# Campos: XMLtoTXT(carpeta de origen de los XML)
-# XMLtoTXT("./../TEI/XML")
+    parser = argparse.ArgumentParser(
+        description="Deteccion de agradecimientos en proyectos software"
+    )
+    parser.add_argument("-a", "--articulos", type=str, help="Carpeta de los articulos")
+    parser.add_argument(
+        "-t", "--tei", type=str, help="Carpeta para guardar los XML y TXT"
+    )
+    parser.add_argument(
+        "-o", "--output", type=str, help="Carpeta para guardar los json devueltos"
+    )
+    parser.add_argument("-m", "--model", type=str, help="Modelo de HuggingFace")
+    parser.add_argument(
+        "-s", "--goldstandard", type=str, help="Carpeta donde esta el goldstandard"
+    )
+    parser.add_argument(
+        "-g", "--grobid", help="Usar grobid para pasar articulos de PDF a XML"
+    )
+    parser.add_argument(
+        "-x", "--toTXT", help="Sacar la seccion de Acknowledgements en TXT"
+    )
+    parser.add_argument("-f", "--huggingface", help="Usar modelo de HuggingFace")
+    parser.add_argument(
+        "-r", "--regex", help="Mete al json del modelo lo encontrado con regex"
+    )
+    parser.add_argument(
+        "-c", "--calcF1", action="store_true", help="Calcula el F1 score en una tabla"
+    )
 
-# Campos: useModel(modelo Huggingface a utilizar, carpeta origen de los TXT, carpeta destino donde guardar los json generados por el modelo)
-useModel(camembert_NER, "./../TEI/TXT/", "./../HuggingFace/")
-# useModel(bert_base_NER, "./../TEI/TXT/", "./../HuggingFace/")
-# useModel(bert_large_NER, "./../TEI/TXT/", "./../HuggingFace/")
-# useModel(bert_base_multilingual_cased_ner_hrl, "./../TEI/TXT/", "./../HuggingFace/")
-# useModel(roberta_large_ner_english, "./../TEI/TXT/", "./../HuggingFace/")
+    args = parser.parse_args()
 
-# Campos: addRegex(modelo Huggingface utilizado, carpeta origen de los TXT, carpeta destino donde guardar los json generados por el modelo)
-addRegex(camembert_NER, "./../TEI/TXT/", "./../HuggingFace/")
-# addRegex(bert_base_NER, "./../TEI/TXT/", "./../HuggingFace/")
-# addRegex(bert_large_NER, "./../TEI/TXT/", "./../HuggingFace/")
-# addRegex(bert_base_multilingual_cased_ner_hrl, "./../TEI/TXT/", "./../HuggingFace/")
-# addRegex(roberta_large_ner_english, "./../TEI/TXT/", "./../HuggingFace/")
+    articulos = ""
+    TEIfolder = ""
+    output = ""
+    model = ""
+    goldstandard = ""
+    opts, args = getopt.getopt(
+        argv,
+        "ha:t:o:m:s:gxfrc",
+        [
+            "articulos=",
+            "TEIfolder=",
+            "ofile=",
+            "model=",
+            "goldstandard=",
+            "grobid=",
+            "toTXT=",
+            "huggingface=",
+            "regex=",
+            "calcF1=",
+        ],
+    )
+    for opt, arg in opts:
+        if opt == "-h":
+            print(
+                "main.py -a <articulos> -t <tei> -o <output> -m <modelname> -s <goldstandard> -g -x -f -r -c"
+            )
+            sys.exit()
+        elif opt in ("-a", "--articulos"):
+            articulos = arg
+        elif opt in ("-t", "--tei"):
+            TEIfolder = arg
+        elif opt in ("-o", "--ofile"):
+            output = arg
+        elif opt in ("-m", "--model"):
+            model = arg
+        elif opt in ("-s", "--goldstandard"):
+            goldstandard = arg
+        elif opt in ("-g", "--grobid"):
+            useGrobid(articulos, TEIfolder)
+        elif opt in ("-x", "--toTXT"):
+            XMLtoTXT(TEIfolder)
+        elif opt in ("-f", "--huggingface"):
+            useModel(model, TEIfolder + "TXT/", output)
+        elif opt in ("-r", "--regex"):
+            addRegex(model, TEIfolder + "TXT/", output)
+        elif opt in ("-c", "--calcF1"):
+            calcF1Score(output + model + "/", goldstandard)
 
-# Campos: calcF1Score(carpeta origen de los json creados por el modelo + modelo utilizado + /, carpeta origen del gold standard)
-calcF1Score("./../HuggingFace/" + camembert_NER + "/", "./../TEI/Json/")
-# calcF1Score("./../HuggingFace/" + bert_base_NER + "/", "./../TEI/Json/")
-# calcF1Score("./../HuggingFace/" + bert_large_NER + "/", "./../TEI/Json/")
-# calcF1Score("./../HuggingFace/" + bert_base_multilingual_cased_ner_hrl + "/", "./../TEI/Json/")
-# calcF1Score("./../HuggingFace/" + roberta_large_ner_english + "/", "./../TEI/Json/")
 
+if __name__ == "__main__":
+    main(sys.argv[1:])
