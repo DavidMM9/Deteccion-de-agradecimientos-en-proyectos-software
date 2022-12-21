@@ -20,11 +20,11 @@
         "word": "H2020 Programme"
     },
     {
-        "entity_group": "PROY",
+        "entity_group": "Funding entity",
         "word": "project RELIANCE"
     },
     {
-        "entity_group": "GRANT",
+        "entity_group": "Funding entity",
         "word": "grant agreement no. 101017501"
     },
     {
@@ -32,7 +32,7 @@
         "word": "Multiannual Agreement"
     },
     {
-        "entity_group": "PROY",
+        "entity_group": "Funding entity",
         "word": "R&D projects"
     },
     {

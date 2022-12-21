@@ -10,17 +10,17 @@
 	}
     ,
 	{
-		"entity_group": "PROY",
+		"entity_group": "Funding entity",
 		"word": "Project RAPIDO"
 	}
 	,
 	{
-		"entity_group": "PROY",
+		"entity_group": "Funding entity",
 		"word": "ANR-14-CE25-0007"
 	}
     ,
 	{
-		"entity_group": "PROY",
+		"entity_group": "Funding entity",
 		"word": "project ANR-11-IS02-0002"
 	}
     ,
@@ -30,7 +30,7 @@
 	}
 	,
 	{
-		"entity_group": "PROY",
+		"entity_group": "Funding entity",
 		"word": "61161130530"
 	}
 ]
