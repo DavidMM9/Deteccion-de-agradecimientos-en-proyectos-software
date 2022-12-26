@@ -3,7 +3,7 @@
 ## Requirements
 
 - Python3
-- Docker Desktop
+- Docker
 
 ## Guía de ejecución del pipeline:
 
