@@ -1,6 +1,11 @@
 # Deteccion de agradecimientos en proyectos software
 
-Guía de ejecución del pipeline:
+## Requirements
+
+- Python3
+- Docker Desktop
+
+## Guía de ejecución del pipeline:
 
 1. Descargar el repositorio
 
