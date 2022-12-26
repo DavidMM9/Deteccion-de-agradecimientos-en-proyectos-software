@@ -16,7 +16,7 @@
 2. Abrir la carpeta Python y ejecutar el requirements.txt
 
 ```
-cd Python/
+cd Deteccion-de-agradecimientos-en-proyectos-software/Python/
 pip install -r requirements.txt
 ```
 
