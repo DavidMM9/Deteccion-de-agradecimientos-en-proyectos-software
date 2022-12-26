@@ -16,7 +16,7 @@
 2. Abrir la carpeta Python y ejecutar el requirements.txt
 
 ```
-cd Pyhton/
+cd Python/
 pip install -r requirements.txt
 ```
 
