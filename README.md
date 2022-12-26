@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- [Python](https://www.python.org/downloads/)
+- [Python 3.10.6](https://www.python.org/downloads/)
 - [Docker](https://docs.docker.com/engine/install/)
 
 ## Guía de ejecución del pipeline:
@@ -57,15 +57,20 @@ docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.7.2
 -f, --huggingface     Usar modelo de HuggingFace
 
 -r, --regex           Mete al json del modelo lo encontrado con regex
-
--c, --calcF1          Calcula el F1 score en una tabla
 ```
 
 Ejemplo:
 
 ```
-python3 main.py -a ../Articulos/ -t ../TEI/ -o ../HuggingFace/prueba/ -m Jean-Baptiste/camembert-ner -s ../Gold_standard/ -g -x -f -r -c
+python3 main.py -a ../Articulos/ -t ../TEI/ -o ../HuggingFace/ -m Jean-Baptiste/camembert-ner -s ../Gold_standard/ -g -x -f -r
 ```
+
+Al ejecutar este ejemplo:
+
+- Se cogerán los artículos de la carpeta ../Articulos/
+- Se guardarán los archivos XML generados por el Grobid en la carpeta ../TEI/
+- En la carpeta ../TEI/TXT/ se guardarán los txt de la sección de acknowledgements
+- Los Json generados por el modelo se guardarán en la carpeta ../HuggingFace/Jean-Baptiste/camembert-ner/
 
 El modelo de HuggingFace que se quiera utilizar se puede encontrar en su página web https://huggingface.co/ y pasar como parámetro al comando el nombre del modelo. Se puede copiar y pegar desde la propia página del modelo. Ejemplo:
 

@@ -1,5 +1,6 @@
 import json
 import os
+import argparse, getopt, sys
 
 from prettytable import PrettyTable
 
@@ -61,3 +62,49 @@ def calcF1Score(modelo, compared):
         [nombre_modelo, round(precision, 2), round(recall, 2), round(f1Score, 2)]
     )
     print(myTable)
+
+
+def main(argv):
+    parser = argparse.ArgumentParser(description="Calculo del F1 score")
+
+    parser.add_argument(
+        "-o", "--output", type=str, help="Carpeta para guardar los json devueltos"
+    )
+    parser.add_argument("-m", "--model", type=str, help="Modelo de HuggingFace")
+    parser.add_argument(
+        "-s", "--goldstandard", type=str, help="Carpeta donde esta el goldstandard"
+    )
+
+    args = parser.parse_args()
+
+    output = ""
+    model = ""
+    goldstandard = ""
+
+    opts, args = getopt.getopt(
+        argv,
+        "ho:m:s:",
+        [
+            "ofile=",
+            "model=",
+            "goldstandard=",
+        ],
+    )
+
+    for opt, arg in opts:
+        if opt == "-h":
+            print(
+                "main.py -a <articulos> -t <tei> -o <output> -m <modelname> -s <goldstandard> -g -x -f -r -c"
+            )
+            sys.exit()
+        elif opt in ("-o", "--ofile"):
+            output = arg
+        elif opt in ("-m", "--model"):
+            model = arg
+        elif opt in ("-s", "--goldstandard"):
+            goldstandard = arg
+    calcF1Score(output + model + "/", goldstandard)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

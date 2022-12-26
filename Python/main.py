@@ -44,9 +44,6 @@ def main(argv):
         action="store_true",
         help="Mete al json del modelo lo encontrado con regex",
     )
-    parser.add_argument(
-        "-c", "--calcF1", action="store_true", help="Calcula el F1 score en una tabla"
-    )
 
     args = parser.parse_args()
 
@@ -68,13 +65,12 @@ def main(argv):
             "toTXT=",
             "huggingface=",
             "regex=",
-            "calcF1=",
         ],
     )
     for opt, arg in opts:
         if opt == "-h":
             print(
-                "main.py -a <articulos> -t <tei> -o <output> -m <modelname> -s <goldstandard> -g -x -f -r -c"
+                "main.py -a <articulos> -t <tei> -o <output> -m <modelname> -s <goldstandard> -g -x -f -r"
             )
             sys.exit()
         elif opt in ("-a", "--articulos"):
@@ -95,8 +91,6 @@ def main(argv):
             useModel(model, TEIfolder + "TXT/", output)
         elif opt in ("-r", "--regex"):
             addRegex(model, TEIfolder + "TXT/", output)
-        elif opt in ("-c", "--calcF1"):
-            calcF1Score(output + model + "/", goldstandard)
 
 
 if __name__ == "__main__":
