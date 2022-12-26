@@ -2,8 +2,8 @@
 
 ## Requirements
 
-- Python3
-- Docker
+- [Python](https://www.python.org/downloads/)
+- [Docker](https://docs.docker.com/engine/install/)
 
 ## Guía de ejecución del pipeline:
 
