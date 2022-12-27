@@ -15,7 +15,7 @@ ANR-14-CE25-0007
 61161130530
 EP/J009814/1
 
-[\(\[][a-zA-Z0-9]+[\-:/]+[^\s]+
+[a-zA-Z0-9]+[\-:/]+[^\s]+
 
 COMPAT project
 ACROSS project
@@ -23,7 +23,6 @@ AlterEgo project
 PRAISE project
 ACE project
 Collective Mind project
-
 (\S*)\s*(\S+)\s*[pP]roject(s)*
 \S+(\s+[pP]roject(s)*)
 
@@ -47,3 +46,6 @@ Projects TR32007 and TR32051
 
 [pP]roject(s)* (no. |No. |[Nn]umber )+([^\s]+)
 [pP]roject(s)* ([^\s]+)
+
+
+\S*(\S*([a-zA-Z]\S*[0-9])|([0-9]\S*[a-zA-Z]))\S*

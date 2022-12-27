@@ -1,4 +1,4 @@
-grant agreement no. 231913
+grant agreement no. (231913
 grant agreement no 231396
 Grant number TEC2013-49430-EXP
 Grant number 388770
@@ -7,7 +7,7 @@ Grant agreement no. 604656
 Grants Agreement no. 317184
 grant number 14-24-00020
 Grants P20342-N13 and L628-N15
-Grant 822739
+Grant [822739]).
 grant number 036-0362027-2028
 grant 'Nanocrystalline diamond for Micro-Electro-Mechanical-Systems'
 grant no. 13.09.2.2.16
@@ -15,4 +15,9 @@ grant NNX14AM24G
 grants #643.200.503, #639.073.803 and #614.061.608
 grant agreement No 671564
 
+http://voa3r.eu
+
+
 [gG]rant(s)* ([aA]greement )*([Nn]o(\.*) )*(number )*([a-zA-Z\-:/\.#0-9]+)*(['"].+['"])*
+
+(?![.()(\[\])-,\\/\*])\S*(\S*([a-zA-Z]\S*[0-9])|([0-9]\S*))\S*(?<![.()(\[\])-,\\/\*])
