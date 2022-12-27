@@ -45,7 +45,12 @@
     ,
 	{
 		"entity_group": "Funding entity",
-		"word": "Grants P20342-N13 and L628-N15"
+		"word": "P20342-N13"
+	}
+	,
+	{
+		"entity_group": "Funding entity",
+		"word": "L628-N15"
 	}
     ,
 	{
@@ -60,6 +65,6 @@
     ,
 	{
 		"entity_group": "Funding entity",
-		"word": "Grant 822739"
+		"word": "822739"
 	}
 ]

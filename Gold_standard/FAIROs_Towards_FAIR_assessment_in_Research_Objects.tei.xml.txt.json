@@ -16,8 +16,8 @@
         "word": "UPM"
     },
     {
-        "entity_group": "MISC",
-        "word": "H2020 Programme"
+        "entity_group": "Funding entity",
+        "word": "H2020"
     },
     {
         "entity_group": "Funding entity",
@@ -25,7 +25,7 @@
     },
     {
         "entity_group": "Funding entity",
-        "word": "grant agreement no. 101017501"
+        "word": "101017501"
     },
     {
         "entity_group": "MISC",

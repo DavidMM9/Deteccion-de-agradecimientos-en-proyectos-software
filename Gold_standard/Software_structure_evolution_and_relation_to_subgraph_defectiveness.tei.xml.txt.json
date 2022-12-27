@@ -6,7 +6,7 @@
     ,
 	{
 		"entity_group": "Funding entity",
-		"word": "project UIP-2014-09-7945"
+		"word": "UIP-2014-09-7945"
 	},
 	{
 		"entity_group": "ORG",
@@ -14,6 +14,6 @@
 	},
 	{
 		"entity_group": "GRANT",
-		"word": "grant no. 13.09.2.2.16"
+		"word": "13.09.2.2.16"
 	}
 ]

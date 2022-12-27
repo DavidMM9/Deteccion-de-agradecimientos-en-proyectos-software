@@ -9,7 +9,7 @@
 	},
 	{
 		"entity_group": "Funding entity",
-		"word": "projects RESCUE"
+		"word": "projects RESCUE, FAVAS, CROSS"
 	},
 	{
 		"entity_group": "Funding entity",
@@ -17,15 +17,7 @@
 	},
 	{
 		"entity_group": "Funding entity",
-		"word": "FAVAS"
-	},
-	{
-		"entity_group": "Funding entity",
 		"word": "PTDC/EIA-CCO/105034/2008"
-	},
-	{
-		"entity_group": "Funding entity",
-		"word": "CROSS"
 	},
 	{
 		"entity_group": "Funding entity",

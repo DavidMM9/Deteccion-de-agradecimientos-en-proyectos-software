@@ -13,7 +13,7 @@
     },
     {
         "entity_group": "Funding entity",
-        "word": "grant number 036-0362027-2028"
+        "word": "036-0362027-2028"
     },
     {
         "entity_group": "Funding entity",
@@ -21,7 +21,11 @@
     },
     {
         "entity_group": "Funding entity",
-        "word": "285939 FP7-REGPOT-2011-1"
+        "word": "285939"
+    },
+    {
+        "entity_group": "Funding entity",
+        "word": "FP7-REGPOT-2011-1"
     },
     {
         "entity_group": "LOC",

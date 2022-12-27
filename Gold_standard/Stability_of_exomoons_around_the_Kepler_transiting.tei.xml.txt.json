@@ -49,7 +49,7 @@
 	},
 	{
 		"entity_group": "Funding entity",
-		"word": "Funding entity NNX14AM24G"
+		"word": "NNX14AM24G"
 	},
 	{
 		"entity_group": "ORG",
@@ -61,7 +61,15 @@
 	},
 	{
 		"entity_group": "Funding entity",
-		"word": "Funding entitys #643.200.503, #639.073.803 and #614.061.608"
+		"word": "#643.200.503"
+	},
+	{
+		"entity_group": "Funding entity",
+		"word": "#639.073.803"
+	},
+	{
+		"entity_group": "Funding entity",
+		"word": "#614.061.608"
 	},
 	{
 		"entity_group": "ORG",
@@ -93,7 +101,7 @@
 	},
 	{
 		"entity_group": "Funding entity",
-		"word": "Funding entity agreement No 671564"
+		"word": "671564"
 	},
 	{
 		"entity_group": "Funding entity",
