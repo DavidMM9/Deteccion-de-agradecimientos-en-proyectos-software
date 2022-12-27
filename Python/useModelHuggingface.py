@@ -32,6 +32,7 @@ def useModel(modelo, path, output):
         for dic in result:
             dic["score"] = str(dic["score"])
             dic["word"] = dic["word"].lstrip()
+            dic["source"] = "MODEL"
         # Cambiamos la estructura del modelo a Json y lo escribimos
         final = json.dumps(result)
         jsonFile.write(final)

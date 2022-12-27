@@ -33,15 +33,21 @@ def addRegex(modelo, path, output):
             if y[0][0] == y[0][0].lower():
                 continue
             else:
-                dicts.update({"entity_group": "PROY", "word": y[0]})
+                dicts.update(
+                    {"entity_group": "Funding entity", "word": y[0], "source": "REGEX"}
+                )
                 dicts_copy = dicts.copy()
                 send.append(dicts_copy)
         for z in proyNumber:
-            dicts.update({"entity_group": "PROY", "word": z[0]})
+            dicts.update(
+                {"entity_group": "Funding entity", "word": z[0], "source": "REGEX"}
+            )
             dicts_copy = dicts.copy()
             send.append(dicts_copy)
         for p in grantAgreement:
-            dicts.update({"entity_group": "GRANT", "word": p[0]})
+            dicts.update(
+                {"entity_group": "Funding entity", "word": p[0], "source": "REGEX"}
+            )
             dicts_copy = dicts.copy()
             sendGrant.append(dicts_copy)
         for i in proySmth:
@@ -53,7 +59,13 @@ def addRegex(modelo, path, output):
                 or var[0] == '"'
             ):
                 if var[0] == var[0].upper():
-                    dicts.update({"entity_group": "PROY", "word": i[0]})
+                    dicts.update(
+                        {
+                            "entity_group": "Funding entity",
+                            "word": i[0],
+                            "source": "REGEX",
+                        }
+                    )
                     dicts_copy = dicts.copy()
                     send.append(dicts_copy)
         for j in projects:
@@ -61,7 +73,9 @@ def addRegex(modelo, path, output):
                 j = j.replace(j[-1], "")
             tieneNumero = any(char.isdigit() for char in j)
             if j == j.upper() and tieneNumero == True:
-                dicts.update({"entity_group": "PROY", "word": j[0]})
+                dicts.update(
+                    {"entity_group": "Funding entity", "word": j[0], "source": "REGEX"}
+                )
                 dicts_copy = dicts.copy()
                 sendGrant.append(dicts_copy)
 

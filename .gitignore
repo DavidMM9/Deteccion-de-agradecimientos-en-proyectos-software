@@ -3,3 +3,5 @@
 __pycache__
 .venv
 /../Python/grobid_client_python.egg-info/
+TEI
+HuggingFace
