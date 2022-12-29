@@ -1,5 +1,7 @@
 # Deteccion de agradecimientos en proyectos software
 
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 ## Requirements
 
 - [Python 3.10.6](https://www.python.org/downloads/)
