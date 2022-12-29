@@ -68,36 +68,35 @@ def main(argv):
     parser = argparse.ArgumentParser(description="Calculo del F1 score")
 
     parser.add_argument(
-        "-o", "--output", type=str, help="Carpeta con los Json a analizar"
+        "-j", "--json", type=str, help="Carpeta con los Json a analizar"
     )
     parser.add_argument(
-        "-s", "--goldstandard", type=str, help="Carpeta donde esta el goldstandard"
+        "-g", "--goldstandard", type=str, help="Carpeta donde esta el goldstandard"
     )
 
     args = parser.parse_args()
 
-    output = ""
-    model = ""
+    json = ""
     goldstandard = ""
 
     opts, args = getopt.getopt(
         argv,
-        "ho:s:",
+        "hj:g:",
         [
-            "ofile=",
+            "json=",
             "goldstandard=",
         ],
     )
 
     for opt, arg in opts:
         if opt == "-h":
-            print("main.py -a <articulos> -t <tei> -o <output> -s <goldstandard>")
+            print("main.py -a <articulos> -j <json> -g <goldstandard>")
             sys.exit()
-        elif opt in ("-o", "--ofile"):
-            output = arg
-        elif opt in ("-s", "--goldstandard"):
+        elif opt in ("-j", "--json"):
+            json = arg
+        elif opt in ("-g", "--goldstandard"):
             goldstandard = arg
-    calcF1Score(output, goldstandard)
+    calcF1Score(json, goldstandard)
 
 
 if __name__ == "__main__":

@@ -5,9 +5,12 @@ from addRegex import addRegex
 from calcF1Score import calcF1Score
 
 import sys, getopt, argparse
+import warnings
 
 
 def main(argv):
+
+    warnings.filterwarnings("ignore")
 
     parser = argparse.ArgumentParser(
         description="Deteccion de agradecimientos en proyectos software"
@@ -20,9 +23,6 @@ def main(argv):
         "-o", "--output", type=str, help="Carpeta para guardar los json devueltos"
     )
     parser.add_argument("-m", "--model", type=str, help="Modelo de HuggingFace")
-    parser.add_argument(
-        "-s", "--goldstandard", type=str, help="Carpeta donde esta el goldstandard"
-    )
     parser.add_argument(
         "-g",
         "--grobid",
@@ -51,16 +51,14 @@ def main(argv):
     TEIfolder = ""
     output = ""
     model = ""
-    goldstandard = ""
     opts, args = getopt.getopt(
         argv,
-        "ha:t:o:m:s:gxfrc",
+        "ha:t:o:m:gxfrc",
         [
             "articulos=",
             "TEIfolder=",
             "ofile=",
             "model=",
-            "goldstandard=",
             "grobid=",
             "toTXT=",
             "huggingface=",
@@ -70,7 +68,7 @@ def main(argv):
     for opt, arg in opts:
         if opt == "-h":
             print(
-                "main.py -a <articulos> -t <tei> -o <output> -m <modelname> -s <goldstandard> -g -x -f -r"
+                "main.py -a <articulos> -t <tei> -o <output> -m <modelname> -g -x -f -r"
             )
             sys.exit()
         elif opt in ("-a", "--articulos"):
@@ -81,8 +79,6 @@ def main(argv):
             output = arg
         elif opt in ("-m", "--model"):
             model = arg
-        elif opt in ("-s", "--goldstandard"):
-            goldstandard = arg
         elif opt in ("-g", "--grobid"):
             useGrobid(articulos, TEIfolder)
         elif opt in ("-x", "--toTXT"):
