@@ -13,34 +13,39 @@
  git clone https://github.com/DavidMM9/Deteccion-de-agradecimientos-en-proyectos-software.git
 ```
 
-**El paso 2 solo se necesita hacer la primera vez**
-
 2. Abrir la carpeta Python y ejecutar el requirements.txt
 
 ```
 cd Deteccion-de-agradecimientos-en-proyectos-software/Python/
+```
+
+**El paso 3 solo se necesita hacer la primera vez**
+
+3. Ejecutar el requirements.txt
+
+```
 pip install -r requirements.txt
 ```
 
-**Los pasos del 3 al 5 se pueden saltar si no se quiere usar la parte de Grobid**
+**Los pasos del 4 al 6 se pueden saltar si no se quiere usar la parte de Grobid**
 
-3. Abrir Docker Desktop
+4. Abrir Docker Desktop
 
 **El paso 4 solo se necesita hacer la primera vez**
 
-4. Descargar el contenedor Docker
+5. Descargar el contenedor Docker
 
 ```
 docker pull lfoppiano/grobid:0.7.2
 ```
 
-5. Ejecutar el contenedor
+6. Ejecutar el contenedor
 
 ```
 docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.7.2
 ```
 
-6. Ejecutar main.py con los parametros que queramos
+7. Ejecutar main.py con los parametros que queramos
 
 ```
 -h, --help            show this help message and exit
@@ -87,7 +92,7 @@ El modelo de HuggingFace que se quiera utilizar se puede encontrar en su página
 
 ## Explicación del output:
 
-El output de utilizar este proyecto será un archivo .json con el fragmento de texto encontrado, el tipo de entidad reconocido y si proviene del modelo utilizado en HuggingFace o de las expresiones regulares.
+El output generado al utilizar este proyecto será un archivo .json con el fragmento de texto encontrado, el tipo de entidad reconocido y si proviene del modelo utilizado en HuggingFace o de las expresiones regulares.
 
 Tipos de entidades a reconocer:
 
@@ -106,4 +111,4 @@ Ejemplo:
 	}
 ```
 
-Si analizamos este fragmento de json, podemos ver que el modelo hemos detectado un proyecto o Grant id ya que el "entity_group" es "Funding entity". El fragmento de texto detectado es lo que hay dentro del campo "word", en este caso "231913" y, por úlitmo, podemos comprobar que esta detección se ha realizado mediante expresiones regulares al ser "REGEX" el campo "source".
+Si analizamos este fragmento de json, podemos ver que hemos detectado un proyecto o Grant id ya que el "entity_group" es "Funding entity". El fragmento de texto detectado es lo que hay dentro del campo "word", en este caso "231913" y, por úlitmo, podemos comprobar que esta detección se ha realizado mediante expresiones regulares al ser "REGEX" el campo "source".
