@@ -3,7 +3,7 @@
 ## Requirements
 
 - [Python 3.10.6](https://www.python.org/downloads/)
-- [Docker](https://docs.docker.com/engine/install/)
+- [Docker 4.14.1](https://docs.docker.com/engine/install/)
 
 ## Guía de ejecución del pipeline:
 
