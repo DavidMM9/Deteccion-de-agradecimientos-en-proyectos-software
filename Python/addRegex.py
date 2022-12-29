@@ -14,8 +14,9 @@ def addRegex(modelo, path, output):
             continue
         f = open(path + x)
         jsonFile = open(target + "/" + x + ".json", "r+")
-        prueba = jsonFile.read()
-        print(prueba[0] + "\n")
+        texto = jsonFile.read()
+        prueba = json.loads(texto)
+        # print(prueba[0]["word"])
         contents = f.read()
         smthProy = re.findall("(\S+(\s+[pP]roject(s)*))", contents)
         proyNumber = re.findall(
@@ -28,6 +29,9 @@ def addRegex(modelo, path, output):
             if y[0][0] == y[0][0].lower() or y[0][0].isdigit() == False:
                 continue
             else:
+                for i in prueba.copy():
+                    if y[0] in i["word"]:
+                        prueba.remove(i)
                 dicts.update(
                     {"entity_group": "Funding entity", "word": y[0], "source": "REGEX"}
                 )
@@ -36,20 +40,18 @@ def addRegex(modelo, path, output):
         for z in proyNumber:
             if len(z[0]) < 5:
                 continue
+            for i in prueba.copy():
+                if z[0] in i["word"]:
+                    prueba.remove(i)
             dicts.update(
                 {"entity_group": "Funding entity", "word": z[0], "source": "REGEX"}
             )
-            # print(z[0])
             dicts_copy = dicts.copy()
             send.append(dicts_copy)
 
-        data = json.loads(prueba)
+        data = json.dumps(prueba)
+        data = json.loads(data)
         final = data + send
-        for x in final:
-            if x["source"] == "REGEX":
-                print(x["word"] + "\n")
-                # m = re.search("\w*" + x["word"] + "\w*", final)
-                # print(m.group())
 
         finalJson = json.dumps(final)
         jsonFile.seek(0)
