@@ -5,19 +5,17 @@ import argparse, getopt, sys
 from prettytable import PrettyTable
 
 
-def calcF1Score(modelo, compared):
+def calcF1Score(jsonF, compared, modelo):
     myTable = PrettyTable(["Model name", "Precision", "Recall", "F1-score"])
     # Donde estan los json buenos
     res = 0
     total = 0
     total2 = 0
-    nombre_modelo = modelo.split("/")
-    nombre_modelo = nombre_modelo[-2]
 
     # Hago un bucle para abrir de uno en uno los archivos
-    for k in os.listdir(modelo):
+    for k in os.listdir(jsonF):
         # Abrimos el json
-        f = open(modelo + k)
+        f = open(jsonF + k)
         data = json.load(f)
         c = open(compared + k)
         dataCompared = json.load(c)
@@ -58,9 +56,7 @@ def calcF1Score(modelo, compared):
     # print("El recall del modelo es: " + str(recall))
     # print("La f1-score obtenida por el modelo es: " + str(f1Score))
 
-    myTable.add_row(
-        [nombre_modelo, round(precision, 2), round(recall, 2), round(f1Score, 2)]
-    )
+    myTable.add_row([modelo, round(precision, 2), round(recall, 2), round(f1Score, 2)])
     print(myTable)
 
 
@@ -73,19 +69,18 @@ def main(argv):
     parser.add_argument(
         "-g", "--goldstandard", type=str, help="Carpeta donde esta el goldstandard"
     )
+    parser.add_argument("-m", "--model", type=str, help="Nombre del modelo utilizado")
 
     args = parser.parse_args()
 
     json = ""
     goldstandard = ""
+    model = ""
 
     opts, args = getopt.getopt(
         argv,
-        "hj:g:",
-        [
-            "json=",
-            "goldstandard=",
-        ],
+        "hj:g:m:",
+        ["json=", "goldstandard=", "model="],
     )
 
     for opt, arg in opts:
@@ -96,7 +91,9 @@ def main(argv):
             json = arg
         elif opt in ("-g", "--goldstandard"):
             goldstandard = arg
-    calcF1Score(json, goldstandard)
+        elif opt in ("-m", "--model"):
+            model = arg
+    calcF1Score(json, goldstandard, model)
 
 
 if __name__ == "__main__":

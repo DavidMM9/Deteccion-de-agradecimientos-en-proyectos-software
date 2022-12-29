@@ -3,17 +3,15 @@ import json
 import os
 
 
-def addRegex(modelo, path, output):
+def addRegex(path, output):
     send = []
-    sendGrant = []
     final = []
     dicts = {}
-    target = output + modelo
     for x in os.listdir(path):
         if os.path.isdir(path + x):
             continue
         f = open(path + x)
-        jsonFile = open(target + "/" + x + ".json", "r+")
+        jsonFile = open(output + "/" + x + ".json", "r+")
         texto = jsonFile.read()
         prueba = json.loads(texto)
         # print(prueba[0]["word"])

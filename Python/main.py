@@ -86,7 +86,7 @@ def main(argv):
         elif opt in ("-f", "--huggingface"):
             useModel(model, TEIfolder + "TXT/", output)
         elif opt in ("-r", "--regex"):
-            addRegex(model, TEIfolder + "TXT/", output)
+            addRegex(TEIfolder + "TXT/", output)
 
 
 if __name__ == "__main__":

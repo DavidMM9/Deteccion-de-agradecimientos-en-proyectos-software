@@ -15,10 +15,9 @@ def useModel(modelo, path, output):
         "ner", model=model, tokenizer=tokenizer, aggregation_strategy="simple"
     )
 
-    target = output + modelo
     # Vemos si la carpeta donde queremos guardar los Json existe, si no la creamos
-    if not os.path.exists(target):
-        os.makedirs(target)
+    if not os.path.exists(output):
+        os.makedirs(output)
     # Recorremos los directorios de la carpeta
     for x in os.listdir(path):
         if os.path.isdir(path + x):
@@ -27,7 +26,7 @@ def useModel(modelo, path, output):
         contents = f.read()
         # Aplicamos el modelo al texto
         result = nlp(contents)
-        jsonFile = open(target + "/" + x + ".json", "w")
+        jsonFile = open(output + "/" + x + ".json", "w")
         # Cambiamos los scores a string para poder pasarlo a Json
         for dic in result:
             dic["score"] = str(dic["score"])
