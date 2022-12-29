@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 4. Abrir Docker Desktop
 
-**El paso 4 solo se necesita hacer la primera vez**
+**El paso 5 solo se necesita hacer la primera vez**
 
 5. Descargar el contenedor Docker
 
