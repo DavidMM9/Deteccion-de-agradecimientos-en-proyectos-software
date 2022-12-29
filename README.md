@@ -13,6 +13,8 @@
  git clone https://github.com/DavidMM9/Deteccion-de-agradecimientos-en-proyectos-software.git
 ```
 
+**El paso 2 solo se necesita hacer la primera vez**
+
 2. Abrir la carpeta Python y ejecutar el requirements.txt
 
 ```
@@ -20,18 +22,25 @@ cd Deteccion-de-agradecimientos-en-proyectos-software/Python/
 pip install -r requirements.txt
 ```
 
-**Los pasos 3 y 4 se pueden saltar si no se quiere usar la parte de Grobid**
+**Los pasos del 3 al 5 se pueden saltar si no se quiere usar la parte de Grobid**
 
 3. Abrir Docker Desktop
 
-4. Descargar y ejecutar el contenedor Docker
+**El paso 4 solo se necesita hacer la primera vez**
+
+4. Descargar el contenedor Docker
 
 ```
 docker pull lfoppiano/grobid:0.7.2
+```
+
+5. Ejecutar el contenedor
+
+```
 docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.7.2
 ```
 
-5. Ejecutar main.py con los parametros que queramos
+6. Ejecutar main.py con los parametros que queramos
 
 ```
 -h, --help            show this help message and exit
