@@ -63,9 +63,6 @@ docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.7.2
 -m MODEL, --model MODEL
                       Modelo de HuggingFace
 
--s GOLDSTANDARD, --goldstandard GOLDSTANDARD
-                      Carpeta donde esta el goldstandard
-
 -g, --grobid          Usar grobid para pasar articulos de PDF a XML
 
 -x, --toTXT           Sacar la seccion de Acknowledgements en TXT
@@ -78,7 +75,7 @@ docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.7.2
 Ejemplo:
 
 ```
-python3 main.py -a ../Articulos/ -t ../TEI/ -o ../HuggingFace/ -m Jean-Baptiste/camembert-ner -s ../Gold_standard/ -g -x -f -r
+python3 main.py -a ../Articulos/ -t ../TEI/ -o ../HuggingFace/ -m Jean-Baptiste/camembert-ner -g -x -f -r
 ```
 
 Al ejecutar este ejemplo:
@@ -123,17 +120,17 @@ Para calcular la precisión, el recall y el f1-score de los json devueltos por e
 options:
   -h, --help            show this help message and exit
 
-  -o OUTPUT, --output OUTPUT
+  -j JSON, --json JSON
                         Carpeta con los Json a analizar
 
-  -s GOLDSTANDARD, --goldstandard GOLDSTANDARD
+  -g GOLDSTANDARD, --goldstandard GOLDSTANDARD
                         Carpeta donde esta el goldstandard
 ```
 
 Ejemplo:
 
 ```
-python3 calcF1Score.py -o ../HuggingFace/Jean-Baptiste/camembert-ner/ -s ../Gold_standard/
+python3 calcF1Score.py -j ../HuggingFace/Jean-Baptiste/camembert-ner/ -g ../Gold_standard/
 ```
 
 Output con el ejemplo:
