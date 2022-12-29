@@ -38,8 +38,9 @@ def addRegex(modelo, path, output):
                 dicts_copy = dicts.copy()
                 send.append(dicts_copy)
         for z in proyNumber:
-            if len(z[0]) < 5:
-                continue
+            if len(z[0]) < 5 and z[0][0].isdigit() == True:
+                if len(z[0]) < 4 or (len(z[0]) == 4 and int(z[0][0]) < 3):
+                    continue
             for i in prueba.copy():
                 if z[0] in i["word"]:
                     prueba.remove(i)
