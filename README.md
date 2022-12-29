@@ -84,3 +84,26 @@ Al ejecutar este ejemplo:
 El modelo de HuggingFace que se quiera utilizar se puede encontrar en su página web https://huggingface.co/ y pasar como parámetro al comando el nombre del modelo. Se puede copiar y pegar desde la propia página del modelo. Ejemplo:
 
 ![](/Python/modelo.png "Ejemplo para copiar el modelo")
+
+## Explicación del output:
+
+El output de utilizar este proyecto será un archivo .json con el fragmento de texto encontrado, el tipo de entidad reconocido y si proviene del modelo utilizado en HuggingFace o de las expresiones regulares.
+
+Tipos de entidades a reconocer:
+
+- PER -> Persona
+- ORG -> Organización
+- MISC -> Miscelaneo, no es ni persona ni organización
+- Funding entity -> Proyecto o Grant id
+
+Ejemplo:
+
+```
+    {
+		"entity_group": "Funding entity",
+		"word": "231913",
+		"source": "REGEX"
+	}
+```
+
+Si analizamos este fragmento de json, podemos ver que el modelo hemos detectado un proyecto o Grant id ya que el "entity_group" es "Funding entity". El fragmento de texto detectado es lo que hay dentro del campo "word", en este caso "231913" y, por úlitmo, podemos comprobar que esta detección se ha realizado mediante expresiones regulares al ser "REGEX" el campo "source".
