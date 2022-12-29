@@ -83,7 +83,7 @@ Al ejecutar este ejemplo:
 - Se cogerán los artículos de la carpeta ../Articulos/
 - Se guardarán los archivos XML generados por el Grobid en la carpeta ../TEI/
 - En la carpeta ../TEI/TXT/ se guardarán los txt de la sección de acknowledgements
-- Los Json generados por el modelo se guardarán en la carpeta ../HuggingFace/Jean-Baptiste/camembert-ner/
+- Los Json generados por el modelo se guardarán en la carpeta ../HuggingFace/
 
 El modelo de HuggingFace que se quiera utilizar se puede encontrar en su página web https://huggingface.co/ y pasar como parámetro al comando el nombre del modelo. Se puede copiar y pegar desde la propia página del modelo. Ejemplo:
 
@@ -125,12 +125,15 @@ options:
 
   -g GOLDSTANDARD, --goldstandard GOLDSTANDARD
                         Carpeta donde esta el goldstandard
+
+  -m MODEL, --model MODEL
+                        Nombre del modelo utilizado
 ```
 
 Ejemplo:
 
 ```
-python3 calcF1Score.py -j ../HuggingFace/Jean-Baptiste/camembert-ner/ -g ../Gold_standard/
+python3 calcF1Score.py -j ../HuggingFace/ -g ../Gold_standard/ -m camembert-ner
 ```
 
 Output con el ejemplo:
