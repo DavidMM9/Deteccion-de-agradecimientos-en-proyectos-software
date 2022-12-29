@@ -136,7 +136,7 @@ Ejemplo:
 python3 calcF1Score.py -j ../HuggingFace/ -g ../Gold_standard/ -m camembert-ner
 ```
 
-Output con el ejemplo:
+Output del ejemplo:
 
 ```
 +---------------+-----------+--------+----------+
