@@ -114,3 +114,34 @@ Ejemplo:
 ```
 
 Si analizamos este fragmento de json, podemos ver que hemos detectado un proyecto o Grant id ya que el "entity_group" es "Funding entity". El fragmento de texto detectado es lo que hay dentro del campo "word", en este caso "231913" y, por úlitmo, podemos comprobar que esta detección se ha realizado mediante expresiones regulares al ser "REGEX" el campo "source".
+
+## Calculo del F1-score
+
+Para calcular la precisión, el recall y el f1-score de los json devueltos por el proyecto, tendremos que ejecutar el archivo calcF1Score.py.
+
+```
+options:
+  -h, --help            show this help message and exit
+
+  -o OUTPUT, --output OUTPUT
+                        Carpeta con los Json a analizar
+
+  -s GOLDSTANDARD, --goldstandard GOLDSTANDARD
+                        Carpeta donde esta el goldstandard
+```
+
+Ejemplo:
+
+```
+python3 calcF1Score.py -o ../HuggingFace/Jean-Baptiste/camembert-ner/ -s ../Gold_standard/
+```
+
+Output con el ejemplo:
+
+```
++---------------+-----------+--------+----------+
+|   Model name  | Precision | Recall | F1-score |
++---------------+-----------+--------+----------+
+| camembert-ner |    0.69   |  0.71  |   0.7    |
++---------------+-----------+--------+----------+
+```
