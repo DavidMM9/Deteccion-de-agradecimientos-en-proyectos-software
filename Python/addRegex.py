@@ -18,7 +18,7 @@ def addRegex(path, output):
         contents = f.read()
         smthProy = re.findall("(\S+(\s+[pP]roject(s)*))", contents)
         proyNumber = re.findall(
-            "((?![.()(\[\])-,\\/\*])\S*(\S*([a-zA-Z]\S*[0-9])|([0-9]\S*))\S*(?<![.()(\[\])-,\\/\*]))",
+            "((?![.()(\[\])-,\\/\*#])\S*(\S*([a-zA-Z]\S*[0-9])|([0-9]\S*))\S*(?<![.()(\[\])-,\\/\*]))",
             contents,
         )
         send = []

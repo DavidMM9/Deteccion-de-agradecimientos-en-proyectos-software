@@ -41,9 +41,9 @@ def calcF1Score(jsonF, compared, modelo):
         f.close()
         c.close()
 
-    # print("El modelo ha detectado " + str(total) + " elementos")
-    # print("Hay que encontrar " + str(total2) + " elementos")
-    # print("De los resultados obtenidos " + str(res) + " estan bien")
+    print("El modelo ha detectado " + str(total - res) + " elementos que no existen")
+    print("No ha encontrado " + str(total2 - res) + " elementos")
+    print("De los resultados obtenidos " + str(res) + " estan bien")
 
     falsos_positivos = total - res
     falsos_negativos = total2 - res
@@ -52,9 +52,9 @@ def calcF1Score(jsonF, compared, modelo):
     recall = res / (res + falsos_negativos)
     f1Score = 2 * ((precision * recall) / (precision + recall))
 
-    # print("La precision del modelo es: " + str(precision))
-    # print("El recall del modelo es: " + str(recall))
-    # print("La f1-score obtenida por el modelo es: " + str(f1Score))
+    print("La precision del modelo es: " + str(round(precision, 2)))
+    print("El recall del modelo es: " + str(round(recall, 2)))
+    print("La f1-score obtenida por el modelo es: " + str(round(f1Score, 2)))
 
     myTable.add_row([modelo, round(precision, 2), round(recall, 2), round(f1Score, 2)])
     print(myTable)
